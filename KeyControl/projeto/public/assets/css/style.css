@@ -1,0 +1,74 @@
+/***** Login *****/
+
+#login {
+    background-color: #1a1341;
+    color: #f2f2f2;
+    min-height: 100vh; /* 100% da altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+#cadastro {
+    background-color: #1a1341;
+    color: #f2f2f2;
+    min-height: 100vh; /* 100% da altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* nav */
+
+.nav-item {
+    margin-left: auto; 
+}
+
+.nav-link{
+    color: #f2f2f2 !important;
+}
+
+.nav-link:hover{
+    color: #ddf156 !important;
+}
+
+/* form */
+
+form  {
+    padding: 3% 30%;
+}
+
+.esq {
+    float: right;
+}
+
+.btn-primary {
+    font-weight: 600 !important;
+    background-color: #c5df16 !important; 
+    border-color:  #c5df16 !important;
+    width: 100% !important;
+}
+
+svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+
+
+
+
+@media screen and (max-width: 700px) {  
+    #login form  {
+        padding: 3% 15%;
+    }
+
+    .esq {
+        float: left;
+    }
+    
+ }
