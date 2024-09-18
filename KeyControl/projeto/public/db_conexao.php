@@ -1,7 +1,7 @@
 <?php
 // conexao com o banco
 $host = 'localhost';
-$dbname = 'keycontrolDB';
+$dbname = 'keycontroldb';
 $username = 'root';
 $password = '';
 
