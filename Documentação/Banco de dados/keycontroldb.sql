@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11/09/2024 às 17:21
+-- Tempo de geração: 18/09/2024 às 20:21
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `keycontrol_andamento`
+-- Banco de dados: `keycontroldb`
 --
 
 -- --------------------------------------------------------
@@ -85,11 +85,11 @@ CREATE TABLE `imovel` (
 
 CREATE TABLE `usuarios` (
   `id_user` int(11) NOT NULL,
-  `id_imobiliaria` int(11) DEFAULT NULL,
-  `nome` char(1) DEFAULT NULL,
-  `email` char(1) DEFAULT NULL,
-  `senha` char(1) DEFAULT NULL,
-  `nivel` int(11) DEFAULT NULL
+  `cnpj` int(14) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `nivel` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
