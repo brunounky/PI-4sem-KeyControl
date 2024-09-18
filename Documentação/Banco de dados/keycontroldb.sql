@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/09/2024 às 20:21
+-- Tempo de geração: 18/09/2024 às 21:34
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -93,6 +93,16 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_user`, `cnpj`, `nome`, `email`, `senha`, `nivel`) VALUES
+(2, 1122334455, '2', 'eeee@gmail.com', '$2y$10$QNLA.rsvkX61jCRCsrmNJuMo40Rr/AMmwFjjDIpVOsIA7tAuUe0wq', NULL),
+(3, 1122334455, '2', 'eeee@gmail.com', '$2y$10$hjrWUOGEzzY.gVeerroi9ugXwHE1yQcCiJYE8DjbzBvxHPsX7A2sC', NULL),
+(4, 1122334455, '2', 'eeee@gmail.com', '$2y$10$NmagphtH0Fg6RfWoikjhzuV8m7HQdlHFCiQgPVCK9/WfviyvoVTwq', NULL),
+(5, 2147483647, 'bruno', 'bruno@teste.com', '$2y$10$xd8EK6ZaXfyaiORPu26S5uo2vNXI97Zqaukdn5Xj2NIQMKM.yILXa', NULL);
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -113,6 +123,16 @@ ALTER TABLE `imovel`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_user`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
