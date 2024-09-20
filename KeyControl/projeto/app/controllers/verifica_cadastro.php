@@ -1,5 +1,5 @@
 <?php
-require 'db_conexao.php';
+require 'db_conexao.php'; //coloquei o caminho de outra forma no verifica login, testar a melor forma
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cnpj = $_POST['cnpj'];

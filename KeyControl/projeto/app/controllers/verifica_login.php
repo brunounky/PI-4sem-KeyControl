@@ -1,5 +1,5 @@
 <?php
-require 'db_conexao.php';
+require '../public/assets/db_conexao.php';
 
 session_start();
 
@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user && password_verify($senha, $user['senha'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['nome'];
-            header("Location: testelogin.php");
+            $_SESSION['user_email'] = $user['email'];
+            header("Location: ../views/testelogin.php");
             exit();
         } else {
             echo "E-mail ou senha incorretos.";
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Erro ao acessar o banco de dados: " . $e->getMessage();
     }
 } else {
-    header("Location: login.html");
+    header("Location: ../views/login_controllers.html");
     exit();
 }
 ?>
