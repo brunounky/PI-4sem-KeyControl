@@ -1,5 +1,5 @@
 <?php
-require '../public/assets/db_conexao.php';
+require '../controllers/db_conexao.php';
 
 session_start();
 
