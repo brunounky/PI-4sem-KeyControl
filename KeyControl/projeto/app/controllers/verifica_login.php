@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user && password_verify($senha, $user['senha'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['nome'];
-            header("Location: testelogin.php");
+            header("Location: teste_login_cadastro.html");
             exit();
         } else {
             echo "E-mail ou senha incorretos.";
