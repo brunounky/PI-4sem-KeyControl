@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {
         $stmt->execute();
-        echo "Cadastro realizado com sucesso!";
+        echo "Cadastro realizado com sucesso!"; 
     } catch (PDOException $e) {
         echo "Não foi possível cadastrar o usuário. Erro: " . $e->getMessage();
     }
