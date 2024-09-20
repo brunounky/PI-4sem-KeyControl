@@ -1,4 +1,3 @@
-
 function mascaraCNPJ(cnpj) {
     let v = cnpj.value.replace(/\D/g, ''); 
     if (v.length > 14) v = v.slice(0, 14); 
@@ -9,20 +8,25 @@ function mascaraCNPJ(cnpj) {
     cnpj.value = v;
 }
 
+
 function removerMascara(cnpj) {
     return cnpj.replace(/[^\d]/g, '');
 }
 
 function verificarCNPJ() {
-    const cnpj = document.getElementById('cnpj').value.replace(/\D/g, ''); 
-    if (cnpj.length !== 14 || !validaCNPJ(cnpj)) {
+    let cnpjCampo = document.getElementById('cnpj');
+    let cnpjSemMascara = removerMascara(cnpjCampo.value); 
+
+
+    if (cnpjSemMascara.length !== 14 || !validaCNPJ(cnpjSemMascara)) {
         alert("CNPJ inválido.");
-        return false; 
+        return false;
     }
+
+
     cnpjCampo.value = cnpjSemMascara;
     return true; 
 }
-
 
 function validaCNPJ(cnpj) {
     if (cnpj.length !== 14) return false;
