@@ -29,11 +29,11 @@
                     </div>
                 </div>
                 <!-- Forms login -->  
-                <form action="verifica_cadastro.php " method="post"> <!-- testar o post na page -->
+                <form action="../app/controllers/verifica_cadastro.php" method="post" onsubmit="return verificarCNPJ();"> <!-- pesquisar como fazer a ponte -->
                     <div class="row">                    
                         <div class="col-sm-12 mb-3">
                             <label for="cnpj" class="mb-2">CNPJ</label> 
-                            <input class="form-control" type="text" name="cnpj" required>
+                            <input class="form-control" type="text" id="cnpj" name="cnpj" required oninput="mascaraCNPJ(this)">
                         </div>
                         <div class="col-sm-12 mb-3">
                             <label for="nome" class="mb-2">Nome</label> 
@@ -60,6 +60,7 @@
     </div>
 </section>
 
+<script src="../public/assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

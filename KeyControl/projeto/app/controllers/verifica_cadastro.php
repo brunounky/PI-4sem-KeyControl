@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Não foi possível cadastrar o usuário. Erro: " . $e->getMessage();
     }
 } else {
-    header("Location: cadastro.html");
+    header("Location: cadastro_usuario.html");
     exit();
 }
 ?>
