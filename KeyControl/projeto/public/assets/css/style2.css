@@ -1,7 +1,11 @@
 nav {
-    background-color: rgb(4, 4, 53);
+    background-color: #131e41;
     margin-bottom: 30px;
-}   
+} 
+
+.nav-link.show.active {
+    color: #92b300 !important; 
+}
 
 nav .nav-link{
     color: white;
@@ -15,16 +19,16 @@ nav .nav-link:hover{
 
 nav .nav-item { 
     margin: 7px;
-    padding: 0 35px;
+    padding: 0 27px;
 }
 
 nav .dropdown-menu{
-    background-color: rgb(4, 4, 53);
+    background-color: #2e344e; 
     padding: 15px;
 }
 
 nav .dropdown-item:hover{
-    background-color: rgb(4, 4, 53);
+    background-color:  #332e4e; 
 }
 
 nav i {
@@ -54,19 +58,19 @@ form .card {
 }
 
 input.form-control {
-    background-color: #f7f9f2; 
+    background-color: #F7F9F2; 
     color: #333;
     border: 0px;
 }
 
 form .btn_custom {
     width: 70%;
-    background-color: rgb(143, 238, 42);
+    background-color: #C4DF16;
     color: white;
 }
 
 form .btn_custom:hover {
-    background-color: rgb(103, 190, 10);
+    background-color: #93A60F; 
 }
 
 .btn_salvar {
@@ -82,5 +86,5 @@ form .btn_custom:hover {
 
 footer {
     margin-top: 5%;
-    background-color: rgba(5, 113, 215, 0.615);
+    background-color: #50A3F0;
 }
