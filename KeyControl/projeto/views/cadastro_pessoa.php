@@ -53,21 +53,25 @@
                         <label for="email" class="mb-2">E-mail</label>  
                         <input class="form-control mb-3" type="text" name="email" id="email" required>
                         <label for="rua" class="mb-2">Rua</label>     
-                        <input class="form-control mb-3" type="text" name="rua" id="rua" required> 
+                        <input class="form-control mb-3" type="text" name="rua" id="rua" required disabled>
                         <label for="bairro" class="mb-2">Bairro</label> 
-                        <input class="form-control mb-3" type="text" name="bairro" id="bairro" required>    
-                      </div>
+                        <input class="form-control mb-3" type="text" name="bairro" id="bairro" required disabled>    
+                      </div>                      
+                      <div class="col-sm-12">
+                        <label for="complemento" class="mb-2">Complemento</label>
+                        <input class="form-control mb-3" type="text" name="complemento" id="complemento" required>                   
+                      </div> 
                       <div class="col-sm-4">
                         <label for="cidade" class="mb-2">Cidade</label> 
-                        <input class="form-control mb-3" type="text" name="cidade" id="cidade" required>  
+                        <input class="form-control mb-3" type="text" name="cidade" id="cidade" required disabled>  
                       </div>
                       <div class="col-sm-4">  
                         <label for="estado" class="mb-2">Estado</label>                   
-                        <input class="form-control mb-3" type="text" name="estado" id="estado" required>  
+                        <input class="form-control mb-3" type="text" name="estado" id="estado" required disabled>  
                       </div>
                       <div class="col-sm-4">
                         <label for="pais" class="mb-2">País</label>
-                        <input class="form-control mb-3" type="text" name="pais" id="pais" required>                   
+                        <input class="form-control mb-3" type="text" name="pais" id="pais" required disabled>                   
                       </div>
                     </div>
                   </div>

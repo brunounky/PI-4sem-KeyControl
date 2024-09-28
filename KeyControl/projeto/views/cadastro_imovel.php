@@ -40,6 +40,8 @@
                             <option value="proprietario3">João</option>
                             <option value="proprietario3">Lúcia</option>
                         </select>
+                        <label for="registro_agua" class="mb-2">N° de registro de aguá</label>                  
+                        <input class="form-control mb-3" type="number" name="registro_agua" id="registro_agua" required>
                         <label for="quartos" class="mb-2">Quartos</label>                  
                         <input class="form-control mb-3" type="number" name="quartos" id="quartos" required>
                         <label for="vagas" class="mb-2">Vagas</label> 
@@ -57,26 +59,32 @@
                             <option value="casa">Casa</option>
                             <option value="comercial">Comercial</option>
                         </select>
+                        <label for="registro_energia" class="mb-2">N° de registro de energia</label>                  
+                        <input class="form-control mb-3" type="number" name="registro_energia" id="registro_energia" required>
                         <label for="banheiros" class="mb-2">Banheiros</label> 
                         <input class="form-control mb-3" type="number" name="banheiros" id="banheiros" required>
                         <label for="area" class="mb-2">Área Total:</label>  
                         <input class="form-control mb-3" type="text" name="area" id="area" required>
                         <label for="rua" class="mb-2">Rua</label>     
-                        <input class="form-control mb-3" type="text" name="rua" id="rua" required> 
+                        <input class="form-control mb-3" type="text" name="rua" id="rua" required disabled> 
                         <label for="bairro" class="mb-2">Bairro</label> 
-                        <input class="form-control mb-3" type="text" name="bairro" id="bairro" required>    
+                        <input class="form-control mb-3" type="text" name="bairro" id="bairro" required disabled>    
+                      </div>                      
+                      <div class="col-sm-12">
+                        <label for="complemento" class="mb-2">Complemento</label>
+                        <input class="form-control mb-3" type="text" name="complemento" id="complemento" required>                   
                       </div>
                       <div class="col-sm-4">
                         <label for="cidade" class="mb-2">Cidade</label> 
-                        <input class="form-control mb-3" type="text" name="cidade" id="cidade" required>  
+                        <input class="form-control mb-3" type="text" name="cidade" id="cidade" required disabled>  
                       </div>
                       <div class="col-sm-4">  
                         <label for="estado" class="mb-2">Estado</label>                   
-                        <input class="form-control mb-3" type="text" name="estado" id="estado" required>  
+                        <input class="form-control mb-3" type="text" name="estado" id="estado" required disabled>  
                       </div>
                       <div class="col-sm-4">
                         <label for="pais" class="mb-2">País</label>
-                        <input class="form-control mb-3" type="text" name="pais" id="pais" required>                   
+                        <input class="form-control mb-3" type="text" name="pais" id="pais" required disabled>                   
                       </div>
                     </div>
                   </div>
@@ -85,15 +93,18 @@
                 <!-- Coluna de tipo -->
                 <div class="col-md-3">
                   <div class="card">
-                    <label class="mb-2">Tipo</label>
+                    <label class="mb-2">Valores</label>
                     <div class="form-check form-switch mb-3">
                       <input class="form-check-input mt-2" type="checkbox" id="aluguel" required>
-                      <button class="btn btn_custom form-check-label" for="locador">Aluguél</button>
+                      <button type="button" class="btn btn_custom">Aluguél</button>
                     </div>
+
                     <div class="form-check form-switch mb-3">
                       <input class="form-check-input mt-2" type="checkbox" id="venda" required>
-                      <button class="btn btn_custom form-check-label" for="locatario">Venda</button>
+                      <button type="button" class="btn btn_custom form-check-label">Venda</button>                   
                     </div>
+                    
+
                   </div>
                 </div>
               </div>        
