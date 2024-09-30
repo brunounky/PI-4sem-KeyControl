@@ -1,3 +1,7 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../public/assets/css/style1.css">
+</head>
+
 <!-- nav -->
 <nav class="navbar navbar-expand-sm">
   <div class="container">
@@ -26,7 +30,7 @@
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link show active" href="#" id="drop" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+          <a class="nav-link" href="#" id="drop" role="button" data-bs-toggle="dropdown" aria-expanded="true">
             Finanças
           </a>
           <ul class="dropdown-menu" aria-labelledby="drop">

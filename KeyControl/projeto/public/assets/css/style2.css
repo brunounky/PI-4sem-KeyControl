@@ -1,40 +1,4 @@
-nav {
-    background-color: #131e41;
-    margin-bottom: 30px;
-} 
-
-.nav-link.show.active {
-    color: #92b300 !important; 
-}
-
-nav .nav-link{
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-nav .nav-link:hover{
-    color: rgb(143, 238, 42);
-}
-
-nav .nav-item { 
-    margin: 7px;
-    padding: 0 27px;
-}
-
-nav .dropdown-menu{
-    background-color: #2e344e; 
-    padding: 15px;
-}
-
-nav .dropdown-item:hover{
-    background-color:  #332e4e; 
-}
-
-nav i {
-    width: 100%;
-}
-
+/* title */ 
 h2 {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
@@ -43,6 +7,7 @@ h2 {
     margin: 30px;
 }
 
+/* form */
 form {
     font-family: "Poppins", sans-serif;
     font-style: normal;
@@ -63,6 +28,8 @@ input.form-control {
     border: 0px;
 }
 
+/* btn verde do form */
+
 form .btn_custom {
     width: 70%;
     background-color: #C4DF16;
@@ -71,6 +38,17 @@ form .btn_custom {
 
 form .btn_custom:hover {
     background-color: #93A60F; 
+}
+
+.active_button{
+    background-color: #93A60F !important; 
+}
+
+/* rodape salvar */ 
+
+footer {
+    margin-top: 5%;
+    background-color: #148fe031;
 }
 
 .btn_salvar {
@@ -84,7 +62,5 @@ form .btn_custom:hover {
     color: white;
 }
 
-footer {
-    margin-top: 5%;
-    background-color: #50A3F0;
-}
+
+  

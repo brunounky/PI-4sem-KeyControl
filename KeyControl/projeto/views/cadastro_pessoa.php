@@ -85,11 +85,11 @@
                 <label class="mb-2">Tipo</label>
                 <div class="form-check form-switch mb-3">
                   <input class="form-check-input mt-2" type="checkbox" id="locador" name="locador">
-                  <label class="form-check-label" for="locador">Locador</label>
+                  <a class="btn btn_custom form-check-label" for="locador">Locador</a>
                 </div>
                 <div class="form-check form-switch">
                   <input class="form-check-input mt-2" type="checkbox" id="locatario" name="locatario">
-                  <label class="form-check-label" for="locatario">Locatário</label>
+                  <a class="btn btn_custom form-check-label" for="locatario">Locatário</a>
                 </div>
               </div>
             </div>
