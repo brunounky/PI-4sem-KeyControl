@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {
         $stmt->execute();
-        header("Location: testelogin.php");
+        header("Location: login.html");
         exit();
     } catch (PDOException $e) {
         echo "Não foi possível cadastrar o usuário. Erro: " . $e->getMessage();
