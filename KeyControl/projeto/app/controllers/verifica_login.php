@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['user_nivel'] = $user['nivel'];
                 $_SESSION['user_cnpj'] = $user['cnpj']; 
 
-                header('Location: ../../views/testelogin.php');
+                header('Location: ../../views/dashboard.php');
                 exit();
             } else {
                 echo "E-mail ou senha incorretos.";
