@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/09/2024 às 00:47
+-- Tempo de geração: 30/09/2024 às 05:14
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -24,23 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cad_pessoas`
+-- Estrutura para tabela `cad_clientes`
 --
 
-CREATE TABLE `cad_pessoas` (
-  `id_pessoas` int(11) NOT NULL,
-  `nome` char(1) DEFAULT NULL,
-  `data_nascimento` date DEFAULT NULL,
-  `endereco` char(1) DEFAULT NULL,
+CREATE TABLE `cad_clientes` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `rg_ie` varchar(50) DEFAULT NULL,
+  `telefone` varchar(15) DEFAULT NULL,
+  `cep` varchar(10) DEFAULT NULL,
   `numero` int(11) DEFAULT NULL,
-  `cep` int(11) DEFAULT NULL,
-  `bairro` char(1) DEFAULT NULL,
-  `telefone` int(11) DEFAULT NULL,
-  `email` char(1) DEFAULT NULL,
-  `rg` int(11) DEFAULT NULL,
-  `cpf` int(11) DEFAULT NULL,
-  `locador` tinyint(1) DEFAULT NULL,
-  `id_imobiliaria` int(11) DEFAULT NULL
+  `complemento` varchar(100) DEFAULT NULL,
+  `rua` varchar(255) DEFAULT NULL,
+  `bairro` varchar(100) DEFAULT NULL,
+  `cidade` varchar(100) DEFAULT NULL,
+  `estado` varchar(100) DEFAULT NULL,
+  `pais` varchar(100) DEFAULT 'Brasil',
+  `cpf_cnpj` varchar(14) NOT NULL,
+  `data_nascimento` date DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `locador` tinyint(1) DEFAULT 0,
+  `locatario` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -98,17 +102,18 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_user`, `cnpj`, `nome`, `email`, `senha`, `nivel`) VALUES
 (16, '18471895000108', 'Bruno Unky', 'bruno@unky.com', '$2y$10$oEZcuBLsmJNIPB6RGyM1RO6VhaTDZDZw8wSr24DSoWgd2SsGwoLMK', NULL),
-(17, '29987124000194', 'teste', 'teste@teste.com', '$2y$10$9mIfO8ScNwUd6y4r2nzToOqubFXfejsx.SAYaPvvBIkMHxanTr/Mm', NULL);
+(17, '29987124000194', 'teste', 'teste@teste.com', '$2y$10$9mIfO8ScNwUd6y4r2nzToOqubFXfejsx.SAYaPvvBIkMHxanTr/Mm', NULL),
+(18, '73725063000189', 'b', 'b@b.com', '$2y$10$Ykw8maSdX635IlN5Qb2YWuB8MlafJxiAeDo/HsjrJG4YGhWIxvPey', NULL);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `cad_pessoas`
+-- Índices de tabela `cad_clientes`
 --
-ALTER TABLE `cad_pessoas`
-  ADD PRIMARY KEY (`id_pessoas`);
+ALTER TABLE `cad_clientes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `imovel`
@@ -127,10 +132,16 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de tabela `cad_clientes`
+--
+ALTER TABLE `cad_clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
