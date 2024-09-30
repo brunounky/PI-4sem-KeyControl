@@ -50,12 +50,12 @@
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link" href="#"><i class="bi bi-person-fill-gear fs-4"></i> <?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
+          <a class="nav-link" href="#"><i class="bi bi-person-fill-gear fs-4"></i> <?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Usuário'); ?></a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link" href=""><i class="bi bi-box-arrow-right fs-3"></i></a>
+          <a class="nav-link" href="../app/controllers/logout.php"><i class="bi bi-box-arrow-right fs-3"></i></a>
         </li>
       </ul>
     </div>

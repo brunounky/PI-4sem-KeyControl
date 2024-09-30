@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<?php include 'navbar.html'; ?>
+<?php include 'navbar.php'; ?>
 
   <section id="cadastro_imovel">
     <!-- inicio do form -->

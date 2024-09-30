@@ -5,6 +5,9 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: ../app/controllers/verifica_login.php");
     exit();
 }
+
+include 'navbar.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +31,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
 
-<?php include 'navbar.html'; ?>
+
 
 <div class="container">
         <h2>Bem-vindo, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</h2>
