@@ -1,15 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../app/controllers/verifica_login.php");
-    exit();
-}
-
-include 'navbar.php';
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,20 +19,31 @@ include 'navbar.php';
 </head>
 <body>
 
+<?php
+    session_start();
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../app/controllers/verifica_login.php");
+        exit();
+    }
+
+    include 'navbar.php';
+
+?>
 
 
 <div class="container">
-        <h2>Bem-vindo, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</h2>
-        <p>E-mail: <?php echo htmlspecialchars($_SESSION['user_email']); ?></p>
-        <div class="buttons">
-            <a href="./cadastro_imovel.php" class="button">Cadastrar imovel</a> <br>
-            <a href="./cadastro_pessoa.php" class="button">Cadastrar Clientes</a> <br>
-            <a href="#" class="button">b 3</a> <br>
-            <a href="#" class="button">b 4</a> <br>
-            <a href="#" class="button">b 5</a> <br> <br>
-        </div>
-        <p><a href="../app/controllers/logout.php">Sair</a></p>
+    <h2>Bem-vindo, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</h2>
+    <p>E-mail: <?php echo htmlspecialchars($_SESSION['user_email']); ?></p>
+    <div class="buttons">
+        <a href="./cadastro_imovel.php" class="button">Cadastrar imovel</a> <br>
+        <a href="./cadastro_pessoa.php" class="button">Cadastrar Clientes</a> <br>
+        <a href="#" class="button">b 3</a> <br>
+        <a href="#" class="button">b 4</a> <br>
+        <a href="#" class="button">b 5</a> <br> <br>
     </div>
+    <p><a href="../app/controllers/logout.php">Sair</a></p>
+</div>
    
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

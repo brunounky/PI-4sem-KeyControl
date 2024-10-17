@@ -38,27 +38,58 @@
                   <div class="col-sm-6">
                     <label for="nome" class="mb-2">Nome</label>
                     <input class="form-control mb-3" type="text" name="nome" id="nome" required>
-                    <label for="rg_ie" class="mb-2">RG/IE</label>
-                    <input class="form-control mb-3" type="number" name="rg_ie" id="rg_ie" required>
+                    <label for="cpf_cnpj" class="mb-2">CPF/CNPJ</label>
+                    <input class="form-control mb-3" type="number" name="cpf_cnpj" id="cpf_cnpj" required>
                     <label for="telefone" class="mb-2">Telefone</label>
                     <input class="form-control mb-3" type="number" name="telefone" id="numero" required>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <label for="data_nasc_fund" class="mb-2">Nascimento/Fundação</label>
+                    <input class="form-control mb-3" type="date" name="data_nasc_fund" id="data_nasc_fund" required>
+                    <label for="rg_ie" class="mb-2">RG/IE</label>
+                    <input class="form-control mb-3" type="number" name="rg_ie" id="rg_ie" required>
+                    <label for="email" class="mb-2">E-mail</label>
+                    <input class="form-control mb-3" type="text" name="email" id="email" required>
+                  </div>
+
+                </div>
+                <div class="row">
+                
+                  <div class="col-sm-4">
+                      <label for="nacionalidade" class="mb-2">Nacionalidade</label>
+                      <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="civil" class="mb-2">Estado civil</label>
+                      <input class="form-control mb-3" type="text" name="civil" id="civil" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="profissao" class="mb-2">Profissão</label>
+                      <input class="form-control mb-3" type="text" name="profissao" id="profissao" required>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+                    
                     <label for="cep" class="mb-2">CEP</label>
                     <input class="form-control mb-3" type="text" name="cep" id="cep" required>
                     <label for="numero" class="mb-2">Número</label>
                     <input class="form-control mb-3" type="number" name="numero" id="numero" required>
                   </div>
+
+                  
+
                   <div class="col-sm-6">
-                    <label for="cpf_cnpj" class="mb-2">CPF/CNPJ</label>
-                    <input class="form-control mb-3" type="number" name="cpf_cnpj" id="cpf_cnpj" required>
-                    <label for="data_nasc_fund" class="mb-2">Data de nascimento/Fundação</label>
-                    <input class="form-control mb-3" type="date" name="data_nasc_fund" id="data_nasc_fund" required>
-                    <label for="email" class="mb-2">E-mail</label>
-                    <input class="form-control mb-3" type="text" name="email" id="email" required>
                     <label for="rua" class="mb-2">Rua</label>
                     <input class="form-control mb-3" type="text" name="rua" id="rua" required>
                     <label for="bairro" class="mb-2">Bairro</label>
                     <input class="form-control mb-3" type="text" name="bairro" id="bairro" required>
                   </div>
+                
                   <div class="col-sm-12">
                     <label for="complemento" class="mb-2">Complemento</label>
                     <input class="form-control mb-3" type="text" name="complemento" id="complemento" required>
@@ -87,9 +118,13 @@
                   <input class="form-check-input mt-2" type="checkbox" id="locador" name="locador">
                   <a class="btn btn_custom form-check-label" for="locador">Locador</a>
                 </div>
-                <div class="form-check form-switch">
+                <div class="form-check form-switch mb-3">
                   <input class="form-check-input mt-2" type="checkbox" id="locatario" name="locatario">
                   <a class="btn btn_custom form-check-label" for="locatario">Locatário</a>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input mt-2" type="checkbox" id="fiador" name="fiador">
+                  <a class="btn btn_custom form-check-label" for="fiador">Fiador</a>
                 </div>
               </div>
             </div>
