@@ -27,33 +27,19 @@
       <input type="hidden" name="action" value="cadastrar">
       <div class="container">
         <div class="row">
-<<<<<<< Updated upstream
           <h2>Cadastro de Imóveis</h2>          
             <!-- Coluna principal + Coluna de Tipo -->
-=======
-          <h2>Cadastro de imóveis</h2>
-          <!-- Coluna principal + Coluna de Tipo -->
->>>>>>> Stashed changes
           <div class="row">
             <!-- Coluna principal -->
             <div class="col-md-9">
               <div class="card">
                 <div class="row">
-<<<<<<< Updated upstream
-                  <div class="col-sm-6"> 
-                    <label for="proprietario" class="mb-2">CPF/CNPJ Proprietário</label>                    
-                    <input class="form-control mb-3" type="number" name="cpf_cnpj_proprietario" id="cpf_cnpj_proprietario" required>
-                    <label for="numero_registro_agua" class="mb-2">N° de registro de água</label>                  
-                    <input class="form-control mb-3" type="number" name="numero_registro_agua" id="numero_registro_agua" required>
-                    <label for="quartos" class="mb-2">Quartos</label>                  
-=======
                   <div class="col-sm-6">
-                    <label for="proprietario" class="mb-2">Proprietário</label>
+                    <label for="proprietario" class="mb-2">CPF/CNPJ Proprietário</label>
                     <input class="form-control mb-3" type="number" name="cpf_cnpj_proprietario" id="cpf_cnpj_proprietario" required>
-                    <label for="registro_agua" class="mb-2">N° de registro de aguá</label>
+                    <label for="registro_agua" class="mb-2">N° de registro de água</label>
                     <input class="form-control mb-3" type="number" name="registro_agua" id="registro_agua" required>
                     <label for="quartos" class="mb-2">Quartos</label>
->>>>>>> Stashed changes
                     <input class="form-control mb-3" type="number" name="quantidade_quartos" id="quantidade_quartos" required>
                     <label for="vagas" class="mb-2">Vagas</label>
                     <input class="form-control mb-3" type="number" name="quantidade_vagas" id="quantidade_vagas" required>
@@ -63,7 +49,7 @@
                     <input class="form-control mb-3" type="number" name="numero" id="numero" required>
                   </div>
                   <div class="col-sm-6">
-                    <label for="tipo_imovel" class="mb-2">Tipo do imóvel</label>
+                    <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
                     <select class="form-control mb-3" name="tipo_imovel" id="tipo_imovel" required>
                       <option value="" disabled selected>Selecione um tipo</option>
                       <option value="apartamento">Apartamento</option>
