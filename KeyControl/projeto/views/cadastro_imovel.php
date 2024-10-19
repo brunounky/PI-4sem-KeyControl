@@ -106,7 +106,7 @@
                         <p>Valor do aluguél</p> 
                         <input type="text" placeholder="Digite o valor do aluguél" class="form-control mb-3" id="valor_aluguel">
                         <p>Taxa administrativa</p>
-                        <input type="float" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_adm">
+                        <input type="float" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_aluguel">
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -135,9 +135,9 @@
                         </div>
                         <div class="modal-body">
                           <p>Valor do imóvel</p> 
-                          <input type="text" placeholder="Digite o valor do imóvel" class="form-control mb-3" id="valor_imovel">
+                          <input type="text" placeholder="Digite o valor do imóvel" class="form-control mb-3" id="valor_venda">
                           <p>Taxa administrativa</p>
-                          <input type="number" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_adm">
+                          <input type="number" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_venda">
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -180,11 +180,11 @@ function openModal(checkbox, modalId) {
       let taxaAdm = '';
 
       if (modalId === '#venda_modal') {
-        valorImovel = document.getElementById('valor_imovel').value;
-        taxaAdm = document.getElementById('taxa_adm').value;
-      } else if (modalId === '#aluguel_modal') {
         valorImovel = document.getElementById('valor_aluguel').value;
-        taxaAdm = document.getElementById('taxa_adm').value; // Mesmo ID para taxa administrativa
+        taxaAdm = document.getElementById('taxa_aluguel').value;
+      } else if (modalId === '#aluguel_modal') {
+        valorImovel = document.getElementById('valor_venda').value;
+        taxaAdm = document.getElementById('taxa_venda').value; // Mesmo ID para taxa administrativa
       }
 
       // Desmarcar o checkbox somente se os campos estiverem vazios
