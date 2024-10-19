@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $cidade = $_POST['cidade'] ?? null;
     $estado = $_POST['estado'] ?? null;
     $pais = $_POST['pais'] ?? null;
-    $numero_registro_imovel = $_POST['numero_registro_imovel'] ?? null;
-    $numero_registro_agua = $_POST['numero_registro_agua'] ?? null;
+    $registro_imovel = $_POST['registro_imovel'] ?? null;
+    $registro_agua = $_POST['registro_agua'] ?? null;
     $valor_aluguel = $_POST['valor_aluguel'] ?? null;
     $taxa_aluguel = $_POST['taxa_aluguel'] ?? null;
     $valor_venda = $_POST['valor_venda'] ?? null;
@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $complemento = $_POST['complemento'] ?? null;
 
 
-    $stmt = $pdo->prepare("INSERT INTO cadastro_imovel (cpf_cnpj_proprietario, tipo_imovel, quantidade_quartos, quantidade_banheiros, quantidade_vagas, area_total, cep, rua, numero, bairro, cidade, estado, pais, numero_registro_imovel, numero_registro_agua, valor_aluguel, taxa_aluguel, valor_venda, taxa_venda, complemento) 
-                            VALUES (:cpf_cnpj_proprietario, :tipo_imovel, :quantidade_quartos, :quantidade_banheiros, :quantidade_vagas, :area_total, :cep, :rua, :numero, :bairro, :cidade, :estado, :pais, :numero_registro_imovel, :numero_registro_agua, :valor_aluguel, :taxa_aluguel, :valor_venda, :taxa_venda, :complemento)");
+    $stmt = $pdo->prepare("INSERT INTO cadastro_imovel (cpf_cnpj_proprietario, tipo_imovel, quantidade_quartos, quantidade_banheiros, quantidade_vagas, area_total, cep, rua, numero, bairro, cidade, estado, pais, registro_imovel, registro_agua, valor_aluguel, taxa_aluguel, valor_venda, taxa_venda, complemento) 
+                            VALUES (:cpf_cnpj_proprietario, :tipo_imovel, :quantidade_quartos, :quantidade_banheiros, :quantidade_vagas, :area_total, :cep, :rua, :numero, :bairro, :cidade, :estado, :pais, :registro_imovel, :registro_agua, :valor_aluguel, :taxa_aluguel, :valor_venda, :taxa_venda, :complemento)");
 
     $stmt->bindParam(':cpf_cnpj_proprietario', $cpf_cnpj_proprietario);
     $stmt->bindParam(':tipo_imovel', $tipo_imovel);
@@ -41,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt->bindParam(':cidade', $cidade);
     $stmt->bindParam(':estado', $estado);
     $stmt->bindParam(':pais', $pais);
-    $stmt->bindParam(':numero_registro_imovel', $numero_registro_imovel);
-    $stmt->bindParam(':numero_registro_agua', $numero_registro_agua);
+    $stmt->bindParam(':registro_imovel', $registro_imovel);
+    $stmt->bindParam(':registro_agua', $registro_agua);
     $stmt->bindParam(':valor_aluguel', $valor_aluguel);
     $stmt->bindParam(':taxa_aluguel', $taxa_aluguel);
     $stmt->bindParam(':valor_venda', $valor_venda);
