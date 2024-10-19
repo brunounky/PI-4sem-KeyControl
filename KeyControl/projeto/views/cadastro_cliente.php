@@ -41,12 +41,12 @@
                     <label for="cpf_cnpj" class="mb-2">CPF/CNPJ</label>
                     <input class="form-control mb-3" type="number" name="cpf_cnpj" id="cpf_cnpj" required>
                     <label for="telefone" class="mb-2">Telefone</label>
-                    <input class="form-control mb-3" type="number" name="telefone" id="numero" required>
+                    <input class="form-control mb-3" type="number" name="telefone" id="telefone" required>
                   </div>
 
                   <div class="col-sm-6">
                     <label for="data_nascimento_fundacao" class="mb-2">Nascimento/Fundação</label>
-                    <input class="form-control mb-3" type="date" name="data_nasc_fund" id="data_nasc_fund" required>
+                    <input class="form-control mb-3" type="date" name="data_nascimento_fundacao" id="data_nascimento_fundacao" required>
                     <label for="rg_ie" class="mb-2">RG/IE</label>
                     <input class="form-control mb-3" type="number" name="rg_ie" id="rg_ie" required>
                     <label for="email" class="mb-2">E-mail</label>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-sm-4">
                       <label for="estado_civil" class="mb-2">Estado civil</label>
-                      <input class="form-control mb-3" type="text" name="civil" id="civil" required>
+                      <input class="form-control mb-3" type="text" name="estado_civil" id="estado_civil" required>
                     </div>
                     <div class="col-sm-4">
                       <label for="profissao" class="mb-2">Profissão</label>

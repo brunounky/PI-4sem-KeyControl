@@ -36,11 +36,11 @@
                     <label for="proprietario" class="mb-2">Proprietário</label>                    
                     <input class="form-control mb-3" type="number" name="cpf_cnpj_proprietario" id="cpf_cnpj_proprietario" required>
                     <label for="registro_agua" class="mb-2">N° de registro de aguá</label>                  
-                    <input class="form-control mb-3" type="number" name="registro_agua" id="registro_agua" required>
+                    <input class="form-control mb-3" type="number" name="	numero_registro_agua" id="	numero_registro_agua" required>
                     <label for="quartos" class="mb-2">Quartos</label>                  
-                    <input class="form-control mb-3" type="number" name="quartos" id="quartos" required>
+                    <input class="form-control mb-3" type="number" name="quantidade_quartos" id="quantidade_quartos" required>
                     <label for="vagas" class="mb-2">Vagas</label> 
-                    <input class="form-control mb-3" type="number" name="vagas" id="vagas" required>
+                    <input class="form-control mb-3" type="number" name="quantidade_vagas" id="quantidade_vagas" required>
                     <label for="cep" class="mb-2">CEP</label>  
                     <input class="form-control mb-3" type="text" name="cep" id="cep" required>
                     <label for="numero" class="mb-2">Número</label>                       
@@ -54,12 +54,12 @@
                       <option value="casa">Casa</option>
                       <option value="comercial">Comercial</option>
                     </select>
-                    <label for="registro_energia" class="mb-2">N° de registro de energia</label>                  
-                    <input class="form-control mb-3" type="number" name="registro_energia" id="registro_energia" required>
+                    <label for="registro_energia" class="mb-2">N° de registro do Imovel</label>                  
+                    <input class="form-control mb-3" type="number" name="numero_registro_imovel " id="numero_registro_imovel " required>
                     <label for="banheiros" class="mb-2">Banheiros</label> 
-                    <input class="form-control mb-3" type="number" name="banheiros" id="banheiros" required>
+                    <input class="form-control mb-3" type="number" name="quantidade_banheiros" id="quantidade_banheiros" required>
                     <label for="area" class="mb-2">Área Total:</label>  
-                    <input class="form-control mb-3" type="text" name="area" id="area" required>
+                    <input class="form-control mb-3" type="text" name="area_total" id="area_total" required>
                     <label for="rua" class="mb-2">Rua</label>     
                     <input class="form-control mb-3" type="text" name="rua" id="rua" required disabled> 
                     <label for="bairro" class="mb-2">Bairro</label> 
