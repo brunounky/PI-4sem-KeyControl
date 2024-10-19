@@ -25,7 +25,7 @@
       <input type="hidden" name="action" value="cadastrar">
       <div class="container">
         <div class="row">
-          <h2>Cadastro de imóveis</h2>          
+          <h2>Cadastro de Imóveis</h2>          
             <!-- Coluna principal + Coluna de Tipo -->
           <div class="row">
             <!-- Coluna principal -->
@@ -33,9 +33,9 @@
               <div class="card">
                 <div class="row">
                   <div class="col-sm-6"> 
-                    <label for="proprietario" class="mb-2">Proprietário</label>                    
+                    <label for="proprietario" class="mb-2">CPF/CNPJ Proprietário</label>                    
                     <input class="form-control mb-3" type="number" name="cpf_cnpj_proprietario" id="cpf_cnpj_proprietario" required>
-                    <label for="numero_registro_agua" class="mb-2">N° de registro de aguá</label>                  
+                    <label for="numero_registro_agua" class="mb-2">N° de registro de água</label>                  
                     <input class="form-control mb-3" type="number" name="numero_registro_agua" id="numero_registro_agua" required>
                     <label for="quartos" class="mb-2">Quartos</label>                  
                     <input class="form-control mb-3" type="number" name="quantidade_quartos" id="quantidade_quartos" required>

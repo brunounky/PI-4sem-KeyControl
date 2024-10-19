@@ -13,19 +13,18 @@
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav align-items-center">
-        <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="drop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Cadastros
           </a>
           <ul class="dropdown-menu" aria-labelledby="drop">
-            <li><a class="dropdown-item nav-link" href="../views/cadastro_cliente.php">Pessoas</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/cadastro_cliente.php">Clientes</a></li>
             <li><a class="dropdown-item nav-link" href="../views/cadastro_imovel.php">Imóveis</a></li>
-            <li><a class="dropdown-item nav-link" href="#">Contratos</a></li>
           </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#">Contrato</a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">
@@ -36,7 +35,7 @@
           <ul class="dropdown-menu" aria-labelledby="drop">
             <li><a class="dropdown-item nav-link" href="#">Lançamentos a pagar</a></li>
             <li><a class="dropdown-item nav-link" href="#">Lançamentos a receber</a></li>
-            <li><a class="dropdown-item nav-link" href="#">Nota de débito e crédito</a></li>
+            <li><a class="dropdown-item nav-link" href="#">Fechamento</a></li>
           </ul>
         </li>
       </ul>
@@ -48,8 +47,14 @@
           <ul class="dropdown-menu" aria-labelledby="drop">
             <li><a class="dropdown-item nav-link" href="#">Clientes</a></li>
             <li><a class="dropdown-item nav-link" href="#">Imóveis</a></li>
-            <li><a class="dropdown-item nav-link" href="#">Contratos</a></li>
+            <li><a class="dropdown-item nav-link" href="#">Pagamentos</a></li>
+            <li><a class="dropdown-item nav-link" href="#">Vencimentos</a></li>
           </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#">Dashboard</a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">
