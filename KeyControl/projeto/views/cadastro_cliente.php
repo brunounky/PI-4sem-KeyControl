@@ -19,7 +19,17 @@
 
 <body>
 
-  <?php include 'navbar.php'; ?>
+  <?php
+  session_start();
+
+  if (!isset($_SESSION['user_id'])) {
+    header("Location: ../app/controllers/verifica_login.php");
+    exit();
+  }
+
+  include 'navbar.php';
+
+  ?>
 
   <section id="cadastro_pessoa">
     <!-- inicio do form -->
@@ -52,7 +62,7 @@
                     <input class="form-control mb-3" type="text" name="email" id="email" required>
                   </div>
                 </div>
-                <div class="row">                
+                <div class="row">
                   <div class="col-sm-4">
                     <label for="nacionalidade" class="mb-2">Nacionalidade</label>
                     <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" required>
@@ -67,18 +77,18 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-6">                    
+                  <div class="col-sm-6">
                     <label for="cep" class="mb-2">CEP</label>
                     <input class="form-control mb-3" type="text" name="cep" id="cep" required>
                     <label for="numero" class="mb-2">Número</label>
                     <input class="form-control mb-3" type="number" name="numero" id="numero" required>
-                  </div>            
+                  </div>
                   <div class="col-sm-6">
                     <label for="rua" class="mb-2">Rua</label>
                     <input class="form-control mb-3" type="text" name="rua" id="rua" required>
                     <label for="bairro" class="mb-2">Bairro</label>
                     <input class="form-control mb-3" type="text" name="bairro" id="bairro" required>
-                  </div>                
+                  </div>
                   <div class="col-sm-12">
                     <label for="complemento" class="mb-2">Complemento</label>
                     <input class="form-control mb-3" type="text" name="complemento" id="complemento" required>
