@@ -56,7 +56,7 @@
                       <option value="casa">Casa</option>
                       <option value="comercial">Comercial</option>
                     </select>
-                    <label for="registro_imovel" class="mb-2">N° de registro do Imovel</label>
+                    <label for="registro_imovel" class="mb-2">N° de registro do Imóvel</label>
                     <input class="form-control mb-3" type="number" name="registro_imovel" id="registro_imovel" required>
                     <label for="banheiros" class="mb-2">Banheiros</label>
                     <input class="form-control mb-3" type="number" name="quantidade_banheiros" id="quantidade_banheiros" required>
@@ -169,6 +169,9 @@
   <script src="../public/assets/js/consultacep.js"></script>
   <script>
     function openModal(checkbox, modalId) {
+      // Marca o checkbox se ele não estiver marcado
+      checkbox.checked = true;
+
       // Verifica se o checkbox está marcado
       if (checkbox.checked) {
         const modal = new bootstrap.Modal(document.querySelector(modalId));

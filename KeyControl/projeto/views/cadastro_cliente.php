@@ -102,18 +102,18 @@
             <!-- Coluna de tipo -->
             <div class="col-md-3">
               <div class="card">
-                <label class="mb-2">Categoria</label>
+                <label class="mb-2">Categoria</label>    
                 <div class="form-check form-switch mb-3">
                   <input class="form-check-input mt-2" type="checkbox" id="locador" name="locador">
-                  <a class="btn btn_custom form-check-label" for="locador">Locador</a>
-                </div>
+                  <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('locador')">Locador</a>
+                </div>            
                 <div class="form-check form-switch mb-3">
                   <input class="form-check-input mt-2" type="checkbox" id="locatario" name="locatario">
-                  <a class="btn btn_custom form-check-label" for="locatario">Locatário</a>
-                </div>
+                  <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('locatario')">Locatário</a>
+                </div>            
                 <div class="form-check form-switch">
                   <input class="form-check-input mt-2" type="checkbox" id="fiador" name="fiador">
-                  <a class="btn btn_custom form-check-label" for="fiador">Fiador</a>
+                  <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('fiador')">Fiador</a>
                 </div>
               </div>
             </div>
@@ -132,6 +132,14 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="../public/assets/js/consultacep.js"></script>
+
+  <script>
+    // ativar o switch
+    function toggleSwitch(id) {
+      var checkbox = document.getElementById(id);
+      checkbox.checked = !checkbox.checked;  
+    }
+  </script>
 
 </body>
 
