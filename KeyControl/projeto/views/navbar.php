@@ -22,7 +22,7 @@
             Cadastros
           </a>
           <ul class="dropdown-menu" aria-labelledby="drop">
-            <li><a class="dropdown-item nav-link" href="../views/cadastro_pessoa.php">Pessoas</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/cadastro_cliente.php">Pessoas</a></li>
             <li><a class="dropdown-item nav-link" href="../views/cadastro_imovel.php">Imóveis</a></li>
             <li><a class="dropdown-item nav-link" href="#">Contratos</a></li>
           </ul>

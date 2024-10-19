@@ -23,7 +23,7 @@
 
   <section id="cadastro_pessoa">
     <!-- inicio do form -->
-    <form action="../app/controllers/verifica_clientes.php" method="post">
+    <form action="../app/controllers/verifica_cliente.php" method="post">
       <input type="hidden" name="action" value="cadastrar">
       <div class="container">
         <div class="row">
@@ -45,7 +45,7 @@
                   </div>
 
                   <div class="col-sm-6">
-                    <label for="data_nasc_fund" class="mb-2">Nascimento/Fundação</label>
+                    <label for="data_nascimento_fundacao" class="mb-2">Nascimento/Fundação</label>
                     <input class="form-control mb-3" type="date" name="data_nasc_fund" id="data_nasc_fund" required>
                     <label for="rg_ie" class="mb-2">RG/IE</label>
                     <input class="form-control mb-3" type="number" name="rg_ie" id="rg_ie" required>
@@ -61,7 +61,7 @@
                       <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" required>
                     </div>
                     <div class="col-sm-4">
-                      <label for="civil" class="mb-2">Estado civil</label>
+                      <label for="estado_civil" class="mb-2">Estado civil</label>
                       <input class="form-control mb-3" type="text" name="civil" id="civil" required>
                     </div>
                     <div class="col-sm-4">
