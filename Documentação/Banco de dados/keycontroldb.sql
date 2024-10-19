@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/10/2024 às 09:23
+-- Tempo de geração: 19/10/2024 às 15:53
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -62,7 +62,8 @@ INSERT INTO `cadastro_cliente` (`id`, `nome`, `cpf_cnpj`, `rg_ie`, `data_nascime
 (4, 'Ana Lima', '555.666.777-88', '55.666.777-W', '1985-03-30', '41987654321', 'ana.lima@email.com', 'Viúva', 'Brasileira', 'Médica', '45678-901', 'Rua da Paz', '400', 'Centro', 'Curitiba', 'PR', 'Brasil', 0, 1, 1, ''),
 (5, 'Pedro Alves', '999.888.777-66', '99.888.777-V', '1995-07-05', '51987654321', 'pedro.alves@email.com', 'Solteiro', 'Brasileira', 'Estudante', '56789-012', 'Avenida Central', '500', 'Centro', 'Porto Alegre', 'RS', 'Brasil', 0, 0, 1, ''),
 (6, 'Bruno Oliveira', '47169254808', '576950853', NULL, '19971595745', 'bruno_unky@hotmail.com', NULL, 'brasileiro', 'gerente', '13506180', 'Rua 10 MP', '376', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', 1, 1, 1, 'sobrado'),
-(7, 'teste', '1', '1', '2001-05-01', '1', '111@gmail.com', 'w', 'q', 'w', '13506180', 'Rua 10 MP', '333', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', 0, 0, 0, 'www');
+(7, 'teste', '1', '1', '2001-05-01', '1', '111@gmail.com', 'w', 'q', 'w', '13506180', 'Rua 10 MP', '333', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', 0, 0, 0, 'www'),
+(8, 'q', '1', '1', '2001-05-01', '1', '1@g.com', '1', '1', '1', '13506180', 'Rua 10 MP', '376', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', 0, 0, 0, 'd');
 
 -- --------------------------------------------------------
 
@@ -85,12 +86,12 @@ CREATE TABLE `cadastro_imovel` (
   `cidade` varchar(50) DEFAULT NULL,
   `estado` varchar(50) DEFAULT NULL,
   `pais` varchar(50) DEFAULT NULL,
-  `numero_registro_imovel` varchar(50) DEFAULT NULL,
-  `numero_registro_agua` varchar(50) DEFAULT NULL,
-  `valor_aluguel` decimal(15,2) DEFAULT NULL,
-  `taxa_aluguel` decimal(5,2) DEFAULT NULL,
-  `valor_venda` decimal(15,2) DEFAULT NULL,
-  `taxa_venda` decimal(5,2) DEFAULT NULL,
+  `registro_imovel` varchar(50) DEFAULT NULL,
+  `registro_agua` varchar(50) DEFAULT NULL,
+  `valor_aluguel` float DEFAULT NULL,
+  `taxa_aluguel` float DEFAULT NULL,
+  `valor_venda` float DEFAULT NULL,
+  `taxa_venda` float DEFAULT NULL,
   `complemento` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -98,16 +99,23 @@ CREATE TABLE `cadastro_imovel` (
 -- Despejando dados para a tabela `cadastro_imovel`
 --
 
-INSERT INTO `cadastro_imovel` (`id`, `cpf_cnpj_proprietario`, `tipo_imovel`, `quantidade_quartos`, `quantidade_banheiros`, `quantidade_vagas`, `area_total`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `numero_registro_imovel`, `numero_registro_agua`, `valor_aluguel`, `taxa_aluguel`, `valor_venda`, `taxa_venda`, `complemento`) VALUES
-(1, '12.345.678/0001-00', 'Apartamento', 3, 2, 1, 85.00, '12345-678', 'Rua das Flores', '100', 'Centro', 'São Paulo', 'SP', 'Brasil', 'REG-IMOV-001', 'REG-AGUA-001', 2500.00, 5.00, 500000.00, 2.50, NULL),
-(2, '98.765.432/0001-99', 'Casa', 4, 3, 2, 150.00, '23456-789', 'Avenida Paulista', '2000', 'Bela Vista', 'São Paulo', 'SP', 'Brasil', 'REG-IMOV-002', 'REG-AGUA-002', 3500.00, 4.00, 800000.00, 2.00, NULL),
-(3, '11.222.333/0001-88', 'Cobertura', 5, 4, 3, 250.00, '34567-890', 'Rua dos Pinheiros', '300', 'Jardim', 'Belo Horizonte', 'MG', 'Brasil', 'REG-IMOV-003', 'REG-AGUA-003', 5000.00, 3.50, 1500000.00, 1.50, NULL),
-(4, '55.666.777/0001-44', 'Apartamento', 2, 1, 1, 65.00, '45678-901', 'Rua da Paz', '400', 'Centro', 'Curitiba', 'PR', 'Brasil', 'REG-IMOV-004', 'REG-AGUA-004', 1800.00, 6.00, 300000.00, 3.00, NULL),
-(5, '99.888.777/0001-33', 'Casa', 3, 2, 2, 120.00, '56789-012', 'Avenida Central', '500', 'Centro', 'Porto Alegre', 'RS', 'Brasil', 'REG-IMOV-005', 'REG-AGUA-005', 2800.00, 5.50, 600000.00, 2.75, NULL),
+INSERT INTO `cadastro_imovel` (`id`, `cpf_cnpj_proprietario`, `tipo_imovel`, `quantidade_quartos`, `quantidade_banheiros`, `quantidade_vagas`, `area_total`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `registro_imovel`, `registro_agua`, `valor_aluguel`, `taxa_aluguel`, `valor_venda`, `taxa_venda`, `complemento`) VALUES
+(1, '12.345.678/0001-00', 'Apartamento', 3, 2, 1, 85.00, '12345-678', 'Rua das Flores', '100', 'Centro', 'São Paulo', 'SP', 'Brasil', 'REG-IMOV-001', 'REG-AGUA-001', 2500, 5, 500000, 2.5, NULL),
+(2, '98.765.432/0001-99', 'Casa', 4, 3, 2, 150.00, '23456-789', 'Avenida Paulista', '2000', 'Bela Vista', 'São Paulo', 'SP', 'Brasil', 'REG-IMOV-002', 'REG-AGUA-002', 3500, 4, 800000, 2, NULL),
+(3, '11.222.333/0001-88', 'Cobertura', 5, 4, 3, 250.00, '34567-890', 'Rua dos Pinheiros', '300', 'Jardim', 'Belo Horizonte', 'MG', 'Brasil', 'REG-IMOV-003', 'REG-AGUA-003', 5000, 3.5, 1500000, 1.5, NULL),
+(4, '55.666.777/0001-44', 'Apartamento', 2, 1, 1, 65.00, '45678-901', 'Rua da Paz', '400', 'Centro', 'Curitiba', 'PR', 'Brasil', 'REG-IMOV-004', 'REG-AGUA-004', 1800, 6, 300000, 3, NULL),
+(5, '99.888.777/0001-33', 'Casa', 3, 2, 2, 120.00, '56789-012', 'Avenida Central', '500', 'Centro', 'Porto Alegre', 'RS', 'Brasil', 'REG-IMOV-005', 'REG-AGUA-005', 2800, 5.5, 600000, 2.75, NULL),
 (6, '47169254808', 'apartamento', NULL, NULL, NULL, NULL, '13506180', NULL, '376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1'),
 (7, '47169254808', 'comercial', NULL, NULL, NULL, NULL, '13506180', NULL, '376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'www'),
 (8, '47169254808', 'comercial', NULL, NULL, NULL, NULL, '13506180', NULL, '376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'www'),
-(9, '47169254808', 'comercial', NULL, NULL, NULL, NULL, '13506180', NULL, '376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'www');
+(9, '47169254808', 'comercial', NULL, NULL, NULL, NULL, '13506180', NULL, '376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'www'),
+(10, '1', 'casa', 1, 1, 1, 1.00, '13506180', 'Rua 10 MP', '376', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, '1'),
+(11, '1', 'casa', 1, 1, 1, 1.00, '13506180', 'Rua 10 MP', '376', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, '1'),
+(12, '1', 'apartamento', 1, 1, 1, 1.00, '13506180', 'Rua 10 MP', '376', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, 'fdsfghj'),
+(13, '1', 'apartamento', 1, 1, 1, 1.00, '13506180', 'Rua 10 MP', '376', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, 'fdsfghj'),
+(14, '1', 'apartamento', 1, 1, 1, 1.00, '13506180', 'Rua 10 MP', '376', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', NULL, NULL, NULL, NULL, NULL, NULL, 'fdsfghj'),
+(15, '47169254808', 'casa', 1, 1, 1, 1.00, '13506180', 'Rua 10 MP', '376', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', '111', '1111', NULL, NULL, NULL, NULL, 'teste'),
+(16, '1', 'apartamento', 1, 1, 1, 1.00, '13506180', 'Rua 10 MP', '366', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', '1', '1', NULL, NULL, NULL, NULL, 'testewwwww');
 
 -- --------------------------------------------------------
 
@@ -201,8 +209,8 @@ ALTER TABLE `cadastro_cliente`
 --
 ALTER TABLE `cadastro_imovel`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `numero_registro_imovel` (`numero_registro_imovel`),
-  ADD UNIQUE KEY `numero_registro_agua` (`numero_registro_agua`);
+  ADD UNIQUE KEY `numero_registro_imovel` (`registro_imovel`),
+  ADD UNIQUE KEY `numero_registro_agua` (`registro_agua`);
 
 --
 -- Índices de tabela `contrato_aluguel`
@@ -235,13 +243,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `cadastro_cliente`
 --
 ALTER TABLE `cadastro_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `cadastro_imovel`
 --
 ALTER TABLE `cadastro_imovel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `contrato_aluguel`
