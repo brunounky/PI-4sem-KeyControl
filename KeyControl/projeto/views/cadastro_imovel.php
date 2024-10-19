@@ -35,7 +35,7 @@
                   <div class="col-sm-6"> 
                     <label for="proprietario" class="mb-2">Proprietário</label>                    
                     <input class="form-control mb-3" type="number" name="cpf_cnpj_proprietario" id="cpf_cnpj_proprietario" required>
-                    <label for="registro_agua" class="mb-2">N° de registro de aguá</label>                  
+                    <label for="numero_registro_agua" class="mb-2">N° de registro de aguá</label>                  
                     <input class="form-control mb-3" type="number" name="	numero_registro_agua" id="	numero_registro_agua" required>
                     <label for="quartos" class="mb-2">Quartos</label>                  
                     <input class="form-control mb-3" type="number" name="quantidade_quartos" id="quantidade_quartos" required>
@@ -54,16 +54,16 @@
                       <option value="casa">Casa</option>
                       <option value="comercial">Comercial</option>
                     </select>
-                    <label for="registro_energia" class="mb-2">N° de registro do Imovel</label>                  
+                    <label for="numero_registro_imovel" class="mb-2">N° de registro do Imovel</label>                  
                     <input class="form-control mb-3" type="number" name="numero_registro_imovel " id="numero_registro_imovel " required>
                     <label for="banheiros" class="mb-2">Banheiros</label> 
                     <input class="form-control mb-3" type="number" name="quantidade_banheiros" id="quantidade_banheiros" required>
                     <label for="area" class="mb-2">Área Total:</label>  
                     <input class="form-control mb-3" type="text" name="area_total" id="area_total" required>
                     <label for="rua" class="mb-2">Rua</label>     
-                    <input class="form-control mb-3" type="text" name="rua" id="rua" required disabled> 
+                    <input class="form-control mb-3" type="text" name="rua" id="rua" required > 
                     <label for="bairro" class="mb-2">Bairro</label> 
-                    <input class="form-control mb-3" type="text" name="bairro" id="bairro" required disabled>    
+                    <input class="form-control mb-3" type="text" name="bairro" id="bairro" required >    
                   </div>                      
                   <div class="col-sm-12">
                     <label for="complemento" class="mb-2">Complemento</label>
@@ -71,15 +71,15 @@
                   </div>
                   <div class="col-sm-4">
                     <label for="cidade" class="mb-2">Cidade</label> 
-                    <input class="form-control mb-3" type="text" name="cidade" id="cidade" required disabled>  
+                    <input class="form-control mb-3" type="text" name="cidade" id="cidade" required >  
                   </div>
                   <div class="col-sm-4">  
                     <label for="estado" class="mb-2">Estado</label>                   
-                    <input class="form-control mb-3" type="text" name="estado" id="estado" required disabled>  
+                    <input class="form-control mb-3" type="text" name="estado" id="estado" required >  
                   </div>
                   <div class="col-sm-4">
                     <label for="pais" class="mb-2">País</label>
-                    <input class="form-control mb-3" type="text" name="pais" id="pais" required disabled>                   
+                    <input class="form-control mb-3" type="text" name="pais" id="pais" required >                   
                   </div>
                 </div>
               </div>
@@ -176,19 +176,19 @@ function openModal(checkbox, modalId) {
     // Adiciona evento para verificar os campos ao fechar o modal
     document.querySelector(modalId).addEventListener('hidden.bs.modal', function () {
       // Verifica os campos correspondentes ao modal
-      let valorImovel = '';
-      let taxaAdm = '';
+      let valor_aluguel = '';
+      let taxa_aluguel = '';
 
       if (modalId === '#venda_modal') {
-        valorImovel = document.getElementById('valor_aluguel').value;
-        taxaAdm = document.getElementById('taxa_aluguel').value;
+        valor_aluguel = document.getElementById('valor_aluguel').value;
+        taxa_aluguel = document.getElementById('taxa_aluguel').value;
       } else if (modalId === '#aluguel_modal') {
-        valorImovel = document.getElementById('valor_venda').value;
-        taxaAdm = document.getElementById('taxa_venda').value; // Mesmo ID para taxa administrativa
+        valor_venda = document.getElementById('valor_venda').value;
+        taxa_venda = document.getElementById('taxa_venda').value; // Mesmo ID para taxa administrativa
       }
 
       // Desmarcar o checkbox somente se os campos estiverem vazios
-      if (!valorImovel && !taxaAdm) {
+      if (!valor_aluguel && !taxa_aluguel) {
         checkbox.checked = false; // Desmarcar o checkbox
       }
     });
