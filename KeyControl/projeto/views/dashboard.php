@@ -36,11 +36,7 @@
     <h2>Bem-vindo, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</h2>
     <p>E-mail: <?php echo htmlspecialchars($_SESSION['user_email']); ?></p>
     <div class="buttons">
-        <a href="./cadastro_imovel.php" class="button">Cadastrar imovel</a> <br>
-        <a href="./cadastro_pessoa.php" class="button">Cadastrar Clientes</a> <br>
-        <a href="#" class="button">b 3</a> <br>
-        <a href="#" class="button">b 4</a> <br>
-        <a href="#" class="button">b 5</a> <br> <br>
+
     </div>
     <p><a href="../app/controllers/logout.php">Sair</a></p>
 </div>

@@ -21,7 +21,7 @@
 
   <section id="cadastro_imovel">
     <!-- inicio do form -->
-    <form action="#" method="post">
+    <form action="../app/controllers/verifica_imovel.php" method="post">
       <input type="hidden" name="action" value="cadastrar">
       <div class="container">
         <div class="row">
@@ -34,12 +34,7 @@
                 <div class="row">
                   <div class="col-sm-6"> 
                     <label for="proprietario" class="mb-2">Proprietário</label>                    
-                    <select class="form-control mb-3" name="proprietario" id="proprietario" required>
-                      <option value="" disabled selected>Selecione um proprietário</option>
-                      <option value="proprietario1">Ana</option>
-                      <option value="proprietario3">João</option>
-                      <option value="proprietario3">Lúcia</option>
-                    </select>
+                    <input class="form-control mb-3" type="number" name="cpf_cnpj_proprietario" id="cpf_cnpj_proprietario" required>
                     <label for="registro_agua" class="mb-2">N° de registro de aguá</label>                  
                     <input class="form-control mb-3" type="number" name="registro_agua" id="registro_agua" required>
                     <label for="quartos" class="mb-2">Quartos</label>                  
