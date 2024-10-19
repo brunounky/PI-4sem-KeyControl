@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav align-items-center">
         <li>
-          <a class="nav-link" href="#"><img src="../public/assets/img/Logomarca.png" width="110px"></a>
+          <a class="nav-link" href="../views/home.php"><img src="../public/assets/img/Logomarca.png" width="110px"></a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">
@@ -17,8 +17,8 @@
             Cadastros
           </a>
           <ul class="dropdown-menu" aria-labelledby="drop">
-            <li><a class="dropdown-item nav-link" href="../views/cadastro_cliente.php">Clientes</a></li>
-            <li><a class="dropdown-item nav-link" href="../views/cadastro_imovel.php">Imóveis</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/lista_cliente.php">Clientes</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/lista_imovel.php">Imóveis</a></li>
           </ul>
         </li>
       </ul>

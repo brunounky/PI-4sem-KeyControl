@@ -19,7 +19,17 @@
 
 <body>
 
-  <?php include 'navbar.php'; ?>
+<?php
+    session_start();
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../app/controllers/verifica_login.php");
+        exit();
+    }
+
+    include 'navbar.php';
+
+?>
 
   <section id="cadastro_imovel">
     <!-- inicio do form -->
