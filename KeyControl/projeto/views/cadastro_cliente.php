@@ -14,7 +14,7 @@
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-  <title>Cadastro de pessoas</title>
+  <title>Clientes</title>
 </head>
 
 <body>

@@ -17,7 +17,7 @@ if (isset($conn) && $conn) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
     <link rel="icon" href="../public/assets/img/Logotipo.png">
-    <title>Cadastro de pessoas</title>
+    <title>Clientes</title>
 </head>
 <body>
 <?php include 'navbar.php'; ?> <!-- Incluindo a barra de navegação -->
@@ -25,7 +25,7 @@ if (isset($conn) && $conn) {
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="mb-3">Cadastro de pessoas</h2>
+                <h2 class="mb-3">Cadastro de Clientes</h2>
             </div>
         </div>
 

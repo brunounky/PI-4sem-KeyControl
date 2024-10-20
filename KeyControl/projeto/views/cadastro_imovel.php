@@ -14,7 +14,7 @@
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-  <title>Cadastro de imóveis</title>
+  <title>Imóveis</title>
 </head>
 
 <body>
@@ -104,7 +104,7 @@
                   <input class="form-check-input mt-2" type="checkbox" id="aluguelCheckbox" onchange="openModal(this, '#aluguel_modal')">
                   <!-- Button trigger modal -->
                   <button type="button" class="btn btn_custom" onclick="openModal(document.getElementById('aluguelCheckbox'), '#aluguel_modal', this)">
-                    Aluguél
+                    Aluguel
                   </button>
                   <!-- Modal -->
                   <div class="modal fade" id="aluguel_modal" tabindex="-1" aria-labelledby="aluguel_modal" aria-hidden="true">
@@ -115,14 +115,14 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          <p>Valor do aluguél</p>
-                          <input type="text" placeholder="Digite o valor do aluguél" class="form-control mb-3" id="valor_aluguel">
+                          <p>Valor do aluguel</p>
+                          <input type="text" placeholder="Digite o valor do aluguel" class="form-control mb-3" id="valor_aluguel">
                           <p>Taxa administrativa</p>
                           <input type="float" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_aluguel">
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                          <button type="button" class="btn btn_salvar">Salvar</button>
+                          <button type="button" class="btn btn_salvar" data-bs-dismiss="modal">Salvar</button>
                         </div>
                       </div>
                     </div>
@@ -153,7 +153,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                          <button type="button" class="btn btn_salvar">Salvar</button>
+                          <button type="button" class="btn btn_salvar" data-bs-dismiss="modal">Salvar</button>
                         </div>
                       </div>
                     </div>
@@ -179,7 +179,7 @@
   <script src="../public/assets/js/consultacep.js"></script>
   <script>
     function openModal(checkbox, modalId) {
-      // Marca o checkbox se ele não estiver marcado
+      // Marca o checkbox
       checkbox.checked = true;
 
       // Verifica se o checkbox está marcado
@@ -187,12 +187,12 @@
         const modal = new bootstrap.Modal(document.querySelector(modalId));
         modal.show();
 
-        // Adiciona evento para verificar os campos ao fechar o modal
+        // verificar os campos ao fechar o modal
         document.querySelector(modalId).addEventListener('hidden.bs.modal', function() {
-          // Verifica os campos correspondentes ao modal
-          let valor_aluguel = '';
-          let taxa_aluguel = '';
+          let valorImovel = '';
+          let taxaAdm = '';
 
+          // Verifica os campos do modal
           if (modalId === '#venda_modal') {
             valorImovel = document.getElementById('valor_venda').value;
             taxaAdm = document.getElementById('taxa_venda').value;
@@ -201,14 +201,45 @@
             taxaAdm = document.getElementById('taxa_aluguel').value;
           }
 
-
-          // Desmarcar o checkbox somente se os campos estiverem vazios
-          if (!valor_aluguel && !taxa_aluguel) {
-            checkbox.checked = false; // Desmarcar o checkbox
+          // Desmarcar o checkbox se os campos estiverem vazios
+          if (!valorImovel && !taxaAdm) {
+            checkbox.checked = false; 
           }
         });
       }
     }
+
+  // Função para limpar campos e desmarcar o checkbox
+  function resetModal(modalId, checkboxId) {
+    // Limpa os campos correspondentes ao modal
+    if (modalId === '#venda_modal') {
+      document.getElementById('valor_venda').value = '';
+      document.getElementById('taxa_venda').value = '';
+    } else if (modalId === '#aluguel_modal') {
+      document.getElementById('valor_aluguel').value = '';
+      document.getElementById('taxa_aluguel').value = '';
+    }
+
+    // Desmarcar o checkbox
+    document.getElementById(checkboxId).checked = false;
+  }
+
+  // Eevento de clique aos botões de fechar p/ limpar os campos e desmarcar o checkbox
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('#venda_modal .btn-close').addEventListener('click', function() {
+      resetModal('#venda_modal', 'vendaCheckbox');
+    });
+    document.querySelector('#venda_modal .btn-secondary').addEventListener('click', function() {
+      resetModal('#venda_modal', 'vendaCheckbox');
+    });
+    document.querySelector('#aluguel_modal .btn-close').addEventListener('click', function() {
+      resetModal('#aluguel_modal', 'aluguelCheckbox');
+    });
+    document.querySelector('#aluguel_modal .btn-secondary').addEventListener('click', function() {
+      resetModal('#aluguel_modal', 'aluguelCheckbox');
+    });
+  });
+
   </script>
 
 </body>

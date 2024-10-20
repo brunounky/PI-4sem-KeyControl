@@ -13,7 +13,7 @@
     <!-- ICONE -->
     <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-    <title>Cadastro de imóveis</title>
+    <title>Clientes</title>
 
     
 </head>
