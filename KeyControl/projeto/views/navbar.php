@@ -18,7 +18,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="drop">
             <li><a class="dropdown-item nav-link" href="../views/consulta_pessoa.php">Clientes</a></li>
-            <li><a class="dropdown-item nav-link" href="../views/lista_imovel.php">Imóveis</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/consulta_imovel.php">Imóveis</a></li>
           </ul>
         </li>
       </ul>
