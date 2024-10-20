@@ -111,7 +111,10 @@
                                 <td>" . htmlspecialchars(substr($row['bairro'], 0, 20) . (strlen($row['bairro']) > 20 ? '...' : '')) . "</td>
                                 <td>" . htmlspecialchars($row['cidade']) . "</td>
                                 <td>
-                                    <button class='btn btn-link' onclick='toggleSubMenu(this)'>
+                                    <button class='btn ' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                        <i class='bi bi-pencil-square'></i>
+                                    </button>
+                                    <button class='btn ' onclick='toggleSubMenu(this)'>
                                         <i class='bi bi-chevron-down'></i>
                                     </button>
                                     <div class='submenu' style='display: none;'> 
