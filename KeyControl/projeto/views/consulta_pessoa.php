@@ -31,7 +31,7 @@ include '../app/controllers/filtros_pessoas.php';
                         <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                        <label for="nome" class="form-label">Proprietário</label>
+                        <label for="nome" class="form-label">Nome</label>
                         <input type="text" id="nome" class="form-control" name="nome" value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
