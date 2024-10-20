@@ -114,16 +114,49 @@ footer {
   }
 
   .submenu {
-    position: absolute; /* Posiciona o submenu em relação ao elemento pai */
-    background-color: white; /* Cor de fundo do submenu */
-    border: 1px solid #ddd; /* Borda do submenu */
-    z-index: 10; /* Para que o submenu fique acima de outros elementos */
-    margin-left: 10px; /* Espaçamento à esquerda */
-    padding: 10px; /* Espaçamento interno do submenu */
-    display: none; /* Começa oculto */
-}
+    position: absolute; 
+    background-color: white; 
+    border: 1px solid #ddd; 
+    z-index: 10; 
+    margin-left: 10px; 
+    padding: 10px; 
+    display: none; 
+    width: auto;
+    height: auto;
+    border-radius: 10px;  
+  }
+  
+  .submenu-options {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+  } 
 
   .td {
-        position: relative; /* Necessário para o submenu ser posicionado em relação à célula da tabela */
+        position: relative; 
     }
- 
+
+  
+  .imprimir, .email, .excluir {
+      border: none;
+      background-color: #ffffff;
+      padding: 8px 12px; 
+      display: flex;
+      align-items: center; 
+      color: #383838;
+  }
+  
+  .imprimir i, .email i {
+      margin-right: 5px;
+  }
+
+  .excluir i{
+    margin-right: 5px;
+    color: red;
+  }
+
+  .excluir i :hover{
+    margin-right: 5px;
+    color: #ffffff;
+  }
+  

@@ -90,7 +90,7 @@ include '../app/controllers/filtros_pessoas.php';
                 <?php
                 if ($result && count($result) > 0) {
                     for ($i = 0; $i < count($result); $i++) {
-                        $row = $result[$i]; // Acessa o elemento atual do array
+                        $row = $result[$i];
                         echo "<tr>
                                 <td>" . htmlspecialchars($row['id']) . "</td>
                                 <td>" . htmlspecialchars($row['nome']) . "</td>
@@ -100,16 +100,22 @@ include '../app/controllers/filtros_pessoas.php';
                                 <td>" . htmlspecialchars(substr($row['bairro'], 0, 20) . (strlen($row['bairro']) > 20 ? '...' : '')) . "</td>
                                 <td>" . htmlspecialchars($row['cidade']) . "</td>
                                 <td>
-                                    <button class='btn btn-link' onclick='toggleSubMenu(this)'>
+                                     <button class='btn btn-link' onclick='toggleSubMenu(this)'>
                                         <i class='bi bi-chevron-down'></i>
                                     </button>
-                                    <div class='submenu' style='display: none;'>
+                                    <div class='submenu' style='display: none;'> <!-- Submenu oculto inicialmente -->
                                         <div class='submenu-options'>
-                                            <button class='imprimir'(\"" . htmlspecialchars($row['id']) . "\")'>Imprimir</button></br>
-                                            <button class='email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>E-mail</button></br>
-                                            <button class='excluir' onclick='deleteRecord(\"" . htmlspecialchars($row['id']) . "\")'>Excluir</button></br>
-                                        </div>
+                                            <button class='btn btn-info imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                                <i class='bi bi-printer'></i> Imprimir
+                                            </button>
+                                            <button class='btn btn-warning email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
+                                                <i class='bi bi-envelope'></i> Enviar E-mail
+                                            </button>
+                                            <button class='btn btn-danger excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                                <i class='bi bi-trash'></i> Excluir
+                                            </button>
                                     </div>
+                                </div>
                                 </td>
                             </tr>";
                     }
