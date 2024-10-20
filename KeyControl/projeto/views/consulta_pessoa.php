@@ -103,15 +103,15 @@ include '../app/controllers/filtros_pessoas.php';
                                      <button class='btn btn-link' onclick='toggleSubMenu(this)'>
                                         <i class='bi bi-chevron-down'></i>
                                     </button>
-                                    <div class='submenu' style='display: none;'> <!-- Submenu oculto inicialmente -->
+                                    <div class='submenu' style='display: none;'> 
                                         <div class='submenu-options'>
-                                            <button class='btn btn-info imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                            <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
                                                 <i class='bi bi-printer'></i> Imprimir
                                             </button>
-                                            <button class='btn btn-warning email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
-                                                <i class='bi bi-envelope'></i> Enviar E-mail
+                                            <button class='email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
+                                                <i class='bi bi-envelope'></i>E-mail
                                             </button>
-                                            <button class='btn btn-danger excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                            <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
                                                 <i class='bi bi-trash'></i> Excluir
                                             </button>
                                     </div>
