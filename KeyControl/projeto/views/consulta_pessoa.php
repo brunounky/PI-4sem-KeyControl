@@ -1,5 +1,11 @@
 <?php 
 include '../app/controllers/filtros_pessoas.php';
+    session_start();
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../app/controllers/verifica_login.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,16 +23,18 @@ include '../app/controllers/filtros_pessoas.php';
 <body>
 <?php include 'navbar.php';?>
 <section>
-    <div class="container">
-        <h2 class="mb-3">Cadastro de Clientes</h2>
-        <div class="mb-7">
-            <a href="../views/cadastro_cliente.php" class="btn btn-primary btn-lg">Adicionar Novo</a>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mb-0">Cadastro de Clientes</h2> <!-- Remova a margem inferior -->
+                <a href="../views/cadastro_cliente.php" class="button_adicionarnovo">Adicionar Novo +</a>
+            </div>
         </div>
         
+        <div class="container">
         <form method="POST" action="">
             <div class="filtros-container">
                 <div class="row g-2">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <label for="id" class="form-label">ID</label>
                         <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
                     </div>
@@ -58,6 +66,7 @@ include '../app/controllers/filtros_pessoas.php';
                 </div>
             </div>
         </form>
+    </div>
     </div>
 </section>
 

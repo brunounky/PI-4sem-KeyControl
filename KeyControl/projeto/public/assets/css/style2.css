@@ -79,47 +79,37 @@ footer {
     padding: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    background-color: #fff;
-    margin-top: 7px;
-    min-width: 150px; 
-  }
-  
-  .filtros-container input {
-    flex: 1;
-    min-width: 150px;
   }
   
   .btn-buscar {
     background-color: #131E41;
     color: white;
     border-radius: 10px;
-    display: flex;
-    width: 37px;
-    height: 36px;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-  }
-  
-  .btn-buscar i {
-    font-size: 1.2rem;
   }
   
   .card_relatório{
-    margin-top: 12rem;
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
+    width: auto;
+    height: auto;
+    border: 1px solid #38383862;
     border-radius: 10px;
-    overflow: hidden; /* Para o arredondamento dos cantos */
-    margin-top: 25px; /* Espaço entre título e filtros */
-    min-width: 150px;
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden; /* Garante que o arredondamento funcione */
+    margin-top: 25px; 
     margin-bottom: 20px;
+    padding: 20px;
   }  
 
+  .button_adicionarnovo{
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: #131E41;
+    width: 180px;
+    height: 42px;
+    align-items: center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+  }
+ 
