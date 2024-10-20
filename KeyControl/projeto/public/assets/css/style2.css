@@ -112,4 +112,21 @@ footer {
     font-size: 20px;
     text-decoration: none;
   }
+
+  .details {
+    cursor: pointer; /* Mantém o cursor como pointer */
+}
+
+  .summary::-webkit-details-marker {
+    display: none; /* Remove o triângulo no Chrome/Safari */
+}
+
+  .summary {
+    list-style: none; /* Remove o marcador padrão */
+}
+
+.submenu-options {
+    padding: 10px; /* Opcional: para melhor espaçamento do conteúdo */
+}
+
  

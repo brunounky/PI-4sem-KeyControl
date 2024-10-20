@@ -1,11 +1,12 @@
 <?php 
-include '../app/controllers/filtros_pessoas.php';
     session_start();
 
     if (!isset($_SESSION['user_id'])) {
         header("Location: ../app/controllers/verifica_login.php");
         exit();
     }
+include '../app/controllers/filtros_pessoas.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -23,14 +24,14 @@ include '../app/controllers/filtros_pessoas.php';
 <body>
 <?php include 'navbar.php';?>
 <section>
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2 class="mb-0">Cadastro de Clientes</h2> <!-- Remova a margem inferior -->
-                <a href="../views/cadastro_cliente.php" class="button_adicionarnovo">Adicionar Novo +</a>
-            </div>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="mb-0">Cadastro de Clientes</h2> <!-- Remova a margem inferior -->
+            <a href="../views/cadastro_cliente.php" class="button_adicionarnovo">Adicionar Novo +</a>
         </div>
-        
-        <div class="container">
+    </div>
+
+    <div class="container">
         <form method="POST" action="">
             <div class="filtros-container">
                 <div class="row g-2">
@@ -67,7 +68,6 @@ include '../app/controllers/filtros_pessoas.php';
             </div>
         </form>
     </div>
-    </div>
 </section>
 
 <section>
@@ -83,6 +83,7 @@ include '../app/controllers/filtros_pessoas.php';
                         <th>Número</th>
                         <th>Bairro</th>
                         <th>Cidade</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,10 +99,24 @@ include '../app/controllers/filtros_pessoas.php';
                                 <td>" . htmlspecialchars($row['numero']) . "</td>
                                 <td>" . htmlspecialchars(substr($row['bairro'], 0, 20) . (strlen($row['bairro']) > 20 ? '...' : '')) . "</td>
                                 <td>" . htmlspecialchars($row['cidade']) . "</td>
+                                <td>
+                                    <button class='btn btn-link' onclick='toggleSubMenu(this)'>
+                                        <i class='bi bi-chevron-down'></i> <!-- Ícone de seta para baixo -->
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class='submenu' style='display: none;'> <!-- Submenu oculto inicialmente -->
+                                <td colspan='8'>
+                                    <div class='submenu-options'>
+                                        <button class='btn btn-info' onclick='printInfo(\"" . htmlspecialchars($row['id']) . "\")'>Imprimir</button>
+                                        <button class='btn btn-warning' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>Enviar E-mail</button>
+                                        <button class='btn btn-danger' onclick='deleteRecord(\"" . htmlspecialchars($row['id']) . "\")'>Excluir</button>
+                                    </div>
+                                </td>
                             </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='7'>Nenhum registro encontrado</td></tr>";
+                    echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
                 }
                 ?>
             </tbody>
@@ -112,5 +127,7 @@ include '../app/controllers/filtros_pessoas.php';
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../public/assets/js/consultacep.js"></script>
+<script src="../public/assets/js/submenu.js"></script>
+
 </body>
 </html>
