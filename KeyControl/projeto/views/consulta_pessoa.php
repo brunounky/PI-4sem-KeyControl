@@ -101,16 +101,14 @@ include '../app/controllers/filtros_pessoas.php';
                                 <td>" . htmlspecialchars($row['cidade']) . "</td>
                                 <td>
                                     <button class='btn btn-link' onclick='toggleSubMenu(this)'>
-                                        <i class='bi bi-chevron-down'></i> <!-- Ícone de seta para baixo -->
+                                        <i class='bi bi-chevron-down'></i>
                                     </button>
-                                </td>
-                            </tr>
-                            <tr class='submenu' style='display: none;'> <!-- Submenu oculto inicialmente -->
-                                <td colspan='8'>
-                                    <div class='submenu-options'>
-                                        <button class='btn btn-info' onclick='printInfo(\"" . htmlspecialchars($row['id']) . "\")'>Imprimir</button>
-                                        <button class='btn btn-warning' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>Enviar E-mail</button>
-                                        <button class='btn btn-danger' onclick='deleteRecord(\"" . htmlspecialchars($row['id']) . "\")'>Excluir</button>
+                                    <div class='submenu' style='display: none;'>
+                                        <div class='submenu-options'>
+                                            <button class='imprimir'(\"" . htmlspecialchars($row['id']) . "\")'>Imprimir</button></br>
+                                            <button class='email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>E-mail</button></br>
+                                            <button class='excluir' onclick='deleteRecord(\"" . htmlspecialchars($row['id']) . "\")'>Excluir</button></br>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>";
@@ -119,7 +117,7 @@ include '../app/controllers/filtros_pessoas.php';
                     echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
                 }
                 ?>
-            </tbody>
+                </tbody>
             </table>
         </div>
     </div>

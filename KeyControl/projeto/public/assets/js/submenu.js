@@ -1,9 +1,8 @@
 function toggleSubMenu(button) {
-
-    const submenu = button.closest('tr').nextElementSibling;
-    if (submenu.style.display === 'none' || submenu.style.display === '') {
-        submenu.style.display = 'table-row'; 
+    const submenu = button.nextElementSibling; 
+    if (submenu.style.display === "none" || submenu.style.display === "") {
+        submenu.style.display = "block"; 
     } else {
-        submenu.style.display = 'none'; 
+        submenu.style.display = "none"; 
     }
 }

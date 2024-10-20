@@ -113,20 +113,17 @@ footer {
     text-decoration: none;
   }
 
-  .details {
-    cursor: pointer; /* Mantém o cursor como pointer */
+  .submenu {
+    position: absolute; /* Posiciona o submenu em relação ao elemento pai */
+    background-color: white; /* Cor de fundo do submenu */
+    border: 1px solid #ddd; /* Borda do submenu */
+    z-index: 10; /* Para que o submenu fique acima de outros elementos */
+    margin-left: 10px; /* Espaçamento à esquerda */
+    padding: 10px; /* Espaçamento interno do submenu */
+    display: none; /* Começa oculto */
 }
 
-  .summary::-webkit-details-marker {
-    display: none; /* Remove o triângulo no Chrome/Safari */
-}
-
-  .summary {
-    list-style: none; /* Remove o marcador padrão */
-}
-
-.submenu-options {
-    padding: 10px; /* Opcional: para melhor espaçamento do conteúdo */
-}
-
+  .td {
+        position: relative; /* Necessário para o submenu ser posicionado em relação à célula da tabela */
+    }
  
