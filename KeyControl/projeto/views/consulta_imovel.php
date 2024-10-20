@@ -5,8 +5,8 @@
         header("Location: ../app/controllers/verifica_login.php");
         exit();
     }
-include '../app/controllers/filtros_pessoas.php';
 
+    include '../app/controllers/filtros_imovel.php'; // Novo filtro para imóveis
 ?>
 
 <!DOCTYPE html>
@@ -19,14 +19,14 @@ include '../app/controllers/filtros_pessoas.php';
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
     <link rel="icon" href="../public/assets/img/Logotipo.png">
-    <title>Clientes</title>
+    <title>Imóveis</title>
 </head>
 <body>
 <?php include 'navbar.php';?>
 <section>
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="mb-0">Cadastro de Imóvel</h2>
+            <h2 class="mb-0">Cadastro de Imóveis</h2>
             <a href="../views/cadastro_imovel.php" class="button_adicionarnovo">Adicionar Novo +</a>
         </div>
     </div>
@@ -40,8 +40,12 @@ include '../app/controllers/filtros_pessoas.php';
                         <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" id="nome" class="form-control" name="nome" value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
+                        <label for="cpf_cnpj_proprietario" class="form-label">CPF/CNPJ Proprietário</label>
+                            <input type="text" id="cpf_cnpj_proprietario" class="form-control" name="cpf_cnpj_proprietario" value="<?= htmlspecialchars($_POST['cpf_cnpj_proprietario'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="tipo_imovel" class="form-label">Tipo de Imóvel</label>
+                            <input type="text" id="tipo_imovel" class="form-control" name="tipo_imovel" value="<?= htmlspecialchars($_POST['tipo_imovel'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
                         <label for="cep" class="form-label">CEP</label>
@@ -77,7 +81,8 @@ include '../app/controllers/filtros_pessoas.php';
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nome</th>
+                        <th>CPF/CNPJ Proprietário</th>
+                        <th>Tipo de Imóvel</th>
                         <th>CEP</th>
                         <th>Rua</th>
                         <th>Número</th>
@@ -91,16 +96,22 @@ include '../app/controllers/filtros_pessoas.php';
                 if ($result && count($result) > 0) {
                     for ($i = 0; $i < count($result); $i++) {
                         $row = $result[$i];
+                        
+                        // Aqui você já deve ter os valores vindos da consulta $row
+                        $cpf_cnpj_proprietario = isset($row['cpf_cnpj_proprietario']) ? htmlspecialchars($row['cpf_cnpj_proprietario']) : null;
+                        $tipo_imovel = isset($row['tipo_imovel']) ? htmlspecialchars($row['tipo_imovel']) : null;
+                
                         echo "<tr>
                                 <td>" . htmlspecialchars($row['id']) . "</td>
-                                <td>" . htmlspecialchars($row['nome']) . "</td>
+                                <td>" . $cpf_cnpj_proprietario . "</td>
+                                <td>" . $tipo_imovel . "</td>
                                 <td>" . htmlspecialchars($row['cep']) . "</td>
                                 <td>" . htmlspecialchars($row['rua']) . "</td>
                                 <td>" . htmlspecialchars($row['numero']) . "</td>
                                 <td>" . htmlspecialchars(substr($row['bairro'], 0, 20) . (strlen($row['bairro']) > 20 ? '...' : '')) . "</td>
                                 <td>" . htmlspecialchars($row['cidade']) . "</td>
                                 <td>
-                                     <button class='btn btn-link' onclick='toggleSubMenu(this)'>
+                                    <button class='btn btn-link' onclick='toggleSubMenu(this)'>
                                         <i class='bi bi-chevron-down'></i>
                                     </button>
                                     <div class='submenu' style='display: none;'> 
@@ -109,19 +120,19 @@ include '../app/controllers/filtros_pessoas.php';
                                                 <i class='bi bi-printer'></i> Imprimir
                                             </button>
                                             <button class='email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
-                                                <i class='bi bi-envelope'></i>E-mail
+                                                <i class='bi bi-envelope'></i> E-mail
                                             </button>
                                             <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
                                                 <i class='bi bi-trash'></i> Excluir
                                             </button>
+                                        </div>
                                     </div>
-                                </div>
                                 </td>
                             </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
-                }
+                    echo "<tr><td colspan='9'>Nenhum registro encontrado</td></tr>";
+                }                
                 ?>
                 </tbody>
             </table>
