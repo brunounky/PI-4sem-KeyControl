@@ -1,26 +1,12 @@
 <?php 
-include '../app/controllers/db_conexao.php'; 
-$result = null; // Inicialize a variável $result para evitar erros
-
-if (isset($pdo) && $pdo) {
-    $sql = "SELECT * FROM cadastro_cliente";
-    $stmt = $pdo->query($sql); // Execute a consulta
-
-    if ($stmt === false) {
-        echo "Erro na consulta: " . $pdo->errorInfo()[2]; 
-    } else {
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtenha todos os resultados como um array associativo
-    }
-} else {
-    echo "Erro na conexão com o banco de dados.";
-}
+include '../app/controllers/filtros_pessoas.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../public/assets/js/menu.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600&display=swap" rel="stylesheet">
@@ -30,61 +16,55 @@ if (isset($pdo) && $pdo) {
 </head>
 <body>
 <?php include 'navbar.php';?>
-<section id="">
+<section>
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="mb-3">Cadastro de Clientes</h2>
-            </div>
+        <h2 class="mb-3">Cadastro de Clientes</h2>
+        <div class="mb-7">
+            <a href="../views/cadastro_cliente.php" class="btn btn-primary btn-lg">Adicionar Novo</a>
         </div>
         
-<div class="mt-12">
-    <a href="../views/cadastro_cliente.php" class="btn btn-primary btn-lg">Adicionar Novo</a>
-</div>
-<form method="POST" action="filtros_clientes.php">
-        <div class="filtros-container">
-            <div class="row g-2">
-                <div class="col-md-2">
-                    <label for="id" class="form-label">ID</label>
-                    <input type="text" id="id" class="form-control" name="id">
+        <form method="POST" action="">
+            <div class="filtros-container">
+                <div class="row g-2">
+                    <div class="col-md-2">
+                        <label for="id" class="form-label">ID</label>
+                        <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="nome" class="form-label">Proprietário</label>
+                        <input type="text" id="nome" class="form-control" name="nome" value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="cep" class="form-label">CEP</label>
+                        <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="rua" class="form-label">Rua</label>
+                        <input type="text" id="rua" class="form-control" name="rua" value="<?= htmlspecialchars($_POST['rua'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="bairro" class="form-label">Bairro</label>
+                        <input type="text" id="bairro" class="form-control" name="bairro" value="<?= htmlspecialchars($_POST['bairro'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="cidade" class="form-label">Cidade</label>
+                        <input type="text" id="cidade" class="form-control" name="cidade" value="<?= htmlspecialchars($_POST['cidade'] ?? '') ?>">
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <label for="nome" class="form-label">Proprietário</label>
-                    <input type="text" id="nome" class="form-control" name="Nome">
-                </div>
-                <div class="col-md-2">
-                    <label for="cep" class="form-label">CEP</label>
-                    <input type="text" id="cep" class="form-control" name="CEP">
-                </div>
-                <div class="col-md-2">
-                    <label for="rua" class="form-label">Rua</label>
-                    <input type="text" id="rua" class="form-control" name="rua">
-                </div>
-                <div class="col-md-2">
-                    <label for="bairro" class="form-label">Bairro</label>
-                    <input type="text" id="bairro" class="form-control" name="bairro">
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label">Categoria</label><br>
-                    <input type="checkbox" name="locador" value="1"> Locador<br>
-                    <input type="checkbox" name="locatario" value="1"> Locatário<br>
-                    <input type="checkbox" name="fiador" value="1"> Fiador<br>
+                <div class="d-flex justify-content-end mt-2">
+                    <button class="btn btn-buscar">
+                        <i class="bi bi-search"></i>
+                    </button>
                 </div>
             </div>
-            <div class="d-flex justify-content-end mt-2">
-                <button class="btn btn-buscar">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
-        </div>
+        </form>
     </div>
 </section>
-</form>
 
-<section id="lista_cadastro_pessoa">
+<section>
     <div class="container">
-        <div class="card relatório">
- <table class="table table-hover">
+        <div class="card_relatório">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -98,20 +78,21 @@ if (isset($pdo) && $pdo) {
                 </thead>
                 <tbody>
                 <?php
-                if ($result && count($result) > 0) { // Agora $result é um array
-                    foreach ($result as $row) {
+                if ($result && count($result) > 0) {
+                    for ($i = 0; $i < count($result); $i++) {
+                        $row = $result[$i]; // Acessa o elemento atual do array
                         echo "<tr>
-                                <td>" . ($row['id'] ?? '') . "</td>
-                                <td>" . ($row['nome'] ?? '') . "</td>
-                                <td>" . ($row['cep'] ?? '') . "</td>
-                                <td>" . ($row['rua'] ?? '') . "</td>
-                                <td>" . ($row['numero'] ?? '') . "</td>
-                                <td>" . ($row['bairro'] ?? '') . "</td>
-                                <td>" . ($row['cidade'] ?? '') . "</td>
+                                <td>" . htmlspecialchars($row['id']) . "</td>
+                                <td>" . htmlspecialchars($row['nome']) . "</td>
+                                <td>" . htmlspecialchars($row['cep']) . "</td>
+                                <td>" . htmlspecialchars($row['rua']) . "</td>
+                                <td>" . htmlspecialchars($row['numero']) . "</td>
+                                <td>" . htmlspecialchars(substr($row['bairro'], 0, 20) . (strlen($row['bairro']) > 20 ? '...' : '')) . "</td>
+                                <td>" . htmlspecialchars($row['cidade']) . "</td>
                             </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
+                    echo "<tr><td colspan='7'>Nenhum registro encontrado</td></tr>";
                 }
                 ?>
             </tbody>
@@ -120,7 +101,7 @@ if (isset($pdo) && $pdo) {
     </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../public/assets/js/consultacep.js"></script>
 </body>
 </html>
