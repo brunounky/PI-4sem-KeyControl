@@ -40,20 +40,12 @@
                         <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                        <label for="cpf_cnpj_proprietario" class="form-label">CPF/CNPJ Proprietário</label>
+                        <label for="cpf_cnpj_proprietario" class="form-label">Proprietário</label>
                             <input type="text" id="cpf_cnpj_proprietario" class="form-control" name="cpf_cnpj_proprietario" value="<?= htmlspecialchars($_POST['cpf_cnpj_proprietario'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="tipo_imovel" class="form-label">Tipo de Imóvel</label>
-                            <input type="text" id="tipo_imovel" class="form-control" name="tipo_imovel" value="<?= htmlspecialchars($_POST['tipo_imovel'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
                         <label for="cep" class="form-label">CEP</label>
                         <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="rua" class="form-label">Rua</label>
-                        <input type="text" id="rua" class="form-control" name="rua" value="<?= htmlspecialchars($_POST['rua'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
                         <label for="bairro" class="form-label">Bairro</label>
@@ -62,6 +54,10 @@
                     <div class="col-md-2">
                         <label for="cidade" class="form-label">Cidade</label>
                         <input type="text" id="cidade" class="form-control" name="cidade" value="<?= htmlspecialchars($_POST['cidade'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="tipo_imovel" class="form-label">Tipo de Imóvel</label>
+                            <input type="text" id="tipo_imovel" class="form-control" name="tipo_imovel" value="<?= htmlspecialchars($_POST['tipo_imovel'] ?? '') ?>">
                     </div>
                 </div>
                 <div class="d-flex justify-content-end mt-2">
@@ -81,13 +77,13 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>CPF/CNPJ Proprietário</th>
-                        <th>Tipo de Imóvel</th>
+                        <th>Proprietário</th>
                         <th>CEP</th>
                         <th>Rua</th>
                         <th>Número</th>
                         <th>Bairro</th>
                         <th>Cidade</th>
+                        <th>Tipo de Imóvel</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -97,19 +93,19 @@
                     for ($i = 0; $i < count($result); $i++) {
                         $row = $result[$i];
                         
-                        // Aqui você já deve ter os valores vindos da consulta $row
                         $cpf_cnpj_proprietario = isset($row['cpf_cnpj_proprietario']) ? htmlspecialchars($row['cpf_cnpj_proprietario']) : null;
                         $tipo_imovel = isset($row['tipo_imovel']) ? htmlspecialchars($row['tipo_imovel']) : null;
                 
                         echo "<tr>
                                 <td>" . htmlspecialchars($row['id']) . "</td>
                                 <td>" . $cpf_cnpj_proprietario . "</td>
-                                <td>" . $tipo_imovel . "</td>
                                 <td>" . htmlspecialchars($row['cep']) . "</td>
                                 <td>" . htmlspecialchars($row['rua']) . "</td>
                                 <td>" . htmlspecialchars($row['numero']) . "</td>
                                 <td>" . htmlspecialchars(substr($row['bairro'], 0, 20) . (strlen($row['bairro']) > 20 ? '...' : '')) . "</td>
                                 <td>" . htmlspecialchars($row['cidade']) . "</td>
+                                <td>" . $tipo_imovel . "</td>
+
                                 <td>
                                     <button class='btn ' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
                                         <i class='bi bi-pencil-square'></i>
