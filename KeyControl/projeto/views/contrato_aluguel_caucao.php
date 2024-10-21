@@ -31,13 +31,13 @@
 
   ?>
 
-  <section id="contrato_aluguel">
+  <section id="contrato_aluguel_caucao">
     <!-- inicio do form -->
     <form action="" method="post">
       <input type="hidden" name="action" value="cadastrar">
       <div class="container">
         <div class="row">
-          <h2>Contrato de Aluguel</h2>
+          <h2>Contrato de Aluguel Caução</h2>
 
           <div class="row">
             <!-- locador -->
@@ -148,50 +148,49 @@
           </div>
 
           <div class="row">
-            <!-- fiador -->
+            <!-- caução -->
             <div class="col-md-12">
-            <h4>Dados do Fiador:</h4>
+            <h4>Dados do Caução:</h4>
               <div class="card">
                 <div class="row">
-                  <div class="col-sm-4">
-                    <label for="nome" class="mb-2">Nome</label>
-                    <input class="form-control mb-3" type="text" name="nome" id="nome" required>
-                    <label for="data_nascimento_fundacao" class="mb-2">Nascimento/Fundação</label>
-                    <input class="form-control mb-3" type="date" name="data_nascimento_fundacao" id="data_nascimento_fundacao" required>
-                    <label for="nacionalidade" class="mb-2">Nacionalidade</label>
-                    <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" required>
-                    <label for="cep" class="mb-2">CEP</label>
-                    <input class="form-control mb-3" type="text" name="cep" id="cep" required>
-                    <label for="bairro" class="mb-2">Bairro</label>
-                    <input class="form-control mb-3" type="text" name="bairro" id="bairro" required>
-                    <label for="estado" class="mb-2">Estado</label>
-                    <input class="form-control mb-3" type="text" name="estado" id="estado" required>
+                  <div class="col-sm-3">
+                    <label for="antecipacao_aluguel" class="mb-2">Antecipação aluguel <span data-toggle="tooltip" title="Quantidade de meses de antecipação."><i class="bi bi-question-circle fs-9"></i></span>
+                    </label>
+                    <select class="form-control mb-3" type="number" name="antecipacao_aluguel" id="antecipacao_aluguel" required>
+                    <option value="" disabled selected>Selecionar</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option> 
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
                   </div>
-                  <div class="col-sm-4">
-                    <label for="cpf_cnpj" class="mb-2">CPF/CNPJ</label>
-                    <input class="form-control mb-3" type="number" name="cpf_cnpj" id="cpf_cnpj" required>
-                    <label for="telefone" class="mb-2">Telefone</label>
-                    <input class="form-control mb-3" type="number" name="telefone" id="telefone" required>
-                    <label for="estado_civil" class="mb-2">Estado civil</label>
-                    <input class="form-control mb-3" type="text" name="estado_civil" id="estado_civil" required>
-                    <label for="rua" class="mb-2">Rua</label>
-                    <input class="form-control mb-3" type="text" name="rua" id="rua" required>
-                    <label for="complemento" class="mb-2">Complemento</label>
-                    <input class="form-control mb-3" type="text" name="complemento" id="complemento" required>
-                    <label for="pais" class="mb-2">País</label>
-                    <input class="form-control mb-3" type="text" name="pais" id="pais" required>
+                  <div class="col-sm-3">
+                    <label for="vencimento" class="mb-2">Data de Vencimento</label>
+                    <input class="form-control mb-3" type="date" name="vencimento" id="vencimento" required>
                   </div>
-                  <div class="col-sm-4">
-                    <label for="rg_ie" class="mb-2">RG/IE</label>
-                    <input class="form-control mb-3" type="number" name="rg_ie" id="rg_ie" required>
-                    <label for="email" class="mb-2">E-mail</label>
-                    <input class="form-control mb-3" type="text" name="email" id="email" required>
-                    <label for="profissao" class="mb-2">Profissão</label>
-                    <input class="form-control mb-3" type="text" name="profissao" id="profissao" required>
-                    <label for="numero" class="mb-2">Número</label>
-                    <input class="form-control mb-3" type="number" name="numero" id="numero" required>
-                    <label for="cidade" class="mb-2">Cidade</label>
-                    <input class="form-control mb-3" type="text" name="cidade" id="cidade" required>
+                  <div class="col-sm-3">
+                    <label for="valor_total" class="mb-2">Valor total</label>
+                    <input class="form-control mb-3" type="number" name="valor_total" id="valor_total" required>
+                  </div>
+                  <div class="col-sm-3">
+                    <label for="forma_pagamento" class="mb-2">Forma de pagamento</label>
+                    <select class="form-control mb-3" name="forma_pagamento" id="forma_pagamento" required>
+                      <option value="" disabled selected>Selecionar</option>
+                      <option value="Dinheiro">Dinheiro</option>
+                      <option value="Boleto">Boleto</option>
+                      <option value="PIX">PIX</option> 
+                      <option value="Transferência">Transferência</option> 
+                      <option value="Cartão de crédito">Cartão de crédito</option>
+                      <option value="Cartão de débito">Cartão de débito</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -217,8 +216,16 @@
                     <input class="form-control mb-3" type="number" name="dia_cobranca" id="dia_cobranca" required>
                   </div>
                   <div class="col-sm-3">
-                    <label for="forma_pagamento" class="mb-2">Forma de pagamento</label>
-                    <input class="form-control mb-3" type="text" name="forma_pagamento" id="forma_pagamento" required>
+                  <label for="forma_pagamento" class="mb-2">Forma de pagamento</label>
+                    <select class="form-control mb-3" name="forma_pagamento" id="forma_pagamento" required>
+                      <option value="" disabled selected>Selecionar</option>
+                      <option value="Dinheiro">Dinheiro</option>
+                      <option value="Boleto">Boleto</option>
+                      <option value="PIX">PIX</option> 
+                      <option value="Transferência">Transferência</option> 
+                      <option value="Cartão de crédito">Cartão de crédito</option>
+                      <option value="Cartão de débito">Cartão de débito</option>
+                    </select>
                   </div>
                 </div>
               </div>
