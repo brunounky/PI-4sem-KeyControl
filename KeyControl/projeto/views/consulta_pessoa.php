@@ -34,7 +34,7 @@ include '../app/controllers/filtros_pessoas.php';
     <div class="container">
         <form method="POST" action="">
             <div class="filtros-container">
-                <div class="row g-2">
+                <div class="row g-12">
                     <div class="col-md-1">
                         <label for="id" class="form-label">ID</label>
                         <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
@@ -48,10 +48,6 @@ include '../app/controllers/filtros_pessoas.php';
                         <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                        <label for="rua" class="form-label">Rua</label>
-                        <input type="text" id="rua" class="form-control" name="rua" value="<?= htmlspecialchars($_POST['rua'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-2">
                         <label for="bairro" class="form-label">Bairro</label>
                         <input type="text" id="bairro" class="form-control" name="bairro" value="<?= htmlspecialchars($_POST['bairro'] ?? '') ?>">
                     </div>
@@ -59,7 +55,15 @@ include '../app/controllers/filtros_pessoas.php';
                         <label for="cidade" class="form-label">Cidade</label>
                         <input type="text" id="cidade" class="form-control" name="cidade" value="<?= htmlspecialchars($_POST['cidade'] ?? '') ?>">
                     </div>
-                </div>
+                    <div class="col-md-3">
+                        <label for="categoria" class="mb-2">Categoria</label>
+                        <select class="form-control" name="categoria" id="categoria">
+                            <option value="" disabled selected>Escolha a Categoria</option>
+                            <option value="locador">Locador</option>
+                            <option value="locatario">Locatário</option>
+                            <option value="fiador">Fiador</option>
+                        </select>
+                    </div>
                 <div class="d-flex justify-content-end mt-2">
                     <button class="btn btn-buscar">
                         <i class="bi bi-search"></i>
@@ -91,43 +95,56 @@ include '../app/controllers/filtros_pessoas.php';
                 <?php
                 if ($result && count($result) > 0) {
                     for ($i = 0; $i < count($result); $i++) {
-                        $row = $result[$i];
-                        echo "<tr>
-                                <td>" . htmlspecialchars($row['id']) . "</td>
-                                <td>" . htmlspecialchars($row['nome']) . "</td>
-                                <td>" . htmlspecialchars($row['cep']) . "</td>
-                                <td>" . htmlspecialchars($row['rua']) . "</td>
-                                <td>" . htmlspecialchars($row['numero']) . "</td>
-                                <td>" . htmlspecialchars(substr($row['bairro'], 0, 10) . (strlen($row['bairro']) > 10 ? '...' : '')) . "</td>
-                                <td>" . htmlspecialchars($row['cidade']) . "</td>
-                                
-                                <td>
-                                    <button class='btn ' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
-                                        <i class='bi bi-pencil-square'></i>
-                                    </button>
-                                    <button class='btn ' onclick='toggleSubMenu(this)'>
-                                        <i class='bi bi-chevron-down'></i>
-                                    </button>
-                                    <div class='submenu' style='display: none;'> 
-                                        <div class='submenu-options'>
-                                            <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
-                                                <i class='bi bi-printer'></i> Imprimir
-                                            </button>
-                                            <button class='email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
-                                                <i class='bi bi-envelope'></i>E-mail
-                                            </button>
-                                            <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
-                                                <i class='bi bi-trash'></i> Excluir
-                                            </button>
-                                    </div>
-                                </div>
-                                </td>
-                            </tr>";
+                    $row = $result[$i];
+
+                    $categorias = [];
+                        if ($row['locador']) {
+                            $categorias[] = 'Locador';
+                        }
+                        if ($row['locatario']) {
+                            $categorias[] = 'Locatário';
+                        }
+                        if ($row['fiador']) {
+                            $categorias[] = 'Fiador';
+                        }
+                            $categoriaTexto = implode(', ', $categorias);
+
+                            echo "<tr>
+                                    <td>" . htmlspecialchars($row['id']) . "</td>
+                                    <td>" . htmlspecialchars($row['nome']) . "</td>
+                                    <td>" . htmlspecialchars($row['cep']) . "</td>
+                                    <td>" . htmlspecialchars($row['rua']) . "</td>
+                                    <td>" . htmlspecialchars($row['numero']) . "</td>
+                                    <td>" . htmlspecialchars(substr($row['bairro'], 0, 10) . (strlen($row['bairro']) > 10 ? '...' : '')) . "</td>
+                                    <td>" . htmlspecialchars($row['cidade']) . "</td>
+                                    <td>" . htmlspecialchars($categoriaTexto) . "</td>
+                                    <td>
+                                        <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                            <i class='bi bi-pencil-square'></i>
+                                        </button>
+                                        <button class='btn' onclick='toggleSubMenu(this)'>
+                                            <i class='bi bi-chevron-down'></i>
+                                        </button>
+                                        <div class='submenu' style='display: none;'>
+                                            <div class='submenu-options'>
+                                                <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                                    <i class='bi bi-printer'></i> Imprimir
+                                                </button>
+                                                <button class='email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
+                                                    <i class='bi bi-envelope'></i> E-mail
+                                                </button>
+                                                <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                                    <i class='bi bi-trash'></i> Excluir
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='9'>Nenhum registro encontrado</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
-                }
-                ?>
+                    ?>
                 </tbody>
             </table>
         </div>
