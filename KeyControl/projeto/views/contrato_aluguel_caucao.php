@@ -238,6 +238,7 @@
       <footer class="py-3">
         <div class="container">
           <button type="submit" class="btn btn_salvar">Salvar</button>
+          <button type="button" class="btn btn_salvar"><i class="bi bi-eye"></i> Pré visualizar</button>
         </div>
       </footer>
       <!-- fim do form -->

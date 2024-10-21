@@ -9,6 +9,7 @@ h2 {
 
 h4 {
   margin: 35px auto;
+  font-size: 22px;
   color: #000713;
 }
 
@@ -57,13 +58,13 @@ footer {
 }
 
 .btn_salvar {
-    width: 90px;
+    width: auto;
     background-color: rgb(16, 2, 36);
     color: white;
 }
 
 .btn_salvar:hover {
-    background-color: rgb(16, 2, 36);
+    background-color: rgba(16, 2, 36, 0.89);
     color: white;
 }
 
@@ -71,10 +72,9 @@ footer {
   
 /* ************************************ */
 
-input.form-control {
-  color: #000000 !important;
-  border: 1px solid #38383862 !important;
-  border-radius: 10px !important; 
+.filtros-container input.form-control {
+  border: 1px solid #3838383b;
+  border-radius: 10px; 
   
 }
 
