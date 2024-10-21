@@ -83,6 +83,7 @@ include '../app/controllers/filtros_pessoas.php';
                         <th>Número</th>
                         <th>Bairro</th>
                         <th>Cidade</th>
+                        <th>Tipo</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -97,8 +98,9 @@ include '../app/controllers/filtros_pessoas.php';
                                 <td>" . htmlspecialchars($row['cep']) . "</td>
                                 <td>" . htmlspecialchars($row['rua']) . "</td>
                                 <td>" . htmlspecialchars($row['numero']) . "</td>
-                                <td>" . htmlspecialchars(substr($row['bairro'], 0, 20) . (strlen($row['bairro']) > 20 ? '...' : '')) . "</td>
+                                <td>" . htmlspecialchars(substr($row['bairro'], 0, 10) . (strlen($row['bairro']) > 10 ? '...' : '')) . "</td>
                                 <td>" . htmlspecialchars($row['cidade']) . "</td>
+                                
                                 <td>
                                     <button class='btn ' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
                                         <i class='bi bi-pencil-square'></i>

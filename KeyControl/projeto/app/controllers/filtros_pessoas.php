@@ -2,7 +2,7 @@
 include '../app/controllers/db_conexao.php'; 
 $result = null; 
 
-function buildQuery($id, $nome, $cep, $rua, $bairro) {
+function buildQuery($id, $nome, $cep, $rua, $bairro, $cidade) {
     $sql = "SELECT * FROM cadastro_cliente WHERE 1=1"; 
     $params = []; 
 
@@ -31,6 +31,11 @@ function buildQuery($id, $nome, $cep, $rua, $bairro) {
         $params['bairro'] = "%$bairro%";
     }
 
+    if (!empty($cidade)) {
+        $sql .= " AND cidade LIKE :cidade";
+        $params['cidade'] = "%$cidade%";
+    }
+
     return [$sql, $params];
 }
 
@@ -39,8 +44,9 @@ $nome = $_POST['nome'] ?? '';
 $cep = $_POST['cep'] ?? '';
 $rua = $_POST['rua'] ?? '';
 $bairro = $_POST['bairro'] ?? '';
+$cidade = $_POST['cidade'] ?? '';
 
-list($sql, $params) = buildQuery($id, $nome, $cep, $rua, $bairro);
+list($sql, $params) = buildQuery($id, $nome, $cep, $rua, $bairro, $cidade);
 
 if (isset($pdo) && $pdo) {
     try {
