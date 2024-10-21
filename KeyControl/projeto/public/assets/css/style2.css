@@ -93,6 +93,45 @@ footer {
     color: white;
     border-radius: 10px;
   }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 10px; 
+    width: auto;
+    height: auto;
+    font-size: 14px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s, transform 0.3s; 
+}
+
+.tag span {
+    margin-right: 8px; 
+    font-weight: 600; 
+    color: #383838; 
+}
+
+.tag button {
+    background: none; 
+    border: none; 
+    font-size: 16px; 
+    cursor: pointer; 
+    color: #dc3545; 
+    transition: color 0.3s; 
+}
+
+.tag button:hover {
+    color: #c82333; 
+}
+
+.tag-container {
+    display: flex; 
+    width: 180px;
+    align-items: center; 
+    border-radius: 10px; 
+    background-color: #f8f9fa; 
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);  */
+}
   
   .card_relatório{
     width: auto;

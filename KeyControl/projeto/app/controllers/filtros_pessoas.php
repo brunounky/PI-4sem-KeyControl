@@ -2,7 +2,7 @@
 include '../app/controllers/db_conexao.php'; 
 $result = null; 
 
-function buildQuery($id, $nome, $cep, $rua, $bairro, $cidade) {
+function buildQuery($id, $nome, $cep, $rua, $bairro, $cidade, $categoria) {
     $sql = "SELECT * FROM cadastro_cliente WHERE 1=1"; 
     $params = []; 
 
@@ -36,6 +36,15 @@ function buildQuery($id, $nome, $cep, $rua, $bairro, $cidade) {
         $params['cidade'] = "%$cidade%";
     }
 
+    if (!empty($categoria)) {
+        $allowedCategories = ['locador', 'locatario', 'fiador'];
+        if (in_array($categoria, $allowedCategories)) {
+            $sql .= " AND $categoria = 1";
+        } else {
+            $categoria = '';
+        }
+    }
+
     return [$sql, $params];
 }
 
@@ -45,8 +54,9 @@ $cep = $_POST['cep'] ?? '';
 $rua = $_POST['rua'] ?? '';
 $bairro = $_POST['bairro'] ?? '';
 $cidade = $_POST['cidade'] ?? '';
+$categoria = $_POST['categoria'] ?? ''; 
 
-list($sql, $params) = buildQuery($id, $nome, $cep, $rua, $bairro, $cidade);
+list($sql, $params) = buildQuery($id, $nome, $cep, $rua, $bairro, $cidade, $categoria);
 
 if (isset($pdo) && $pdo) {
     try {
@@ -54,7 +64,7 @@ if (isset($pdo) && $pdo) {
         $stmt->execute($params);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC); 
     } catch (Exception $e) {
-        echo "Erro na execução da consulta: " . $e->getMessage();
+        echo "Erro na execução da consulta: " . htmlspecialchars($e->getMessage());
     }
 } else {
     echo "Erro na conexão com o banco de dados.";
