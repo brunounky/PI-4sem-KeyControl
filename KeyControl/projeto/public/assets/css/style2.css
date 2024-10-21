@@ -13,6 +13,19 @@ h4 {
   color: #000713;
 }
 
+/* home */ 
+
+#home {
+  background-image: url(../img/fundo.png);
+  width: 100vw; /* Largura total da tela */
+  height: 100vh; /* Altura total da tela */
+  position: fixed; /* Fixa a imagem em relação à janela do navegador */
+  top: 0; /* Alinha ao topo */
+  left: 0; /* Alinha à esquerda */
+  z-index: -1; /* Coloca atrás de outros elementos */
+}
+
+
 /* form */
 form {
     font-family: "Poppins", sans-serif;
@@ -67,7 +80,6 @@ footer {
     background-color: rgba(16, 2, 36, 0.89);
     color: white;
 }
-
 
   
 /* ************************************ */
