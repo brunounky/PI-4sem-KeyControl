@@ -66,7 +66,7 @@
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link" href="#"><i class="bi bi-person-fill-gear fs-5"></i> <?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Usuário'); ?></a>
+          <a class="nav-link" href="../views/perfil.php"><i class="bi bi-person-fill-gear fs-5"></i> <?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Usuário'); ?></a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">
