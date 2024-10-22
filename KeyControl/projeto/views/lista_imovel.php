@@ -7,7 +7,7 @@
     }
 
     include_once '../app/controllers/filtros_imovel.php';
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -56,13 +56,17 @@
                         <input type="text" id="cidade" class="form-control" name="cidade" value="<?= htmlspecialchars($_POST['cidade'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                    <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
-                    <select class="form-control" name="tipo_imovel" id="tipo_imovel">
-                        <option value="" disabled>Selecione um tipo</option>
-                        <option value="apartamento" <?= ($_POST['tipo_imovel'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Apartamento</option>
-                        <option value="casa" <?= ($_POST['tipo_imovel'] ?? '') == 'casa' ? 'selected' : '' ?>>Casa</option>
-                        <option value="comercial" <?= ($_POST['tipo_imovel'] ?? '') == 'comercial' ? 'selected' : '' ?>>Comercial</option>
-                    </select>
+                        <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
+                        <div class="position-relative">
+                            <select class="form-control" name="tipo_imovel" id="tipo_imovel" onchange="checkSelection('tipo_imovel')">
+                                <option value="" disabled <?= !isset($_POST['tipo_imovel']) ? 'selected' : '' ?>>Selecione um tipo</option>
+                                <option value="apartamento" <?= ($_POST['tipo_imovel'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Apartamento</option>
+                                <option value="casa" <?= ($_POST['tipo_imovel'] ?? '') == 'casa' ? 'selected' : '' ?>>Casa</option>
+                                <option value="comercial" <?= ($_POST['tipo_imovel'] ?? '') == 'comercial' ? 'selected' : '' ?>>Comercial</option>
+                            </select>
+                            <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_imovel']) && $_POST['tipo_imovel'] != '' ? 'block' : 'none' ?>;" data-select="tipo_imovel" onclick="removeSelected('tipo_imovel')">x</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-1">
                     <button class="btn btn-buscar" type="submit">

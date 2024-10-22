@@ -2,7 +2,7 @@
 include '../app/controllers/db_conexao.php'; 
 $result = null; 
 
-function buildQuery($id, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bairro, $cidade) {
+function buildQuery($registro_imovel, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bairro, $cidade) {
     $sql = "SELECT imovel.*, cliente.nome 
             FROM cadastro_imovel imovel
             INNER JOIN cadastro_cliente cliente 
@@ -11,9 +11,9 @@ function buildQuery($id, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bair
     $conditions = [];
     $params = [];
 
-    if (!empty($id)) {
-        $conditions[] = "imovel.id = :id";
-        $params['id'] = $id;
+    if (!empty($registro_imovel)) {
+        $conditions[] = "imovel.registro_imovel = :registro_imovel";
+        $params['registro_imovel'] = $registro_imovel;
     }
     if (!empty($cpf_cnpj_proprietario)) {
         $conditions[] = "imovel.cpf_cnpj_proprietario LIKE :cpf_cnpj_proprietario";
@@ -47,7 +47,7 @@ function buildQuery($id, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bair
     return [$sql, $params];
 }
 
-$id = $_POST['id'] ?? '';
+$registro_imovel = $_POST['registro_imovel'] ?? '';
 $cpf_cnpj_proprietario = $_POST['cpf_cnpj_proprietario'] ?? '';
 $tipo_imovel = $_POST['tipo_imovel'] ?? '';
 $cep = $_POST['cep'] ?? '';
@@ -55,7 +55,7 @@ $rua = $_POST['rua'] ?? '';
 $bairro = $_POST['bairro'] ?? '';
 $cidade = $_POST['cidade'] ?? '';
 
-list($sql, $params) = buildQuery($id, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bairro, $cidade);
+list($sql, $params) = buildQuery($registro_imovel, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bairro, $cidade);
 
 try {
     if ($pdo) {
