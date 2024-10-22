@@ -2,44 +2,51 @@
 include '../app/controllers/db_conexao.php'; 
 $result = null; 
 
-function buildQuery($id, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bairro) {
-    $sql = "SELECT * FROM cadastro_imovel WHERE 1=1"; 
-    $params = []; 
+function buildQuery($id, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bairro, $cidade) {
+    $sql = "SELECT imovel.*, cliente.nome 
+            FROM cadastro_imovel imovel
+            INNER JOIN cadastro_cliente cliente 
+                ON imovel.cpf_cnpj_proprietario = cliente.cpf_cnpj";
+    
+    $conditions = [];
+    $params = [];
 
     if (!empty($id)) {
-        $sql .= " AND id = :id";
+        $conditions[] = "imovel.id = :id";
         $params['id'] = $id;
     }
-
     if (!empty($cpf_cnpj_proprietario)) {
-        $sql .= " AND cpf_cnpj_proprietario LIKE :cpf_cnpj_proprietario";
+        $conditions[] = "imovel.cpf_cnpj_proprietario LIKE :cpf_cnpj_proprietario";
         $params['cpf_cnpj_proprietario'] = "%$cpf_cnpj_proprietario%";
     }
-
     if (!empty($tipo_imovel)) {
-        $sql .= " AND tipo_imovel LIKE :tipo_imovel";
+        $conditions[] = "imovel.tipo_imovel LIKE :tipo_imovel";
         $params['tipo_imovel'] = "%$tipo_imovel%";
     }
-
     if (!empty($cep)) {
-        $sql .= " AND cep = :cep";
+        $conditions[] = "imovel.cep = :cep";
         $params['cep'] = $cep;
     }
-
     if (!empty($rua)) {
-        $sql .= " AND rua LIKE :rua";
+        $conditions[] = "imovel.rua LIKE :rua";
         $params['rua'] = "%$rua%";
     }
-
     if (!empty($bairro)) {
-        $sql .= " AND bairro LIKE :bairro";
+        $conditions[] = "imovel.bairro LIKE :bairro";
         $params['bairro'] = "%$bairro%";
+    }
+    if (!empty($cidade)) {
+        $conditions[] = "imovel.cidade LIKE :cidade";
+        $params['cidade'] = "%$cidade%";
+    }
+
+    if (count($conditions) > 0) {
+        $sql .= " WHERE " . implode(" AND ", $conditions);
     }
 
     return [$sql, $params];
 }
 
-// Inicializando as variáveis de formulário com valores padrão
 $id = $_POST['id'] ?? '';
 $cpf_cnpj_proprietario = $_POST['cpf_cnpj_proprietario'] ?? '';
 $tipo_imovel = $_POST['tipo_imovel'] ?? '';
@@ -48,19 +55,17 @@ $rua = $_POST['rua'] ?? '';
 $bairro = $_POST['bairro'] ?? '';
 $cidade = $_POST['cidade'] ?? '';
 
+list($sql, $params) = buildQuery($id, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bairro, $cidade);
 
-// Construir a query com os filtros recebidos
-list($sql, $params) = buildQuery($id, $cpf_cnpj_proprietario, $tipo_imovel, $cep, $rua, $bairro);
-
-if (isset($pdo) && $pdo) {
-    try {
+try {
+    if ($pdo) {
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-    } catch (Exception $e) {
-        echo "Erro na execução da consulta: " . $e->getMessage();
+    } else {
+        throw new Exception("Erro na conexão com o banco de dados.");
     }
-} else {
-    echo "Erro na conexão com o banco de dados.";
+} catch (Exception $e) {
+    echo "Erro na execução da consulta: " . $e->getMessage();
 }
 ?>

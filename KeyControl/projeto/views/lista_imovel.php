@@ -57,18 +57,18 @@
                     </div>
                     <div class="col-md-2">
                     <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
-                    <select class="form-control" name="tipo_imovel" id="tipo_imovel" required>
-                        <option value="" disabled selected>Selecione um tipo</option>
-                        <option value="apartamento">Apartamento</option>
-                        <option value="casa">Casa</option>
-                        <option value="comercial">Comercial</option>
+                    <select class="form-control" name="tipo_imovel" id="tipo_imovel">
+                        <option value="" disabled>Selecione um tipo</option>
+                        <option value="apartamento" <?= ($_POST['tipo_imovel'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Apartamento</option>
+                        <option value="casa" <?= ($_POST['tipo_imovel'] ?? '') == 'casa' ? 'selected' : '' ?>>Casa</option>
+                        <option value="comercial" <?= ($_POST['tipo_imovel'] ?? '') == 'comercial' ? 'selected' : '' ?>>Comercial</option>
                     </select>
                 </div>
-                </div>
                 <div class="col-md-1">
-                    <button class="btn btn-buscar">
+                    <button class="btn btn-buscar" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
+                </div>
                 </div>
             </div>
         </form>
@@ -94,15 +94,18 @@
                 </thead>
                 <tbody>
                 <?php
-                if ($result && count($result) > 0) {
+                if (isset($result) && count($result) > 0) {
                     foreach ($result as $row) {
+                        $bairro = htmlspecialchars($row['bairro'] ?? '-');
+                        $bairro_resumido = htmlspecialchars(substr($bairro, 0, 10) . (strlen($bairro) > 10 ? '...' : ''));
+
                         echo "<tr>
                                 <td>" . htmlspecialchars($row['id']) . "</td>
-                                <td>" . htmlspecialchars($row['nome_proprietario'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
-                                <td>" . htmlspecialchars(substr($row['bairro'] ?? '-', 0, 10) . (strlen($row['bairro'] ?? '') > 10 ? '...' : '')) . "</td>
+                                <td title='$bairro'>$bairro_resumido</td>
                                 <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
                                 <td>
@@ -112,7 +115,7 @@
                                     <button class='btn' onclick='toggleSubMenu(this)'>
                                         <i class='bi bi-chevron-down'></i>
                                     </button>
-                                    <div class='submenu' style='display: none;'> 
+                                    <div class='submenu' style='display: none;'>
                                         <div class='submenu-options'>
                                             <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
                                                 <i class='bi bi-printer'></i> Imprimir
