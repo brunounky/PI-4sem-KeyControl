@@ -26,17 +26,8 @@
     <section>
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2 class="mb-0">Contrato</h2>
-                <div class="button_adicionarnovo">
-                    <a class="button_adicionar novo floating dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false" href="">
-                        <span class="button_adicionarnovo">Adicionar novo +</span>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a class="dropdown-item" href="../views/contrato_venda.php" tabindex="-1">Contrato de Venda</a></li>
-                        <li><a class="dropdown-item" href="../views/contrato_aluguel_fiador.php" tabindex="-1">Aluguel Fiador</a></li>
-                        <li><a class="dropdown-item" href="../views/contrato_aluguel_caucao.php" tabindex="-1">Aluguel Caução</a></li>
-                    </ul>
-                </div>
+                <h2 class="mb-0">Contrato de Venda</h2>
+                <a href="../views/contrato_venda.php" class="button_adicionarnovo">Adicionar Novo +</a>
             </div>
         </div>
 

@@ -24,7 +24,13 @@
       </ul>
       <ul class="navbar-nav align-items-center">
       <li class="nav-item dropdown">
-          <a class="nav-link" href="../views/lista_contrato.php">Contrato</a>
+          <a class="nav-link" href="#" id="drop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Contrato
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="drop">
+            <li><a class="dropdown-item nav-link" href="../views/lista_contrato_venda.php">Venda</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/lista_contrato_aluguel.php">Aluguel</a></li>
+          </ul>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">

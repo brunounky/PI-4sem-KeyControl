@@ -7,7 +7,7 @@
     }
 
     include_once '../app/controllers/filtros_imovel.php';
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,13 +23,21 @@
 </head>
 <body>
 <?php include 'navbar.php';?>
-<section>
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="mb-0">Cadastro de Pessoas</h2>
-            <a href="../views/cadastro_imovel.php" class="button_adicionarnovo">Adicionar Novo +</a>
+    <section>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mb-0">Contrato de Aluguel</h2>
+                <div class="button_adicionarnovo">
+                    <a class="button_adicionarnovo floating dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false" href="">
+                        <span class="button_adicionarnovo">Adicionar novo +</span>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a class="dropdown-item" href="../views/contrato_aluguel_fiador.php" tabindex="-1">Aluguel Fiador</a></li>
+                        <li><a class="dropdown-item" href="../views/contrato_aluguel_caucao.php" tabindex="-1">Aluguel Caução</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
 
     <div class="container">
         <form method="POST" action="">
@@ -72,7 +80,7 @@
                     <button class="btn btn-buscar" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
-                </div>
+                </div> 
                 </div>
             </div>
         </form>
@@ -97,7 +105,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php
+                <!-- <?php
                 if (isset($result) && count($result) > 0) {
                     foreach ($result as $row) {
                         $bairro = htmlspecialchars($row['bairro'] ?? '-');
@@ -138,7 +146,7 @@
                 } else {
                     echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
                 }
-                ?>
+                ?> -->
                 </tbody>
             </table>
         </div>

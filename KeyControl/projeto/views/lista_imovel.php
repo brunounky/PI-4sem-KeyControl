@@ -36,8 +36,8 @@
             <div class="filtros-container">
                 <div class="row g-12">
                     <div class="col-md-1">
-                        <label for="id" class="form-label">ID</label>
-                        <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
+                        <label for="registro_imovel" class="form-label">Registro</label>
+                        <input type="text" id="registro_imovel" class="form-control" name="registro_imovel" value="<?= htmlspecialchars($_POST['registro_imovel'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
                         <label for="cpf_cnpj_proprietario" class="form-label">Proprietário</label>
@@ -85,7 +85,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Registro Imóvel</th>
                         <th>Proprietário</th>
                         <th>CEP</th>
                         <th>Rua</th>
@@ -104,7 +104,7 @@
                         $bairro_resumido = htmlspecialchars(substr($bairro, 0, 10) . (strlen($bairro) > 10 ? '...' : ''));
 
                         echo "<tr>
-                                <td>" . htmlspecialchars($row['id']) . "</td>
+                                <td>" . htmlspecialchars($row['registro_imovel']) . "</td>
                                 <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
