@@ -27,10 +27,9 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2 class="mb-0">Contrato</h2>
-                <div class="btn-group">
-                    <a class="btn btn-primary floating dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                        <i class="fa fa-plus"></i>
-                        <span class="text-icon">Adicionar novo +</span>
+                <div class="button_adicionarnovo">
+                    <a class="button_adicionar novo floating dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false" href="">
+                        <span class="button_adicionarnovo">Adicionar novo +</span>
                     </a>
                     <ul class="dropdown-menu pull-right">
                         <li><a class="dropdown-item" href="../views/contrato_venda.php" tabindex="-1">Contrato de Venda</a></li>
@@ -77,12 +76,12 @@
                             <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_imovel']) && $_POST['tipo_imovel'] != '' ? 'block' : 'none' ?>;" data-select="tipo_imovel" onclick="removeSelected('tipo_imovel')">x</span>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="col-md-1">
                     <button class="btn btn-buscar" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
-                </div> -->
+                </div> 
                 </div>
             </div>
         </form>
