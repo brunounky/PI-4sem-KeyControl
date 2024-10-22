@@ -6,7 +6,7 @@
         exit();
     }
 
-    include '../app/controllers/filtros_imovel.php'; // Novo filtro para imóveis
+    include_once '../app/controllers/filtros_imovel.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
     <div class="container">
         <form method="POST" action="">
             <div class="filtros-container">
-                <div class="row g-2">
+                <div class="row g-12">
                     <div class="col-md-1">
                         <label for="id" class="form-label">ID</label>
                         <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
@@ -44,23 +44,28 @@
                             <input type="text" id="cpf_cnpj_proprietario" class="form-control" name="cpf_cnpj_proprietario" value="<?= htmlspecialchars($_POST['cpf_cnpj_proprietario'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                        <label for="cep" class="form-label">CEP</label>
-                        <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>">
+                        <label for="numero" class="form-label">Número</label>
+                        <input type="text" id="numero" class="form-control" name="numero" value="<?= htmlspecialchars($_POST['numero'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                        <label for="bairro" class="form-label">Bairro</label>
-                        <input type="text" id="bairro" class="form-control" name="bairro" value="<?= htmlspecialchars($_POST['bairro'] ?? '') ?>">
+                        <label for="cep" class="form-label">CEP</label>
+                        <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
                         <label for="cidade" class="form-label">Cidade</label>
                         <input type="text" id="cidade" class="form-control" name="cidade" value="<?= htmlspecialchars($_POST['cidade'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                        <label for="tipo_imovel" class="form-label">Tipo de Imóvel</label>
-                            <input type="text" id="tipo_imovel" class="form-control" name="tipo_imovel" value="<?= htmlspecialchars($_POST['tipo_imovel'] ?? '') ?>">
-                    </div>
+                    <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
+                    <select class="form-control" name="tipo_imovel" id="tipo_imovel" required>
+                        <option value="" disabled selected>Selecione um tipo</option>
+                        <option value="apartamento">Apartamento</option>
+                        <option value="casa">Casa</option>
+                        <option value="comercial">Comercial</option>
+                    </select>
                 </div>
-                <div class="d-flex justify-content-end mt-2">
+                </div>
+                <div class="col-md-1">
                     <button class="btn btn-buscar">
                         <i class="bi bi-search"></i>
                     </button>
@@ -90,27 +95,21 @@
                 <tbody>
                 <?php
                 if ($result && count($result) > 0) {
-                    for ($i = 0; $i < count($result); $i++) {
-                        $row = $result[$i];
-                        
-                        $cpf_cnpj_proprietario = isset($row['cpf_cnpj_proprietario']) ? htmlspecialchars($row['cpf_cnpj_proprietario']) : null;
-                        $tipo_imovel = isset($row['tipo_imovel']) ? htmlspecialchars($row['tipo_imovel']) : null;
-                
+                    foreach ($result as $row) {
                         echo "<tr>
                                 <td>" . htmlspecialchars($row['id']) . "</td>
-                                <td>" . $cpf_cnpj_proprietario . "</td>
-                                <td>" . htmlspecialchars($row['cep']) . "</td>
-                                <td>" . htmlspecialchars($row['rua']) . "</td>
-                                <td>" . htmlspecialchars($row['numero']) . "</td>
-                                <td>" . htmlspecialchars(substr($row['bairro'], 0, 20) . (strlen($row['bairro']) > 20 ? '...' : '')) . "</td>
-                                <td>" . htmlspecialchars($row['cidade']) . "</td>
-                                <td>" . $tipo_imovel . "</td>
-
+                                <td>" . htmlspecialchars($row['nome_proprietario'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars(substr($row['bairro'] ?? '-', 0, 10) . (strlen($row['bairro'] ?? '') > 10 ? '...' : '')) . "</td>
+                                <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
                                 <td>
-                                    <button class='btn ' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                    <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
                                         <i class='bi bi-pencil-square'></i>
                                     </button>
-                                    <button class='btn ' onclick='toggleSubMenu(this)'>
+                                    <button class='btn' onclick='toggleSubMenu(this)'>
                                         <i class='bi bi-chevron-down'></i>
                                     </button>
                                     <div class='submenu' style='display: none;'> 
@@ -130,8 +129,8 @@
                             </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='9'>Nenhum registro encontrado</td></tr>";
-                }                
+                    echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
+                }
                 ?>
                 </tbody>
             </table>

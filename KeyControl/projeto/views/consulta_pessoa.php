@@ -11,6 +11,7 @@ include '../app/controllers/filtros_pessoas.php';
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,78 +22,79 @@ include '../app/controllers/filtros_pessoas.php';
     <link rel="icon" href="../public/assets/img/Logotipo.png">
     <title>Clientes</title>
 </head>
+
 <body>
-<?php include 'navbar.php';?>
-<section>
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="mb-0">Cadastro de Clientes</h2> 
-            <a href="../views/cadastro_cliente.php" class="button_adicionarnovo">Adicionar Novo +</a>
-        </div>
-    </div>
-
-    <div class="container">
-        <form method="POST" action="">
-            <div class="filtros-container">
-                <div class="row g-12">
-                    <div class="col-md-1">
-                        <label for="id" class="form-label">ID</label>
-                        <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" id="nome" class="form-control" name="nome" value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="cep" class="form-label">CEP</label>
-                        <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="bairro" class="form-label">Bairro</label>
-                        <input type="text" id="bairro" class="form-control" name="bairro" value="<?= htmlspecialchars($_POST['bairro'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="cidade" class="form-label">Cidade</label>
-                        <input type="text" id="cidade" class="form-control" name="cidade" value="<?= htmlspecialchars($_POST['cidade'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="categoria" class="mb-2">Categoria</label>
-                        <select class="form-control" name="categoria" id="categoria">
-                            <option value="" disabled selected>Escolha a Categoria</option>
-                            <option value="locador">Locador</option>
-                            <option value="locatario">Locatário</option>
-                            <option value="fiador">Fiador</option>
-                        </select>
-                    </div>
-                <div class="d-flex justify-content-end mt-2">
-                    <button class="btn btn-buscar">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
+    <?php include 'navbar.php';?>
+    <section>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mb-0">Cadastro de Clientes</h2>
+                <a href="../views/cadastro_cliente.php" class="button_adicionarnovo">Adicionar Novo +</a>
             </div>
-        </form>
-    </div>
-</section>
+        </div>
 
-<section>
-    <div class="container">
-        <div class="card_relatório">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>CEP</th>
-                        <th>Rua</th>
-                        <th>Número</th>
-                        <th>Bairro</th>
-                        <th>Cidade</th>
-                        <th>Tipo</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
+        <div class="container">
+            <form method="POST" action="">
+                <div class="filtros-container">
+                    <div class="row g-12">
+                        <div class="col-md-1">
+                            <label for="id" class="form-label">ID</label>
+                            <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" id="nome" class="form-control" name="nome" value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="cep" class="form-label">CEP</label>
+                            <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="bairro" class="form-label">Bairro</label>
+                            <input type="text" id="bairro" class="form-control" name="bairro" value="<?= htmlspecialchars($_POST['bairro'] ?? '') ?>">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="cidade" class="form-label">Cidade</label>
+                            <input type="text" id="cidade" class="form-control" name="cidade" value="<?= htmlspecialchars($_POST['cidade'] ?? '') ?>">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="categoria" class="mb-2">Categoria</label>
+                            <select class="form-control" name="categoria" id="categoria">
+                                <option value="" disabled selected>Escolha a Categoria</option>
+                                <option value="locador">Locador</option>
+                                <option value="locatario">Locatário</option>
+                                <option value="fiador">Fiador</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-buscar">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="card_relatório">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CEP</th>
+                            <th>Rua</th>
+                            <th>Número</th>
+                            <th>Bairro</th>
+                            <th>Cidade</th>
+                            <th>Tipo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                 if ($result && count($result) > 0) {
                     for ($i = 0; $i < count($result); $i++) {
                     $row = $result[$i];
@@ -145,15 +147,16 @@ include '../app/controllers/filtros_pessoas.php';
                         echo "<tr><td colspan='9'>Nenhum registro encontrado</td></tr>";
                     }
                     ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../public/assets/js/consultacep.js"></script>
-<script src="../public/assets/js/submenu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/assets/js/consultacep.js"></script>
+    <script src="../public/assets/js/submenu.js"></script>
 
 </body>
+
 </html>
