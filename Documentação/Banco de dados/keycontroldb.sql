@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/10/2024 às 15:53
+-- Tempo de geração: 22/10/2024 às 02:30
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -159,7 +159,7 @@ CREATE TABLE `contrato_venda` (
 --
 
 CREATE TABLE `imobiliaria` (
-  `id_imobiliaria` int(11) DEFAULT NULL,
+  `id_imobiliaria` int(11) NOT NULL,
   `nome` char(1) DEFAULT NULL,
   `cnpj` int(11) DEFAULT NULL,
   `endereco` char(1) DEFAULT NULL,
@@ -167,7 +167,8 @@ CREATE TABLE `imobiliaria` (
   `cep` int(11) DEFAULT NULL,
   `cidade` char(1) DEFAULT NULL,
   `telefone` char(1) DEFAULT NULL,
-  `email` char(1) DEFAULT NULL
+  `email` char(1) DEFAULT NULL,
+  `logo_perfil` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -177,22 +178,27 @@ CREATE TABLE `imobiliaria` (
 --
 
 CREATE TABLE `usuarios` (
-  `id_user` int(11) NOT NULL,
-  `cnpj` varchar(14) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `id` int(11) NOT NULL,
+  `nome_completo` varchar(255) NOT NULL,
+  `data_nascimento` date DEFAULT NULL,
+  `estado_civil` varchar(50) DEFAULT NULL,
+  `cpf` varchar(20) DEFAULT NULL,
+  `rg` varchar(20) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `cargo` varchar(100) DEFAULT NULL,
+  `nacionalidade` varchar(100) DEFAULT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  `telefone_reserva` varchar(20) DEFAULT NULL,
+  `cep` varchar(20) DEFAULT NULL,
+  `rua` varchar(255) DEFAULT NULL,
+  `numero` varchar(20) DEFAULT NULL,
+  `bairro` varchar(100) DEFAULT NULL,
+  `cidade` varchar(100) DEFAULT NULL,
+  `estado` varchar(100) DEFAULT NULL,
+  `pais` varchar(100) DEFAULT NULL,
   `senha` varchar(255) NOT NULL,
-  `nivel` int(1) DEFAULT NULL
+  `id_imobiliaria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `usuarios`
---
-
-INSERT INTO `usuarios` (`id_user`, `cnpj`, `nome`, `email`, `senha`, `nivel`) VALUES
-(16, '18471895000108', 'Bruno Unky', 'bruno@unky.com', '$2y$10$oEZcuBLsmJNIPB6RGyM1RO6VhaTDZDZw8wSr24DSoWgd2SsGwoLMK', NULL),
-(17, '29987124000194', 'teste', 'teste@teste.com', '$2y$10$9mIfO8ScNwUd6y4r2nzToOqubFXfejsx.SAYaPvvBIkMHxanTr/Mm', NULL),
-(18, '73725063000189', 'b', 'b@b.com', '$2y$10$Ykw8maSdX635IlN5Qb2YWuB8MlafJxiAeDo/HsjrJG4YGhWIxvPey', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -230,10 +236,20 @@ ALTER TABLE `contrato_venda`
   ADD KEY `id_imovel` (`id_imovel`);
 
 --
+-- Índices de tabela `imobiliaria`
+--
+ALTER TABLE `imobiliaria`
+  ADD PRIMARY KEY (`id_imobiliaria`);
+
+--
 -- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `cpf` (`cpf`),
+  ADD UNIQUE KEY `rg` (`rg`),
+  ADD KEY `id_imobiliaria` (`id_imobiliaria`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -267,7 +283,7 @@ ALTER TABLE `contrato_venda`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas despejadas
@@ -287,6 +303,12 @@ ALTER TABLE `contrato_aluguel`
 ALTER TABLE `contrato_venda`
   ADD CONSTRAINT `contrato_venda_ibfk_1` FOREIGN KEY (`id_locatario`) REFERENCES `cadastro_cliente` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `contrato_venda_ibfk_2` FOREIGN KEY (`id_imovel`) REFERENCES `cadastro_imovel` (`id`) ON DELETE CASCADE;
+
+--
+-- Restrições para tabelas `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_imobiliaria`) REFERENCES `imobiliaria` (`id_imobiliaria`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
