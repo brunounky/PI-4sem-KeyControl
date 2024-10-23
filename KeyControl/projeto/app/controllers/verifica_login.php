@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['user_cidade'] = $user['cidade']; 
                 $_SESSION['user_estado'] = $user['estado']; 
                 $_SESSION['user_pais'] = $user['pais']; 
-                $_SESSION['user_idimobiliaria'] = $user['id_imobiliaria'];
+                $_SESSION['user_cnpj'] = $user['cnpj'];
 
                 header('Location: ../../views/home.php');
                 exit();

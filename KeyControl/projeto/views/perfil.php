@@ -6,6 +6,30 @@ if (!isset($_SESSION['user_id'])) {
   exit();
 }
 
+include '../app/controllers/db_conexao.php';
+
+$cnpj = $_SESSION['user_cnpj'];
+
+try {
+  $stmt = $pdo->prepare("
+    SELECT usuarios.*, imobiliaria.*
+    FROM usuarios
+    INNER JOIN imobiliaria ON usuarios.cnpj = imobiliaria.cnpj
+    WHERE usuarios.cnpj = :cnpj
+  ");
+  $stmt->bindParam(':cnpj', $cnpj, PDO::PARAM_STR);
+  $stmt->execute();
+  $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+  
+  if (!$dados) {
+    echo "Dados da imobiliária ou do usuário não encontrados.";
+    exit();
+  }
+} catch (PDOException $e) {
+  echo "Erro ao buscar os dados: " . $e->getMessage();
+  exit();
+}
+
 include 'navbar.php';
 ?>
 
@@ -31,7 +55,6 @@ include 'navbar.php';
 <body>
 
   <section id="perfil">
-    <!-- inicio do form -->
     <form action="../app/controllers/verifica_cliente.php" method="post">
       <input type="hidden" name="action" value="atualizar">
       <div class="container">
@@ -44,44 +67,44 @@ include 'navbar.php';
                 <div class="row">
                   <div class="col-sm-6">
                     <label for="nome" class="mb-2">Nome Completo</label>
-                    <input class="form-control mb-3" type="text" name="nome" id="nome" value="<?php echo htmlspecialchars($_SESSION['user_name']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="nome" id="nome" value="<?php echo htmlspecialchars($dados['nome']); ?>" required>
                     <label for="cpf" class="mb-2">CPF</label>
-                    <input class="form-control mb-3" type="text" name="cpf" id="cpf" value="<?php echo htmlspecialchars($_SESSION['user_cpf']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="cpf" id="cpf" value="<?php echo htmlspecialchars($dados['cpf']); ?>" required>
                     <label for="telefone" class="mb-2">Telefone</label>
-                    <input class="form-control mb-3" type="text" name="telefone" id="telefone" value="<?php echo htmlspecialchars($_SESSION['user_telefone']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="telefone" id="telefone" value="<?php echo htmlspecialchars($dados['telefone']); ?>" required>
                     <label for="email" class="mb-2">E-mail</label>
-                    <input class="form-control mb-3" type="email" name="email" id="email" value="<?php echo htmlspecialchars($_SESSION['user_email']); ?>" required>
+                    <input class="form-control mb-3" type="email" name="email" id="email" value="<?php echo htmlspecialchars($dados['email']); ?>" required>
                   </div>
                   <div class="col-sm-6">
                     <label for="rg" class="mb-2">RG</label>
-                    <input class="form-control mb-3" type="text" name="rg" id="rg" value="<?php echo htmlspecialchars($_SESSION['user_rg']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="rg" id="rg" value="<?php echo htmlspecialchars($dados['rg']); ?>" required>
                     <label for="nacionalidade" class="mb-2">Nacionalidade</label>
-                    <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" value="<?php echo htmlspecialchars($_SESSION['user_nacionalidade']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" value="<?php echo htmlspecialchars($dados['nacionalidade']); ?>" required>
                     <label for="estado_civil" class="mb-2">Estado Civil</label>
-                    <input class="form-control mb-3" type="text" name="estado_civil" id="estado_civil" value="<?php echo htmlspecialchars($_SESSION['user_estadocivil']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="estado_civil" id="estado_civil" value="<?php echo htmlspecialchars($dados['estado_civil']); ?>" required>
                     <label for="cargo" class="mb-2">Cargo</label>
-                    <input class="form-control mb-3" type="text" name="cargo" id="cargo" value="<?php echo htmlspecialchars($_SESSION['user_cargo']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="cargo" id="cargo" value="<?php echo htmlspecialchars($dados['cargo']); ?>" required>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-sm-6">
                     <label for="cep" class="mb-2">CEP</label>
-                    <input class="form-control mb-3" type="text" name="cep" id="cep" value="<?php echo htmlspecialchars($_SESSION['user_cep']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="cep" id="cep" value="<?php echo htmlspecialchars($dados['cep']); ?>" required>
                     <label for="rua" class="mb-2">Rua</label>
-                    <input class="form-control mb-3" type="text" name="rua" id="rua" value="<?php echo htmlspecialchars($_SESSION['user_rua']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="rua" id="rua" value="<?php echo htmlspecialchars($dados['rua']); ?>" required>
                     <label for="numero" class="mb-2">Número</label>
-                    <input class="form-control mb-3" type="text" name="numero" id="numero" value="<?php echo htmlspecialchars($_SESSION['user_numero']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="numero" id="numero" value="<?php echo htmlspecialchars($dados['numero']); ?>" required>
                   </div>
                   <div class="col-sm-6">
                     <label for="bairro" class="mb-2">Bairro</label>
-                    <input class="form-control mb-3" type="text" name="bairro" id="bairro" value="<?php echo htmlspecialchars($_SESSION['user_bairro']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="bairro" id="bairro" value="<?php echo htmlspecialchars($dados['bairro']); ?>" required>
                     <label for="cidade" class="mb-2">Cidade</label>
-                    <input class="form-control mb-3" type="text" name="cidade" id="cidade" value="<?php echo htmlspecialchars($_SESSION['user_cidade']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="cidade" id="cidade" value="<?php echo htmlspecialchars($dados['cidade']); ?>" required>
                     <label for="estado" class="mb-2">Estado</label>
-                    <input class="form-control mb-3" type="text" name="estado" id="estado" value="<?php echo htmlspecialchars($_SESSION['user_estado']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="estado" id="estado" value="<?php echo htmlspecialchars($dados['estado']); ?>" required>
                     <label for="pais" class="mb-2">País</label>
-                    <input class="form-control mb-3" type="text" name="pais" id="pais" value="<?php echo htmlspecialchars($_SESSION['user_pais']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="pais" id="pais" value="<?php echo htmlspecialchars($dados['pais']); ?>" required>
                   </div>
                 </div>
               </div>
@@ -89,14 +112,14 @@ include 'navbar.php';
               <div class="card">
                 <div class="row">
                   <div class="col-sm-6">
-                  <label for="idimobiliaria" class="mb-2">CNPJ da Imobiliaria</label>
-                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($_SESSION['user_idimobiliaria']); ?>" required>
-                  <label for="idimobiliaria" class="mb-2">Nome Fantasia</label>
-                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($_SESSION['user_nomefantasia']); ?>" required>
-                  <label for="idimobiliaria" class="mb-2">Telefone</label>
-                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($_SESSION['user_idimobiliaria']); ?>" required>
-                  <label for="idimobiliaria" class="mb-2">Email</label>
-                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($_SESSION['user_idimobiliaria']); ?>" required>
+                    <label for="idimobiliaria" class="mb-2">CNPJ da Imobiliária</label>
+                    <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['cnpj']); ?>" required>
+                    <label for="nomefantasia" class="mb-2">Nome Fantasia</label>
+                    <input class="form-control mb-3" type="text" name="nomefantasia" id="nomefantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required>
+                    <label for="telefoneimobiliaria" class="mb-2">Telefone</label>
+                    <input class="form-control mb-3" type="text" name="telefoneimobiliaria" id="telefoneimobiliaria" value="<?php echo htmlspecialchars($dados['telefone']); ?>" required>
+                    <label for="emailimobiliaria" class="mb-2">Email</label>
+                    <input class="form-control mb-3" type="text" name="emailimobiliaria" id="emailimobiliaria" value="<?php echo htmlspecialchars($dados['email']); ?>" required>
                   </div>
                 </div>
               </div>
@@ -114,9 +137,4 @@ include 'navbar.php';
     </form>
   </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="../public/assets/js/consultacep.js"></script>
-
-</body>
-
-</html>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6
