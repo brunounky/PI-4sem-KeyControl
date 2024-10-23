@@ -66,6 +66,7 @@ include 'navbar.php';
               <div class="card">
                 <div class="row">
                   <div class="col-sm-12">
+                    <img src="<?php echo htmlspecialchars($dados['logo_imobiliaria']); ?>" alt="Logo da Imobiliária" class="img-fluid mb-2" />
                     <label for="idimobiliaria" class="mb-2">CNPJ da Imobiliária</label>
                     <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['cnpj']); ?>" required>
                     <label for="nomefantasia" class="mb-2">Nome Fantasia</label>
