@@ -35,7 +35,7 @@
 <div class="container">
     <h2 style="color: white;">Bem-vindo, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</h2>
     <section id="home">
-        <img src="../img/">
+        <img src="../public/assets/img/Logotipo.png">
     </section> 
 </div> 
    

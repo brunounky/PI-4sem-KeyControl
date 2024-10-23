@@ -17,12 +17,41 @@ h4 {
 
 #home {
   background-image: url(../img/fundo.png);
-  width: 100vw; /* Largura total da tela */
-  height: 100vh; /* Altura total da tela */
-  position: fixed; /* Fixa a imagem em relação à janela do navegador */
-  top: 0; /* Alinha ao topo */
-  left: 0; /* Alinha à esquerda */
-  z-index: -1; /* Coloca atrás de outros elementos */
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.504); 
+  z-index: -1; 
+}
+
+#home img {
+  height: 30%;
+  z-index: 1;
+}
+
+.container h2 {
+  position: relative;
+  z-index: 1; 
+}
+
+nav {
+  z-index: 3 !important;
 }
 
 
