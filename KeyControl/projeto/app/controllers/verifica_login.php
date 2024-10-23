@@ -17,11 +17,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($user && password_verify($senha, $user['senha'])) {
-                $_SESSION['user_id'] = $user['id_user'];
+                $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['nome'];
                 $_SESSION['user_email'] = $user['email'];
-                $_SESSION['user_nivel'] = $user['nivel'];
-                $_SESSION['user_cnpj'] = $user['cnpj']; 
+                $_SESSION['user_datanasc'] = $user['data_nasc'];
+                $_SESSION['user_estadocivil'] = $user['estado_civil']; 
+                $_SESSION['user_cpf'] = $user['cpf']; 
+                $_SESSION['user_rg'] = $user['rg']; 
+                $_SESSION['user_cargo'] = $user['cargo']; 
+                $_SESSION['user_nacionalidade'] = $user['nacionalidade']; 
+                $_SESSION['user_telefone'] = $user['telefone']; 
+                $_SESSION['user_telefonereserva'] = $user['telefone_reserva']; 
+                $_SESSION['user_cep'] = $user['cep']; 
+                $_SESSION['user_rua'] = $user['rua']; 
+                $_SESSION['user_numero'] = $user['numero']; 
+                $_SESSION['user_bairro'] = $user['bairro']; 
+                $_SESSION['user_cidade'] = $user['cidade']; 
+                $_SESSION['user_estado'] = $user['estado']; 
+                $_SESSION['user_pais'] = $user['pais']; 
+                $_SESSION['user_idimobiliaria'] = $user['id_imobiliaria'];
 
                 header('Location: ../../views/home.php');
                 exit();

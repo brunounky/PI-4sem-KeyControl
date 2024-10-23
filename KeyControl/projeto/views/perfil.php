@@ -1,26 +1,8 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../app/controllers/verifica_login.php");
-    exit();
-}
-
-include '../app/controllers/db_conexao.php'; 
-
-
-$query = "SELECT * FROM usuarios WHERE id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Verifica se o usuário foi encontrado
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-} else {
-    echo "Usuário não encontrado.";
     exit();
 }
 
@@ -54,51 +36,60 @@ include 'navbar.php';
       <input type="hidden" name="action" value="atualizar">
       <div class="container">
         <div class="row">
-          <h2>Perfil do Usuario</h2>
+          <h2>Perfil do Usuário</h2>
 
-          <!-- Coluna principal + Coluna de Tipo -->
           <div class="row">
-            <!-- Coluna principal -->
             <div class="col-md-9">
               <div class="card">
                 <div class="row">
                   <div class="col-sm-6">
-                    <label for="nome_completo" class="mb-2">Nome Completo</label>
-                    <input class="form-control mb-3" type="text" name="nome_completo" id="nome_completo" value="<?php echo htmlspecialchars($user['nome_completo']); ?>" required>
+                    <label for="nome" class="mb-2">Nome Completo</label>
+                    <input class="form-control mb-3" type="text" name="nome" id="nome" value="<?php echo htmlspecialchars($_SESSION['user_name']); ?>" required>
                     <label for="cpf" class="mb-2">CPF</label>
-                    <input class="form-control mb-3" type="text" name="cpf" id="cpf" value="<?php echo htmlspecialchars($user['cpf']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="cpf" id="cpf" value="<?php echo htmlspecialchars($_SESSION['user_cpf']); ?>" required>
                     <label for="telefone" class="mb-2">Telefone</label>
-                    <input class="form-control mb-3" type="text" name="telefone" id="telefone" value="<?php echo htmlspecialchars($user['telefone']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="telefone" id="telefone" value="<?php echo htmlspecialchars($_SESSION['user_telefone']); ?>" required>
+                    <label for="email" class="mb-2">E-mail</label>
+                    <input class="form-control mb-3" type="email" name="email" id="email" value="<?php echo htmlspecialchars($_SESSION['user_email']); ?>" required>
                   </div>
                   <div class="col-sm-6">
                     <label for="rg" class="mb-2">RG</label>
-                    <input class="form-control mb-3" type="text" name="rg" id="rg" value="<?php echo htmlspecialchars($user['rg']); ?>" required>
-                    <label for="email" class="mb-2">E-mail</label>
-                    <input class="form-control mb-3" type="email" name="email" id="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
-                  </div>
-                </div>
-                <!-- Continue preenchendo os outros campos do formulário com os dados do banco -->
-                <div class="row">
-                  <div class="col-sm-4">
+                    <input class="form-control mb-3" type="text" name="rg" id="rg" value="<?php echo htmlspecialchars($_SESSION['user_rg']); ?>" required>
                     <label for="nacionalidade" class="mb-2">Nacionalidade</label>
-                    <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" value="<?php echo htmlspecialchars($user['nacionalidade']); ?>" required>
-                  </div>
-                  <div class="col-sm-4">
+                    <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" value="<?php echo htmlspecialchars($_SESSION['user_nacionalidade']); ?>" required>
                     <label for="estado_civil" class="mb-2">Estado Civil</label>
-                    <input class="form-control mb-3" type="text" name="estado_civil" id="estado_civil" value="<?php echo htmlspecialchars($user['estado_civil']); ?>" required>
-                  </div>
-                  <div class="col-sm-4">
+                    <input class="form-control mb-3" type="text" name="estado_civil" id="estado_civil" value="<?php echo htmlspecialchars($_SESSION['user_estadocivil']); ?>" required>
                     <label for="cargo" class="mb-2">Cargo</label>
-                    <input class="form-control mb-3" type="text" name="cargo" id="cargo" value="<?php echo htmlspecialchars($user['cargo']); ?>" required>
+                    <input class="form-control mb-3" type="text" name="cargo" id="cargo" value="<?php echo htmlspecialchars($_SESSION['user_cargo']); ?>" required>
                   </div>
                 </div>
-                <!-- Outros campos do formulário -->
+                
+                <div class="row">
+                  <div class="col-sm-6">
+                    <label for="cep" class="mb-2">CEP</label>
+                    <input class="form-control mb-3" type="text" name="cep" id="cep" value="<?php echo htmlspecialchars($_SESSION['user_cep']); ?>" required>
+                    <label for="rua" class="mb-2">Rua</label>
+                    <input class="form-control mb-3" type="text" name="rua" id="rua" value="<?php echo htmlspecialchars($_SESSION['user_rua']); ?>" required>
+                    <label for="numero" class="mb-2">Número</label>
+                    <input class="form-control mb-3" type="text" name="numero" id="numero" value="<?php echo htmlspecialchars($_SESSION['user_numero']); ?>" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="bairro" class="mb-2">Bairro</label>
+                    <input class="form-control mb-3" type="text" name="bairro" id="bairro" value="<?php echo htmlspecialchars($_SESSION['user_bairro']); ?>" required>
+                    <label for="cidade" class="mb-2">Cidade</label>
+                    <input class="form-control mb-3" type="text" name="cidade" id="cidade" value="<?php echo htmlspecialchars($_SESSION['user_cidade']); ?>" required>
+                    <label for="estado" class="mb-2">Estado</label>
+                    <input class="form-control mb-3" type="text" name="estado" id="estado" value="<?php echo htmlspecialchars($_SESSION['user_estado']); ?>" required>
+                    <label for="pais" class="mb-2">País</label>
+                    <input class="form-control mb-3" type="text" name="pais" id="pais" value="<?php echo htmlspecialchars($_SESSION['user_pais']); ?>" required>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- rodape -->
+
       <footer class="py-3">
         <div class="container">
           <button type="submit" class="btn btn_salvar">Salvar</button>
