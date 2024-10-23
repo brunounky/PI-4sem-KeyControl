@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/10/2024 às 23:15
+-- Tempo de geração: 24/10/2024 às 01:38
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -162,11 +162,11 @@ CREATE TABLE `imobiliaria` (
   `cnpj` varchar(14) NOT NULL,
   `nome_fantasia` varchar(255) DEFAULT NULL,
   `endereco` char(1) DEFAULT NULL,
-  `numero` int(11) DEFAULT NULL,
-  `cep` int(11) DEFAULT NULL,
-  `cidade` char(1) DEFAULT NULL,
-  `telefone` char(1) DEFAULT NULL,
-  `email` char(1) DEFAULT NULL,
+  `numeroimobiliaria` int(11) DEFAULT NULL,
+  `cepimobiliaria` int(11) DEFAULT NULL,
+  `cidadeimobiliaria` char(1) DEFAULT NULL,
+  `telefoneimobiliaria` char(1) DEFAULT NULL,
+  `emailimobiliaria` char(1) DEFAULT NULL,
   `logo_imobiliaria` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -174,7 +174,7 @@ CREATE TABLE `imobiliaria` (
 -- Despejando dados para a tabela `imobiliaria`
 --
 
-INSERT INTO `imobiliaria` (`cnpj`, `nome_fantasia`, `endereco`, `numero`, `cep`, `cidade`, `telefone`, `email`, `logo_imobiliaria`) VALUES
+INSERT INTO `imobiliaria` (`cnpj`, `nome_fantasia`, `endereco`, `numeroimobiliaria`, `cepimobiliaria`, `cidadeimobiliaria`, `telefoneimobiliaria`, `emailimobiliaria`, `logo_imobiliaria`) VALUES
 ('73943371000180', 'nome teste da imobiliaria', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -211,7 +211,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `data_nascimento`, `estado_civil`, `cpf`, `rg`, `email`, `cargo`, `nacionalidade`, `telefone`, `telefone_reserva`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `senha`, `cnpj`) VALUES
-(11, 'Bruno Unky', NULL, NULL, NULL, NULL, 'bruno@unky.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$DTQ1Wl.15YfCJB0t7JE2yuZzKohESoyFdlBbHsrbtctK4VN.AAfFW', '73943371000180'),
+(11, 'Bruno Unky', NULL, 'solteiro', '47169254808', '576950853', 'bruno@unky.com', 'gerente', 'BRASILEIRO', '19971595745', '111', '13506180', 'Rua 10 MP', '2', 'Parque Mãe Preta', 'Rio Claro', 'SP', '22222', '$2y$10$DTQ1Wl.15YfCJB0t7JE2yuZzKohESoyFdlBbHsrbtctK4VN.AAfFW', '73943371000180'),
 (12, 'Jorge Lucianetti', NULL, NULL, NULL, NULL, 'jorginho@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WIPljcKbX0r6rjfcylbQtehtqVkJqZKwakoACEXpptO1l/.HzdSCK', '86779530000103');
 
 --
