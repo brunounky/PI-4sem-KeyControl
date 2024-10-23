@@ -20,7 +20,7 @@ try {
   $stmt->bindParam(':cnpj', $cnpj, PDO::PARAM_STR);
   $stmt->execute();
   $dados = $stmt->fetch(PDO::FETCH_ASSOC);
-  
+
   if (!$dados) {
     echo "Dados da imobiliária ou do usuário não encontrados.";
     exit();
@@ -62,6 +62,23 @@ include 'navbar.php';
           <h2>Perfil do Usuário</h2>
 
           <div class="row">
+            <div class="col-md-3">
+              <div class="card">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="idimobiliaria" class="mb-2">CNPJ da Imobiliária</label>
+                    <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['cnpj']); ?>" required>
+                    <label for="nomefantasia" class="mb-2">Nome Fantasia</label>
+                    <input class="form-control mb-3" type="text" name="nomefantasia" id="nomefantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required>
+                    <label for="telefoneimobiliaria" class="mb-2">Telefone</label>
+                    <input class="form-control mb-3" type="text" name="telefoneimobiliaria" id="telefoneimobiliaria" value="<?php echo htmlspecialchars($dados['telefone']); ?>" required>
+                    <label for="emailimobiliaria" class="mb-2">Email</label>
+                    <input class="form-control mb-3" type="text" name="emailimobiliaria" id="emailimobiliaria" value="<?php echo htmlspecialchars($dados['email']); ?>" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="col-md-9">
               <div class="card">
                 <div class="row">
@@ -74,6 +91,12 @@ include 'navbar.php';
                     <input class="form-control mb-3" type="text" name="telefone" id="telefone" value="<?php echo htmlspecialchars($dados['telefone']); ?>" required>
                     <label for="email" class="mb-2">E-mail</label>
                     <input class="form-control mb-3" type="email" name="email" id="email" value="<?php echo htmlspecialchars($dados['email']); ?>" required>
+                    <label for="cep" class="mb-2">CEP</label>
+                    <input class="form-control mb-3" type="text" name="cep" id="cep" value="<?php echo htmlspecialchars($dados['cep']); ?>" required>
+                    <label for="rua" class="mb-2">Rua</label>
+                    <input class="form-control mb-3" type="text" name="rua" id="rua" value="<?php echo htmlspecialchars($dados['rua']); ?>" required>
+                    <label for="numero" class="mb-2">Número</label>
+                    <input class="form-control mb-3" type="text" name="numero" id="numero" value="<?php echo htmlspecialchars($dados['numero']); ?>" required>
                   </div>
                   <div class="col-sm-6">
                     <label for="rg" class="mb-2">RG</label>
@@ -84,19 +107,6 @@ include 'navbar.php';
                     <input class="form-control mb-3" type="text" name="estado_civil" id="estado_civil" value="<?php echo htmlspecialchars($dados['estado_civil']); ?>" required>
                     <label for="cargo" class="mb-2">Cargo</label>
                     <input class="form-control mb-3" type="text" name="cargo" id="cargo" value="<?php echo htmlspecialchars($dados['cargo']); ?>" required>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label for="cep" class="mb-2">CEP</label>
-                    <input class="form-control mb-3" type="text" name="cep" id="cep" value="<?php echo htmlspecialchars($dados['cep']); ?>" required>
-                    <label for="rua" class="mb-2">Rua</label>
-                    <input class="form-control mb-3" type="text" name="rua" id="rua" value="<?php echo htmlspecialchars($dados['rua']); ?>" required>
-                    <label for="numero" class="mb-2">Número</label>
-                    <input class="form-control mb-3" type="text" name="numero" id="numero" value="<?php echo htmlspecialchars($dados['numero']); ?>" required>
-                  </div>
-                  <div class="col-sm-6">
                     <label for="bairro" class="mb-2">Bairro</label>
                     <input class="form-control mb-3" type="text" name="bairro" id="bairro" value="<?php echo htmlspecialchars($dados['bairro']); ?>" required>
                     <label for="cidade" class="mb-2">Cidade</label>
@@ -108,23 +118,8 @@ include 'navbar.php';
                   </div>
                 </div>
               </div>
-
-              <div class="card">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label for="idimobiliaria" class="mb-2">CNPJ da Imobiliária</label>
-                    <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['cnpj']); ?>" required>
-                    <label for="nomefantasia" class="mb-2">Nome Fantasia</label>
-                    <input class="form-control mb-3" type="text" name="nomefantasia" id="nomefantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required>
-                    <label for="telefoneimobiliaria" class="mb-2">Telefone</label>
-                    <input class="form-control mb-3" type="text" name="telefoneimobiliaria" id="telefoneimobiliaria" value="<?php echo htmlspecialchars($dados['telefone']); ?>" required>
-                    <label for="emailimobiliaria" class="mb-2">Email</label>
-                    <input class="form-control mb-3" type="text" name="emailimobiliaria" id="emailimobiliaria" value="<?php echo htmlspecialchars($dados['email']); ?>" required>
-                  </div>
-                </div>
-              </div>
-
             </div>
+
           </div>
         </div>
       </div>
