@@ -2,8 +2,8 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../app/controllers/verifica_login.php");
-    exit();
+  header("Location: ../app/controllers/verifica_login.php");
+  exit();
 }
 
 include 'navbar.php';
@@ -63,7 +63,7 @@ include 'navbar.php';
                     <input class="form-control mb-3" type="text" name="cargo" id="cargo" value="<?php echo htmlspecialchars($_SESSION['user_cargo']); ?>" required>
                   </div>
                 </div>
-                
+
                 <div class="row">
                   <div class="col-sm-6">
                     <label for="cep" class="mb-2">CEP</label>
@@ -85,6 +85,22 @@ include 'navbar.php';
                   </div>
                 </div>
               </div>
+
+              <div class="card">
+                <div class="row">
+                  <div class="col-sm-6">
+                  <label for="idimobiliaria" class="mb-2">CNPJ da Imobiliaria</label>
+                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($_SESSION['user_idimobiliaria']); ?>" required>
+                  <label for="idimobiliaria" class="mb-2">Nome Fantasia</label>
+                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($_SESSION['user_nomefantasia']); ?>" required>
+                  <label for="idimobiliaria" class="mb-2">Telefone</label>
+                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($_SESSION['user_idimobiliaria']); ?>" required>
+                  <label for="idimobiliaria" class="mb-2">Email</label>
+                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($_SESSION['user_idimobiliaria']); ?>" required>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
