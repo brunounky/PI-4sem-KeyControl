@@ -18,16 +18,17 @@
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600&display=swap" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
       <link rel="icon" href="../public/assets/img/Logotipo.png">
-      <title>Lançamentos a Pagar</title>
+      <title>Lançamentos a Receber</title>
    </head>
    <body>
-      <?php include 'navbar.php';?>
+
+   <?php include 'navbar.php';?>
 
    <section id="lancamentos">
 
       <div class="container">
          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="mb-0">Lançamentos a Pagar</h2>
+            <h2 class="mb-0">Lançamentos a Receber</h2>
             <a class="button_adicionarnovo floating dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false" href="#">
                <span class="button_adicionarnovo">Adicionar novo +</span>
             </a>
@@ -94,15 +95,15 @@
                      </div>
                  </div>
              </div>
-         </div>         
-
+         </div>
+         
          <div class="container">
             <form method="POST" action="">
                <div class="filtros-container">
                   <div class="row g-12">
                      <div class="col-md-1">
-                        <label for="id_lancamento_pagar" class="form-label">N°</label>
-                        <input type="text" id="id_lancamento_pagar" class="form-control" name="id_lancamento_pagar" value="<?= htmlspecialchars($_POST['id_lancamento_pagar'] ?? '') ?>">
+                        <label for="id_lancamento_receber" class="form-label">N°</label>
+                        <input type="text" id="id_lancamento_receber" class="form-control" name="id_lancamento_receber" value="<?= htmlspecialchars($_POST['id_lancamento_receber'] ?? '') ?>">
                      </div>
                      <div class="col-md-2">
                         <label for="beneficiario" class="form-label">Beneficiário</label>
@@ -162,62 +163,51 @@
                   <tbody>
                      <?php
                         if (isset($result) && count($result) > 0) {
-                            foreach ($result as $row) {
+                           foreach ($result as $row) {
                         
-                                echo "<tr>
-                                        <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
-                                        <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
-                                        <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
-                                        <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
-                                        <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
-                                        <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
-                                        <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
-                                        <td>
-                                            <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
-                                                <i class='bi bi-pencil-square'></i>
-                                            </button>
-                                            <button class='btn' onclick='toggleSubMenu(this)'>
-                                                <i class='bi bi-chevron-down'></i>
-                                            </button>
-                                            <div class='submenu' style='display: none;'>
-                                                <div class='submenu-options'>
-                                                    <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
-                                                        <i class='bi bi-printer'></i> Imprimir
-                                                    </button>
-                                                    <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
-                                                        <i class='bi bi-envelope'></i> E-mail
-                                                    </button>
-                                                    <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
-                                                        <i class='bi bi-trash'></i> Excluir
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
+                              echo "<tr>
+                                    <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
+                                    <td>
+                                       <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                          <i class='bi bi-pencil-square'></i>
+                                       </button>
+                                       <button class='btn' onclick='toggleSubMenu(this)'>
+                                          <i class='bi bi-chevron-down'></i>
+                                       </button>
+                                         <div class='submenu' style='display: none;'>
+                                             <div class='submenu-options'>
+                                                 <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                                     <i class='bi bi-printer'></i> Imprimir
+                                                 </button>
+                                                  <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
+                                                      <i class='bi bi-envelope'></i> E-mail
+                                                  </button>
+                                                  <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                                      <i class='bi bi-trash'></i> Excluir
+                                                  </button>
+                                             </div>
+                                          </div>
+                                       </td>
                                     </tr>";
-                            }
-                        } else {
+                                 }
+                           } else {
                             echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
                         }
-                        ?>
+                     ?>
                   </tbody>
                </table>
             </div>
          </div>
       </section>
+   
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       <script src="../public/assets/js/consultacep.js"></script>
       <script src="../public/assets/js/submenu.js"></script>
-      <script>
-         const tipoLinks = document.querySelectorAll('.dropdown-item');
-
-         tipoLinks.forEach(link => {
-             link.addEventListener('click', function() {
-                 const tipo = this.getAttribute('data-tipo');
-                 document.getElementById('tipoLançamento').value = tipo;
-             });
-         });
-      </script>
-
-
    </body>
 </html>

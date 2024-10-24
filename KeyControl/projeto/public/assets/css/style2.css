@@ -54,6 +54,22 @@ nav {
   z-index: 3 !important;
 }
 
+/* lançamentos */ 
+
+
+#lancamentos .modal {
+  --bs-modal-width: 65%;
+}
+
+#lancamentos .modal .modal-body {
+  padding: 25px;
+}
+
+#lancamentos .modal label {
+  margin-top: 15%;
+}
+
+
 
 /* form */
 form {

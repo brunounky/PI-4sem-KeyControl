@@ -7,7 +7,8 @@
    }
    
    include_once '../app/controllers/filtros_imovel.php';
-   ?>
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
    <head>

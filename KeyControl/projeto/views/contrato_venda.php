@@ -14,7 +14,7 @@
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-  <title>Novo contrato de venda</title>
+  <title>Novo contrato de Venda</title>
 </head>
 
 <body>
