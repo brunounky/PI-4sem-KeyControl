@@ -62,7 +62,7 @@
                             <option value="locatario" <?= ($_POST['categoria'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Locatário</option>
                             <option value="fiador" <?= ($_POST['categoria'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Fiador</option>
                         </select>
-                        <span class="position-absolute" style="right: 20px; top: 38px; cursor: pointer; color: red; display: <?= isset($_POST['categoria']) && $_POST['categoria'] != '' ? 'block' : 'none' ?>;" data-select="categoria" onclick="removeSelected('categoria')">x</span>
+                        <span class="position-absolute" style="right: 25px; top: 40px; cursor: pointer; color: red; display: <?= isset($_POST['categoria']) && $_POST['categoria'] != '' ? 'block' : 'none' ?>;" data-select="categoria" onclick="removeSelected('categoria')">x</span>
                     </div>
                      <div class="col-md-1">
                         <button class="btn btn-buscar" type="submit">
@@ -85,7 +85,6 @@
                         <th>Pessoa</th>
                         <th>Telefone</th>
                         <th>E-mail</th>
-                        <th>Estado Cívil</th>
                         <th>Bairro</th>
                         <th>Cidade</th>
                         <th>Categoria</th>
@@ -113,7 +112,6 @@
                                      <td>" . htmlspecialchars($row['nome']) . "</td>
                                      <td>" . htmlspecialchars($row['telefone']) . "</td>
                                      <td>" . htmlspecialchars($row['email']) . "</td>
-                                     <td>" . htmlspecialchars($row['estado_civil']) . "</td>
                                      <td>" . htmlspecialchars(substr($row['bairro'], 0, 10) . (strlen($row['bairro']) > 10 ? '...' : '')) . "</td>
                                      <td>" . htmlspecialchars($row['cidade']) . "</td>
                                      <td>" . htmlspecialchars($categoriaTexto) . "</td>
