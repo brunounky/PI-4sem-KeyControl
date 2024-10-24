@@ -14,7 +14,7 @@
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-  <title>Clientes</title>
+  <title>Novo cliente</title>
 </head>
 
 <body>
@@ -55,9 +55,9 @@
                   </div>
                   <div class="col-sm-6">
                     <label for="data_nascimento_fundacao" class="mb-2">Nascimento/Fundação</label>
-                    <input class="form-control mb-3" type="date" name="data_nascimento_fundacao" id="data_nascimento_fundacao" required>
+                    <input class="form-control mb-3" type="date" name="data_nascimento_fundacao" id="data_nascimento_fundacao">
                     <label for="rg_ie" class="mb-2">RG/IE</label>
-                    <input class="form-control mb-3" type="number" name="rg_ie" id="rg_ie" required>
+                    <input class="form-control mb-3" type="number" name="rg_ie" id="rg_ie">
                     <label for="email" class="mb-2">E-mail</label>
                     <input class="form-control mb-3" type="text" name="email" id="email" required>
                   </div>
@@ -121,9 +121,13 @@
                   <input class="form-check-input mt-2" type="checkbox" id="locatario" name="locatario">
                   <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('locatario')">Locatário</a>
                 </div>            
-                <div class="form-check form-switch">
+                <div class="form-check form-switch mb-3">
                   <input class="form-check-input mt-2" type="checkbox" id="fiador" name="fiador">
                   <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('fiador')">Fiador</a>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input mt-2" type="checkbox" id="comprador" name="comprador">
+                  <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('comprador')">Comprador</a>
                 </div>
               </div>
             </div>

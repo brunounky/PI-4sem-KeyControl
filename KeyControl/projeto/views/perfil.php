@@ -31,6 +31,7 @@ try {
 }
 
 include 'navbar.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -124,14 +125,16 @@ include 'navbar.php';
               </div>
             </div>
             <br>
-          </div>
         </div>
-      </form>
+      </form> 
+      
 
       <form action="../app/controllers/verifica_cliente.php" method="post">
         <input type="hidden" name="action" value="alterar_senha">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-9">
             <div class="card">
               <div class="row">
                 <div class="col-sm-4">
@@ -155,10 +158,10 @@ include 'navbar.php';
         </div>
       </form>
     </div>
+
   </section>
 
   <script src="../public/assets/js/consultacep.js"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb5T5ggK+5l0VO4y7nVR+nQmvWn4U5jp6m3FQTVpM5VbcFz/m" crossorigin="anonymous"></script>
 </body>
 

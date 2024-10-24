@@ -14,7 +14,7 @@
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-  <title>Imóveis</title>
+  <title>Novo Imóvel</title>
 </head>
 
 <body>

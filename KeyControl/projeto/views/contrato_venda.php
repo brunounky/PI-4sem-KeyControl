@@ -14,7 +14,7 @@
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-  <title>Contrato venda</title>
+  <title>Novo contrato de venda</title>
 </head>
 
 <body>
@@ -97,50 +97,43 @@
               <div class="card">
                 <div class="row">
                   <div class="col-sm-4">
-                    <label for="proprietario" class="mb-2">CPF/CNPJ Proprietário</label>
+                    <label for="proprietario" class="mb-2">Proprietário</label>
                     <input class="form-control mb-3" type="number" name="cpf_cnpj_proprietario" id="cpf_cnpj_proprietario" required>
-                    <label for="registro_agua" class="mb-2">N° de registro de água</label>
-                    <input class="form-control mb-3" type="number" name="registro_agua" id="registro_agua" required>
-                    <label for="vagas" class="mb-2">Vagas</label>
-                    <input class="form-control mb-3" type="number" name="quantidade_vagas" id="quantidade_vagas" required>
-                    <label for="rua" class="mb-2">Rua</label>
-                    <input class="form-control mb-3" type="text" name="rua" id="rua" required>
-                    <label for="complemento" class="mb-2">Complemento</label>
-                    <input class="form-control mb-3" type="text" name="complemento" id="complemento" required>
-                    <label for="pais" class="mb-2">País</label>
-                    <input class="form-control mb-3" type="text" name="pais" id="pais" required>
-                  </div>
-                  <div class="col-sm-4"><label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
+                    <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
                     <select class="form-control mb-3" name="tipo_imovel" id="tipo_imovel" required>
                       <option value="" disabled selected>Selecione um tipo</option>
                       <option value="apartamento">Apartamento</option>
                       <option value="casa">Casa</option>
                       <option value="comercial">Comercial</option>
                     </select>
-                    <label for="quartos" class="mb-2">Quartos</label>
-                    <input class="form-control mb-3" type="number" name="quantidade_quartos" id="quantidade_quartos" required>
-                    <label for="area_total" class="mb-2">Área Total:</label>
-                    <input class="form-control mb-3" type="text" name="area_total" id="area_total" required>
                     <label for="numero" class="mb-2">Número</label>
                     <input class="form-control mb-3" type="number" name="numero" id="numero" required>
                     <label for="cidade" class="mb-2">Cidade</label>
                     <input class="form-control mb-3" type="text" name="cidade" id="cidade" required>
-                    <label for="taxa_aluguel" class="mb-2">% Taxa administrativa</label>
-                    <input class="form-control mb-3" type="text" name="taxa_aluguel" id="taxa_aluguel" required>
+                    <label for="taxa_venda" class="mb-2">% Taxa administrativa</label>
+                    <input class="form-control mb-3" type="text" name="taxa_venda" id="taxa_venda" required>
                   </div>
                   <div class="col-sm-4">
-                    <label for="registro_imovel" class="mb-2">N° de registro do Imóvel</label>
-                    <input class="form-control mb-3" type="number" name="registro_imovel" id="registro_imovel" required>
-                    <label for="banheiros" class="mb-2">Banheiros</label>
-                    <input class="form-control mb-3" type="number" name="quantidade_banheiros" id="quantidade_banheiros" required>
+                    <label for="proprietario" class="mb-2">CPF/CNPJ Proprietário</label>
+                    <input class="form-control mb-3" type="number" name="cpf_cnpj_proprietario" id="cpf_cnpj_proprietario" required>
                     <label for="cep" class="mb-2">CEP</label>
                     <input class="form-control mb-3" type="text" name="cep" id="cep" required>
                     <label for="bairro" class="mb-2">Bairro</label>
                     <input class="form-control mb-3" type="text" name="bairro" id="bairro" required>
                     <label for="estado" class="mb-2">Estado</label>
                     <input class="form-control mb-3" type="text" name="estado" id="estado" required>
-                    <label for="valor_aluguel" class="mb-2">Valor do aluguel</label>
-                    <input class="form-control mb-3" type="text" name="valor_aluguel" id="valor_aluguel" required>
+                    <label for="valor_venda" class="mb-2">Valor do imóvel</label>
+                    <input class="form-control mb-3" type="text" name="valor_venda" id="valor_venda" required>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="registro_imovel" class="mb-2">N° de registro do Imóvel</label>
+                    <input class="form-control mb-3" type="number" name="registro_imovel" id="registro_imovel" required>
+                    <label for="rua" class="mb-2">Rua</label>
+                    <input class="form-control mb-3" type="text" name="rua" id="rua" required>
+                    <label for="complemento" class="mb-2">Complemento</label>
+                    <input class="form-control mb-3" type="text" name="complemento" id="complemento" required>
+                    <label for="pais" class="mb-2">País</label>
+                    <input class="form-control mb-3" type="text" name="pais" id="pais" required>
                   </div>
                 </div>
               </div>
@@ -158,8 +151,8 @@
                     <input class="form-control mb-3" type="date" name="vigencia" id="vigencia" required>
                   </div>
                   <div class="col-sm-3">
-                    <label for="dia_pagamento" class="mb-2">Dia do pagamento</label>
-                    <input class="form-control mb-3" type="date" name="dia_pagamento" id="dia_pagamento" required>
+                    <label for="dia_vencimento" class="mb-2">Dia de vencimento</label>
+                    <input class="form-control mb-3" type="date" name="dia_vencimento" id="dia_vencimento" required>
                   </div>
                   <div class="col-sm-3">
                   <label for="forma_pagamento" class="mb-2">Forma de pagamento</label>
