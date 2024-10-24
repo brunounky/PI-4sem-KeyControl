@@ -26,8 +26,8 @@
       <section>
          <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-3">
-               <h2 class="mb-0">Cadastro de Pessoas</h2>
-               <a href="../views/cadastro_cliente.php" class="button_adicionarnovo">Adicionar Novo +</a>
+                <h2 class="mb-0">Cadastro de Clientes</h2>
+                <a href="../views/cadastro_cliente.php" class="button_adicionarnovo">Adicionar Novo +</a>
             </div>
          </div>
          <div class="container">
