@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['user_name'] = $user['nome'];
                 $_SESSION['user_email'] = $user['email'];
 
-                header('Location: ../../views/home.php');
+                header('Location: ../../views/home_superior.php');
                 exit();
             } else {
                 echo "E-mail ou senha incorretos.";

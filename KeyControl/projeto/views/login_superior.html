@@ -11,7 +11,7 @@
     <!-- ICONE -->
     <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-    <title>Login</title>
+    <title>Login superior</title>
 </head>
 <body>
     
@@ -19,19 +19,11 @@
     <div class="container">
         <div class="col-md-12">
             <div class="row text-center" id="logo">
-                <a href="#"><img src="../public/assets/img/Logotipo.png" alt="logo"></a>
-                <h2 class="mt-2">Bem-vindo!</h2>
+                <a href="./login.html"><img src="../public/assets/img/Logotipo.png" alt="logo"></a>
+                <h2 class="mt-2">Bem-vindo Administrador
             </div>
             <!-- Forms login -->  
             <div class="box">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <button class="btn acessar-p"><a class="nav-link" href="login.html">Fazer login</a></button>
-                    </div>
-                    <div class="col-sm-6">
-                        <button class="btn acessar-n"><a class="nav-link" href="cadastro_usuario.html">Criar conta</a></button>
-                    </div>
-                </div>
                 <form action="../app/controllers/verifica_superior.php" method="post">
                     <div class="row">
                         <div class="col-sm-12 mb-3">
@@ -46,10 +38,6 @@
                             <label class="form-check-label"><input class="form-check-input" type="checkbox" value="" id="remember_me">
                                 Lembre-se de mim
                             </label>
-                        </div>
-                        <div class="col-sm-6 mb-2">
-                            <a href="#" class="esq">Esqueceu sua senha?</a>
-                            <a href="../views/login_admin.html" class="esq">Administradores</a>
                         </div>
                         <div class="col-sm-12 mt-3 mb-5">
                             <button type="submit" class="btn btn-custom">Entrar</button>
