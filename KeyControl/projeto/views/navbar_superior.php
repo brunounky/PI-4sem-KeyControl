@@ -33,7 +33,13 @@
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link" href="../views/perfil.php"><i class="bi bi-person-fill-gear fs-5"></i> <?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Usuário'); ?></a>
+        <a class="nav-link" href="../views/perfil.php"><i class="bi bi-person-fill-gear fs-5"></i> 
+          <?php 
+          $user_name = htmlspecialchars($_SESSION['user_name'] ?? 'Usuário'); 
+          $first_name = explode(' ', $user_name)[0]; 
+          echo $first_name; 
+          ?>
+          </a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">

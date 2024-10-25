@@ -23,7 +23,7 @@
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">
-      <li class="nav-item dropdown">
+        <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="drop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Contrato
           </a>
@@ -39,7 +39,7 @@
             Finanças
           </a>
           <ul class="dropdown-menu" aria-labelledby="drop">
-          <li><a class="dropdown-item nav-link" href="#">Fechamento</a></li>
+            <li><a class="dropdown-item nav-link" href="#">Fechamento</a></li>
             <li><a class="dropdown-item nav-link" href="../views/lançamento_pagar.php">Lançamentos a Pagar</a></li>
             <li><a class="dropdown-item nav-link" href="../views/lançamento_receber.php">Lançamentos a Receber</a></li>
           </ul>
@@ -65,7 +65,13 @@
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link" href="../views/perfil.php"><i class="bi bi-person-fill-gear fs-5"></i> <?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Usuário'); ?></a>
+          <a class="nav-link" href="../views/perfil.php"><i class="bi bi-person-fill-gear fs-5"></i> 
+          <?php 
+          $user_name = htmlspecialchars($_SESSION['user_name'] ?? 'Usuário'); 
+          $first_name = explode(' ', $user_name)[0]; 
+          echo $first_name; 
+          ?>
+          </a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">
