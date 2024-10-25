@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {
         $stmt->execute();
-        header("Location: ../../views/login_superior.html");
+        header("Location: ../../views/home_superior.php");
         exit();
     } catch (PDOException $e) {
         echo "Não foi possível cadastrar o usuário. Erro: " . $e->getMessage();
