@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email_admin = $_POST['email_admin'];
     $senha_admin = password_hash($_POST['senha_admin'], PASSWORD_DEFAULT);
 
+    // Alterando o nome da tabela para usuarios_admin
     $sql = "INSERT INTO usuarios_admin (nome_admin, email_admin, senha_admin) VALUES (:nome_admin, :email_admin, :senha_admin)";
     $stmt = $pdo->prepare($sql);
 

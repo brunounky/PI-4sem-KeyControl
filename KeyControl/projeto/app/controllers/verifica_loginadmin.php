@@ -14,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         try {
             $stmt->execute();
-            $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+            $usuarios_admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($admin && password_verify($senha_admin, $admin['senha_admin'])) {
+            if ($usuarios_admin && password_verify($senha_admin, $admin['senha_admin'])) {
                 $_SESSION['admin_id'] = $admin['id_admin'];
                 $_SESSION['admin_name'] = $admin['nome_admin'];
                 $_SESSION['admin_email'] = $admin['email_admin'];
