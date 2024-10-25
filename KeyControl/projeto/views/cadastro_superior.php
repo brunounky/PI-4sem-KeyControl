@@ -27,7 +27,7 @@
     exit();
   }
 
-  include 'navbar.php';
+  include 'navbar_superior.php';
   ?>
 
   <section id="cadastro_pessoa">

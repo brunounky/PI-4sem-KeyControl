@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav align-items-center">
         <li>
-          <a class="nav-link" href="../views/home.php"><img src="../public/assets/img/Logomarca.png" width="110px"></a>
+          <a class="nav-link" href="../views/home_superior.php"><img src="../public/assets/img/Logomarca.png" width="110px"></a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">
@@ -38,7 +38,7 @@
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link" href="../app/controllers/logout.php"><i class="bi bi-box-arrow-right fs-4"></i></a>
+          <a class="nav-link" href="../app/controllers/logout_superior.php"><i class="bi bi-box-arrow-right fs-4"></i></a>
         </li>
       </ul>
     </div>
