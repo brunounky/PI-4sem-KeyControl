@@ -13,7 +13,7 @@
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link" href="#">Imobiliarias Parceiras</a>
+          <a class="nav-link" href="./lista_imobiliarias.php">Imobiliarias Parceiras</a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">
