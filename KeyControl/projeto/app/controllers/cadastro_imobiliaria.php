@@ -12,14 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $emailimobiliaria = $_POST['emailimobiliaria'] ?? null;
     $logo_imobiliaria = null;
 
-    // Tratamento do upload da imagem do logotipo
     if (isset($_FILES['logo_imobiliaria']) && $_FILES['logo_imobiliaria']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['logo_imobiliaria']['tmp_name'];
         $fileType = mime_content_type($fileTmpPath);
 
-        // Verifica se o arquivo é uma imagem
         if (strpos($fileType, 'image') === 0) {
-            // Lê o conteúdo do arquivo e converte para binário
             $logo_imobiliaria = file_get_contents($fileTmpPath);
         } else {
             echo "O arquivo enviado não é uma imagem válida.";
