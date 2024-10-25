@@ -41,7 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt->bindParam(':logo_imobiliaria', $logo_imobiliaria, PDO::PARAM_LOB);
 
     if ($stmt->execute()) {
-        echo "Imobiliária cadastrada com sucesso!";
+        header("Location: ../../views/lista_imobiliarias.php");
+        exit();
     } else {
         echo "Erro ao cadastrar imobiliária: " . $stmt->errorInfo()[2];
     }
