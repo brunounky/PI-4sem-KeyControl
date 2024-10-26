@@ -44,6 +44,13 @@ form  {
 
 .esq {
     float: right;
+    color: #08a8eddd;
+    font-size: 14px;
+    margin-top: 9px;
+}
+
+.esq:hover {
+    color: #08e1eddd;
 }
 
 #login .btn-custom {
