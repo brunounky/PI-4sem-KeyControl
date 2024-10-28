@@ -6,8 +6,7 @@
         exit();
     }
 
-    include_once '../app/controllers/filtros_imovel.php';
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -52,8 +51,8 @@
                             <input type="text" id="cpf_cnpj_proprietario" class="form-control" name="cpf_cnpj_proprietario" value="<?= htmlspecialchars($_POST['cpf_cnpj_proprietario'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                        <label for="numero" class="form-label">Número</label>
-                        <input type="text" id="numero" class="form-control" name="numero" value="<?= htmlspecialchars($_POST['numero'] ?? '') ?>">
+                        <label for="locatario" class="form-label">Locatário</label>
+                        <input type="text" id="locatario" class="form-control" name="locatario" value="<?= htmlspecialchars($_POST['locatario'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
                         <label for="cep" class="form-label">CEP</label>
@@ -63,17 +62,15 @@
                         <label for="cidade" class="form-label">Cidade</label>
                         <input type="text" id="cidade" class="form-control" name="cidade" value="<?= htmlspecialchars($_POST['cidade'] ?? '') ?>">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
-                        <div class="position-relative">
                             <select class="form-control" name="tipo_imovel" id="tipo_imovel" onchange="checkSelection('tipo_imovel')">
                                 <option value="" disabled <?= !isset($_POST['tipo_imovel']) ? 'selected' : '' ?>>Selecione um tipo</option>
                                 <option value="apartamento" <?= ($_POST['tipo_imovel'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Apartamento</option>
                                 <option value="casa" <?= ($_POST['tipo_imovel'] ?? '') == 'casa' ? 'selected' : '' ?>>Casa</option>
                                 <option value="comercial" <?= ($_POST['tipo_imovel'] ?? '') == 'comercial' ? 'selected' : '' ?>>Comercial</option>
                             </select>
-                            <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_imovel']) && $_POST['tipo_imovel'] != '' ? 'block' : 'none' ?>;" data-select="tipo_imovel" onclick="removeSelected('tipo_imovel')">x</span>
-                        </div>
+                        <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_imovel']) && $_POST['tipo_imovel'] != '' ? 'block' : 'none' ?>;" data-select="tipo_imovel" onclick="removeSelected('tipo_imovel')">x</span>
                     </div>
                 </div>
                 <div class="col-md-1">
@@ -81,7 +78,6 @@
                         <i class="bi bi-search"></i>
                     </button>
                 </div> 
-                </div>
             </div>
         </form>
     </div>
@@ -95,8 +91,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Proprietário</th>
+                        <th>Locatário</th>
                         <th>CEP</th>
-                        <th>Rua</th>
                         <th>Número</th>
                         <th>Bairro</th>
                         <th>Cidade</th>
@@ -105,7 +101,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <!-- <?php
+                <?php
                 if (isset($result) && count($result) > 0) {
                     foreach ($result as $row) {
                         $bairro = htmlspecialchars($row['bairro'] ?? '-');
@@ -146,7 +142,7 @@
                 } else {
                     echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
                 }
-                ?> -->
+                ?> 
                 </tbody>
             </table>
         </div>
@@ -154,7 +150,6 @@
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../public/assets/js/consultacep.js"></script>
 <script src="../public/assets/js/submenu.js"></script>
 
 </body>

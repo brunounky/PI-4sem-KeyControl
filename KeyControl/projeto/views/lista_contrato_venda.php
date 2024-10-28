@@ -6,8 +6,7 @@
         exit();
     }
 
-    include_once '../app/controllers/filtros_imovel.php';
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -35,54 +34,52 @@
         <form method="POST" action="">
             <div class="filtros-container">
                 <div class="row g-12">
-                <div class="col-md-1">
-                        <label for="cep" class="form-label">CEP</label>
-                            <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>">
+                    <div class="col-md-1">
+                        <label for="id" class="form-label">ID</label>
+                        <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
                         <label for="nome" class="form-label">Comprador</label>
                         <input type="text" id="nome" class="form-control" name="nome" value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
+                        <label for="proprietario" class="form-label">Proprietário</label>
+                        <input type="text" id="proprietario" class="form-control" name="proprietario" value="<?= htmlspecialchars($_POST['proprietario'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2">
                         <label for="vigencia" class="form-label">Data de Vigência</label>
                         <input type="text" id="vigencia" class="form-control" name="vigencia" value="<?= htmlspecialchars($_POST['vigencia'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="dia_pagamento" class="form-label">Data de Pagamento</label>
-                        <input type="text" id="dia_pagamento" class="form-control" name="dia_pagamento" value="<?= htmlspecialchars($_POST['dia_pagamento'] ?? '') ?>">
-                    </div>
+                    </div>                    
                     <div class="col-md-2">
                         <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
-                        <div class="position-relative">
-                            <select class="form-control" name="tipo_imovel" id="tipo_imovel" onchange="checkSelection('tipo_imovel')">
-                                <option value="" disabled <?= !isset($_POST['tipo_imovel']) ? 'selected' : '' ?>>Escoolha um Tipo</option>
-                                <option value="apartamento" <?= ($_POST['tipo_imovel'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Apartamento</option>
-                                <option value="casa" <?= ($_POST['tipo_imovel'] ?? '') == 'casa' ? 'selected' : '' ?>>Casa</option>
-                                <option value="comercial" <?= ($_POST['tipo_imovel'] ?? '') == 'comercial' ? 'selected' : '' ?>>Comercial</option>
-                            </select>
-                            <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_imovel']) && $_POST['tipo_imovel'] != '' ? 'block' : 'none' ?>;" data-select="tipo_imovel" onclick="removeSelected('tipo_imovel')">x</span>
-                        </div>
+                        <select class="form-control" name="tipo_imovel" id="tipo_imovel" onchange="checkSelection('tipo_imovel')">
+                            <option value="" disabled <?= !isset($_POST['tipo_imovel']) ? 'selected' : '' ?>>Selecione um tipo</option>
+                            <option value="apartamento" <?= ($_POST['tipo_imovel'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Apartamento</option>
+                            <option value="casa" <?= ($_POST['tipo_imovel'] ?? '') == 'casa' ? 'selected' : '' ?>>Casa</option>
+                            <option value="comercial" <?= ($_POST['tipo_imovel'] ?? '') == 'comercial' ? 'selected' : '' ?>>Comercial</option>
+                        </select>
+                        <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_imovel']) && $_POST['tipo_imovel'] != '' ? 'block' : 'none' ?>;" data-select="tipo_imovel" onclick="removeSelected('tipo_imovel')">x</span>
+                        
                     </div>
                     <div class="col-sm-2">
-                  <label for="forma_pagamento" class="mb-2">Forma pagamento</label>
-                    <select class="form-control mb-3" name="forma_pagamento" id="forma_pagamento">
-                      <option value="" disabled <?= !isset($_POST['forma_pagamento']) ? 'selected' : '' ?>>Escolha um Pagamento</option>
-                      <option value="Boleto" <?= ($_POST['forma_pagamento'] ??  '') == 'financiamento' ? 'selected' : '' ?>>Financiamento</option>
-                      <option value="Dinheiro" <?= ($_POST['forma_pagamento'] ?? '') == 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
-                      <option value="Boleto" <?= ($_POST['forma_pagamento'] ?? '') == 'boleto' ? 'selected' : ''?>>Boleto</option>
-                      <option value="PIX" <?= ($_POST['forma_pagamento'] ?? '') == 'pix' ? 'selected' : ''?>>PIX</option> 
-                      <option value="Transferência" <?= ($_POST['forma_pagamento'] ?? '') == 'transferencia' ? 'selected' : ''?>>Transferência</option> 
-                      <option value="Cartão de crédito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : ''?>>Cartão de crédito</option>
-                      <option value="Cartão de débito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' :'' ?>>Cartão de débito</option>
-                    </select>
-                    <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['forma_pagamento']) && $_POST['forma_pagamento'] != '' ? 'block' : 'none' ?>;" data-select="forma_pagamento" onclick="removeSelected('forma_pagamento')">x</span>
-                  </div>
+                        <label for="forma_pagamento" class="mb-2">Tipo pagamento</label>
+                            <select class="form-control" name="forma_pagamento" id="forma_pagamento">
+                              <option value="" disabled <?= !isset($_POST['forma_pagamento']) ? 'selected' : '' ?>>Selecione um tipo</option>
+                              <option value="Boleto" <?= ($_POST['forma_pagamento'] ??  '') == 'financiamento' ? 'selected' : '' ?>>Financiamento</option>
+                              <option value="Dinheiro" <?= ($_POST['forma_pagamento'] ?? '') == 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
+                              <option value="Boleto" <?= ($_POST['forma_pagamento'] ?? '') == 'boleto' ? 'selected' : ''?>>Boleto</option>
+                              <option value="PIX" <?= ($_POST['forma_pagamento'] ?? '') == 'pix' ? 'selected' : ''?>>PIX</option> 
+                              <option value="Transferência" <?= ($_POST['forma_pagamento'] ?? '') == 'transferencia' ? 'selected' : ''?>>Transferência</option> 
+                              <option value="Cartão de crédito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : ''?>>Cartão de crédito</option>
+                              <option value="Cartão de débito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' :'' ?>>Cartão de débito</option>
+                            </select>
+                            <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['forma_pagamento']) && $_POST['forma_pagamento'] != '' ? 'block' : 'none' ?>;" data-select="forma_pagamento" onclick="removeSelected('forma_pagamento')">x</span>
+                    </div>
                     <div class="col-md-1">
-                    <button class="btn btn-buscar" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div> 
-                </div>
+                        <button class="btn btn-buscar" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div> 
                 </div>
             </div>
         </form>
@@ -95,27 +92,24 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Comprador</th>
                         <th>Proprietário</th>
-                        <th>CEP</th>
                         <th>Data Vigência</th>
-                        <th>Data Pagamento</th>
                         <th>Tipo de Imóvel</th>
                         <th>Forma de Pagamento</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                <!-- <?php
+                <?php
                 if (isset($result) && count($result) > 0) {
                     foreach ($result as $row) {
 
                         echo "<tr>
                                 <td>" . htmlspecialchars($row['nome']) . "</td>
                                 <td>" . htmlspecialchars($row['proprietario']) . "</td>
-                                <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['vigencia'] ?? '-') . "</td>
-                                <td>" . htmlspecialchars($row['dia_pagamento'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
                                 <td>
@@ -144,7 +138,7 @@
                 } else {
                     echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
                 }
-                ?> -->
+                ?>
                 </tbody>
             </table>
         </div>
@@ -152,7 +146,6 @@
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../public/assets/js/consultacep.js"></script>
 <script src="../public/assets/js/submenu.js"></script>
 
 </body>
