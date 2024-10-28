@@ -55,14 +55,14 @@
                         <input type="text" id="locatario" class="form-control" name="locatario" value="<?= htmlspecialchars($_POST['locatario'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
-                        <label for="cep" class="form-label">CEP</label>
-                        <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>">
-                    </div>
-                    <div class="col-md-2">
                         <label for="cidade" class="form-label">Cidade</label>
                         <input type="text" id="cidade" class="form-control" name="cidade" value="<?= htmlspecialchars($_POST['cidade'] ?? '') ?>">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <label for="vigencia" class="form-label">Data Vigência</label>
+                        <input type="text" id="vigencia" class="form-control" name="vigencia" value="<?= htmlspecialchars($_POST['vigencia'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2">
                         <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
                             <select class="form-control" name="tipo_imovel" id="tipo_imovel" onchange="checkSelection('tipo_imovel')">
                                 <option value="" disabled <?= !isset($_POST['tipo_imovel']) ? 'selected' : '' ?>>Selecione um tipo</option>
@@ -72,12 +72,12 @@
                             </select>
                         <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_imovel']) && $_POST['tipo_imovel'] != '' ? 'block' : 'none' ?>;" data-select="tipo_imovel" onclick="removeSelected('tipo_imovel')">x</span>
                     </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-buscar" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div> 
                 </div>
-                <div class="col-md-1">
-                    <button class="btn btn-buscar" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div> 
             </div>
         </form>
     </div>
@@ -86,17 +86,16 @@
 <section>
     <div class="container">
         <div class="card_relatório">
-            <table class="table table-hover">
+        <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Comprador</th>
                         <th>Proprietário</th>
-                        <th>Locatário</th>
-                        <th>CEP</th>
-                        <th>Número</th>
-                        <th>Bairro</th>
                         <th>Cidade</th>
+                        <th>Data Vigência</th>
                         <th>Tipo de Imóvel</th>
+                        <th>Forma de Pagamento</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -104,17 +103,13 @@
                     <?php
                         if (isset($result) && count($result) > 0) {
                             foreach ($result as $row) {
-                                $bairro = htmlspecialchars($row['bairro'] ?? '-');
-                                $bairro_resumido = htmlspecialchars(substr($bairro, 0, 10) . (strlen($bairro) > 10 ? '...' : ''));
 
                                 echo "<tr>
                                     <td>" . htmlspecialchars($row['id']) . "</td>
-                                    <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
-                                    <td title='$bairro'>$bairro_resumido</td>
+                                    <td>" . htmlspecialchars($row['proprietario']) . "</td>
+                                    <td>" . htmlspecialchars($row['locatario'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['vigencia'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
                                     <td>
                                         <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
@@ -142,7 +137,7 @@
                         } else {
                             echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
                         }
-                    ?> 
+                    ?>
                 </tbody>
             </table>
         </div>

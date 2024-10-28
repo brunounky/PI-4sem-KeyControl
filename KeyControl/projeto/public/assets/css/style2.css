@@ -211,7 +211,7 @@ h2.mb-0 {
     border-radius: 10px;
     background-color: #131E41;
     width: 180px;
-    height: 42px;
+    height: 37px;
     align-items: center;
     display: flex; 
     justify-content: center; 
@@ -220,6 +220,10 @@ h2.mb-0 {
     color: #ffffff;
     font-size: 20px;
     text-decoration: none;
+  }
+
+  .button_adicionarnovo:hover{
+    background-color: #074ea5;
   }
 
   .submenu {
