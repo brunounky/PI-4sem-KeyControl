@@ -102,43 +102,43 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php
-                if (isset($result) && count($result) > 0) {
-                    foreach ($result as $row) {
+                    <?php
+                        if (isset($result) && count($result) > 0) {
+                            foreach ($result as $row) {
 
-                        echo "<tr>
-                                <td>" . htmlspecialchars($row['nome']) . "</td>
-                                <td>" . htmlspecialchars($row['proprietario']) . "</td>
-                                <td>" . htmlspecialchars($row['vigencia'] ?? '-') . "</td>
-                                <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
-                                <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
-                                <td>
-                                    <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
-                                        <i class='bi bi-pencil-square'></i>
-                                    </button>
-                                    <button class='btn' onclick='toggleSubMenu(this)'>
-                                        <i class='bi bi-chevron-down'></i>
-                                    </button>
-                                    <div class='submenu' style='display: none;'>
-                                        <div class='submenu-options'>
-                                            <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
-                                                <i class='bi bi-printer'></i> Imprimir
-                                            </button>
-                                            <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
-                                                <i class='bi bi-envelope'></i> E-mail
-                                            </button>
-                                            <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
-                                                <i class='bi bi-trash'></i> Excluir
-                                            </button>
+                                echo "<tr>
+                                    <td>" . htmlspecialchars($row['nome']) . "</td>
+                                    <td>" . htmlspecialchars($row['proprietario']) . "</td>
+                                    <td>" . htmlspecialchars($row['vigencia'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
+                                    <td>
+                                        <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                            <i class='bi bi-pencil-square'></i>
+                                        </button>
+                                        <button class='btn' onclick='toggleSubMenu(this)'>
+                                            <i class='bi bi-chevron-down'></i>
+                                        </button>
+                                        <div class='submenu' style='display: none;'>
+                                            <div class='submenu-options'>
+                                                <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                                    <i class='bi bi-printer'></i> Imprimir
+                                                </button>
+                                                <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
+                                                    <i class='bi bi-envelope'></i> E-mail
+                                                </button>
+                                                <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                                    <i class='bi bi-trash'></i> Excluir
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
-                }
-                ?>
+                                    </td>
+                                </tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>

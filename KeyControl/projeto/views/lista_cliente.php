@@ -57,7 +57,7 @@
                      <div class="col-md-2 position-relative">
                     <label for="categoria" class="mb-2">Categoria</label>
                         <select class="form-control" name="categoria" id="categoria" onchange="checkSelection('categoria')">
-                            <option value="" disabled <?= !isset($_POST['categoria']) ? 'selected' : '' ?>>Escolha a Categoria</option>
+                            <option value="" disabled <?= !isset($_POST['categoria']) ? 'selected' : '' ?>>Selecione a Categoria</option>
                             <option value="locador" <?= ($_POST['categoria'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Locador</option>
                             <option value="locatario" <?= ($_POST['categoria'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Locatário</option>
                             <option value="fiador" <?= ($_POST['categoria'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Fiador</option>
@@ -139,7 +139,7 @@
                                  </tr>";
                          }
                      } else {
-                         echo "<tr><td colspan='9'>Nenhum registro encontrado</td></tr>";
+                        echo "<tr><td colspan='9'>Nenhum registro encontrado</td></tr>";
                      }
                      ?>
                   </tbody>
@@ -149,7 +149,6 @@
       </section>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="../public/assets/js/consultacep.js"></script>
       <script src="../public/assets/js/submenu.js"></script>
    </body>
 </html>

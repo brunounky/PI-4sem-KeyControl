@@ -2,8 +2,8 @@
    session_start();
    
    if (!isset($_SESSION['user_id'])) {
-       header("Location: ../app/controllers/verifica_login.php");
-       exit();
+      header("Location: ../app/controllers/verifica_login.php");
+      exit();
    }
    
 ?>
@@ -158,39 +158,39 @@
                <tbody>
                   <?php
                      if (isset($result) && count($result) > 0) {
-                         foreach ($result as $row) {
+                        foreach ($result as $row) {
                      
-                             echo "<tr>
-                                     <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
-                                     <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
-                                     <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
-                                     <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
-                                     <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
-                                     <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
-                                     <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
-                                     <td>
-                                         <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
-                                             <i class='bi bi-pencil-square'></i>
-                                         </button>
-                                         <button class='btn' onclick='toggleSubMenu(this)'>
-                                             <i class='bi bi-chevron-down'></i>
-                                         </button>
-                                         <div class='submenu' style='display: none;'>
-                                             <div class='submenu-options'>
-                                                 <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
-                                                     <i class='bi bi-printer'></i> Imprimir
-                                                 </button>
-                                                 <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
-                                                     <i class='bi bi-envelope'></i> E-mail
-                                                 </button>
-                                                 <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
-                                                     <i class='bi bi-trash'></i> Excluir
-                                                 </button>
-                                             </div>
-                                         </div>
-                                     </td>
-                                 </tr>";
-                         }
+                           echo "<tr>
+                              <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
+                              <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
+                              <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
+                              <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
+                              <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
+                              <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
+                              <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
+                              <td>
+                                  <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                     <i class='bi bi-pencil-square'></i>
+                                  </button>
+                                  <button class='btn' onclick='toggleSubMenu(this)'>
+                                     <i class='bi bi-chevron-down'></i>
+                                  </button>
+                                  <div class='submenu' style='display: none;'>
+                                     <div class='submenu-options'>
+                                        <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                          <i class='bi bi-printer'></i> Imprimir
+                                        </button>
+                                        <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
+                                          <i class='bi bi-envelope'></i> E-mail
+                                        </button>
+                                        <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                          <i class='bi bi-trash'></i> Excluir
+                                        </button>
+                                     </div>
+                                  </div>
+                              </td>
+                           </tr>";
+                        }
                      } else {
                         echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
                      }
