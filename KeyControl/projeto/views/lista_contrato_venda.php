@@ -34,7 +34,7 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                 <div class="filtros-container">
                     <div class="row g-12">
                         <div class="col-md-1">
-                            <label for="contrato_id" class="form-label">ID  </label>
+                            <label for="contrato_id" class="form-label">ID</label>
                             <input type="text" id="contrato_id" class="form-control" name="contrato_id" value="<?= htmlspecialchars($_POST['contrato_id'] ?? '') ?>">
                         </div>
                         <div class="col-md-2">
@@ -103,9 +103,9 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                         foreach ($result as $row) {
                             echo "<tr>
                                     <td>" . htmlspecialchars($row['contrato_id'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['locatario_nome'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['comprador_nome'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['data_vigencia'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['data_pagamento_compra'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['data_pagamento'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
                                     <td>
                                          <button class='btn' onclick='editRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
@@ -127,11 +127,11 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                                                  </button>
                                              </div>
                                          </div>
-                                     </td>
+                                    </td>
                                 </tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='7'>Nenhum registro encontrado</td></tr>";
+                        echo "<tr><td colspan='6'>Nenhum registro encontrado</td></tr>";
                     }
                     ?>
                     </tbody>
@@ -139,7 +139,7 @@ include_once '../app/controllers/filtro_contrato_venda.php';
             </div>
         </div>
     </section>
+    <script src="../public/assets/js/menu.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../public/assets/js/submenu.js"></script>
-    </body>
+</body>
 </html>
