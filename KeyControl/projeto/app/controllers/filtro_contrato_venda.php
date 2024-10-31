@@ -2,81 +2,71 @@
 include '../app/controllers/db_conexao.php';
 
 $result = null; 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
-function buildQuery($registro_imovel, $nome, $cpf_cnpj_proprietario, $vigencia, $dia_pagamento, $tipo_imovel, $forma_pagamento) {
+function buildQuery($contrato_id, $nome, $vigencia, $dia_pagamento, $tipo_imovel, $forma_pagamento) {
     $sql = "
     SELECT 
-        imovel.registro_imovel, 
-        cliente.nome AS comprador, 
-        contrato_venda.data_vigencia AS vigencia,
-        contrato_venda.data_pagamento_compra AS dia_pagamento,
-        imovel.tipo_imovel,
-        contrato_venda.forma_pagamento
+        cv.id AS contrato_id,
+        cc.nome AS locatario_nome,
+        cc.cpf_cnpj,
+        cv.data_vigencia,
+        cv.data_pagamento_compra,
+        cv.forma_pagamento
     FROM 
-        contrato_venda 
-    INNER JOIN 
-        cadastro_cliente cliente 
-        ON contrato_venda.id_locatario = cliente.id
-    INNER JOIN 
-        cadastro_imovel imovel 
-        ON contrato_venda.id_imovel = imovel.id
-    INNER JOIN cadastro_cliente cliente 
-        ON imovel.cpf_cnpj_proprietario = cliente.cpf_cnpj";
-    WHERE 1=1
-    ";
+        contrato_venda cv
+    JOIN 
+        cadastro_cliente cc ON cv.id_locatario = cc.id
+    JOIN 
+        cadastro_imovel ci ON cv.id_imovel = ci.id
+    WHERE 1=1"; 
 
-    if (!empty($registro_imovel)) {
-        $sql .= " AND imovel.registro_imovel = :registro_imovel";
+    if (!empty($contrato_id)) {
+        $sql .= " AND ci.contrato_id = :contrato_id"; 
     }
     if (!empty($nome)) {
-        $sql .= " AND cliente.nome LIKE :nome";
-    }
-    if (!empty($cpf_cnpj_proprietario)) {
-        $conditions[] = "imovel.cpf_cnpj_proprietario LIKE :cpf_cnpj_proprietario";
-        $params['cpf_cnpj_proprietario'] = "%$cpf_cnpj_proprietario%";
+        $sql .= " AND cc.nome LIKE :nome"; 
     }
     if (!empty($vigencia)) {
-        $sql .= " AND contrato_venda.data_vigencia = :vigencia";
+        $sql .= " AND cv.data_vigencia = :vigencia"; 
     }
     if (!empty($dia_pagamento)) {
-        $sql .= " AND contrato_venda.data_pagamento_compra = :dia_pagamento";
+        $sql .= " AND cv.data_pagamento_compra = :dia_pagamento"; 
     }
     if (!empty($tipo_imovel)) {
-        $sql .= " AND imovel.tipo_imovel = :tipo_imovel";
+        $sql .= " AND ci.tipo_imovel = :tipo_imovel"; 
     }
     if (!empty($forma_pagamento)) {
-        $sql .= " AND contrato_venda.forma_pagamento = :forma_pagamento";
+        $sql .= " AND cv.forma_pagamento = :forma_pagamento"; 
     }
 
     return $sql;
 }
 
-$registro_imovel = $_POST['registro_imovel'] ?? '';
+$contrato_id = $_POST['contrato_id'] ?? '';
 $nome = $_POST['nome'] ?? '';
-$cpf_cnpj_proprietario = $_POST['cpf_cnpj_proprietario'] ?? '';
 $vigencia = $_POST['vigencia'] ?? '';
 $dia_pagamento = $_POST['dia_pagamento'] ?? '';
 $tipo_imovel = $_POST['tipo_imovel'] ?? '';
 $forma_pagamento = $_POST['forma_pagamento'] ?? '';
 
-$sql = buildQuery($registro_imovel, $nome, $vigencia, $dia_pagamento, $tipo_imovel, $forma_pagamento);
+$contrato_id = htmlspecialchars($contrato_id);
+$nome = htmlspecialchars($nome);
+$vigencia = htmlspecialchars($vigencia);
+$dia_pagamento = htmlspecialchars($dia_pagamento);
+$tipo_imovel = htmlspecialchars($tipo_imovel);
+$forma_pagamento = htmlspecialchars($forma_pagamento);
+
+$sql = buildQuery($contrato_id, $nome, $vigencia, $dia_pagamento, $tipo_imovel, $forma_pagamento);
 
 try {
     $stmt = $pdo->prepare($sql);
 
-    if (!empty($registro_imovel)) {
-        $stmt->bindParam(':registro_imovel', $registro_imovel);
+    if (!empty($contrato_id)) {
+        $stmt->bindParam(':contrato_id', $contrato_id);
     }
     if (!empty($nome)) {
         $nome = "%$nome%";
         $stmt->bindParam(':nome', $nome);
-    }
-    if (!empty($cpf_cnpj_proprietario)) {
-        $conditions[] = "imovel.cpf_cnpj_proprietario LIKE :cpf_cnpj_proprietario";
-        $params['cpf_cnpj_proprietario'] = "%$cpf_cnpj_proprietario%";
     }
     if (!empty($vigencia)) {
         $stmt->bindParam(':vigencia', $vigencia);
@@ -94,7 +84,6 @@ try {
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    var_dump($result);
 } catch (Exception $e) {
     echo "Erro na execução da consulta: " . htmlspecialchars($e->getMessage());
 }
