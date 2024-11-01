@@ -18,10 +18,7 @@ $id = $_GET['id'];
 
 try {
   $stmt = $pdo->prepare("
-    SELECT id, nome, rg_ie, data_nascimento_fundacao, telefone, email, estado_civil, 
-           nacionalidade, profissao, cep, rua, numero, bairro, cidade, estado, pais, 
-           locador, locatario, fiador, complemento, cpf_cnpj
-    FROM cadastro_cliente
+    SELECT *  FROM cadastro_cliente
     WHERE id = :id
   ");
   $stmt->bindParam(':id', $id, PDO::PARAM_INT);
