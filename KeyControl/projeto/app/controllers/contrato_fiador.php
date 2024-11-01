@@ -125,7 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt->bindParam(':data_vencimento', $data_vencimento);
 
         if ($stmt->execute()) {
-            echo "Contrato cadastrado com sucesso!";
+            header("Location: ../../views/lista_contrato_aluguel.php");
+            exit();
         } else {
             echo "Erro ao cadastrar contrato.";
         }
