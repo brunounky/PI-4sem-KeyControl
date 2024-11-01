@@ -50,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt->bindParam(':complemento', $complemento);
 
     if ($stmt->execute()) {
-        echo "Imóvel cadastrado com sucesso!";
+        header("Location: ../../views/lista_cliente.php");
+        exit();
     } else {
         echo "Erro ao cadastrar imóvel: " . $stmt->errorInfo()[2];
     }
