@@ -8,21 +8,28 @@ if (!isset($_SESSION['user_id'])) {
 
 include '../app/controllers/db_conexao.php';
 
-$cnpj = $_SESSION['user_cnpj'];
+// Verifica se o ID do cliente foi passado pela URL
+if (!isset($_GET['id'])) {
+  echo "ID do cliente não fornecido.";
+  exit();
+}
+
+$id = $_GET['id'];
 
 try {
   $stmt = $pdo->prepare("
-    SELECT usuarios.*, imobiliaria.*
-    FROM usuarios
-    INNER JOIN imobiliaria ON usuarios.cnpj = imobiliaria.cnpj
-    WHERE usuarios.cnpj = :cnpj
+    SELECT id, nome, rg_ie, data_nascimento_fundacao, telefone, email, estado_civil, 
+           nacionalidade, profissao, cep, rua, numero, bairro, cidade, estado, pais, 
+           locador, locatario, fiador, complemento, cpf_cnpj
+    FROM cadastro_cliente
+    WHERE id = :id
   ");
-  $stmt->bindParam(':cnpj', $cnpj, PDO::PARAM_STR);
+  $stmt->bindParam(':id', $id, PDO::PARAM_INT);
   $stmt->execute();
-  $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+  $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if (!$dados) {
-    echo "Dados da imobiliária ou do usuário não encontrados.";
+  if (!$cliente) {
+    echo "Cliente não encontrado.";
     exit();
   }
 } catch (PDOException $e) {
@@ -33,6 +40,8 @@ try {
 include 'navbar.php';
 
 ?>
+
+
 |
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -50,27 +59,16 @@ include 'navbar.php';
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-  <title>Novo cliente</title>
+  <title>Alterar Cliente</title>
 </head>
 
 <body>
 
-  <?php
-  session_start();
-
-  if (!isset($_SESSION['user_id'])) {
-    header("Location: ../app/controllers/verifica_login.php");
-    exit();
-  }
-
-  include 'navbar.php';
-
-  ?>
-
   <section id="cadastro_pessoa">
     <!-- inicio do form -->
-    <form action="../app/controllers/verifica_cliente.php" method="post">
-      <input type="hidden" name="action" value="cadastrar">
+    <form action="../app/controllers/altera_cliente.php" method="post">
+      <input type="hidden" name="id" value="<?= htmlspecialchars($cliente['id']) ?>">
+      <input type="hidden" name="action" value="atualizar">
       <div class="container">
         <div class="row">
           <h2>Cadastro de Clientes</h2>
@@ -83,80 +81,89 @@ include 'navbar.php';
                 <div class="row">
                   <div class="col-sm-6">
                     <label for="nome" class="mb-2">Nome</label>
-                    <input class="form-control mb-3" type="text" name="nome" id="nome" required>
+                    <input class="form-control mb-3" type="text" name="nome" id="nome" value="<?= htmlspecialchars($cliente['nome']) ?>" required>
                     <label for="cpf_cnpj" class="mb-2">CPF/CNPJ</label>
-                    <input class="form-control mb-3" type="number" name="cpf_cnpj" id="cpf_cnpj" required>
+                    <input class="form-control mb-3" type="number" name="cpf_cnpj" id="cpf_cnpj" value="<?= htmlspecialchars($cliente['cpf_cnpj']) ?>" required>
                     <label for="telefone" class="mb-2">Telefone</label>
-                    <input class="form-control mb-3" type="number" name="telefone" id="telefone" required>
+                    <input class="form-control mb-3" type="number" name="telefone" id="telefone" value="<?= htmlspecialchars($cliente['telefone']) ?>" required>
                   </div>
                   <div class="col-sm-6">
                     <label for="data_nascimento_fundacao" class="mb-2">Nascimento/Fundação</label>
-                    <input class="form-control mb-3" type="date" name="data_nascimento_fundacao" id="data_nascimento_fundacao">
+                    <input class="form-control mb-3" type="date" name="data_nascimento_fundacao" id="data_nascimento_fundacao" value="<?= htmlspecialchars($cliente['data_nascimento_fundacao']) ?>">
                     <label for="rg_ie" class="mb-2">RG/IE</label>
-                    <input class="form-control mb-3" type="number" name="rg_ie" id="rg_ie">
+                    <input class="form-control mb-3" type="text" name="rg_ie" id="rg_ie" value="<?= htmlspecialchars($cliente['rg_ie']) ?>">
                     <label for="email" class="mb-2">E-mail</label>
-                    <input class="form-control mb-3" type="text" name="email" id="email" required>
+                    <input class="form-control mb-3" type="email" name="email" id="email" value="<?= htmlspecialchars($cliente['email']) ?>" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-4">
                     <label for="nacionalidade" class="mb-2">Nacionalidade</label>
-                    <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" required>
+                    <input class="form-control mb-3" type="text" name="nacionalidade" id="nacionalidade" value="<?= htmlspecialchars($cliente['nacionalidade']) ?>" required>
                   </div>
                   <div class="col-sm-4">
                     <label for="estado_civil" class="mb-2">Estado civil</label>
-                    <input class="form-control mb-3" type="text" name="estado_civil" id="estado_civil" required>
+                    <input class="form-control mb-3" type="text" name="estado_civil" id="estado_civil" value="<?= htmlspecialchars($cliente['estado_civil']) ?>" required>
                   </div>
                   <div class="col-sm-4">
                     <label for="profissao" class="mb-2">Profissão</label>
-                    <input class="form-control mb-3" type="text" name="profissao" id="profissao" required>
+                    <input class="form-control mb-3" type="text" name="profissao" id="profissao" value="<?= htmlspecialchars($cliente['profissao']) ?>" required>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-sm-6">
                     <label for="cep" class="mb-2">CEP</label>
-                    <input class="form-control mb-3" type="text" name="cep" id="cep" required>
+                    <input class="form-control mb-3" type="text" name="cep" id="cep" value="<?= htmlspecialchars($cliente['cep']) ?>" required>
+
                     <label for="numero" class="mb-2">Número</label>
-                    <input class="form-control mb-3" type="number" name="numero" id="numero" required>
+                    <input class="form-control mb-3" type="number" name="numero" id="numero" value="<?= htmlspecialchars($cliente['numero']) ?>" required>
                   </div>
+
                   <div class="col-sm-6">
                     <label for="rua" class="mb-2">Rua</label>
-                    <input class="form-control mb-3" type="text" name="rua" id="rua" required>
+                    <input class="form-control mb-3" type="text" name="rua" id="rua" value="<?= htmlspecialchars($cliente['rua']) ?>" required>
+
                     <label for="bairro" class="mb-2">Bairro</label>
-                    <input class="form-control mb-3" type="text" name="bairro" id="bairro" required>
+                    <input class="form-control mb-3" type="text" name="bairro" id="bairro" value="<?= htmlspecialchars($cliente['bairro']) ?>" required>
                   </div>
+
                   <div class="col-sm-12">
                     <label for="complemento" class="mb-2">Complemento</label>
-                    <input class="form-control mb-3" type="text" name="complemento" id="complemento" required>
+                    <input class="form-control mb-3" type="text" name="complemento" id="complemento" value="<?= htmlspecialchars($cliente['complemento']) ?>" required>
                   </div>
+
                   <div class="col-sm-4">
                     <label for="cidade" class="mb-2">Cidade</label>
-                    <input class="form-control mb-3" type="text" name="cidade" id="cidade" required>
+                    <input class="form-control mb-3" type="text" name="cidade" id="cidade" value="<?= htmlspecialchars($cliente['cidade']) ?>" required>
                   </div>
+
                   <div class="col-sm-4">
                     <label for="estado" class="mb-2">Estado</label>
-                    <input class="form-control mb-3" type="text" name="estado" id="estado" required>
+                    <input class="form-control mb-3" type="text" name="estado" id="estado" value="<?= htmlspecialchars($cliente['estado']) ?>" required>
                   </div>
+
                   <div class="col-sm-4">
                     <label for="pais" class="mb-2">País</label>
-                    <input class="form-control mb-3" type="text" name="pais" id="pais" required>
+                    <input class="form-control mb-3" type="text" name="pais" id="pais" value="<?= htmlspecialchars($cliente['pais']) ?>" required>
                   </div>
                 </div>
+
               </div>
             </div>
 
             <!-- Coluna de tipo -->
             <div class="col-md-3">
               <div class="card">
-                <label class="mb-2">Categoria</label>    
+                <label class="mb-2">Categoria</label>
                 <div class="form-check form-switch mb-3">
                   <input class="form-check-input mt-2" type="checkbox" id="locador" name="locador">
                   <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('locador')">Locador</a>
-                </div>            
+                </div>
                 <div class="form-check form-switch mb-3">
                   <input class="form-check-input mt-2" type="checkbox" id="locatario" name="locatario">
                   <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('locatario')">Locatário</a>
-                </div>            
+                </div>
                 <div class="form-check form-switch mb-3">
                   <input class="form-check-input mt-2" type="checkbox" id="fiador" name="fiador">
                   <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('fiador')">Fiador</a>
@@ -173,7 +180,7 @@ include 'navbar.php';
       <!-- rodape -->
       <footer class="py-3">
         <div class="container">
-          <button type="submit" class="btn btn_salvar">Salvar</button>
+          <button type="submit" class="btn btn_salvar">Alterar</button>
         </div>
       </footer>
       <!-- fim do form -->
@@ -187,7 +194,7 @@ include 'navbar.php';
     // ativar o switch
     function toggleSwitch(id) {
       var checkbox = document.getElementById(id);
-      checkbox.checked = !checkbox.checked;  
+      checkbox.checked = !checkbox.checked;
     }
   </script>
 
