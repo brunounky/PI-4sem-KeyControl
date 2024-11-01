@@ -1,8 +1,8 @@
 <?php
 require '../controllers/db_conexao.php';
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'cadastrar') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'atualizar') {
+    $id_imovel = $_POST['id'] ?? null;
     $cpf_cnpj_proprietario = $_POST['cpf_cnpj_proprietario'] ?? null;
     $tipo_imovel = $_POST['tipo_imovel'] ?? null;
     $quantidade_quartos = $_POST['quantidade_quartos'] ?? null;
@@ -24,10 +24,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $taxa_venda = $_POST['taxa_venda'] ?? null;
     $complemento = $_POST['complemento'] ?? null;
 
+    $stmt = $pdo->prepare("UPDATE cadastro_imovel SET 
+                                cpf_cnpj_proprietario = :cpf_cnpj_proprietario,
+                                tipo_imovel = :tipo_imovel,
+                                quantidade_quartos = :quantidade_quartos,
+                                quantidade_banheiros = :quantidade_banheiros,
+                                quantidade_vagas = :quantidade_vagas,
+                                area_total = :area_total,
+                                cep = :cep,
+                                rua = :rua,
+                                numero = :numero,
+                                bairro = :bairro,
+                                cidade = :cidade,
+                                estado = :estado,
+                                pais = :pais,
+                                registro_imovel = :registro_imovel,
+                                registro_agua = :registro_agua,
+                                valor_aluguel = :valor_aluguel,
+                                taxa_aluguel = :taxa_aluguel,
+                                valor_venda = :valor_venda,
+                                taxa_venda = :taxa_venda,
+                                complemento = :complemento
+                            WHERE id = :id_imovel");
 
-    $stmt = $pdo->prepare("INSERT INTO cadastro_imovel (cpf_cnpj_proprietario, tipo_imovel, quantidade_quartos, quantidade_banheiros, quantidade_vagas, area_total, cep, rua, numero, bairro, cidade, estado, pais, registro_imovel, registro_agua, valor_aluguel, taxa_aluguel, valor_venda, taxa_venda, complemento) 
-                            VALUES (:cpf_cnpj_proprietario, :tipo_imovel, :quantidade_quartos, :quantidade_banheiros, :quantidade_vagas, :area_total, :cep, :rua, :numero, :bairro, :cidade, :estado, :pais, :registro_imovel, :registro_agua, :valor_aluguel, :taxa_aluguel, :valor_venda, :taxa_venda, :complemento)");
-
+    $stmt->bindParam(':id_imovel', $id_imovel);
     $stmt->bindParam(':cpf_cnpj_proprietario', $cpf_cnpj_proprietario);
     $stmt->bindParam(':tipo_imovel', $tipo_imovel);
     $stmt->bindParam(':quantidade_quartos', $quantidade_quartos);
@@ -53,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         header("Location: ../../views/lista_imovel.php");
         exit();
     } else {
-        echo "Erro ao cadastrar imóvel: " . $stmt->errorInfo()[2];
+        echo "Erro ao atualizar imóvel: " . $stmt->errorInfo()[2];
     }
 }
 ?>
