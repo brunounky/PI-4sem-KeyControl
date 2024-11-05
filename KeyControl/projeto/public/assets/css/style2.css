@@ -96,16 +96,22 @@ input.form-control {
 
 form .btn_custom {
     width: 70%;
-    background-color: #C4DF16;
+    background-color: #1463AC;
     color: white;
 }
 
 form .btn_custom:hover {
-    background-color: #93A60F; 
+    background-color: #8b98bc; 
+    color: white;
 }
 
 .active_button{
-    background-color: #93A60F !important; 
+    background-color: #C4DF16 !important; 
+}
+
+.form-check-input:checked {
+  background-color: #C4DF16 !important;
+  border-color: #3333335a !important;
 }
 
 /* rodape salvar */ 
