@@ -60,9 +60,10 @@ include '../app/controllers/filtros_pessoas.php';
                      <label for="categoria" class="mb-2">Categoria</label>
                      <select class="form-control" name="categoria" id="categoria" onchange="checkSelection('categoria')">
                         <option value="" disabled <?= !isset($_POST['categoria']) ? 'selected' : '' ?>>Selecione a Categoria</option>
-                        <option value="locador" <?= ($_POST['categoria'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Locador</option>
-                        <option value="locatario" <?= ($_POST['categoria'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Locatário</option>
-                        <option value="fiador" <?= ($_POST['categoria'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Fiador</option>
+                        <option value="locador" <?= ($_POST['categoria'] ?? '') == 'locador' ? 'selected' : '' ?>>Locador</option>
+                        <option value="locatario" <?= ($_POST['categoria'] ?? '') == 'locatario' ? 'selected' : '' ?>>Locatário</option>
+                        <option value="fiador" <?= ($_POST['categoria'] ?? '') == 'fiador' ? 'selected' : '' ?>>Fiador</option>
+                        <option value="comprador" <?= ($_POST['categoria'] ?? '') == 'comprador' ? 'selected' : '' ?>>Comprador</option>
                      </select>
                      <span class="position-absolute" style="right: 25px; top: 40px; cursor: pointer; color: red; display: <?= isset($_POST['categoria']) && $_POST['categoria'] != '' ? 'block' : 'none' ?>;" data-select="categoria" onclick="removeSelected('categoria')">x</span>
                   </div>
@@ -106,6 +107,9 @@ include '../app/controllers/filtros_pessoas.php';
                         }
                         if ($row['fiador']) {
                            $categorias[] = 'Fiador';
+                        }
+                        if ($row['comprador']) {
+                           $categorias[] = 'Comprador';
                         }
                         $categoriaTexto = implode(', ', $categorias);
 

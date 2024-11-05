@@ -37,7 +37,7 @@ function buildQuery($id, $nome, $telefone, $email, $estado_civil, $cidade, $cate
     }
 
     if (!empty($categoria)) {
-        $allowedCategories = ['locador', 'locatario', 'fiador'];
+        $allowedCategories = ['locador', 'locatario', 'fiador', 'comprador'];
         if (in_array($categoria, $allowedCategories)) {
             $sql .= " AND $categoria = 1";
         } else {
