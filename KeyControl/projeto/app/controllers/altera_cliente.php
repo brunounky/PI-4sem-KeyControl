@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $locador = isset($_POST['locador']) ? 1 : 0;
     $locatario = isset($_POST['locatario']) ? 1 : 0;
     $fiador = isset($_POST['fiador']) ? 1 : 0;
+    $comprador = isset($_POST['comprador']) ? 1 : 0;
 
     if ($id === null) {
         echo "ID do cliente não fornecido.";
@@ -50,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                             locador = :locador, 
                             locatario = :locatario, 
                             fiador = :fiador 
+                            comprador = :comprador 
                           WHERE id = :id");
 
     $stmt->bindParam(':id', $id);
@@ -73,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt->bindParam(':locador', $locador);
     $stmt->bindParam(':locatario', $locatario);
     $stmt->bindParam(':fiador', $fiador);
+    $stmt->bindParam(':comprador', $comprador);
 
     if ($stmt->execute()) {
         header("Location: ../../views/lista_cliente.php");
