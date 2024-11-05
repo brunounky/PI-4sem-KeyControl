@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                             pais = :pais, 
                             locador = :locador, 
                             locatario = :locatario, 
-                            fiador = :fiador 
+                            fiador = :fiador,
                             comprador = :comprador 
                           WHERE id = :id");
 
