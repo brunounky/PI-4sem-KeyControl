@@ -7,8 +7,7 @@
    }
    
    include_once '../app/controllers/filtros_imovel.php';
-?>
-
+   ?>
 <!DOCTYPE html>
 <html lang="pt-br">
    <head>
@@ -48,7 +47,7 @@
                      </div>
                      <div class="col-md-2">
                         <label for="cep" class="form-label">CEP</label>
-                        <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>" pattern="\d{5}-\d{3}" title="Formato: 12345-678" maxlength="9">
+                        <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>" pattern="\d{5}-\d{3}" placeholder="00000-000" title="Formato: 12345-678" maxlength="9">
                      </div>
                      <div class="col-md-2">
                         <label for="cidade" class="form-label">Cidade</label>
@@ -58,7 +57,7 @@
                         <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
                         <div class="position-relative">
                            <select class="form-control" name="tipo_imovel" id="tipo_imovel" onchange="checkSelection('tipo_imovel')">
-                              <option value="" disabled <?= !isset($_POST['tipo_imovel']) ? 'selected' : '' ?>>Selecione um Tipo</option>
+                              <option value="" disabled <?= !isset($_POST['tipo_imovel']) ? 'selected' : '' ?>>Escolha um Tipo</option>
                               <option value="apartamento" <?= ($_POST['tipo_imovel'] ?? '') == 'apartamento' ? 'selected' : '' ?>>Apartamento</option>
                               <option value="casa" <?= ($_POST['tipo_imovel'] ?? '') == 'casa' ? 'selected' : '' ?>>Casa</option>
                               <option value="comercial" <?= ($_POST['tipo_imovel'] ?? '') == 'comercial' ? 'selected' : '' ?>>Comercial</option>
@@ -110,7 +109,7 @@
                                         <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
                                         <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
                                         <td>
-                                            <button class='btn' onclick=\"window.location.href='../views/modifica_imovel.php?id=" . htmlspecialchars($row['id']) . "'\">
+                                          <button class='btn' onclick=\"window.location.href='../views/modifica_imovel.php?id=" . htmlspecialchars($row['id']) . "'\">
                                           <i class='bi bi-pencil-square'></i>
                                           </button>
                                             <button class='btn' onclick='toggleSubMenu(this)'>
@@ -142,6 +141,7 @@
          </div>
       </section>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="../public/assets/js/consultacep.js"></script>
       <script src="../public/assets/js/submenu.js"></script>
    </body>
 </html>
