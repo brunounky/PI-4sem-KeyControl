@@ -148,9 +148,9 @@ include 'navbar.php';
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Valor do aluguel</p>
-                                                    <input type="text" placeholder="Digite o valor do aluguel" class="form-control mb-3" id="valor_aluguel">
+                                                    <input type="text" placeholder="Digite o valor do aluguel" class="form-control mb-3" id="valor_aluguel" value="<?= htmlspecialchars($imovel['valor_aluguel']) ?>">
                                                     <p>Taxa administrativa</p>
-                                                    <input type="float" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_aluguel">
+                                                    <input type="float" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_aluguel" value="<?= htmlspecialchars($imovel['taxa_aluguel']) ?>">
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -179,9 +179,9 @@ include 'navbar.php';
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Valor do imóvel</p>
-                                                    <input type="text" placeholder="Digite o valor do imóvel" class="form-control mb-3" id="valor_venda">
+                                                    <input type="text" placeholder="Digite o valor do imóvel" class="form-control mb-3" id="valor_venda" value="<?= htmlspecialchars($imovel['valor_venda']) ?>">
                                                     <p>Taxa administrativa</p>
-                                                    <input type="number" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_venda">
+                                                    <input type="number" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_venda" value="<?= htmlspecialchars($imovel['taxa_venda']) ?>">
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

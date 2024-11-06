@@ -154,19 +154,19 @@ include 'navbar.php';
               <div class="card">
                 <label class="mb-2">Categoria</label>
                 <div class="form-check form-switch mb-3">
-                  <input class="form-check-input mt-2" type="checkbox" id="locador" name="locador">
+                  <input class="form-check-input mt-2" type="checkbox" id="locador" name="locador" <?= $cliente['locador'] ? 'checked' : '' ?>>
                   <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('locador')">Locador</a>
                 </div>
                 <div class="form-check form-switch mb-3">
-                  <input class="form-check-input mt-2" type="checkbox" id="locatario" name="locatario">
+                  <input class="form-check-input mt-2" type="checkbox" id="locatario" name="locatario" <?= $cliente['locatario'] ? 'checked' : '' ?>>
                   <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('locatario')">Locatário</a>
                 </div>
                 <div class="form-check form-switch mb-3">
-                  <input class="form-check-input mt-2" type="checkbox" id="fiador" name="fiador">
+                  <input class="form-check-input mt-2" type="checkbox" id="fiador" name="fiador" <?= $cliente['fiador'] ? 'checked' : '' ?>>
                   <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('fiador')">Fiador</a>
                 </div>
                 <div class="form-check form-switch">
-                  <input class="form-check-input mt-2" type="checkbox" id="comprador" name="comprador">
+                  <input class="form-check-input mt-2" type="checkbox" id="comprador" name="comprador" <?= $cliente['comprador'] ? 'checked' : '' ?>>
                   <a href="#" class="btn btn_custom form-check-label" onclick="toggleSwitch('comprador')">Comprador</a>
                 </div>
               </div>

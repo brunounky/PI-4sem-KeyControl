@@ -116,9 +116,9 @@
                         </div>
                         <div class="modal-body">
                           <p>Valor do aluguel</p>
-                          <input type="text" placeholder="Digite o valor do aluguel" class="form-control mb-3" id="valor_aluguel">
+                          <input type="text" placeholder="Digite o valor do aluguel" name="valor_aluguel" class="form-control mb-3" id="valor_aluguel">
                           <p>Taxa administrativa</p>
-                          <input type="float" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_aluguel">
+                          <input type="float" placeholder="Digite a porcentagem da taxa" name="taxa_aluguel" class="form-control" id="taxa_aluguel">
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -147,11 +147,11 @@
                         </div>
                         <div class="modal-body">
                           <p>Valor do imóvel</p>
-                          <input type="text" placeholder="Digite o valor do imóvel" class="form-control mb-3" id="valor_venda">
+                          <input type="text" placeholder="Digite o valor do imóvel" name="valor_venda" class="form-control mb-3" id="valor_venda">
                           <p>Taxa administrativa</p>
-                          <input type="number" placeholder="Digite a porcentagem da taxa" class="form-control" id="taxa_venda">
+                          <input type="number" placeholder="Digite a porcentagem da taxa" name="taxa_venda" class="form-control" id="taxa_venda">
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer"> 
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                           <button type="button" class="btn btn_salvar" data-bs-dismiss="modal">Salvar</button>
                         </div>
