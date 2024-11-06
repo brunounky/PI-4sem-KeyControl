@@ -22,7 +22,10 @@ $dompdf = new Dompdf($options);
 
 $id = $_GET['id'];
 
-$query = "SELECT * FROM cadastro_cliente WHERE id = ?";
+$query = "SELECT * 
+          FROM cadastro_cliente c
+          INNER JOIN imobiliaria i ON c.id_imobiliaria = i.cnpj
+          WHERE c.id = ?";
 $stmt = $pdo->prepare($query);
 $stmt->execute([$id]);
 
@@ -33,8 +36,13 @@ if ($cliente) {
         <h1>Ficha Cadastral do Cliente</h1>
 
         <h2>Dados da Imobiliaria</h2>
+        <p><strong>CNPJ da Imobiliaria:</strong> ' . htmlspecialchars($cliente['id_imobiliaria']) . '</p>
+        <p><strong>Nome Fantasia:</strong> ' . htmlspecialchars($cliente['nome_fantasia']) . '</p>
+        <p><strong>Endereço:</strong> ' . htmlspecialchars($cliente['telefoneimobiliaria']) . '</p>
+        <p><strong>Email:</strong> ' . htmlspecialchars($cliente['emailimobiliaria']) . '</p>
 
-        <p>________________________________________________________________________________</p>
+
+        <p>________________________________________________________________________</p>
 
         <h2>Dados do cliente</h2>
         <p><strong>ID:</strong> ' . htmlspecialchars($cliente['id']) . '</p>
