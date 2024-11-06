@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/11/2024 às 13:36
+-- Tempo de geração: 06/11/2024 às 05:17
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -52,6 +52,13 @@ CREATE TABLE `cadastro_cliente` (
   `cpf_cnpj` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `cadastro_cliente`
+--
+
+INSERT INTO `cadastro_cliente` (`id`, `nome`, `rg_ie`, `data_nascimento_fundacao`, `telefone`, `email`, `estado_civil`, `nacionalidade`, `profissao`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `locador`, `locatario`, `fiador`, `comprador`, `complemento`, `cpf_cnpj`) VALUES
+(9, '1', '1', '0001-01-01', '1', '1@g.com', '1', '1', '1', '13506180', 'Rua 10 MP', '1', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', 1, 0, 1, 0, '1', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -87,10 +94,9 @@ CREATE TABLE `cadastro_imovel` (
 --
 
 INSERT INTO `cadastro_imovel` (`id`, `cpf_cnpj_proprietario`, `tipo_imovel`, `quantidade_quartos`, `quantidade_banheiros`, `quantidade_vagas`, `area_total`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `registro_imovel`, `registro_agua`, `valor_aluguel`, `taxa_aluguel`, `valor_venda`, `taxa_venda`, `complemento`) VALUES
-(6, '47169254808', 'apartamento', NULL, NULL, NULL, NULL, '13506180', NULL, '376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1'),
-(7, '47169254808', 'comercial', NULL, NULL, NULL, NULL, '13506180', NULL, '376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'www'),
-(8, '47169254808', 'comercial', NULL, NULL, NULL, NULL, '13506180', NULL, '376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'www'),
-(9, '47169254808', 'comercial', NULL, NULL, NULL, NULL, '13506180', NULL, '376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'www');
+(1, '1', 'apartamento', 2, 1, 2, 1.00, '13506180', 'Rua 10 MP', '11', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', '1', '1', NULL, NULL, NULL, NULL, 'q'),
+(19, '1', 'casa', 1, 1, 1, 1.00, '13506180', '1', '1', '1', 'Rio Claro', 'SP', 'Brasil', '1', '111', 11, 11, 0, 0, '1'),
+(21, '1', 'apartamento', 1, 1, 1, 1.00, '13506188', 'Rua 18 MP', '1', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', '1', '1', NULL, NULL, NULL, NULL, '1111');
 
 -- --------------------------------------------------------
 
@@ -347,17 +353,19 @@ CREATE TABLE `usuarios` (
   `estado` varchar(100) DEFAULT NULL,
   `pais` varchar(100) DEFAULT NULL,
   `senha` varchar(255) NOT NULL,
-  `cnpj` varchar(14) DEFAULT NULL
+  `cnpj` varchar(14) DEFAULT NULL,
+  `reset_token` varchar(255) DEFAULT NULL,
+  `token_expiry` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `data_nascimento`, `estado_civil`, `cpf`, `rg`, `email`, `cargo`, `nacionalidade`, `telefone`, `telefone_reserva`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `senha`, `cnpj`) VALUES
-(11, 'Bruno Campagnol de Oliveira', NULL, 'solteiro', '47169254808', '576950853', 'bruno@unky.com', 'teste', 'BRASILEIRO', '19971595745', '111423423', '13506189', 'qqqq', '2', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'brasilll', '$2y$10$DTQ1Wl.15YfCJB0t7JE2yuZzKohESoyFdlBbHsrbtctK4VN.AAfFW', '73943371000180'),
-(12, 'Jorge Lucianetti', NULL, NULL, NULL, NULL, 'jorginho@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WIPljcKbX0r6rjfcylbQtehtqVkJqZKwakoACEXpptO1l/.HzdSCK', '86779530000103'),
-(13, 'Maria Suzarth', NULL, NULL, NULL, NULL, 'maria@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$zlM5YvZBm5HWRDqOghalF.Ovjeaz3PlTgeZKrwQRUnOnH5UW1Yfcu', '30009388000152');
+INSERT INTO `usuarios` (`id`, `nome`, `data_nascimento`, `estado_civil`, `cpf`, `rg`, `email`, `cargo`, `nacionalidade`, `telefone`, `telefone_reserva`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `senha`, `cnpj`, `reset_token`, `token_expiry`) VALUES
+(11, 'Bruno Campagnol de Oliveira', NULL, 'solteiro', '47169254808', '576950853', 'bruno_unky@hotmail.com', 'teste', 'BRASILEIRO', '19971595745', '111423423', '13506189', 'qqqq', '2', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'brasilll', '$2y$10$DTQ1Wl.15YfCJB0t7JE2yuZzKohESoyFdlBbHsrbtctK4VN.AAfFW', '73943371000180', '3e604d82dfa9aceb76708d3dcdbf9a3e', '2024-11-06 05:48:17'),
+(12, 'Jorge Lucianetti', NULL, NULL, NULL, NULL, 'jorginho@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WIPljcKbX0r6rjfcylbQtehtqVkJqZKwakoACEXpptO1l/.HzdSCK', '86779530000103', NULL, NULL),
+(13, 'Maria Suzarth', NULL, NULL, NULL, NULL, 'maria@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$zlM5YvZBm5HWRDqOghalF.Ovjeaz3PlTgeZKrwQRUnOnH5UW1Yfcu', '30009388000152', NULL, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -374,8 +382,7 @@ ALTER TABLE `cadastro_cliente`
 -- Índices de tabela `cadastro_imovel`
 --
 ALTER TABLE `cadastro_imovel`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `registro_imovel` (`registro_imovel`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `contrato_caucao`
@@ -421,13 +428,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `cadastro_cliente`
 --
 ALTER TABLE `cadastro_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `cadastro_imovel`
 --
 ALTER TABLE `cadastro_imovel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `contrato_caucao`
