@@ -1,3 +1,42 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header("Location: ../app/controllers/verifica_login.php");
+  exit();
+}
+
+include '../app/controllers/db_conexao.php';
+
+if (!isset($_GET['id'])) {
+    echo "ID do contrato não fornecido.";
+    exit();
+}
+
+$id = $_GET['id'];
+
+try {
+    $stmt = $pdo->prepare("
+    SELECT *  FROM contrato_venda
+    WHERE id = :id
+  ");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $imovel = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$imovel) {
+        echo "Imóvel não encontrado.";
+        exit();
+    }
+} catch (PDOException $e) {
+    echo "Erro ao buscar os dados: " . $e->getMessage();
+    exit();
+}
+
+include 'navbar.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -13,32 +52,17 @@
   <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
-
   <title>Novo contrato de Venda</title>
 </head>
 
-<body>w
-
-  <?php
-  session_start();
-
-  if (!isset($_SESSION['user_id'])) {
-    header("Location: ../app/controllers/verifica_login.php");
-    exit();
-  }
-
-  include 'navbar.php';
-
-  ?>
-
+<body>
   <section id="contrato_aluguel_caucao">
     <!-- inicio do form -->
-    <form action="../app/controllers/altera_cliente.php" method="post">
-      <input type="hidden" name="id" value="<?= htmlspecialchars($cliente['id']) ?>">
-      <input type="hidden" name="action" value="atualizar">
+    <form action="../app/controllers/contrato_venda.php" method="post">
+      <input type="hidden" name="action" value="cadastrar">
       <div class="container">
         <div class="row">
-          <h2>Contrato de venda</h2>
+          <h2>Alterar Contrato de venda</h2>
 
           <div class="row">
             <!-- Comprador -->
