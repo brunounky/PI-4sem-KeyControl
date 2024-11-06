@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/11/2024 às 05:17
+-- Tempo de geração: 06/11/2024 às 22:01
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -49,15 +49,17 @@ CREATE TABLE `cadastro_cliente` (
   `fiador` tinyint(1) DEFAULT 0,
   `comprador` tinyint(1) DEFAULT 0,
   `complemento` varchar(255) DEFAULT NULL,
-  `cpf_cnpj` varchar(20) NOT NULL
+  `cpf_cnpj` varchar(20) NOT NULL,
+  `id_imobiliaria` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `cadastro_cliente`
 --
 
-INSERT INTO `cadastro_cliente` (`id`, `nome`, `rg_ie`, `data_nascimento_fundacao`, `telefone`, `email`, `estado_civil`, `nacionalidade`, `profissao`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `locador`, `locatario`, `fiador`, `comprador`, `complemento`, `cpf_cnpj`) VALUES
-(9, '1', '1', '0001-01-01', '1', '1@g.com', '1', '1', '1', '13506180', 'Rua 10 MP', '1', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', 1, 0, 1, 0, '1', '1');
+INSERT INTO `cadastro_cliente` (`id`, `nome`, `rg_ie`, `data_nascimento_fundacao`, `telefone`, `email`, `estado_civil`, `nacionalidade`, `profissao`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `locador`, `locatario`, `fiador`, `comprador`, `complemento`, `cpf_cnpj`, `id_imobiliaria`) VALUES
+(16, 'vitoria lucianetti dos santos', '44', '2024-12-07', '19996886205', '00001127729627sp@al.educacao.sp.gov.bd', 'SP', '4', '4', '13506-560', 'Rua 16 A', '16', 'Vila Nova', 'Rio Claro', 'SP', 'Brasil', 0, 0, 0, 0, '4', '54', '73943371000180'),
+(17, 'Guilherme Ribeiro Bonatti', '640022947', '2005-03-26', '19996236443', 'guilhermeribeirobonatti@gmail.com', 'Solteiro', 'Brasileiro', 'Operador de caixa', '13505493', 'Avenida M 49', '2430', 'Jardim Residencial São José', 'Rio Claro', 'SP', 'Brasil', 0, 0, 0, 0, 'Portao cinza', '39911823865', '73943371000180');
 
 -- --------------------------------------------------------
 
@@ -428,7 +430,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `cadastro_cliente`
 --
 ALTER TABLE `cadastro_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `cadastro_imovel`
