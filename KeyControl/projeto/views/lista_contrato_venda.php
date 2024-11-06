@@ -60,18 +60,18 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                             <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_imovel']) && $_POST['tipo_imovel'] != '' ? 'block' : 'none' ?>;" data-select="tipo_imovel" onclick="removeSelected('tipo_imovel')">x</span>
                         </div>
                         <div class="col-sm-2">
-                            <label for="forma_pagamento" class="mb-2">Tipo Pagamento</label>
-                            <select class="form-control mb-3" name="forma_pagamento" id="forma_pagamento">
-                                <option value="" disabled <?= !isset($_POST['forma_pagamento']) ? 'selected' : '' ?>>Escolha um Pagamento</option>
-                                <option value="financiamento" <?= ($_POST['forma_pagamento'] ?? '') == 'financiamento' ? 'selected' : '' ?>>Financiamento</option>
-                                <option value="dinheiro" <?= ($_POST['forma_pagamento'] ?? '') == 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
-                                <option value="boleto" <?= ($_POST['forma_pagamento'] ?? '') == 'boleto' ? 'selected' : '' ?>>Boleto</option>
-                                <option value="pix" <?= ($_POST['forma_pagamento'] ?? '') == 'pix' ? 'selected' : '' ?>>PIX</option>
-                                <option value="transferencia" <?= ($_POST['forma_pagamento'] ?? '') == 'transferencia' ? 'selected' : '' ?>>Transferência</option>
-                                <option value="cartao_credito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : '' ?>>Cartão de crédito</option>
-                                <option value="cartao_debito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' : '' ?>>Cartão de débito</option>
+                            <label for="contrato_forma_pagamento" class="mb-2">Tipo Pagamento</label>
+                            <select class="form-control mb-3" name="contrato_forma_pagamento" id="contrato_forma_pagamento">
+                                <option value="" disabled <?= !isset($_POST['contrato_forma_pagamento']) ? 'selected' : '' ?>>Escolha um Pagamento</option>
+                                <option value="financiamento" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'financiamento' ? 'selected' : '' ?>>Financiamento</option>
+                                <option value="dinheiro" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
+                                <option value="boleto" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'boleto' ? 'selected' : '' ?>>Boleto</option>
+                                <option value="pix" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'pix' ? 'selected' : '' ?>>PIX</option>
+                                <option value="transferencia" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'transferencia' ? 'selected' : '' ?>>Transferência</option>
+                                <option value="cartao_credito" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : '' ?>>Cartão de crédito</option>
+                                <option value="cartao_debito" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' : '' ?>>Cartão de débito</option>
                             </select>
-                            <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['forma_pagamento']) && $_POST['forma_pagamento'] != '' ? 'block' : 'none' ?>;" data-select="forma_pagamento" onclick="removeSelected('forma_pagamento')">x</span>
+                            <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['contrato_forma_pagamento']) && $_POST['contrato_forma_pagamento'] != '' ? 'block' : 'none' ?>;" data-select="contrato_forma_pagamento" onclick="removeSelected('contrato_forma_pagamento')">x</span>
                         </div>
                         <div class="col-md-1">
                             <button class="btn btn-buscar" type="submit">
@@ -92,8 +92,8 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                             <th>ID Contrato</th>
                             <th>Comprador</th>
                             <th>Data Vigência</th>
-                            <th>Data Pagamento</th>
-                            <th>Forma Pagamento</th>
+                            <th>Contrato Vigência</th>
+                            <th>Contrato Vencimento</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -104,29 +104,29 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                             echo "<tr>
                                     <td>" . htmlspecialchars($row['contrato_id'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['comprador_nome'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['data_vigencia'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['data_pagamento'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['contrato_vigencia'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['contrato_dia_vencimento'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['contrato_forma_pagamento'] ?? '-') . "</td>
                                     <td>
-                                         <button class='btn' onclick='editRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                             <i class='bi bi-pencil-square'></i>
-                                         </button>
-                                         <button class='btn' onclick='toggleSubMenu(this)'>
-                                             <i class='bi bi-chevron-down'></i>
-                                         </button>
-                                         <div class='submenu' style='display: none;'>
-                                             <div class='submenu-options'>
-                                                 <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                     <i class='bi bi-printer'></i> Imprimir
-                                                 </button>
-                                                 <button class='email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
-                                                     <i class='bi bi-envelope'></i> E-mail
-                                                 </button>
-                                                 <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                     <i class='bi bi-trash'></i> Excluir
-                                                 </button>
-                                             </div>
-                                         </div>
+                                        <button class='btn' title='Editar' onclick='editRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
+                                            <i class='bi bi-pencil-square'></i>
+                                        </button>
+                                        <button class='btn' title='Mostrar Opções' onclick='toggleSubMenu(this)'>
+                                            <i class='bi bi-chevron-down'></i>
+                                        </button>
+                                        <div class='submenu hidden'>
+                                            <div class='submenu-options'>
+                                                <button class='imprimir' title='Imprimir' onclick='printInfo(" . htmlspecialchars($row['contrato_id']) . ")'>
+                                                    <i class='bi bi-printer'></i> Imprimir
+                                                </button>
+                                                <button class='email' title='Enviar E-mail' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
+                                                    <i class='bi bi-envelope'></i> E-mail
+                                                </button>
+                                                <button class='excluir' title='Excluir' onclick='deleteRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
+                                                    <i class='bi bi-trash'></i> Excluir
+                                                </button>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>";
                         }
