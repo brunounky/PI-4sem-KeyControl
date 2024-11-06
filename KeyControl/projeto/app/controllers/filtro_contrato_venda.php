@@ -6,27 +6,26 @@ $result = null;
 function buildQuery($contrato_id, $nome, $contrato_vigencia, $contrato_dia_vencimento, $tipo_imovel, $contrato_forma_pagamento) {
     // Inicia a query com os JOINs
     $sql = "
-   SELECT 
-     cv.id AS contrato_id,
-     cv.comprador_nome,
-     cc.nome AS comprador_nome_completo,
-     cc.cpf_cnpj AS comprador_cpf_cnpj,
-     ci.cpf_cnpj_proprietario AS cpf_cnpj_proprietario,
-     pc.nome AS nome_proprietario,
-     cv.contrato_vigencia, 
-     cv.contrato_dia_vencimento,
-     cv.contrato_forma_pagamento 
-
-    FROM 
-        contrato_venda cv
-    JOIN 
-        cadastro_cliente cc ON cv.comprador_cpf_cnpj = cc.cpf_cnpj 
-    JOIN 
-        cadastro_imovel ci ON cv.imovel_proprietario_cpf_cnpj = ci.cpf_cnpj_proprietario 
-    JOIN 
-        cadastro_cliente pc ON ci.cpf_cnpj_proprietario = pc.cpf_cnpj  
-    WHERE 
-        1=1";  // 1=1 para facilitar a adição de ANDs dinamicamente
+        SELECT DISTINCT 
+            cv.id AS contrato_id,
+            cv.comprador_nome,
+            cc.nome AS comprador_nome_completo,
+            cc.cpf_cnpj AS comprador_cpf_cnpj,
+            ci.cpf_cnpj_proprietario AS cpf_cnpj_proprietario,
+            pc.nome AS nome_proprietario,
+            cv.contrato_vigencia, 
+            cv.contrato_dia_vencimento,
+            cv.contrato_forma_pagamento
+        FROM 
+            contrato_venda cv
+        JOIN 
+            cadastro_cliente cc ON cv.comprador_cpf_cnpj = cc.cpf_cnpj 
+        JOIN 
+            cadastro_imovel ci ON cv.imovel_proprietario_cpf_cnpj = ci.cpf_cnpj_proprietario 
+        JOIN 
+            cadastro_cliente pc ON ci.cpf_cnpj_proprietario = pc.cpf_cnpj
+        WHERE 
+            1=1";
 
     // Condições dinâmicas
     if (!empty($contrato_id)) {
