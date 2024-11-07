@@ -1,5 +1,5 @@
 <?php
-// nao sei se esse arquivo pode ficar na pasta views
+// nao sei se esse arquivo pode ficar na pasta repports
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -45,8 +45,7 @@ if ($cliente) {
         <p>________________________________________________________________________</p>
 
         <h2>Dados do cliente</h2>
-        
-                <p><strong>ID:</strong> ' . htmlspecialchars($cliente['id']) . '</p>
+    
                 <p><strong>Nome:</strong> ' . htmlspecialchars($cliente['nome']) . '</p>
                 <p><strong>RG/IE:</strong> ' . htmlspecialchars($cliente['rg_ie']) . '</p>
                 <p><strong>Data de Nascimento/Fundação:</strong> ' . htmlspecialchars($cliente['data_nascimento_fundacao']) . '</p>

@@ -278,9 +278,6 @@ include 'navbar.php';
     });
 </script>
 
-
-
-
 </body>
 
 </html>

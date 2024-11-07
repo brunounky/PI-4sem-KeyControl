@@ -117,7 +117,7 @@
                                             </button>
                                             <div class='submenu' style='display: none;'>
                                                 <div class='submenu-options'>
-                                                    <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                                    <button class='imprimir' onclick='redirectToRelatorio(" . htmlspecialchars($row['id']) . ")'>
                                                         <i class='bi bi-printer'></i> Imprimir
                                                     </button>
                                                     <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
@@ -143,5 +143,17 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       <script src="../public/assets/js/consultacep.js"></script>
       <script src="../public/assets/js/submenu.js"></script>
+
+      <script>
+    function redirectToRelatorio(id) {
+        window.location.href = '../reports/relatorio_imovel.php?id=' + id;
+    }
+    function deleteRecord(id) {
+      if (confirm('Você realmente deseja excluir este cliente?')) {
+         window.location.href = '../app/controllers/apaga_imovel.php?id=' + id;
+      }
+   }
+</script>
+
    </body>
 </html>

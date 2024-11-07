@@ -1,7 +1,12 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../app/controllers/verifica_login.php");
+    exit();
+}
+
 require '../controllers/db_conexao.php';
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'cadastrar') {
     $cpf_cnpj_proprietario = $_POST['cpf_cnpj_proprietario'] ?? null;
     $tipo_imovel = $_POST['tipo_imovel'] ?? null;
@@ -24,9 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $taxa_venda = $_POST['taxa_venda'] ?? null;
     $complemento = $_POST['complemento'] ?? null;
 
+    $id_imobiliaria = $_SESSION['user_cnpj'];
 
-    $stmt = $pdo->prepare("INSERT INTO cadastro_imovel (cpf_cnpj_proprietario, tipo_imovel, quantidade_quartos, quantidade_banheiros, quantidade_vagas, area_total, cep, rua, numero, bairro, cidade, estado, pais, registro_imovel, registro_agua, valor_aluguel, taxa_aluguel, valor_venda, taxa_venda, complemento) 
-                            VALUES (:cpf_cnpj_proprietario, :tipo_imovel, :quantidade_quartos, :quantidade_banheiros, :quantidade_vagas, :area_total, :cep, :rua, :numero, :bairro, :cidade, :estado, :pais, :registro_imovel, :registro_agua, :valor_aluguel, :taxa_aluguel, :valor_venda, :taxa_venda, :complemento)");
+    $stmt = $pdo->prepare("INSERT INTO cadastro_imovel (cpf_cnpj_proprietario, tipo_imovel, quantidade_quartos, quantidade_banheiros, quantidade_vagas, area_total, cep, rua, numero, bairro, cidade, estado, pais, registro_imovel, registro_agua, valor_aluguel, taxa_aluguel, valor_venda, taxa_venda, complemento, id_imobiliaria) 
+                            VALUES (:cpf_cnpj_proprietario, :tipo_imovel, :quantidade_quartos, :quantidade_banheiros, :quantidade_vagas, :area_total, :cep, :rua, :numero, :bairro, :cidade, :estado, :pais, :registro_imovel, :registro_agua, :valor_aluguel, :taxa_aluguel, :valor_venda, :taxa_venda, :complemento, :id_imobiliaria)");
 
     $stmt->bindParam(':cpf_cnpj_proprietario', $cpf_cnpj_proprietario);
     $stmt->bindParam(':tipo_imovel', $tipo_imovel);
@@ -48,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt->bindParam(':valor_venda', $valor_venda);
     $stmt->bindParam(':taxa_venda', $taxa_venda);
     $stmt->bindParam(':complemento', $complemento);
+    $stmt->bindParam(':id_imobiliaria', $id_imobiliaria);
 
     if ($stmt->execute()) {
         header("Location: ../../views/lista_imovel.php");
