@@ -210,68 +210,75 @@ include 'navbar.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="../public/assets/js/consultacep.js"></script>
     <script>
-        function openModal(checkbox, modalId) {
-            // Marca o checkbox
-            checkbox.checked = true;
+    function openModal(checkbox, modalId) {
+        checkbox.checked = true;
 
-            // Verifica se o checkbox está marcado
-            if (checkbox.checked) {
-                const modal = new bootstrap.Modal(document.querySelector(modalId));
-                modal.show();
+        if (checkbox.checked) {
+            const modal = new bootstrap.Modal(document.querySelector(modalId));
+            modal.show();
 
-                // verificar os campos ao fechar o modal
-                document.querySelector(modalId).addEventListener('hidden.bs.modal', function() {
-                    let valorImovel = '';
-                    let taxaAdm = '';
+            document.querySelector(modalId).addEventListener('hidden.bs.modal', function() {
+                let valorImovel = '';
+                let taxaAdm = '';
 
-                    // Verifica os campos do modal
-                    if (modalId === '#venda_modal') {
-                        valorImovel = document.getElementById('valor_venda').value;
-                        taxaAdm = document.getElementById('taxa_venda').value;
-                    } else if (modalId === '#aluguel_modal') {
-                        valorImovel = document.getElementById('valor_aluguel').value;
-                        taxaAdm = document.getElementById('taxa_aluguel').value;
-                    }
+                if (modalId === '#venda_modal') {
+                    valorImovel = document.getElementById('valor_venda').value;
+                    taxaAdm = document.getElementById('taxa_venda').value;
+                } else if (modalId === '#aluguel_modal') {
+                    valorImovel = document.getElementById('valor_aluguel').value;
+                    taxaAdm = document.getElementById('taxa_aluguel').value;
+                }
 
-                    // Desmarcar o checkbox se os campos estiverem vazios
-                    if (!valorImovel && !taxaAdm) {
-                        checkbox.checked = false;
-                    }
-                });
-            }
+                if (!valorImovel || valorImovel == '0' && (!taxaAdm || taxaAdm == '0')) {
+                    checkbox.checked = false;
+                }
+            });
+        }
+    }
+
+    function resetModal(modalId, checkboxId) {
+        if (modalId === '#venda_modal') {
+            document.getElementById('valor_venda').value = '';
+            document.getElementById('taxa_venda').value = '';
+        } else if (modalId === '#aluguel_modal') {
+            document.getElementById('valor_aluguel').value = '';
+            document.getElementById('taxa_aluguel').value = '';
         }
 
-        // Função para limpar campos e desmarcar o checkbox
-        function resetModal(modalId, checkboxId) {
-            // Limpa os campos correspondentes ao modal
-            if (modalId === '#venda_modal') {
-                document.getElementById('valor_venda').value = '';
-                document.getElementById('taxa_venda').value = '';
-            } else if (modalId === '#aluguel_modal') {
-                document.getElementById('valor_aluguel').value = '';
-                document.getElementById('taxa_aluguel').value = '';
-            }
+        document.getElementById(checkboxId).checked = false;
+    }
 
-            // Desmarcar o checkbox
-            document.getElementById(checkboxId).checked = false;
+    document.addEventListener('DOMContentLoaded', function() {
+   
+        const valorVenda = document.getElementById('valor_venda').value;
+        const taxaVenda = document.getElementById('taxa_venda').value;
+        const valorAluguel = document.getElementById('valor_aluguel').value;
+        const taxaAluguel = document.getElementById('taxa_aluguel').value;
+
+        if (valorVenda && valorVenda != '0' || taxaVenda && taxaVenda != '0') {
+            document.getElementById('vendaCheckbox').checked = true;
         }
 
-        // Eevento de clique aos botões de fechar p/ limpar os campos e desmarcar o checkbox
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('#venda_modal .btn-close').addEventListener('click', function() {
-                resetModal('#venda_modal', 'vendaCheckbox');
-            });
-            document.querySelector('#venda_modal .btn-secondary').addEventListener('click', function() {
-                resetModal('#venda_modal', 'vendaCheckbox');
-            });
-            document.querySelector('#aluguel_modal .btn-close').addEventListener('click', function() {
-                resetModal('#aluguel_modal', 'aluguelCheckbox');
-            });
-            document.querySelector('#aluguel_modal .btn-secondary').addEventListener('click', function() {
-                resetModal('#aluguel_modal', 'aluguelCheckbox');
-            });
+        if (valorAluguel && valorAluguel != '0' || taxaAluguel && taxaAluguel != '0') {
+            document.getElementById('aluguelCheckbox').checked = true;
+        }
+
+        document.querySelector('#venda_modal .btn-close').addEventListener('click', function() {
+            resetModal('#venda_modal', 'vendaCheckbox');
         });
-    </script>
+        document.querySelector('#venda_modal .btn-secondary').addEventListener('click', function() {
+            resetModal('#venda_modal', 'vendaCheckbox');
+        });
+        document.querySelector('#aluguel_modal .btn-close').addEventListener('click', function() {
+            resetModal('#aluguel_modal', 'aluguelCheckbox');
+        });
+        document.querySelector('#aluguel_modal .btn-secondary').addEventListener('click', function() {
+            resetModal('#aluguel_modal', 'aluguelCheckbox');
+        });
+    });
+</script>
+
+
 
 
 </body>
