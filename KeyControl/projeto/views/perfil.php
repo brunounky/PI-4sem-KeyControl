@@ -129,7 +129,7 @@ include 'navbar.php';
       </form> 
       
 
-      <form action="../app/controllers/verifica_cliente.php" method="post">
+      <form action="../app/controllers/altera_senha_usuario.php" method="post">
         <input type="hidden" name="action" value="alterar_senha">
         <div class="row">
           <div class="col-md-3">
@@ -146,12 +146,12 @@ include 'navbar.php';
                   <input class="form-control mb-3" type="password" name="nova_senha" id="nova_senha" required>
                 </div>
                 <div class="col-sm-4">
-                  <label for="confirmar_nova_senha" class="mb-2">Confirmar Nova Senha</label>
-                  <input class="form-control mb-3" type="password" name="confirmar_nova_senha" id="confirmar_nova_senha" required>
+                  <label for="confirmar_senha" class="mb-2">Confirmar Nova Senha</label>
+                  <input class="form-control mb-3" type="password" name="confirmar_senha" id="confirmar_senha" required>
                 </div>
-              </div>
-              <div class="container">
+                <div class="container">
                 <button type="submit" class="btn btn_salvar">Alterar Senha</button>
+              </div>
               </div>
             </div>
           </div>
@@ -163,6 +163,7 @@ include 'navbar.php';
 
   <script src="../public/assets/js/consultacep.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb5T5ggK+5l0VO4y7nVR+nQmvWn4U5jp6m3FQTVpM5VbcFz/m" crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
