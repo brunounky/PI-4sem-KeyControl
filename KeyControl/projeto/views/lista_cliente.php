@@ -159,8 +159,13 @@ include '../app/controllers/filtros_pessoas.php';
 
    <script>
     function redirectToRelatorio(id) {
-        window.location.href = '../views/relatorio_cliente.php?id=' + id;
+        window.location.href = '../reports/relatorio_cliente.php?id=' + id;
     }
+    function deleteRecord(id) {
+      if (confirm('Você realmente deseja excluir este cliente?')) {
+         window.location.href = '../app/controllers/apaga_cliente.php?id=' + id;
+      }
+   }
 </script>
 
 </body>
