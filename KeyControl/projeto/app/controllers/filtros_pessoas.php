@@ -2,7 +2,7 @@
 include '../app/controllers/db_conexao.php'; 
 $result = null; 
 
-function buildQuery($id, $nome, $telefone, $email, $estado_civil, $cidade, $categoria) {
+function buildQuery($id, $nome, $cpf_cnpj, $telefone, $estado_civil, $cidade, $categoria) {
     $sql = "SELECT * FROM cadastro_cliente WHERE 1=1"; 
     $params = []; 
 
@@ -16,14 +16,14 @@ function buildQuery($id, $nome, $telefone, $email, $estado_civil, $cidade, $cate
         $params['nome'] = "%$nome%"; 
     }
 
-    if (!empty($telefone)) {
-        $sql .= " AND telefone = :telefone";
-        $params['telefone'] = $telefone;
+    if (!empty($cpf_cnpj)) {
+        $sql .= " AND cpf_cnpj = :cpf_cnpj";
+        $params['cpf_cnpj'] = $cpf_cnpj;
     }
 
-    if (!empty($email)) {
-        $sql .= " AND email LIKE :email";
-        $params['email'] = "%$email%";
+    if (!empty($telefone)) {
+        $sql .= " AND telefone LIKE :telefone";
+        $params['telefone'] = "%$telefone%";
     }
 
     if (!empty($estado_civil)) {
@@ -50,13 +50,13 @@ function buildQuery($id, $nome, $telefone, $email, $estado_civil, $cidade, $cate
 
 $id = $_POST['id'] ?? '';
 $nome = $_POST['nome'] ?? '';
+$cpf_cnpj = $_POST['cpf_cnpj'] ?? '';
 $telefone = $_POST['telefone'] ?? '';
-$email = $_POST['email'] ?? '';
 $estado_civil = $_POST['estado_civil'] ?? '';
 $cidade = $_POST['cidade'] ?? '';
 $categoria = $_POST['categoria'] ?? ''; 
 
-list($sql, $params) = buildQuery($id, $nome, $telefone, $email, $estado_civil, $cidade, $categoria);
+list($sql, $params) = buildQuery($id, $nome, $cpf_cnpj, $telefone, $estado_civil, $cidade, $categoria);
 
 if (isset($pdo) && $pdo) {
     try {

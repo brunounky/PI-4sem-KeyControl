@@ -45,12 +45,12 @@ include '../app/controllers/filtros_pessoas.php';
                      <input type="text" id="nome" class="form-control" name="nome" value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
-                     <label for="telefone" class="form-label">Telefone</label>
-                     <input type="text" id="telefone" class="form-control" name="telefone" value="<?= htmlspecialchars($_POST['telefone'] ?? '') ?>">
+                     <label for="cpf_cnpj" class="form-label">CPF/CNPJ</label>
+                     <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="<?= htmlspecialchars($_POST['cpf_cnpj'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
-                     <label for="email" class="form-label">E-mail</label>
-                     <input type="text" id="email" class="form-control" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+                     <label for="telefone" class="form-label">Telefone</label></label>
+                     <input type="text" id="telefone" class="form-control" name="telefone" value="<?= htmlspecialchars($_POST['telefone'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="estado_civil" class="form-label">Estado Civil</label>
@@ -117,6 +117,7 @@ include '../app/controllers/filtros_pessoas.php';
                                      <td>" . htmlspecialchars($row['id']) . "</td>
                                      <td>" . htmlspecialchars($row['nome']) . "</td>
                                      <td>" . htmlspecialchars($row['telefone']) . "</td>
+                                    <td>" . htmlspecialchars($row['telefone']) . "</td>
                                      <td>" . htmlspecialchars($row['email']) . "</td>
                                      <td>" . htmlspecialchars(substr($row['bairro'], 0, 10) . (strlen($row['bairro']) > 10 ? '...' : '')) . "</td>
                                      <td>" . htmlspecialchars($row['cidade']) . "</td>
