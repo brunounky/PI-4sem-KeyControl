@@ -4,7 +4,6 @@ include '../app/controllers/db_conexao.php';
 $result = null; 
 
 function buildQuery($contrato_id, $nome, $contrato_vigencia, $contrato_dia_vencimento, $tipo_imovel, $contrato_forma_pagamento) {
-    // Inicia a query com os JOINs
     $sql = "
         SELECT DISTINCT 
             cv.id AS contrato_id,
@@ -27,7 +26,6 @@ function buildQuery($contrato_id, $nome, $contrato_vigencia, $contrato_dia_venci
         WHERE 
             1=1";
 
-    // Condições dinâmicas
     if (!empty($contrato_id)) {
         $sql .= " AND cv.id = :contrato_id"; 
     }
@@ -47,7 +45,6 @@ function buildQuery($contrato_id, $nome, $contrato_vigencia, $contrato_dia_venci
     return $sql;
 }
 
-// Coleta os dados do POST
 $contrato_id = $_POST['contrato_id'] ?? '';
 $nome = $_POST['nome'] ?? '';
 $contrato_vigencia = $_POST['contrato_vigencia'] ?? '';
@@ -55,7 +52,6 @@ $contrato_dia_vencimento = $_POST['contrato_dia_vencimento'] ?? '';
 $tipo_imovel = $_POST['tipo_imovel'] ?? '';
 $contrato_forma_pagamento = $_POST['contrato_forma_pagamento'] ?? '';
 
-// Escapando os dados de entrada
 $contrato_id = htmlspecialchars($contrato_id);
 $nome = htmlspecialchars($nome);
 $contrato_vigencia = htmlspecialchars($contrato_vigencia);
@@ -63,19 +59,15 @@ $contrato_dia_vencimento = htmlspecialchars($contrato_dia_vencimento);
 $tipo_imovel = htmlspecialchars($tipo_imovel);
 $contrato_forma_pagamento = htmlspecialchars($contrato_forma_pagamento);
 
-// Constrói a query
 $sql = buildQuery($contrato_id, $nome, $contrato_vigencia,$contrato_dia_vencimento, $tipo_imovel, $contrato_forma_pagamento);
 
 try {
-    // Prepara a consulta SQL
     $stmt = $pdo->prepare($sql);
-
-    // Associa os parâmetros dinamicamente
     if (!empty($contrato_id)) {
         $stmt->bindParam(':contrato_id', $contrato_id);
     }
     if (!empty($nome)) {
-        $nome = "%$nome%"; // Adiciona o wildcard para busca parcial
+        $nome = "%$nome%";
         $stmt->bindParam(':nome', $nome);
     }
     if (!empty($contrato_vigencia)) {
@@ -91,14 +83,11 @@ try {
         $stmt->bindParam(':contrato_forma_pagamento', $contrato_forma_pagamento);
     }
 
-    // Executa a consulta
     $stmt->execute();
 
-    // Recupera os resultados
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (Exception $e) {
-    // Exibe erro caso haja falha na execução
     echo "Erro na execução da consulta: " . htmlspecialchars($e->getMessage());
 }
 ?>

@@ -71,7 +71,7 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                                 <option value="cartao_credito" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : '' ?>>Cartão de crédito</option>
                                 <option value="cartao_debito" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' : '' ?>>Cartão de débito</option>
                             </select>
-                            <span class="position-absolute" style="right: 20px; top: 8px; cursor: pointer; color: red; display: <?= isset($_POST['contrato_forma_pagamento']) && $_POST['contrato_forma_pagamento'] != '' ? 'block' : 'none' ?>;" data-select="contrato_forma_pagamento" onclick="removeSelected('contrato_forma_pagamento')">x</span>
+                            <span class="position-absolute" style="right: 25px; top: 40px; cursor: pointer; color: red; display: <?= isset($_POST['contrato_forma_pagamento']) && $_POST['contrato_forma_pagamento'] != '' ? 'block' : 'none' ?>;" data-select="contrato_forma_pagamento" onclick="removeSelected('contrato_forma_pagamento')">x</span>
                         </div>
                         <div class="col-md-1">
                             <button class="btn btn-buscar" type="submit">
@@ -108,9 +108,9 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                                     <td>" . htmlspecialchars($row['contrato_dia_vencimento'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['contrato_forma_pagamento'] ?? '-') . "</td>
                                     <td>
-                                        <button class='btn' title='Editar' onclick='editRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                            <i class='bi bi-pencil-square'></i>
-                                        </button>
+                                        <button class='btn' onclick=\"window.location.href='../views/modifica_contrato_venda.php?id=" . htmlspecialchars($row['contrato_id']) . "'\">
+                                          <i class='bi bi-pencil-square'></i>
+                                          </button>
                                         <button class='btn' title='Mostrar Opções' onclick='toggleSubMenu(this)'>
                                             <i class='bi bi-chevron-down'></i>
                                         </button>
