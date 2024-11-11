@@ -134,9 +134,6 @@ include '../app/controllers/filtros_pessoas.php';
                                                  <button class='imprimir' onclick='redirectToRelatorio(" . htmlspecialchars($row['id']) . ")'>
                                                       <i class='bi bi-printer'></i> Imprimir
                                                 </button>
-                                                 <button class='email' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
-                                                     <i class='bi bi-envelope'></i> E-mail
-                                                 </button>
                                                  <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
                                                      <i class='bi bi-trash'></i> Excluir
                                                  </button>

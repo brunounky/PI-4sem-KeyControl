@@ -119,9 +119,6 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                                                 <button class='imprimir' title='Imprimir' onclick='printInfo(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                     <i class='bi bi-printer'></i> Imprimir
                                                 </button>
-                                                <button class='email' title='Enviar E-mail' onclick='sendEmail(\"" . htmlspecialchars($row['email'] ?? '') . "\")'>
-                                                    <i class='bi bi-envelope'></i> E-mail
-                                                </button>
                                                 <button class='excluir' title='Excluir' onclick='deleteRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                     <i class='bi bi-trash'></i> Excluir
                                                 </button>
