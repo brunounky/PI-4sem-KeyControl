@@ -89,7 +89,7 @@
         <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>ID Contrato</th>
                         <th>Comprador</th>
                         <th>Proprietário</th>
                         <th>Cidade</th>

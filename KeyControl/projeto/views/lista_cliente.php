@@ -86,7 +86,7 @@ include '../app/controllers/filtros_pessoas.php';
                   <tr>
                      <th>ID</th>
                      <th>Pessoa</th>
-                     <th>Telefone</th>
+                     <th>CPF/CNPJ</th>
                      <th>E-mail</th>
                      <th>Bairro</th>
                      <th>Cidade</th>
@@ -116,9 +116,8 @@ include '../app/controllers/filtros_pessoas.php';
                         echo "<tr>
                                      <td>" . htmlspecialchars($row['id']) . "</td>
                                      <td>" . htmlspecialchars($row['nome']) . "</td>
-                                     <td>" . htmlspecialchars($row['telefone']) . "</td>
+                                     <td>" . htmlspecialchars($row['cpf_cnpj']) . "</td>
                                     <td>" . htmlspecialchars($row['telefone']) . "</td>
-                                     <td>" . htmlspecialchars($row['email']) . "</td>
                                      <td>" . htmlspecialchars(substr($row['bairro'], 0, 10) . (strlen($row['bairro']) > 10 ? '...' : '')) . "</td>
                                      <td>" . htmlspecialchars($row['cidade']) . "</td>
                                      <td>" . htmlspecialchars($categoriaTexto) . "</td>
@@ -165,7 +164,6 @@ include '../app/controllers/filtros_pessoas.php';
       }
    }
 </script>
-
 </body>
 
 </html>
