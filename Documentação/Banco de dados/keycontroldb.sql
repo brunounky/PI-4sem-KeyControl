@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/11/2024 às 05:23
+-- Tempo de geração: 13/11/2024 às 14:16
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -144,15 +144,16 @@ CREATE TABLE `contrato_caucao` (
   `contrato_vigencia` date NOT NULL,
   `contrato_data_vencimento` int(11) NOT NULL,
   `contrato_forma_pagamento` varchar(50) NOT NULL,
-  `contrato_dia_cobranca` int(11) NOT NULL
+  `contrato_dia_cobranca` int(11) NOT NULL,
+  `id_imobiliaria` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `contrato_caucao`
 --
 
-INSERT INTO `contrato_caucao` (`id`, `locatario_nome`, `locatario_data_nascimento`, `locatario_nacionalidade`, `locatario_cep`, `locatario_bairro`, `locatario_estado`, `locatario_cpf_cnpj`, `locatario_telefone`, `locatario_estado_civil`, `locatario_rua`, `locatario_complemento`, `locatario_pais`, `locatario_rg_ie`, `locatario_email`, `locatario_profissao`, `locatario_numero`, `locatario_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `meses_caucao`, `vencimento_caucao`, `total_caucao`, `forma_pagamento_caucao`, `contrato_vigencia`, `contrato_data_vencimento`, `contrato_forma_pagamento`, `contrato_dia_cobranca`) VALUES
-(1, '11', '0011-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'b@l.com', '1', 1, '1', '1', 'comercial', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', 1, '0001-01-01', 1.00, 'Dinheiro', '0001-01-01', 1, 'Boleto', 1);
+INSERT INTO `contrato_caucao` (`id`, `locatario_nome`, `locatario_data_nascimento`, `locatario_nacionalidade`, `locatario_cep`, `locatario_bairro`, `locatario_estado`, `locatario_cpf_cnpj`, `locatario_telefone`, `locatario_estado_civil`, `locatario_rua`, `locatario_complemento`, `locatario_pais`, `locatario_rg_ie`, `locatario_email`, `locatario_profissao`, `locatario_numero`, `locatario_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `meses_caucao`, `vencimento_caucao`, `total_caucao`, `forma_pagamento_caucao`, `contrato_vigencia`, `contrato_data_vencimento`, `contrato_forma_pagamento`, `contrato_dia_cobranca`, `id_imobiliaria`) VALUES
+(1, '11', '0011-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'b@l.com', '1', 1, '1', '1', 'comercial', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', 1, '0001-01-01', 1.00, 'Dinheiro', '0001-01-01', 1, 'Boleto', 1, '73943371000180');
 
 -- --------------------------------------------------------
 
@@ -212,15 +213,16 @@ CREATE TABLE `contrato_fiador` (
   `contrato_vigencia` date NOT NULL,
   `contrato_dia_vencimento` int(11) NOT NULL,
   `contrato_forma_pagamento` varchar(50) NOT NULL,
-  `contrato_data_vencimento` date NOT NULL
+  `contrato_data_vencimento` date NOT NULL,
+  `id_imobiliaria` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `contrato_fiador`
 --
 
-INSERT INTO `contrato_fiador` (`id`, `locatario_nome`, `locatario_data_nascimento`, `locatario_nacionalidade`, `locatario_cep`, `locatario_bairro`, `locatario_estado`, `locatario_cpf_cnpj`, `locatario_telefone`, `locatario_estado_civil`, `locatario_rua`, `locatario_complemento`, `locatario_pais`, `locatario_rg_ie`, `locatario_email`, `locatario_profissao`, `locatario_numero`, `locatario_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `fiador_nome`, `fiador_data_nascimento`, `fiador_nacionalidade`, `fiador_cep`, `fiador_bairro`, `fiador_estado`, `fiador_cpf_cnpj`, `fiador_telefone`, `fiador_estado_civil`, `fiador_rua`, `fiador_complemento`, `fiador_pais`, `fiador_rg_ie`, `fiador_email`, `fiador_profissao`, `fiador_numero`, `fiador_cidade`, `contrato_vigencia`, `contrato_dia_vencimento`, `contrato_forma_pagamento`, `contrato_data_vencimento`) VALUES
-(1, '1', '0011-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'casa', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '0001-01-01', 1, 'Dinheiro', '0001-01-01');
+INSERT INTO `contrato_fiador` (`id`, `locatario_nome`, `locatario_data_nascimento`, `locatario_nacionalidade`, `locatario_cep`, `locatario_bairro`, `locatario_estado`, `locatario_cpf_cnpj`, `locatario_telefone`, `locatario_estado_civil`, `locatario_rua`, `locatario_complemento`, `locatario_pais`, `locatario_rg_ie`, `locatario_email`, `locatario_profissao`, `locatario_numero`, `locatario_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `fiador_nome`, `fiador_data_nascimento`, `fiador_nacionalidade`, `fiador_cep`, `fiador_bairro`, `fiador_estado`, `fiador_cpf_cnpj`, `fiador_telefone`, `fiador_estado_civil`, `fiador_rua`, `fiador_complemento`, `fiador_pais`, `fiador_rg_ie`, `fiador_email`, `fiador_profissao`, `fiador_numero`, `fiador_cidade`, `contrato_vigencia`, `contrato_dia_vencimento`, `contrato_forma_pagamento`, `contrato_data_vencimento`, `id_imobiliaria`) VALUES
+(1, '1', '0011-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'casa', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '0001-01-01', 1, 'Dinheiro', '0001-01-01', '73943371000180');
 
 -- --------------------------------------------------------
 
@@ -262,18 +264,19 @@ CREATE TABLE `contrato_venda` (
   `imovel_pais` varchar(100) NOT NULL,
   `contrato_vigencia` date NOT NULL,
   `contrato_dia_vencimento` int(11) NOT NULL,
-  `contrato_forma_pagamento` varchar(50) NOT NULL
+  `contrato_forma_pagamento` varchar(50) NOT NULL,
+  `id_imobiliaria` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `contrato_venda`
 --
 
-INSERT INTO `contrato_venda` (`id`, `comprador_nome`, `comprador_data_nascimento`, `comprador_nacionalidade`, `comprador_cep`, `comprador_bairro`, `comprador_estado`, `comprador_cpf_cnpj`, `comprador_telefone`, `comprador_estado_civil`, `comprador_rua`, `comprador_complemento`, `comprador_pais`, `comprador_rg_ie`, `comprador_email`, `comprador_profissao`, `comprador_numero`, `comprador_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `contrato_vigencia`, `contrato_dia_vencimento`, `contrato_forma_pagamento`) VALUES
-(1, '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'apartamento', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '0011-01-01', 10101, 'Transferência'),
-(2, '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'apartamento', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '0011-01-01', 10101, 'Transferência'),
-(3, '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'apartamento', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '0011-01-01', 10101, 'Transferência'),
-(4, '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'apartamento', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '0011-01-01', 10101, 'Transferência');
+INSERT INTO `contrato_venda` (`id`, `comprador_nome`, `comprador_data_nascimento`, `comprador_nacionalidade`, `comprador_cep`, `comprador_bairro`, `comprador_estado`, `comprador_cpf_cnpj`, `comprador_telefone`, `comprador_estado_civil`, `comprador_rua`, `comprador_complemento`, `comprador_pais`, `comprador_rg_ie`, `comprador_email`, `comprador_profissao`, `comprador_numero`, `comprador_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `contrato_vigencia`, `contrato_dia_vencimento`, `contrato_forma_pagamento`, `id_imobiliaria`) VALUES
+(1, '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'apartamento', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '0011-01-01', 10101, 'Transferência', '73943371000180'),
+(2, '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'apartamento', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '0011-01-01', 10101, 'Transferência', '73943371000180'),
+(3, '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'apartamento', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '0011-01-01', 10101, 'Transferência', '73943371000180'),
+(4, '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'apartamento', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '0011-01-01', 10101, 'Transferência', '73943371000180');
 
 -- --------------------------------------------------------
 
