@@ -8,17 +8,19 @@ if (!isset($_SESSION['user_id'])) {
 
 include '../app/controllers/db_conexao.php';
 
-$cnpj = $_SESSION['user_cnpj'];
+// Pega o ID do usuário logado na sessão
+$user_id = $_SESSION['user_id'];
 
 try {
+  // Consulta para buscar os dados do usuário e da imobiliária associada
   $stmt = $pdo->prepare("
     SELECT usuarios.*, imobiliaria.*
     FROM usuarios
     INNER JOIN imobiliaria ON usuarios.cnpj = imobiliaria.cnpj
-    WHERE usuarios.cnpj = :cnpj
+    WHERE usuarios.id = :user_id
   ");
-  $stmt->bindParam(':cnpj', $cnpj, PDO::PARAM_STR);
-  $stmt->execute();
+  $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+  $stmt->execute(); 
   $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 
   if (!$dados) {
@@ -31,7 +33,6 @@ try {
 }
 
 include 'navbar.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -66,15 +67,15 @@ include 'navbar.php';
             <div class="card">
               <div class="row">
                 <div class="col-sm-12">
-                <img src="../app/controllers/exibir_imagem.php?cnpj=<?php echo $dados['cnpj']; ?>" alt="Logo da Imobiliária" class="img-fluid mb-2" />
+                  <img src="../app/controllers/exibir_imagem.php?cnpj=<?php echo htmlspecialchars($dados['cnpj']); ?>" alt="Logo da Imobiliária" class="img-fluid mb-2" />
                   <label for="idimobiliaria" class="mb-2">CNPJ da Imobiliária</label>
-                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['cnpj']); ?>" required disabled >
+                  <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['cnpj']); ?>" required disabled>
                   <label for="nomefantasia" class="mb-2">Nome Fantasia</label>
-                  <input class="form-control mb-3" type="text" name="nomefantasia" id="nomefantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required disabled >
+                  <input class="form-control mb-3" type="text" name="nomefantasia" id="nomefantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required disabled>
                   <label for="telefoneimobiliaria" class="mb-2">Telefone</label>
-                  <input class="form-control mb-3" type="text" name="telefoneimobiliaria" id="telefoneimobiliaria" value="<?php echo htmlspecialchars($dados['telefoneimobiliaria']); ?>" required disabled >
+                  <input class="form-control mb-3" type="text" name="telefoneimobiliaria" id="telefoneimobiliaria" value="<?php echo htmlspecialchars($dados['telefoneimobiliaria']); ?>" required disabled>
                   <label for="emailimobiliaria" class="mb-2">Email</label>
-                  <input class="form-control mb-3" type="text" name="emailimobiliaria" id="emailimobiliaria" value="<?php echo htmlspecialchars($dados['emailimobiliaria']); ?>" required disabled >
+                  <input class="form-control mb-3" type="text" name="emailimobiliaria" id="emailimobiliaria" value="<?php echo htmlspecialchars($dados['emailimobiliaria']); ?>" required disabled>
                 </div>
               </div>
             </div>
@@ -125,15 +126,13 @@ include 'navbar.php';
               </div>
             </div>
             <br>
-        </div>
-      </form> 
-      
+          </div>
+      </form>
 
       <form action="../app/controllers/altera_senha_usuario.php" method="post">
         <input type="hidden" name="action" value="alterar_senha">
         <div class="row">
-          <div class="col-md-3">
-          </div>
+          <div class="col-md-3"></div>
           <div class="col-md-9">
             <div class="card">
               <div class="row">
@@ -150,20 +149,17 @@ include 'navbar.php';
                   <input class="form-control mb-3" type="password" name="confirmar_senha" id="confirmar_senha" required>
                 </div>
                 <div class="container">
-                <button type="submit" class="btn btn_salvar">Alterar Senha</button>
-              </div>
+                  <button type="submit" class="btn btn_salvar">Alterar Senha</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </form>
     </div>
-
   </section>
 
   <script src="../public/assets/js/consultacep.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb5T5ggK+5l0VO4y7nVR+nQmvWn4U5jp6m3FQTVpM5VbcFz/m" crossorigin="anonymous"></script>
-  
 </body>
-
 </html>
