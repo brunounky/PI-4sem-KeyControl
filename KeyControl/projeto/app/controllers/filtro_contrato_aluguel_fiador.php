@@ -1,9 +1,16 @@
 <?php 
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../app/controllers/verifica_login.php");
+    exit();
+}
+
 include '../app/controllers/db_conexao.php';
 
 $result = null; 
 
-function buildQuery($contrato_id, $locatario_nome, $contrato_vigencia, $contrato_dia_vencimento, $tipo_imovel, $contrato_forma_pagamento) {
+function buildQuery($contrato_id, $locatario_nome, $contrato_vigencia, $tipo_imovel, $contrato_forma_pagamento) {
     $sql = "
         SELECT 
             'Caução' AS tipo_contrato,
@@ -18,25 +25,37 @@ function buildQuery($contrato_id, $locatario_nome, $contrato_vigencia, $contrato
         FROM 
             contrato_caucao c_caucao
         JOIN 
-            cadastro_cliente c_cliente ON c_caucao.locatario_cpf_cnpj = c_cliente.cpf_cnpj
+            cadastro_cliente c_cliente ON c_caucao.id_imobiliaria = c_cliente.id_imobiliaria
         JOIN 
-            cadastro_imovel c_imovel ON c_caucao.imovel_proprietario_cpf_cnpj = c_imovel.cpf_cnpj_proprietario
+            cadastro_imovel c_imovel ON c_caucao.id_imobiliaria = c_imovel.id_imobiliaria
         WHERE 1=1";
 
+    $conditions = [];
+    $params = [];
+
     if (!empty($contrato_id)) {
-        $sql .= " AND c_caucao.id = :contrato_id"; 
+        $conditions[] = "c_caucao.id = :contrato_id_caucao";
+        $params['contrato_id_caucao'] = $contrato_id;
     }
     if (!empty($locatario_nome)) {
-        $sql .= " AND c_cliente.nome LIKE :locatario_nome"; 
+        $conditions[] = "c_cliente.nome LIKE :locatario_nome_caucao";
+        $params['locatario_nome_caucao'] = "%$locatario_nome%";
     }
     if (!empty($contrato_vigencia)) {
-        $sql .= " AND c_caucao.contrato_vigencia = :contrato_vigencia"; 
+        $conditions[] = "c_caucao.contrato_vigencia = :contrato_vigencia_caucao";
+        $params['contrato_vigencia_caucao'] = $contrato_vigencia;
     }
     if (!empty($tipo_imovel)) {
-        $sql .= " AND c_imovel.tipo_imovel = :tipo_imovel"; 
+        $conditions[] = "c_imovel.tipo_imovel = :tipo_imovel_caucao";
+        $params['tipo_imovel_caucao'] = $tipo_imovel;
     }
     if (!empty($contrato_forma_pagamento)) {
-        $sql .= " AND c_caucao.contrato_forma_pagamento = :contrato_forma_pagamento"; 
+        $conditions[] = "c_caucao.contrato_forma_pagamento = :contrato_forma_pagamento_caucao";
+        $params['contrato_forma_pagamento_caucao'] = $contrato_forma_pagamento;
+    }
+
+    if (count($conditions) > 0) {
+        $sql .= " AND " . implode(" AND ", $conditions);
     }
 
     $sql .= "
@@ -54,74 +73,57 @@ function buildQuery($contrato_id, $locatario_nome, $contrato_vigencia, $contrato
         FROM 
             contrato_fiador c_fiador
         JOIN 
-            cadastro_cliente c_cliente ON c_fiador.locatario_cpf_cnpj = c_cliente.cpf_cnpj
+            cadastro_cliente c_cliente ON c_fiador.id_imobiliaria = c_cliente.id_imobiliaria
         JOIN 
-            cadastro_imovel c_imovel ON c_fiador.imovel_proprietario_cpf_cnpj = c_imovel.cpf_cnpj_proprietario
+            cadastro_imovel c_imovel ON c_fiador.id_imobiliaria = c_imovel.id_imobiliaria
         WHERE 1=1";
 
+    $fiador_conditions = [];
     if (!empty($contrato_id)) {
-        $sql .= " AND c_fiador.id = :contrato_id"; 
+        $fiador_conditions[] = "c_fiador.id = :contrato_id_fiador";
+        $params['contrato_id_fiador'] = $contrato_id;
     }
     if (!empty($locatario_nome)) {
-        $sql .= " AND c_cliente.nome LIKE :locatario_nome"; 
+        $fiador_conditions[] = "c_cliente.nome LIKE :locatario_nome_fiador";
+        $params['locatario_nome_fiador'] = "%$locatario_nome%";
     }
     if (!empty($contrato_vigencia)) {
-        $sql .= " AND c_fiador.contrato_vigencia = :contrato_vigencia"; 
+        $fiador_conditions[] = "c_fiador.contrato_vigencia = :contrato_vigencia_fiador";
+        $params['contrato_vigencia_fiador'] = $contrato_vigencia;
     }
     if (!empty($tipo_imovel)) {
-        $sql .= " AND c_imovel.tipo_imovel = :tipo_imovel"; 
+        $fiador_conditions[] = "c_imovel.tipo_imovel = :tipo_imovel_fiador";
+        $params['tipo_imovel_fiador'] = $tipo_imovel;
     }
     if (!empty($contrato_forma_pagamento)) {
-        $sql .= " AND c_fiador.contrato_forma_pagamento = :contrato_forma_pagamento"; 
+        $fiador_conditions[] = "c_fiador.contrato_forma_pagamento = :contrato_forma_pagamento_fiador";
+        $params['contrato_forma_pagamento_fiador'] = $contrato_forma_pagamento;
     }
 
-    return $sql;
+    if (count($fiador_conditions) > 0) {
+        $sql .= " AND " . implode(" AND ", $fiador_conditions);
+    }
+
+    return [$sql, $params];
 }
-$contrato_id = $_POST['contrato_id'] ?? '';
-$locatario_nome = $_POST['nome'] ?? '';
-$contrato_vigencia = $_POST['contrato_vigencia'] ?? '';
-$contrato_dia_vencimento = $_POST['contrato_dia_vencimento'] ?? '';
+
+$contrato_id = $_POST['id'] ?? '';
+$locatario_nome = $_POST['locatario'] ?? '';
+$contrato_vigencia = $_POST['vigencia'] ?? '';
 $tipo_imovel = $_POST['tipo_imovel'] ?? '';
-$contrato_forma_pagamento = $_POST['contrato_forma_pagamento'] ?? '';
+$contrato_forma_pagamento = $_POST['forma_pagamento'] ?? '';
 
-$contrato_id = htmlspecialchars($contrato_id);
-$locatario_nome = htmlspecialchars($locatario_nome);
-$contrato_vigencia = htmlspecialchars($contrato_vigencia);
-$contrato_dia_vencimento = htmlspecialchars($contrato_dia_vencimento);
-$tipo_imovel = htmlspecialchars($tipo_imovel);
-$contrato_forma_pagamento = htmlspecialchars($contrato_forma_pagamento);
-
-$sql = buildQuery($contrato_id, $locatario_nome, $contrato_vigencia, $contrato_dia_vencimento, $tipo_imovel, $contrato_forma_pagamento);
+list($sql, $params) = buildQuery($contrato_id, $locatario_nome, $contrato_vigencia, $tipo_imovel, $contrato_forma_pagamento);
 
 try {
-    $stmt = $pdo->prepare($sql);
-
-    if (!empty($contrato_id)) {
-        $stmt->bindParam(':contrato_id', $contrato_id);
+    if ($pdo) {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        throw new Exception("Erro na conexão com o banco de dados.");
     }
-    if (!empty($locatario_nome)) {
-        $locatario_nome = "%$locatario_nome%";  // Para pesquisa parcial, adicionando wildcards
-        $stmt->bindParam(':locatario_nome', $locatario_nome);
-    }
-    if (!empty($contrato_vigencia)) {
-        $stmt->bindParam(':contrato_vigencia', $contrato_vigencia);
-    }
-    if (!empty($contrato_dia_vencimento)) {
-        $stmt->bindParam(':contrato_dia_vencimento', $contrato_dia_vencimento);
-    }
-    if (!empty($tipo_imovel)) {
-        $stmt->bindParam(':tipo_imovel', $tipo_imovel);
-    }
-    if (!empty($contrato_forma_pagamento)) {
-        $stmt->bindParam(':contrato_forma_pagamento', $contrato_forma_pagamento);
-    }
-
-    $stmt->execute();
-
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 } catch (Exception $e) {
     echo "Erro na execução da consulta: " . htmlspecialchars($e->getMessage());
 }
-
 ?>
