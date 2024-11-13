@@ -6,8 +6,8 @@
         exit();
     }
 
-?>
-
+    include_once '../app/controllers/filtro_contrato_aluguel_fiador.php';
+    ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -43,8 +43,8 @@
             <div class="filtros-container">
                 <div class="row g-12">
                     <div class="col-md-1">
-                        <label for="id" class="form-label">ID</label>
-                        <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
+                        <label for="contrato_id" class="form-label">ID</label>
+                        <input type="text" id="contrato_id" class="form-control" name="contrato_id" value="<?= htmlspecialchars($_POST['contrato_id'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
                         <label for="cpf_cnpj_proprietario" class="form-label">Proprietário</label>
@@ -105,14 +105,14 @@
                             foreach ($result as $row) {
 
                                 echo "<tr>
-                                    <td>" . htmlspecialchars($row['id']) . "</td>
-                                    <td>" . htmlspecialchars($row['proprietario']) . "</td>
+                                    <td>" . htmlspecialchars($row['contrato_id']) . "</td>
+                                    <td>" . htmlspecialchars($row['locatario_nome']) . "</td>
                                     <td>" . htmlspecialchars($row['locatario'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['vigencia'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
                                     <td>
-                                        <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                        <button class='btn' onclick='editRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
                                             <i class='bi bi-pencil-square'></i>
                                         </button>
                                         <button class='btn' onclick='toggleSubMenu(this)'>
@@ -120,10 +120,10 @@
                                         </button>
                                         <div class='submenu' style='display: none;'>
                                             <div class='submenu-options'>
-                                                <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                                <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                     <i class='bi bi-printer'></i> Imprimir
                                                 </button>
-                                                <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                                <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                     <i class='bi bi-trash'></i> Excluir
                                                 </button>
                                             </div>
