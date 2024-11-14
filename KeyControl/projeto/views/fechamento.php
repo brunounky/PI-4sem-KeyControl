@@ -26,15 +26,7 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2 class="mb-0">Fechamentos</h2>
-                <div class="button_adicionarnovo">
-                    <a class="button_adicionarnovo floating dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false" href="">
-                        <span class="button_adicionarnovo">Adicionar novo +</span>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a class="dropdown-item" href="../views/contrato_aluguel_fiador.php" tabindex="-1">Aluguel Fiador</a></li>
-                        <li><a class="dropdown-item" href="../views/contrato_aluguel_caucao.php" tabindex="-1">Aluguel Caução</a></li>
-                    </ul>
-                </div>
+                
             </div>
         </div>
 
@@ -116,12 +108,12 @@
                 <tbody> 
                     
                 <tr>
-                    <td>Beatriz Gata</td>
+                    <!-- <td>Beatriz Gata</td>
                     <td>(19) 99410-7835</td>
                     <td>Bia@gmail.com</td>
                     <td>Araras</td>
                     <td>Locatário</td>
-                    <td>3</td>
+                    <td>3</td> -->
                     <td> 
                         <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="bi bi-ticket-detailed-fill"></i>

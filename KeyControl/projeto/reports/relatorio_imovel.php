@@ -27,7 +27,8 @@ $options->set('isPhpEnabled', true);
 
 $dompdf = new Dompdf($options);
 
-$id = $_GET['id'];
+// Sanitização do ID recebido via GET
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 // Consulta para obter dados do imóvel e imobiliária associados
 $queryImovel = "SELECT * FROM cadastro_imovel c
@@ -77,35 +78,75 @@ if ($imovel) {
             </div>
 
             <div class="section">
-                <h2 class="section-title">Dados do Imóvel</h2>
-                <p><strong>Proprietário:</strong> ' . htmlspecialchars($imovel['cpf_cnpj_proprietario']) . '</p>
-                <p><strong>Tipo de Imóvel:</strong> ' . htmlspecialchars($imovel['tipo_imovel']) . '</p>
-                <p><strong>Quartos:</strong> ' . htmlspecialchars($imovel['quantidade_quartos']) . '</p>
-                <p><strong>Banheiros:</strong> ' . htmlspecialchars($imovel['quantidade_banheiros']) . '</p>
-                <p><strong>Vagas:</strong> ' . htmlspecialchars($imovel['quantidade_vagas']) . '</p>
-                <p><strong>Área Total:</strong> ' . htmlspecialchars($imovel['area_total']) . '</p>
-                <p><strong>Endereço:</strong> ' . htmlspecialchars($imovel['rua']) . ', ' . htmlspecialchars($imovel['numero']) . ', ' . htmlspecialchars($imovel['bairro']) . ', ' . htmlspecialchars($imovel['cidade']) . ', ' . htmlspecialchars($imovel['estado']) . ', ' . htmlspecialchars($imovel['pais']) . '</p>
-                <p><strong>CEP:</strong> ' . htmlspecialchars($imovel['cep']) . '</p>
-                <p><strong>Registro do Imóvel:</strong> ' . htmlspecialchars($imovel['registro_imovel']) . '</p>
-                <p><strong>Registro da Água:</strong> ' . htmlspecialchars($imovel['registro_agua']) . '</p>
-                <p><strong>Valor do Aluguel:</strong> ' . htmlspecialchars($imovel['valor_aluguel']) . '</p>
-                <p><strong>Taxa de Aluguel:</strong> ' . htmlspecialchars($imovel['taxa_aluguel']) . '</p>
-                <p><strong>Valor de Venda:</strong> ' . htmlspecialchars($imovel['valor_venda']) . '</p>
-                <p><strong>Taxa de Venda:</strong> ' . htmlspecialchars($imovel['taxa_venda']) . '</p>
-                <p><strong>Complemento:</strong> ' . htmlspecialchars($imovel['complemento']) . '</p>
+                <h2 class="section-title">Dados Principais do Imóvel</h2>
+                    <div class="row">
+                    <div class="col-3"><strong>Proprietário:</strong> ' . htmlspecialchars($imovel['cpf_cnpj_proprietario']) . '</div>
+                    <div class="col-3"><strong>Tipo de Imóvel:</strong> ' . htmlspecialchars($imovel['tipo_imovel']) . '</div>
+                </div>
+        </div>
+
+        <div class="section">
+                <h2 class="section-title">Detalhes do Imóvel</h2>
+                <table class="table">
+                    <tr>
+                        <th>Endereço</th>
+                        <th>Bairro</th>
+                        <th>CEP</th>
+                        <th>Cidade</th>
+                    </tr>
+                    <tr>
+                        <td>' . htmlspecialchars($imovel['rua']) . '</td>
+                        <td>' . htmlspecialchars($imovel['bairro']) . '</td>
+                        <td>' . htmlspecialchars($imovel['cep']) . '</td>
+                        <td>' . htmlspecialchars($imovel['cidade']) . '</td>
+                    </tr>
+                    <tr>
+                        <th>Banheiros</th>
+                        <th>Vagas</th>
+                        <th>Área Total</th>
+                        <th>Complemento</th>
+                    </tr>
+                    <tr>
+                        <td>' . htmlspecialchars($imovel['quantidade_banheiros']) . '</td>
+                        <td>' . htmlspecialchars($imovel['quantidade_vagas']) . '</td>
+                        <td>' . htmlspecialchars($imovel['area_total']) . '</td>
+                        <td>' . htmlspecialchars($imovel['complemento']) . '</td>
+                    </tr>
+                </table>
             </div>
 
+            <div class="section">
+                <h2 class="section-title">Registros do Imóvel</h2>
+                <table class="table">
+                    <tr>
+                        <th>Registro Imóvel</th>
+                        <th>Registro Água</th>
+                        <th>Valor Aluguel</th>
+                        <th>Taxa Aluguel</th>
+                        <th>Valor Venda</th>
+                        <th>Taxa Venda</th>
+                    </tr>
+                    <tr>
+                        <td>' . htmlspecialchars($imovel['registro_imovel']) . '</td>
+                        <td>' . htmlspecialchars($imovel['registro_agua']) . '</td>
+                        <td>' . htmlspecialchars($imovel['valor_aluguel']) . '</td>
+                        <td>' . htmlspecialchars($imovel['taxa_aluguel']) . '</td>
+                        <td>' . htmlspecialchars($imovel['valor_venda']) . '</td>
+                        <td>' . htmlspecialchars($imovel['taxa_venda']) . '</td>
+                    </tr>
+                </table>
+            </div>
             <div class="footer">
                 <p>Documento gerado em ' . date("d/m/Y") . '</p>
             </div>
         </div>
     ';
 } else {
-    $html = '<h1>Cliente não encontrado!</h1>';
+    $html = '<h1>Imóvel não encontrado!</h1>';
 }
 
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
-$dompdf->stream('ficha_cadastral_cliente.pdf', array('Attachment' => 0));
+$dompdf->stream('ficha_cadastral_imovel.pdf', array('Attachment' => 0));
 ?>
