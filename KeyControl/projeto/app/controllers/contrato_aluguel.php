@@ -75,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $contrato_forma_pagamento = $_POST['contrato_forma_pagamento'];
 
     try {
-        $sql = "INSERT INTO contrato_fiador (locatario_nome, locatario_data_nascimento, locatario_nacionalidade, locatario_cep, locatario_bairro, locatario_estado, locatario_cpf_cnpj, locatario_telefone, locatario_estado_civil, locatario_rua, locatario_complemento, locatario_pais, locatario_rg_ie, locatario_email, locatario_profissao, locatario_numero, locatario_cidade, fiador_nome, fiador_data_nascimento, fiador_nacionalidade, fiador_cep, fiador_bairro, fiador_estado, fiador_cpf_cnpj, fiador_telefone, fiador_estado_civil, fiador_rua, fiador_complemento, fiador_pais, fiador_rg_ie, fiador_email, fiador_profissao, fiador_numero, fiador_cidade, imovel_proprietario_cpf_cnpj, imovel_tipo, imovel_numero, imovel_cidade, imovel_taxa_venda, imovel_cep, imovel_bairro, imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, contrato_vigencia, contrato_dia_vencimento, contrato_forma_pagamento, contrato_data_vencimento) 
-                VALUES (:nome_locatario, :data_nascimento_locatario, :nacionalidade_locatario, :cep_locatario, :bairro_locatario, :estado_locatario, :cpf_cnpj_locatario, :telefone_locatario, :estado_civil_locatario, :rua_locatario, :complemento_locatario, :pais_locatario, :rg_ie_locatario, :email_locatario, :profissao_locatario, :numero_locatario, :cidade_locatario, :nome_fiador, :data_nascimento_fiador, :nacionalidade_fiador, :cep_fiador, :bairro_fiador, :estado_fiador, :cpf_cnpj_fiador, :telefone_fiador, :estado_civil_fiador, :rua_fiador, :complemento_fiador, :pais_fiador, :rg_ie_fiador, :email_fiador, :profissao_fiador, :numero_fiador, :cidade_fiador, :cpf_cnpj_proprietario, :tipo_imovel, :numero_imovel, :cidade_imovel, :taxa_venda, :cep_imovel, :bairro_imovel, :estado_imovel, :valor_imovel, :registro_imovel, :rua_imovel, :complemento_imovel, :pais_imovel, :vigencia, :dia_vencimento, :forma_pagamento, :data_vencimento)";
+        $sql = "INSERT INTO contrato_fiador (locatario_nome, locatario_data_nascimento, locatario_nacionalidade, locatario_cep, locatario_bairro, locatario_estado, locatario_cpf_cnpj, locatario_telefone, locatario_estado_civil, locatario_rua, locatario_complemento, locatario_pais, locatario_rg_ie, locatario_email, locatario_profissao, locatario_numero, locatario_cidade, fiador_nome, fiador_data_nascimento, fiador_nacionalidade, fiador_cep, fiador_bairro, fiador_estado, fiador_cpf_cnpj, fiador_telefone, fiador_estado_civil, fiador_rua, fiador_complemento, fiador_pais, fiador_rg_ie, fiador_email, fiador_profissao, fiador_numero, fiador_cidade, imovel_proprietario_cpf_cnpj, imovel_tipo, imovel_numero, imovel_cidade, imovel_taxa_venda, imovel_cep, imovel_bairro, imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, contrato_vigencia, contrato_dia_vencimento, contrato_forma_pagamento, contrato_data_vencimento, meses_caucao, vencimento_caucao, total_caucao, forma_pagamento_caucao, contrato_dia_cobranca) 
+                VALUES (:nome_locatario, :data_nascimento_locatario, :nacionalidade_locatario, :cep_locatario, :bairro_locatario, :estado_locatario, :cpf_cnpj_locatario, :telefone_locatario, :estado_civil_locatario, :rua_locatario, :complemento_locatario, :pais_locatario, :rg_ie_locatario, :email_locatario, :profissao_locatario, :numero_locatario, :cidade_locatario, :nome_fiador, :data_nascimento_fiador, :nacionalidade_fiador, :cep_fiador, :bairro_fiador, :estado_fiador, :cpf_cnpj_fiador, :telefone_fiador, :estado_civil_fiador, :rua_fiador, :complemento_fiador, :pais_fiador, :rg_ie_fiador, :email_fiador, :profissao_fiador, :numero_fiador, :cidade_fiador, :cpf_cnpj_proprietario, :tipo_imovel, :numero_imovel, :cidade_imovel, :taxa_venda, :cep_imovel, :bairro_imovel, :estado_imovel, :valor_imovel, :registro_imovel, :rua_imovel, :complemento_imovel, :pais_imovel, :vigencia, :dia_vencimento, :forma_pagamento, :data_vencimento, :meses_caucao, :vencimento_caucao, :total_caucao, :forma_pagamento_caucao, :contrato_dia_cobranca)";
 
         $stmt = $pdo->prepare($sql);
 
@@ -132,13 +132,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt->bindParam(':dia_vencimento', $dia_vencimento);
         $stmt->bindParam(':forma_pagamento', $forma_pagamento);
         $stmt->bindParam(':data_vencimento', $data_vencimento);
-        $stmt->bindParam(':data_vencimento', $data_vencimento);
 
-        $stmt->bindParam(':data_vencimento', $data_vencimento);
-        $stmt->bindParam(':data_vencimento', $data_vencimento);
-        $stmt->bindParam(':data_vencimento', $data_vencimento);
-        $stmt->bindParam(':data_vencimento', $data_vencimento);
-        $stmt->bindParam(':data_vencimento', $data_vencimento);
+        $stmt->bindParam(':meses_caucao', $meses_caucao);
+        $stmt->bindParam(':vencimento_caucao', $vencimento_caucao);
+        $stmt->bindParam(':total_caucao', $total_caucao);
+        $stmt->bindParam(':forma_pagamento_caucao', $forma_pagamento_caucao);
+        $stmt->bindParam(':contrato_vigencia', $contrato_vigencia);
+        $stmt->bindParam(':contrato_data_vencimento', $contrato_data_vencimento);
+        $stmt->bindParam(':contrato_dia_cobranca', $contrato_dia_cobranca);
+        $stmt->bindParam(':contrato_forma_pagamento', $contrato_forma_pagamento);
 
         if ($stmt->execute()) {
             header("Location: ../../views/lista_contrato_aluguel.php");
