@@ -91,14 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt->bindParam(':dia_vencimento', $dia_vencimento);
         $stmt->bindParam(':forma_pagamento', $forma_pagamento);
 
-        if ($stmt->execute()) {
-            header("Location: ../../views/lista_contrato_venda.php");
+        $stmt->execute();
+
+        header("Location: ../../views/lista_contrato_venda.php");
         exit();
-        } else {
-            echo "Erro ao cadastrar contrato.";
-        }
     } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage();
+        echo "Erro ao cadastrar contrato: " . $e->getMessage();
     }
 }
 ?>

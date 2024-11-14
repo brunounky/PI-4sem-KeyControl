@@ -26,7 +26,7 @@ include_once '../app/controllers/filtro_contrato_venda.php';
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2 class="mb-0">Contrato de Venda</h2>
-                <a href="../views/contrato_venda.php" class="button_adicionarnovo">Adicionar Novo +</a>
+                <a href="../views/contrato_venda_imovel.php" class="button_adicionarnovo">Adicionar Novo +</a>
             </div>
         </div>
         <div class="container">
