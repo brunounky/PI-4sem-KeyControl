@@ -33,7 +33,7 @@
 
   <section id="contrato_aluguel_caucao">
     <!-- inicio do form -->
-    <form action="../app/controllers/altera_cliente.php" method="post">
+    <form action="../app/controllers/contrato_venda.php" method="post">
       <input type="hidden" name="id" value="<?= htmlspecialchars($cliente['id']) ?>">
       <input type="hidden" name="action" value="atualizar">
       <div class="container">
