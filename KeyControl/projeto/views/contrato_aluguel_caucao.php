@@ -205,8 +205,8 @@
                     <input class="form-control mb-3" type="date" name="contrato_data_vencimento" id="contrato_data_vencimento" required>
                   </div>
                   <div class="col-sm-3">
-                    <label for="contrato_dia_cobranca" class="mb-2">Dia de Cobrança</label>
-                    <input class="form-control mb-3" type="number" name="contrato_dia_cobranca" id="contrato_dia_cobranca" required>
+                    <label for="dia_cobranca" class="mb-2">Dia de Cobrança</label>
+                    <input class="form-control mb-3" type="number" name="dia_cobranca" id="dia_cobranca" required>
                   </div>
                   <div class="col-sm-3">
                     <label for="contrato_forma_pagamento" class="mb-2">Forma de pagamento</label>
