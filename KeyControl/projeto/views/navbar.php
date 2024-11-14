@@ -29,7 +29,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="drop">
             <li><a class="dropdown-item nav-link" href="../views/lista_contrato_venda.php">Venda</a></li>
-            <li><a class="dropdown-item nav-link" href="../views/lista_contrato_aluguel.php">Aluguel</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/lista_contrato.php">Aluguel</a></li>
           </ul>
         </li>
       </ul>

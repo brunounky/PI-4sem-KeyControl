@@ -8,11 +8,9 @@ if (!isset($_SESSION['user_id'])) {
 
 include '../app/controllers/db_conexao.php';
 
-// Pega o ID do usuário logado na sessão
 $user_id = $_SESSION['user_id'];
 
 try {
-  // Consulta para buscar os dados do usuário e da imobiliária associada
   $stmt = $pdo->prepare("
     SELECT usuarios.*, imobiliaria.*
     FROM usuarios

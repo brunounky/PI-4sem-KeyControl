@@ -59,11 +59,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $rua_imovel = $_POST['imovel_rua'];
     $complemento_imovel = $_POST['imovel_complemento'];
     $pais_imovel = $_POST['imovel_pais'];
-
+    
     $vigencia = $_POST['contrato_vigencia'];
     $dia_vencimento = $_POST['contrato_dia_vencimento'];
     $forma_pagamento = $_POST['contrato_forma_pagamento'];
     $data_vencimento = $_POST['contrato_data_vencimento']; 
+    //parte do caucao
+    $meses_caucao = $_POST['meses_caucao'];
+    $vencimento_caucao = $_POST['vencimento_caucao'];
+    $total_caucao = $_POST['total_caucao'];
+    $forma_pagamento_caucao = $_POST['forma_pagamento_caucao'];
+    $contrato_vigencia = $_POST['contrato_vigencia'];
+    $contrato_data_vencimento = $_POST['contrato_data_vencimento'];
+    $contrato_dia_cobranca = $_POST['contrato_dia_cobranca'];
+    $contrato_forma_pagamento = $_POST['contrato_forma_pagamento'];
 
     try {
         $sql = "INSERT INTO contrato_fiador (locatario_nome, locatario_data_nascimento, locatario_nacionalidade, locatario_cep, locatario_bairro, locatario_estado, locatario_cpf_cnpj, locatario_telefone, locatario_estado_civil, locatario_rua, locatario_complemento, locatario_pais, locatario_rg_ie, locatario_email, locatario_profissao, locatario_numero, locatario_cidade, fiador_nome, fiador_data_nascimento, fiador_nacionalidade, fiador_cep, fiador_bairro, fiador_estado, fiador_cpf_cnpj, fiador_telefone, fiador_estado_civil, fiador_rua, fiador_complemento, fiador_pais, fiador_rg_ie, fiador_email, fiador_profissao, fiador_numero, fiador_cidade, imovel_proprietario_cpf_cnpj, imovel_tipo, imovel_numero, imovel_cidade, imovel_taxa_venda, imovel_cep, imovel_bairro, imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, contrato_vigencia, contrato_dia_vencimento, contrato_forma_pagamento, contrato_data_vencimento) 
@@ -122,6 +131,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt->bindParam(':vigencia', $vigencia);
         $stmt->bindParam(':dia_vencimento', $dia_vencimento);
         $stmt->bindParam(':forma_pagamento', $forma_pagamento);
+        $stmt->bindParam(':data_vencimento', $data_vencimento);
+        $stmt->bindParam(':data_vencimento', $data_vencimento);
+
+        $stmt->bindParam(':data_vencimento', $data_vencimento);
+        $stmt->bindParam(':data_vencimento', $data_vencimento);
+        $stmt->bindParam(':data_vencimento', $data_vencimento);
+        $stmt->bindParam(':data_vencimento', $data_vencimento);
         $stmt->bindParam(':data_vencimento', $data_vencimento);
 
         if ($stmt->execute()) {
