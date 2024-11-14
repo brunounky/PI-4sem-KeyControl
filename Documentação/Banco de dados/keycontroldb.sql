@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13/11/2024 às 14:16
+-- Tempo de geração: 14/11/2024 às 01:46
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -102,66 +102,10 @@ INSERT INTO `cadastro_imovel` (`id`, `id_imobiliaria`, `cpf_cnpj_proprietario`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `contrato_caucao`
+-- Estrutura para tabela `contrato_aluguel`
 --
 
-CREATE TABLE `contrato_caucao` (
-  `id` int(11) NOT NULL,
-  `locatario_nome` varchar(255) NOT NULL,
-  `locatario_data_nascimento` date NOT NULL,
-  `locatario_nacionalidade` varchar(100) NOT NULL,
-  `locatario_cep` varchar(10) NOT NULL,
-  `locatario_bairro` varchar(100) NOT NULL,
-  `locatario_estado` varchar(100) NOT NULL,
-  `locatario_cpf_cnpj` varchar(14) NOT NULL,
-  `locatario_telefone` varchar(15) NOT NULL,
-  `locatario_estado_civil` varchar(50) NOT NULL,
-  `locatario_rua` varchar(255) NOT NULL,
-  `locatario_complemento` varchar(255) DEFAULT NULL,
-  `locatario_pais` varchar(100) NOT NULL,
-  `locatario_rg_ie` varchar(15) NOT NULL,
-  `locatario_email` varchar(255) NOT NULL,
-  `locatario_profissao` varchar(100) NOT NULL,
-  `locatario_numero` int(11) NOT NULL,
-  `locatario_cidade` varchar(100) NOT NULL,
-  `imovel_proprietario_cpf_cnpj` varchar(14) NOT NULL,
-  `imovel_tipo` varchar(50) NOT NULL,
-  `imovel_numero` int(11) NOT NULL,
-  `imovel_cidade` varchar(100) NOT NULL,
-  `imovel_taxa_venda` decimal(5,2) NOT NULL,
-  `imovel_cep` varchar(10) NOT NULL,
-  `imovel_bairro` varchar(100) NOT NULL,
-  `imovel_estado` varchar(100) NOT NULL,
-  `imovel_valor` decimal(15,2) NOT NULL,
-  `imovel_registro` varchar(50) NOT NULL,
-  `imovel_rua` varchar(255) NOT NULL,
-  `imovel_complemento` varchar(255) DEFAULT NULL,
-  `imovel_pais` varchar(100) NOT NULL,
-  `meses_caucao` int(11) NOT NULL,
-  `vencimento_caucao` date NOT NULL,
-  `total_caucao` decimal(15,2) NOT NULL,
-  `forma_pagamento_caucao` varchar(50) NOT NULL,
-  `contrato_vigencia` date NOT NULL,
-  `contrato_data_vencimento` int(11) NOT NULL,
-  `contrato_forma_pagamento` varchar(50) NOT NULL,
-  `contrato_dia_cobranca` int(11) NOT NULL,
-  `id_imobiliaria` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `contrato_caucao`
---
-
-INSERT INTO `contrato_caucao` (`id`, `locatario_nome`, `locatario_data_nascimento`, `locatario_nacionalidade`, `locatario_cep`, `locatario_bairro`, `locatario_estado`, `locatario_cpf_cnpj`, `locatario_telefone`, `locatario_estado_civil`, `locatario_rua`, `locatario_complemento`, `locatario_pais`, `locatario_rg_ie`, `locatario_email`, `locatario_profissao`, `locatario_numero`, `locatario_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `meses_caucao`, `vencimento_caucao`, `total_caucao`, `forma_pagamento_caucao`, `contrato_vigencia`, `contrato_data_vencimento`, `contrato_forma_pagamento`, `contrato_dia_cobranca`, `id_imobiliaria`) VALUES
-(1, '11', '0011-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 'b@l.com', '1', 1, '1', '1', 'comercial', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', 1, '0001-01-01', 1.00, 'Dinheiro', '0001-01-01', 1, 'Boleto', 1, '73943371000180');
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `contrato_fiador`
---
-
-CREATE TABLE `contrato_fiador` (
+CREATE TABLE `contrato_aluguel` (
   `id` int(11) NOT NULL,
   `locatario_nome` varchar(255) NOT NULL,
   `locatario_data_nascimento` date NOT NULL,
@@ -214,15 +158,19 @@ CREATE TABLE `contrato_fiador` (
   `contrato_dia_vencimento` int(11) NOT NULL,
   `contrato_forma_pagamento` varchar(50) NOT NULL,
   `contrato_data_vencimento` date NOT NULL,
-  `id_imobiliaria` varchar(20) NOT NULL
+  `id_imobiliaria` varchar(20) NOT NULL,
+  `meses_ caucao` int(11) DEFAULT NULL,
+  `vencimento_caucao` date DEFAULT NULL,
+  `total_caucao` decimal(15,2) DEFAULT NULL,
+  `forma_pagamento_caucao` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `contrato_fiador`
+-- Despejando dados para a tabela `contrato_aluguel`
 --
 
-INSERT INTO `contrato_fiador` (`id`, `locatario_nome`, `locatario_data_nascimento`, `locatario_nacionalidade`, `locatario_cep`, `locatario_bairro`, `locatario_estado`, `locatario_cpf_cnpj`, `locatario_telefone`, `locatario_estado_civil`, `locatario_rua`, `locatario_complemento`, `locatario_pais`, `locatario_rg_ie`, `locatario_email`, `locatario_profissao`, `locatario_numero`, `locatario_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `fiador_nome`, `fiador_data_nascimento`, `fiador_nacionalidade`, `fiador_cep`, `fiador_bairro`, `fiador_estado`, `fiador_cpf_cnpj`, `fiador_telefone`, `fiador_estado_civil`, `fiador_rua`, `fiador_complemento`, `fiador_pais`, `fiador_rg_ie`, `fiador_email`, `fiador_profissao`, `fiador_numero`, `fiador_cidade`, `contrato_vigencia`, `contrato_dia_vencimento`, `contrato_forma_pagamento`, `contrato_data_vencimento`, `id_imobiliaria`) VALUES
-(1, '1', '0011-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'casa', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '0001-01-01', 1, 'Dinheiro', '0001-01-01', '73943371000180');
+INSERT INTO `contrato_aluguel` (`id`, `locatario_nome`, `locatario_data_nascimento`, `locatario_nacionalidade`, `locatario_cep`, `locatario_bairro`, `locatario_estado`, `locatario_cpf_cnpj`, `locatario_telefone`, `locatario_estado_civil`, `locatario_rua`, `locatario_complemento`, `locatario_pais`, `locatario_rg_ie`, `locatario_email`, `locatario_profissao`, `locatario_numero`, `locatario_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `fiador_nome`, `fiador_data_nascimento`, `fiador_nacionalidade`, `fiador_cep`, `fiador_bairro`, `fiador_estado`, `fiador_cpf_cnpj`, `fiador_telefone`, `fiador_estado_civil`, `fiador_rua`, `fiador_complemento`, `fiador_pais`, `fiador_rg_ie`, `fiador_email`, `fiador_profissao`, `fiador_numero`, `fiador_cidade`, `contrato_vigencia`, `contrato_dia_vencimento`, `contrato_forma_pagamento`, `contrato_data_vencimento`, `id_imobiliaria`, `meses_ caucao`, `vencimento_caucao`, `total_caucao`, `forma_pagamento_caucao`) VALUES
+(1, '1', '0011-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '1', 'casa', 1, '1', 1.00, '1', '1', '1', 1.00, '1', '1', '1', '1', '1', '0001-01-01', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', 1, '1', '0001-01-01', 1, 'Dinheiro', '0001-01-01', '73943371000180', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -365,7 +313,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nome`, `data_nascimento`, `estado_civil`, `cpf`, `rg`, `email`, `cargo`, `nacionalidade`, `telefone`, `telefone_reserva`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `senha`, `cnpj`, `reset_token`, `token_expiry`) VALUES
 (11, 'Bruno Campagnol de Oliveira', NULL, 'solteiro', '47169254808', '576950853', 'bruno_unky@hotmail.com', 'teste', 'BRASILEIRO', '19971595745', '111423423', '13506189', 'qqqq', '2', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'brasilll', '$2y$10$gg82R6b60pEH4dM654AAZ.m45ETdR2BZYoc4gGaVAGD2w/bJbFHQa', '73943371000180', '3e604d82dfa9aceb76708d3dcdbf9a3e', '2024-11-06 05:48:17'),
 (12, 'Jorge Lucianetti', NULL, NULL, NULL, NULL, 'jorginho@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WIPljcKbX0r6rjfcylbQtehtqVkJqZKwakoACEXpptO1l/.HzdSCK', '86779530000103', NULL, NULL),
-(13, 'Maria Suzarth', NULL, NULL, NULL, NULL, 'maria@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$zlM5YvZBm5HWRDqOghalF.Ovjeaz3PlTgeZKrwQRUnOnH5UW1Yfcu', '30009388000152', NULL, NULL);
+(13, 'Maria Suzarth', NULL, NULL, NULL, NULL, 'maria@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$zlM5YvZBm5HWRDqOghalF.Ovjeaz3PlTgeZKrwQRUnOnH5UW1Yfcu', '30009388000152', NULL, NULL),
+(14, '123456', NULL, '1', '1', '1', '1@1.com', '1', '1', '1', '', '13506180', 'Rua 10 MP', '1', 'Parque Mãe Preta', 'Rio Claro', 'SP', '1', '$2y$10$vJVd9ZKyoRGnsLbOffmM3esQRSOJGXeBqAc7H.Lr8cMwxMU06a7Ai', '73943371000180', NULL, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -385,15 +334,9 @@ ALTER TABLE `cadastro_imovel`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `contrato_caucao`
+-- Índices de tabela `contrato_aluguel`
 --
-ALTER TABLE `contrato_caucao`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `contrato_fiador`
---
-ALTER TABLE `contrato_fiador`
+ALTER TABLE `contrato_aluguel`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -437,15 +380,9 @@ ALTER TABLE `cadastro_imovel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT de tabela `contrato_caucao`
+-- AUTO_INCREMENT de tabela `contrato_aluguel`
 --
-ALTER TABLE `contrato_caucao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de tabela `contrato_fiador`
---
-ALTER TABLE `contrato_fiador`
+ALTER TABLE `contrato_aluguel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -464,7 +401,7 @@ ALTER TABLE `superior`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
