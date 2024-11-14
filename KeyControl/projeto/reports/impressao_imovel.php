@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Função para formatar o CNPJ na exibição
+//formatar cnpj na impressão 
 function formatarCNPJ($cnpj) {
     $cnpj = preg_replace('/\D/', '', $cnpj);
     if (strlen($cnpj) == 14) {
@@ -27,22 +27,15 @@ $options->set('isPhpEnabled', true);
 
 $dompdf = new Dompdf($options);
 
-// Sanitização do ID recebido via GET
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-// Consulta para obter dados do imóvel e imobiliária associados
 $queryImovel = "SELECT * FROM cadastro_imovel c
                 INNER JOIN imobiliaria i ON c.id_imobiliaria = i.cnpj
+                INNER JOIN cadastro_cliente cc ON c.cpf_cnpj_proprietario = cc.cpf_cnpj
                 WHERE c.id = ?";
 $stmtImovel = $pdo->prepare($queryImovel);
 $stmtImovel->execute([$id]);
 $imovel = $stmtImovel->fetch();
-
-if ($imovel) {
-    // Função para exibir 'Sim' ou 'Não' para valores booleanos
-    function displayYesNo($value) {
-        return $value ? 'Sim' : 'Não';
-    }
 
     $html = '
         <style>
@@ -80,6 +73,7 @@ if ($imovel) {
             <div class="section">
                 <h2 class="section-title">Dados Principais do Imóvel</h2>
                     <div class="row">
+                    <div class="col-3"><strong>CPF/CNPJ:</strong> ' . htmlspecialchars($imovel['cpf_cnpj_proprietario']) . '</div>
                     <div class="col-3"><strong>Proprietário:</strong> ' . htmlspecialchars($imovel['cpf_cnpj_proprietario']) . '</div>
                     <div class="col-3"><strong>Tipo de Imóvel:</strong> ' . htmlspecialchars($imovel['tipo_imovel']) . '</div>
                 </div>
@@ -141,9 +135,7 @@ if ($imovel) {
             </div>
         </div>
     ';
-} else {
-    $html = '<h1>Imóvel não encontrado!</h1>';
-}
+
 
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
