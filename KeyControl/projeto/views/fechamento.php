@@ -90,7 +90,7 @@
     </div>
 </section>
 
-<section>
+<section id="fechamento">
     <div class="container">
         <div class="card_relatório">
         <table class="table table-hover">
@@ -115,8 +115,8 @@
                     <td>Locatário</td>
                     <td>3</td> -->
                     <td> 
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <i class="bi bi-ticket-detailed-fill"></i>
+                        <button type="button" class="btn icon-cash" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="bi bi-cash-stack"></i>
                         </button> 
 
                         <!-- Modal -->
@@ -124,15 +124,15 @@
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Lançamentos pendente</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
                                 ...
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary mt-5" data-bs-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn_salvar mt-5">Salvar</button>
                               </div>
                             </div>
                           </div>

@@ -1,3 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- Estilo customizado -->
+    <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
+    <!-- ICONE -->
+    <link rel="icon" href="../public/assets/img/Logotipo.png">
+
+    <title>Editar Imóvel</title>
+</head>
+
 <?php
 session_start();
 
@@ -38,25 +57,6 @@ include 'navbar.php';
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Bootstrap Icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <!-- Google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- Estilo customizado -->
-    <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
-    <!-- ICONE -->
-    <link rel="icon" href="../public/assets/img/Logotipo.png">
-
-    <title>Alterar Imóvel</title>
-</head>
-
 <body>
 
     <section id="cadastro_imovel">
@@ -66,7 +66,7 @@ include 'navbar.php';
         <input type="hidden" name="action" value="atualizar">
             <div class="container">
                 <div class="row">
-                    <h2>Alterar informações do Imóvel</h2>
+                    <h2>Editar Cadastro de Imóveis</h2>
                     <!-- Coluna principal + Coluna de Tipo -->
                     <div class="row">
                         <!-- Coluna principal -->
@@ -211,71 +211,61 @@ include 'navbar.php';
     <script src="../public/assets/js/consultacep.js"></script>
     <script>
     function openModal(checkbox, modalId) {
-        checkbox.checked = true;
+    checkbox.checked = true;
 
-        if (checkbox.checked) {
-            const modal = new bootstrap.Modal(document.querySelector(modalId));
-            modal.show();
+    if (checkbox.checked) {
+        const modal = new bootstrap.Modal(document.querySelector(modalId));
+        modal.show();
 
-            document.querySelector(modalId).addEventListener('hidden.bs.modal', function() {
-                let valorImovel = '';
-                let taxaAdm = '';
+        // nao limpar os dados ao fechar o modal
+        document.querySelector(modalId).addEventListener('hidden.bs.modal', function() {
+            let valorImovel = '';
+            let taxaAdm = '';
 
-                if (modalId === '#venda_modal') {
-                    valorImovel = document.getElementById('valor_venda').value;
-                    taxaAdm = document.getElementById('taxa_venda').value;
-                } else if (modalId === '#aluguel_modal') {
-                    valorImovel = document.getElementById('valor_aluguel').value;
-                    taxaAdm = document.getElementById('taxa_aluguel').value;
-                }
+            if (modalId === '#venda_modal') {
+                valorImovel = document.getElementById('valor_venda').value;
+                taxaAdm = document.getElementById('taxa_venda').value;
+            } else if (modalId === '#aluguel_modal') {
+                valorImovel = document.getElementById('valor_aluguel').value;
+                taxaAdm = document.getElementById('taxa_aluguel').value;
+            }
 
-                if (!valorImovel || valorImovel == '0' && (!taxaAdm || taxaAdm == '0')) {
-                    checkbox.checked = false;
-                }
-            });
-        }
+            if (!valorImovel || valorImovel == '0' && (!taxaAdm || taxaAdm == '0')) {
+                checkbox.checked = false;
+            }
+        });
+    }
+}
+
+function resetModal(modalId, checkboxId) {
+    if (modalId === '#venda_modal') {
+        document.getElementById('valor_venda').value = '';
+        document.getElementById('taxa_venda').value = '';
+    } else if (modalId === '#aluguel_modal') {
+        document.getElementById('valor_aluguel').value = '';
+        document.getElementById('taxa_aluguel').value = '';
     }
 
-    function resetModal(modalId, checkboxId) {
-        if (modalId === '#venda_modal') {
-            document.getElementById('valor_venda').value = '';
-            document.getElementById('taxa_venda').value = '';
-        } else if (modalId === '#aluguel_modal') {
-            document.getElementById('valor_aluguel').value = '';
-            document.getElementById('taxa_aluguel').value = '';
-        }
+    document.getElementById(checkboxId).checked = false;
+}
 
-        document.getElementById(checkboxId).checked = false;
+document.addEventListener('DOMContentLoaded', function() {
+    // confere se os valores ja foram preenchidos ao carregar a página
+    const valorVenda = document.getElementById('valor_venda').value;
+    const taxaVenda = document.getElementById('taxa_venda').value;
+    const valorAluguel = document.getElementById('valor_aluguel').value;
+    const taxaAluguel = document.getElementById('taxa_aluguel').value;
+
+    // mantem o checkbox se tiver dados preenchidos
+    if (valorVenda && valorVenda != '0' || taxaVenda && taxaVenda != '0') {
+        document.getElementById('vendaCheckbox').checked = true;
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-   
-        const valorVenda = document.getElementById('valor_venda').value;
-        const taxaVenda = document.getElementById('taxa_venda').value;
-        const valorAluguel = document.getElementById('valor_aluguel').value;
-        const taxaAluguel = document.getElementById('taxa_aluguel').value;
+    if (valorAluguel && valorAluguel != '0' || taxaAluguel && taxaAluguel != '0') {
+        document.getElementById('aluguelCheckbox').checked = true;
+    }
+});
 
-        if (valorVenda && valorVenda != '0' || taxaVenda && taxaVenda != '0') {
-            document.getElementById('vendaCheckbox').checked = true;
-        }
-
-        if (valorAluguel && valorAluguel != '0' || taxaAluguel && taxaAluguel != '0') {
-            document.getElementById('aluguelCheckbox').checked = true;
-        }
-
-        document.querySelector('#venda_modal .btn-close').addEventListener('click', function() {
-            resetModal('#venda_modal', 'vendaCheckbox');
-        });
-        document.querySelector('#venda_modal .btn-secondary').addEventListener('click', function() {
-            resetModal('#venda_modal', 'vendaCheckbox');
-        });
-        document.querySelector('#aluguel_modal .btn-close').addEventListener('click', function() {
-            resetModal('#aluguel_modal', 'aluguelCheckbox');
-        });
-        document.querySelector('#aluguel_modal .btn-secondary').addEventListener('click', function() {
-            resetModal('#aluguel_modal', 'aluguelCheckbox');
-        });
-    });
 </script>
 
 </body>
