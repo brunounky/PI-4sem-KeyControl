@@ -101,9 +101,6 @@
                                                  <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['cnpj']) . ")'>
                                                      <i class='bi bi-printer'></i> Imprimir
                                                  </button>
-                                                 <button class='email' onclick='sendEmail(\"" . htmlspecialchars($row['emailimobiliaria'] ?? '') . "\")'>
-                                                     <i class='bi bi-envelope'></i> E-mail
-                                                 </button>
                                                  <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['cnpj']) . ")'>
                                                      <i class='bi bi-trash'></i> Excluir
                                                  </button>

@@ -120,6 +120,7 @@
                                                     <button class='imprimir' onclick='redirectToRelatorio(" . htmlspecialchars($row['id']) . ")'>
                                                         <i class='bi bi-printer'></i> Imprimir
                                                     </button>
+
                                                     <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
                                                         <i class='bi bi-trash'></i> Excluir
                                                     </button>
@@ -143,7 +144,7 @@
 
       <script>
     function redirectToRelatorio(id) {
-        window.location.href = '../reports/relatorio_imovel.php?id=' + id;
+        window.location.href = '../reports/impressao_imovel.php?id=' + id;
     }
     function deleteRecord(id) {
       if (confirm('Você realmente deseja excluir este cliente?')) {

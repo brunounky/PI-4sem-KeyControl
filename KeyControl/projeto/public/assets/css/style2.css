@@ -56,7 +56,6 @@ nav {
 
 /* lançamentos */ 
 
-
 #lancamentos .modal {
   --bs-modal-width: 65%;
 }
@@ -69,6 +68,24 @@ nav {
   margin-top: 15%;
 }
 
+/* fechamento */ 
+
+#fechamento .icon-cash {
+  background-color: white;
+  border: none;
+}
+
+#fechamento .modal {
+  --bs-modal-width: 65%;
+}
+
+#fechamento .modal .modal-body {
+  padding: 25px;
+}
+
+#fechamento .modal label {
+  margin-top: 15%;
+}
 
 
 /* form */
