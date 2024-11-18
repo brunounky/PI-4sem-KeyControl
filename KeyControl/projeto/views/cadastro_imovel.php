@@ -62,9 +62,9 @@
                     <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
                     <select class="form-control mb-3" name="tipo_imovel" id="tipo_imovel" required>
                       <option value="" disabled selected>Selecione um tipo</option>
-                      <option value="apartamento">Apartamento</option>
-                      <option value="casa">Casa</option>
-                      <option value="comercial">Comercial</option>
+                      <option value="Apartamento">Apartamento</option>
+                      <option value="Casa">Casa</option>
+                      <option value="Comercial">Comercial</option>
                     </select>
                     <label for="registro_imovel" class="mb-2">N° de registro do Imóvel</label>
                     <input class="form-control mb-3" type="number" name="registro_imovel" id="registro_imovel" required>

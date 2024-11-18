@@ -35,7 +35,7 @@
     <!-- inicio do form -->
     <form action="../app/controllers/contrato_venda.php" method="post">
       <input type="hidden" name="id" value="<?= htmlspecialchars($cliente['id']) ?>">
-      <input type="hidden" name="action" value="atualizar">
+      <input type="hidden" name="action" value="cadastrar">
       <div class="container">
         <div class="row">
           <h2>Contrato de venda</h2>

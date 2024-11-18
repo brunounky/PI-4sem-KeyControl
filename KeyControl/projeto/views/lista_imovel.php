@@ -81,14 +81,14 @@
                <table class="table table-hover">
                   <thead>
                      <tr>
-                        <th>Registro Imóvel</th>
+                        <th>Registro</th>
                         <th>Proprietário</th>
                         <th>CEP</th>
                         <th>Rua</th>
                         <th>Número</th>
                         <th>Bairro</th>
                         <th>Cidade</th>
-                        <th>Tipo de Imóvel</th>
+                        <th>Tipo</th>
                         <th></th>
                      </tr>
                   </thead>
