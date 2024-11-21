@@ -74,7 +74,7 @@ $imovel = $stmtImovel->fetch();
                 <h2 class="section-title">Dados Principais do Imóvel</h2>
                     <div class="row">
                     <div class="col-3"><strong>CPF/CNPJ:</strong> ' . htmlspecialchars($imovel['cpf_cnpj_proprietario']) . '</div>
-                    <div class="col-3"><strong>Proprietário:</strong> ' . htmlspecialchars($imovel['cpf_cnpj_proprietario']) . '</div>
+                    <div class="col-3"><strong>Proprietário:</strong> ' . htmlspecialchars($imovel['nome']) . '</div>
                     <div class="col-3"><strong>Tipo de Imóvel:</strong> ' . htmlspecialchars($imovel['tipo_imovel']) . '</div>
                 </div>
         </div>
