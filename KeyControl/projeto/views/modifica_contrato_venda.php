@@ -14,7 +14,7 @@
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
 
-  <title>Alterar contrato de Venda</title>
+  <title>Alterar Contrato de Venda</title>
 </head>
 
 <body>
