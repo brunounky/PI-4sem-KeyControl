@@ -62,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $pais_imovel = $_POST['imovel_pais'];
 
     $vigencia = $_POST['contrato_vigencia'];
-    $dia_vencimento = $_POST['dia_vencimento'] ?? null;
     $forma_pagamento = $_POST['contrato_forma_pagamento'];
     $data_vencimento = $_POST['contrato_data_vencimento'];
 
@@ -81,8 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                     fiador_nacionalidade, fiador_cep, fiador_bairro, fiador_estado, fiador_cpf_cnpj, fiador_telefone, fiador_estado_civil, 
                     fiador_rua, fiador_complemento, fiador_pais, fiador_rg_ie, fiador_email, fiador_profissao, fiador_numero, fiador_cidade, 
                     imovel_proprietario_cpf_cnpj, imovel_tipo, imovel_numero, imovel_cidade, imovel_taxa_venda, imovel_cep, imovel_bairro, 
-                    imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, contrato_vigencia, 
-                    dia_vencimento, contrato_forma_pagamento, contrato_data_vencimento, id_imobiliaria, meses_caucao, vencimento_caucao, 
+                    imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, contrato_vigencia, contrato_forma_pagamento, contrato_data_vencimento, id_imobiliaria, meses_caucao, vencimento_caucao, 
                     total_caucao, forma_pagamento_caucao
                 ) 
                 VALUES (
@@ -92,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                     :nacionalidade_fiador, :cep_fiador, :bairro_fiador, :estado_fiador, :cpf_cnpj_fiador, :telefone_fiador, :estado_civil_fiador, 
                     :rua_fiador, :complemento_fiador, :pais_fiador, :rg_ie_fiador, :email_fiador, :profissao_fiador, :numero_fiador, :cidade_fiador, 
                     :cpf_cnpj_proprietario, :tipo_imovel, :numero_imovel, :cidade_imovel, :taxa_venda, :cep_imovel, :bairro_imovel, :estado_imovel, 
-                    :valor_imovel, :registro_imovel, :rua_imovel, :complemento_imovel, :pais_imovel, :vigencia, :dia_vencimento, :forma_pagamento, 
+                    :valor_imovel, :registro_imovel, :rua_imovel, :complemento_imovel, :pais_imovel, :vigencia, :forma_pagamento, 
                     :data_vencimento, :id_imobiliaria, :meses_caucao, :vencimento_caucao, :total_caucao, :forma_pagamento_caucao
                 )";
 
@@ -146,7 +144,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt->bindParam(':complemento_imovel', $complemento_imovel);
         $stmt->bindParam(':pais_imovel', $pais_imovel);
         $stmt->bindParam(':vigencia', $vigencia);
-        $stmt->bindParam(':dia_vencimento', $dia_vencimento);
         $stmt->bindParam(':forma_pagamento', $forma_pagamento);
         $stmt->bindParam(':data_vencimento', $data_vencimento);
         $stmt->bindParam(':id_imobiliaria', $id_imobiliaria);
