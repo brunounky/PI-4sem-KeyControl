@@ -146,16 +146,16 @@
               <div class="card">
                 <div class="row">
                 <div class="col-sm-3">
-                <label for="contrato_vigencia" class="mb-2">Data de Vigência</label>
-                <input class="form-control mb-3" type="date" name="contrato_vigencia" id="contrato_vigencia" required>
+                <label for="data_emissao" class="mb-2">Data de Emissão</label>
+                <input class="form-control mb-3" type="date" name="data_emissao" id="data_emissao" required>
               </div>
               <div class="col-sm-3">
-                <label for="contrato_dia_vencimento" class="mb-2">Data de Pagamento</label>
-                <input class="form-control mb-3" type="date" name="contrato_dia_vencimento" id="contrato_dia_vencimento" required>
+                <label for="data_vencimento" class="mb-2">Data de Pagamento</label>
+                <input class="form-control mb-3" type="date" name="data_vencimento" id="data_vencimento" required>
               </div>
                   <div class="col-sm-3">
-                  <label for="contrato_forma_pagamento" class="mb-2">Forma de pagamento</label>
-                    <select class="form-control mb-3" name="contrato_forma_pagamento" id="contrato_forma_pagamento" required>
+                  <label for="forma_pagamento" class="mb-2">Forma de pagamento</label>
+                    <select class="form-control mb-3" name="forma_pagamento" id="forma_pagamento" required>
                       <option value="" disabled selected>Selecionar</option>
                       <option value="Boleto">Financiamento</option>
                       <option value="Dinheiro">Dinheiro</option>
@@ -183,6 +183,18 @@
       <!-- fim do form -->
     </form>
   </section>
+
+  <script>
+    const hoje = new Date();
+
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const ano = hoje.getFullYear();
+    const dataFormatada = `${dia}-${mes}-${ano}`;
+    const dataHTML = `${ano}-${mes}-${dia}`;
+    document.getElementById("data_emissao").value = dataHTML;
+    console.log(dataFormatada);
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

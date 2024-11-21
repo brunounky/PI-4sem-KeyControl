@@ -44,58 +44,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $complemento_imovel = $_POST['imovel_complemento'];
     $pais_imovel = $_POST['imovel_pais'];
 
+    $emissao = $_POST['data_emissao'];
+    $data_vencimento = $_POST['data_vencimento'];
+    $forma_pagamento = $_POST['forma_pagamento'];
 
-    $vigencia = $_POST['contrato_vigencia'];
-    $dia_vencimento = $_POST['contrato_dia_vencimento'];
-    $forma_pagamento = $_POST['contrato_forma_pagamento'];
+    $id_imobiliaria = $_SESSION['user_cnpj'];
 
     try {
-        $sql = "INSERT INTO contrato_venda (comprador_nome, comprador_data_nascimento, comprador_nacionalidade, comprador_cep, comprador_bairro, comprador_estado, comprador_cpf_cnpj, comprador_telefone, comprador_estado_civil, comprador_rua, comprador_complemento, comprador_pais, comprador_rg_ie, comprador_email, comprador_profissao, comprador_numero, comprador_cidade, imovel_proprietario_cpf_cnpj, imovel_tipo, imovel_numero, imovel_cidade, imovel_taxa_venda, imovel_cep, imovel_bairro, imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, contrato_vigencia, contrato_dia_vencimento, contrato_forma_pagamento) 
-                VALUES (:nome, :data_nascimento_fundacao, :nacionalidade, :cep, :bairro, :estado, :cpf_cnpj, :telefone, :estado_civil, :rua, :complemento, :pais, :rg_ie, :email, :profissao, :numero, :cidade, :cpf_cnpj_proprietario, :tipo_imovel, :numero_imovel, :cidade_imovel, :taxa_venda, :cep_imovel, :bairro_imovel, :estado_imovel, :valor_imovel, :registro_imovel, :rua_imovel, :complemento_imovel, :pais_imovel, :vigencia, :dia_vencimento, :forma_pagamento)";
+        $pdo->beginTransaction();
+
+        $sql_contrato = "INSERT INTO contrato_venda (comprador_nome, comprador_data_nascimento, comprador_nacionalidade, comprador_cep, comprador_bairro, comprador_estado, comprador_cpf_cnpj, comprador_telefone, comprador_estado_civil, comprador_rua, comprador_complemento, comprador_pais, comprador_rg_ie, comprador_email, comprador_profissao, comprador_numero, comprador_cidade, imovel_proprietario_cpf_cnpj, imovel_tipo, imovel_numero, imovel_cidade, imovel_taxa_venda, imovel_cep, imovel_bairro, imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, data_emissao, data_vencimento, forma_pagamento) 
+                VALUES (:nome, :data_nascimento_fundacao, :nacionalidade, :cep, :bairro, :estado, :cpf_cnpj, :telefone, :estado_civil, :rua, :complemento, :pais, :rg_ie, :email, :profissao, :numero, :cidade, :cpf_cnpj_proprietario, :tipo_imovel, :numero_imovel, :cidade_imovel, :taxa_venda, :cep_imovel, :bairro_imovel, :estado_imovel, :valor_imovel, :registro_imovel, :rua_imovel, :complemento_imovel, :pais_imovel, :emissao, :data_vencimento, :forma_pagamento)";
+
+        $stmt_contrato = $pdo->prepare($sql_contrato);
+
+        $stmt_contrato->bindParam(':nome', $nome);
+        $stmt_contrato->bindParam(':data_nascimento_fundacao', $data_nascimento_fundacao);
+        $stmt_contrato->bindParam(':nacionalidade', $nacionalidade);
+        $stmt_contrato->bindParam(':cep', $cep);
+        $stmt_contrato->bindParam(':bairro', $bairro);
+        $stmt_contrato->bindParam(':estado', $estado);
+        $stmt_contrato->bindParam(':cpf_cnpj', $cpf_cnpj);
+        $stmt_contrato->bindParam(':telefone', $telefone);
+        $stmt_contrato->bindParam(':estado_civil', $estado_civil);
+        $stmt_contrato->bindParam(':rua', $rua);
+        $stmt_contrato->bindParam(':complemento', $complemento);
+        $stmt_contrato->bindParam(':pais', $pais);
+        $stmt_contrato->bindParam(':rg_ie', $rg_ie);
+        $stmt_contrato->bindParam(':email', $email);
+        $stmt_contrato->bindParam(':profissao', $profissao);
+        $stmt_contrato->bindParam(':numero', $numero);
+        $stmt_contrato->bindParam(':cidade', $cidade);
+        $stmt_contrato->bindParam(':cpf_cnpj_proprietario', $cpf_cnpj_proprietario);
+        $stmt_contrato->bindParam(':tipo_imovel', $tipo_imovel);
+        $stmt_contrato->bindParam(':numero_imovel', $numero_imovel);
+        $stmt_contrato->bindParam(':cidade_imovel', $cidade_imovel);
+        $stmt_contrato->bindParam(':taxa_venda', $taxa_venda);
+        $stmt_contrato->bindParam(':cep_imovel', $cep_imovel);
+        $stmt_contrato->bindParam(':bairro_imovel', $bairro_imovel);
+        $stmt_contrato->bindParam(':estado_imovel', $estado_imovel);
+        $stmt_contrato->bindParam(':valor_imovel', $valor_imovel);
+        $stmt_contrato->bindParam(':registro_imovel', $registro_imovel);
+        $stmt_contrato->bindParam(':rua_imovel', $rua_imovel);
+        $stmt_contrato->bindParam(':complemento_imovel', $complemento_imovel);
+        $stmt_contrato->bindParam(':pais_imovel', $pais_imovel);
+        $stmt_contrato->bindParam(':emissao', $emissao);
+        $stmt_contrato->bindParam(':data_vencimento', $data_vencimento);
+        $stmt_contrato->bindParam(':forma_pagamento', $forma_pagamento);
+
+        $stmt_contrato->execute();
+
+        $sql_lancamento = "INSERT INTO lancamento_financeiro (id_imobiliaria, registro_imovel, data_emissao, valor_total, data_vencimento, forma_pagamento, tipo_lancamento) 
+                VALUES (:id_imobiliaria, :registro_imovel, :data_emissao, :valor_imovel, :data_vencimento, :forma_pagamento, 'venda imovel')";
+
+        $stmt_lancamento = $pdo->prepare($sql_lancamento);
+
+        $stmt_lancamento->bindParam(':id_imobiliaria', $id_imobiliaria);
+        $stmt_lancamento->bindParam(':registro_imovel', $registro_imovel);
+        $stmt_lancamento->bindParam(':data_emissao', $emissao);
+        $stmt_lancamento->bindParam(':valor_imovel', $valor_imovel);
+        $stmt_lancamento->bindParam(':data_vencimento', $data_vencimento);
+        $stmt_lancamento->bindParam(':forma_pagamento', $forma_pagamento);
+
+        $stmt_lancamento->execute();
 
 
-        $stmt = $pdo->prepare($sql);
-
-    
-        $stmt->bindParam(':nome', $nome);
-        $stmt->bindParam(':data_nascimento_fundacao', $data_nascimento_fundacao);
-        $stmt->bindParam(':nacionalidade', $nacionalidade);
-        $stmt->bindParam(':cep', $cep);
-        $stmt->bindParam(':bairro', $bairro);
-        $stmt->bindParam(':estado', $estado);
-        $stmt->bindParam(':cpf_cnpj', $cpf_cnpj);
-        $stmt->bindParam(':telefone', $telefone);
-        $stmt->bindParam(':estado_civil', $estado_civil);
-        $stmt->bindParam(':rua', $rua);
-        $stmt->bindParam(':complemento', $complemento);
-        $stmt->bindParam(':pais', $pais);
-        $stmt->bindParam(':rg_ie', $rg_ie);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':profissao', $profissao);
-        $stmt->bindParam(':numero', $numero);
-        $stmt->bindParam(':cidade', $cidade);
-        $stmt->bindParam(':cpf_cnpj_proprietario', $cpf_cnpj_proprietario);
-        $stmt->bindParam(':tipo_imovel', $tipo_imovel);
-        $stmt->bindParam(':numero_imovel', $numero_imovel);
-        $stmt->bindParam(':cidade_imovel', $cidade_imovel);
-        $stmt->bindParam(':taxa_venda', $taxa_venda);
-        $stmt->bindParam(':cep_imovel', $cep_imovel);
-        $stmt->bindParam(':bairro_imovel', $bairro_imovel);
-        $stmt->bindParam(':estado_imovel', $estado_imovel);
-        $stmt->bindParam(':valor_imovel', $valor_imovel);
-        $stmt->bindParam(':registro_imovel', $registro_imovel);
-        $stmt->bindParam(':rua_imovel', $rua_imovel);
-        $stmt->bindParam(':complemento_imovel', $complemento_imovel);
-        $stmt->bindParam(':pais_imovel', $pais_imovel);
-        $stmt->bindParam(':vigencia', $vigencia);
-        $stmt->bindParam(':dia_vencimento', $dia_vencimento);
-        $stmt->bindParam(':forma_pagamento', $forma_pagamento);
-
-        $stmt->execute();
+        $pdo->commit();
 
         header("Location: ../../views/lista_contrato_venda.php");
         exit();
     } catch (PDOException $e) {
+        $pdo->rollBack();
         echo "Erro ao cadastrar contrato: " . $e->getMessage();
     }
 }
