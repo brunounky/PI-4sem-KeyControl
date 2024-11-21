@@ -40,8 +40,8 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="drop">
             <li><a class="dropdown-item nav-link" href="../views/fechamento.php">Fechamentos</a></li>
-            <li><a class="dropdown-item nav-link" href="../views/lançamento_pagar.php">Lançamentos a Pagar</a></li>
-            <li><a class="dropdown-item nav-link" href="../views/lançamento_receber.php">Lançamentos a Receber</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/lista_lancamento_pagar.php">Lançamentos a Pagar</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/lista_lancamento_receber.php">Lançamentos a Receber</a></li>
           </ul>
         </li>
       </ul>

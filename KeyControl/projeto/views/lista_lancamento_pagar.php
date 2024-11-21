@@ -1,10 +1,33 @@
 <?php 
+
    session_start();
    
    if (!isset($_SESSION['user_id'])) {
       header("Location: ../app/controllers/verifica_login.php");
       exit();
    }
+
+   include '../app/controllers/db_conexao.php';
+
+   try {
+      $stmt = $pdo->prepare("
+        SELECT imobiliaria.nome_fantasia
+        FROM usuarios
+        INNER JOIN imobiliaria ON usuarios.cnpj = imobiliaria.cnpj
+        WHERE usuarios.id = :user_id
+      ");
+      $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+      $stmt->execute(); 
+      $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+      if (!$dados) {
+        echo "Dados da imobiliária ou do usuário não encontrados.";
+        exit();
+      }
+    } catch (PDOException $e) {
+      echo "Erro ao buscar os dados: " . $e->getMessage();
+      exit();
+    }
    
 ?>
 
@@ -49,19 +72,19 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                     <form id="formLançamento">
+                     <form method="POST" action="../app/controllers/cadastro_lancamento.php">
                         <div class="row">
                            <div class="col-md-4">
-                              <label for="idimobiliaria" class="form-label">Imobiliária</label>
-                              <input class="form-control" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['cnpj']); ?>" required disabled>
-                              <label for="id_lancamento_pagar" class="form-label">N°</label>
-                              <input type="text" id="id_lancamento_pagar" class="form-control" name="id_lancamento_pagar">
-                              <label for="valor" class="form-label">Valor</label>
-                              <input type="text" id="valor" class="form-control" name="valor">
+                              <label for="nome_fantasia" class="form-label">Imobiliária</label>
+                              <input class="form-control" type="text" name="nome_fantasia" id="nome_fantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required disabled>
+                              <label for="idlancamento" class="form-label">N° do Lançamento</label>
+                              <input type="text" id="idlancamento" class="form-control" name="idlancamento">
+                              <label for="valor_total" class="form-label">Valor</label>
+                              <input type="text" id="valor_total" class="form-control" name="valor_total">
                            </div>
                            <div class="col-md-4">
-                              <label for="tipoLançamento" class="form-label">Tipo</label>
-                              <select class="form-select" id="tipoLançamento" required disabled>
+                              <label for="tipo_lancamento" class="form-label">Tipo</label>
+                              <select class="form-select" id="tipo_lancamento" required disabled>
                                  <option value="Aluguel">Aluguel</option>
                                  <option value="IPTU">IPTU</option>
                                  <option value="Água">Água</option>
@@ -82,12 +105,12 @@
                               </select>
                            </div>
                            <div class="col-md-4">
-                              <label for="beneficiario" class="form-label">Beneficiário</label>
-                              <input type="text" id="cpf_cnpj_proprietario" class="form-control" name="beneficiario">
+                              <label for="registro_imovel" class="form-label">Registro do Imovel</label>
+                              <input type="text" id="registro_imovel" class="form-control" name="registro_imovel">
                               <label for="data_vencimento" class="form-label">Vencimento</label>
                               <input type="date" class="form-control" id="data_vencimento" required>
-                              <label for="observacao" class="form-label">Observações</label>
-                              <input type="text" class="form-control" id="observacao" required>
+                              <label for="observacoes" class="form-label">Observações</label>
+                              <input type="text" class="form-control" id="observacoes" required>
                            </div>
                            <button type="submit" class="btn btn_salvar mt-5">Salvar</button>
                         </div>
@@ -208,7 +231,7 @@
          tipoLinks.forEach(link => {
             link.addEventListener('click', function() {
                const tipo = this.getAttribute('data-tipo');
-               document.getElementById('tipoLançamento').value = tipo;
+               document.getElementById('tipo_lancamento').value = tipo;
             });
          });
       </script>
