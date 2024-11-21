@@ -111,16 +111,13 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                                         <button class='btn' onclick=\"window.location.href='../views/modifica_contrato_venda.php?id=" . htmlspecialchars($row['contrato_id']) . "'\">
                                           <i class='bi bi-pencil-square'></i>
                                           </button>
-                                        <button class='btn' title='Mostrar Opções' onclick='toggleSubMenu(this)'>
+                                        <button class='btn' onclick='toggleSubMenu(this)'>
                                             <i class='bi bi-chevron-down'></i>
                                         </button>
-                                        <div class='submenu hidden'>
+                                            <div class='submenu' style='display: none;'>
                                             <div class='submenu-options'>
-                                                <button class='imprimir' title='Imprimir' onclick='printInfo(" . htmlspecialchars($row['contrato_id']) . ")'>
+                                                <button class='imprimir' title='Imprimir' onclick='redirectToRelatorio(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                     <i class='bi bi-printer'></i> Imprimir
-                                                </button>
-                                                <button class='excluir' title='Excluir' onclick='deleteRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                    <i class='bi bi-trash'></i> Excluir
                                                 </button>
                                             </div>
                                         </div>
@@ -138,5 +135,17 @@ include_once '../app/controllers/filtro_contrato_venda.php';
     </section>
     <script src="../public/assets/js/menu.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/assets/js/submenu.js"></script>
+    <script>
+    function redirectToRelatorio(id) {
+        window.location.href = '../reports/impressao_contrato_venda.php?id=' + id;
+    }
+//     function deleteRecord(id) {
+//       if (confirm('Você realmente deseja excluir este cliente?')) {
+//          window.location.href = '../app/controllers/apaga_imovel.php?id=' + id;
+//       }
+//    }
+</script>
+
 </body>
 </html>

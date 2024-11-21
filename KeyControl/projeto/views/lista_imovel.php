@@ -109,7 +109,7 @@
                                         <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
                                         <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
                                         <td>
-                                          <button class='btn' onclick=\"window.location.href='../views/modifica_imovel.php?id=" . htmlspecialchars($row['id']) . "'\">
+                                 <button class='btn' onclick=\"window.location.href='../views/modifica_imovel.php?id=" . htmlspecialchars($row['id']) . "'\">
                                           <i class='bi bi-pencil-square'></i>
                                           </button>
                                             <button class='btn' onclick='toggleSubMenu(this)'>
