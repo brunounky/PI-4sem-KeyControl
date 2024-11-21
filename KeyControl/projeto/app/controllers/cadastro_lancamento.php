@@ -18,17 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $data_vencimento = $_POST['data_vencimento'];
         $observacoes = $_POST['observacoes'] ?? null;
 
-        // O ID da imobiliária é obtido da sessão
         $id_imobiliaria = $_SESSION['user_cnpj'];
 
-        // Preparar a query para inserção
         $stmt = $pdo->prepare("
             INSERT INTO lancamento_financeiro 
             (valor_total, tipo_lancamento, data_emissao, forma_pagamento, registro_imovel, data_vencimento, observacoes, id_imobiliaria) 
             VALUES (:valor_total, :tipo_lancamento, :data_emissao, :forma_pagamento, :registro_imovel, :data_vencimento, :observacoes, :id_imobiliaria)
         ");
 
-        // Vincular os valores aos placeholders
         $stmt->bindParam(':valor_total', $valor_total);
         $stmt->bindParam(':tipo_lancamento', $tipo_lancamento);
         $stmt->bindParam(':data_emissao', $data_emissao);
@@ -38,9 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt->bindParam(':observacoes', $observacoes);
         $stmt->bindParam(':id_imobiliaria', $id_imobiliaria);
 
-        // Executar a query
         if ($stmt->execute()) {
-            // Redirecionar para uma página de sucesso
             header("Location: ../../views/lista_lancamento_pagar.php");
             exit();
         } else {
@@ -54,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         exit();
     }
 } else {
-    // Caso a requisição não seja POST, redirecione ou mostre erro
     header("Location: ../../views/lista_lancamento_pagar.php");
     exit();
 }
