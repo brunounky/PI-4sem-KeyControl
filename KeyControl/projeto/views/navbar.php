@@ -51,7 +51,7 @@
             Relatórios
           </a>
           <ul class="dropdown-menu" aria-labelledby="drop">
-            <li><a class="dropdown-item nav-link" href="#">Clientes</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/relatorio_clientes.php">Clientes</a></li>
             <li><a class="dropdown-item nav-link" href="#">Imóveis</a></li>
             <li><a class="dropdown-item nav-link" href="#">Pagamentos</a></li>
             <li><a class="dropdown-item nav-link" href="#">Vencimentos</a></li>
