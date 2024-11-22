@@ -15,7 +15,7 @@ $nova_senha = $_POST['nova_senha'];
 $confirmar_senha = $_POST['confirmar_senha'];
 
 if ($nova_senha !== $confirmar_senha) {
-    echo "A nova senha e a confirmação não coincidem.";
+    header("Location: ../../views/perfil.php?erro=confirmacao");
     exit();
 }
 
@@ -31,12 +31,14 @@ try {
         $update_stmt = $pdo->prepare("UPDATE usuarios SET senha = ? WHERE id = ?");
         $update_stmt->execute([$nova_senha_hash, $user_id]);
 
-        header("Location: ../../views/perfil.php");
+        header("Location: ../../views/perfil.php?sucesso=senha_alterada");
         exit();
     } else {
-        echo "A senha atual está incorreta.";
+        header("Location: ../../views/perfil.php?erro=senha_incorreta");
+        exit();
     }
 } catch (PDOException $e) {
-    echo "Erro ao alterar a senha: " . $e->getMessage();
+    header("Location: ../../views/perfil.php?erro=bd");
+    exit();
 }
 ?>

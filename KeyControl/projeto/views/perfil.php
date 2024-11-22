@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
   <!-- Estilo customizado -->
   <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
+  <link rel="stylesheet" type="text/css" href="../public/assets/css/modal_avisos.css">
   <!-- ICONE -->
   <link rel="icon" href="../public/assets/img/Logotipo.png">
 
@@ -67,7 +68,6 @@ include 'navbar.php';
             <div class="card">
               <div class="row">
                 <div class="col-sm-12">
-                  <img src="../app/controllers/exibir_imagem.php?cnpj=<?php echo htmlspecialchars($dados['cnpj']); ?>" alt="Logo da Imobiliária" class="img-fluid mb-2" />
                   <label for="idimobiliaria" class="mb-2">CNPJ da Imobiliária</label>
                   <input class="form-control mb-3" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['cnpj']); ?>" required disabled>
                   <label for="nomefantasia" class="mb-2">Nome Fantasia</label>
@@ -159,6 +159,17 @@ include 'navbar.php';
     </div>
   </section>
 
+  <!-- Modal -->
+  <!-- Modal -->
+  <div id="modal">
+        <div id="modal-content">
+            <img src="" alt="Ícone de sucesso">
+            <p id="modal-message">Suas informações foram salvas com sucesso!</p>
+            <button onclick="fecharModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="../public/assets/js/valida_troca_senha.js"></script>
   <script src="../public/assets/js/consultacep.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb5T5ggK+5l0VO4y7nVR+nQmvWn4U5jp6m3FQTVpM5VbcFz/m" crossorigin="anonymous"></script>
 </body>
