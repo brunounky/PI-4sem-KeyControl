@@ -10,8 +10,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        $stmt = $pdo->prepare("SELECT * FROM `cadastro_imovel` WHERE registro_imovel = :registro_imovel");
-        
+        $stmt = $pdo->prepare("SELECT 
+    cadastro_imovel.*,
+    cadastro_cliente.cpf_cnpj
+FROM 
+    cadastro_imovel
+INNER JOIN 
+    cadastro_cliente
+ON 
+    cadastro_imovel.cpf_cnpj_proprietario = cadastro_cliente.cpf_cnpj
+WHERE 
+    cadastro_imovel.registro_imovel = :registro_imovel
+");
+
         $stmt->bindParam(':registro_imovel', $imovel_registro);
         $stmt->execute();
 
@@ -26,4 +37,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(['error' => 'Erro no banco de dados: ' . $e->getMessage()]);
     }
 }
-?>

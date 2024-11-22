@@ -16,7 +16,7 @@ document.getElementById('comprador_cpf_cnpj').addEventListener('blur', function(
                 alert(data.error);
             } else {
                 document.getElementById('comprador_nome').value = data.nome || '';
-                document.getElementById('comprador_data_nascimento').value = data.data_nascimento || '';
+                document.getElementById('comprador_data_nascimento').value = data.data_nascimento_fundacao || '';
                 document.getElementById('comprador_nacionalidade').value = data.nacionalidade || '';
                 document.getElementById('comprador_cep').value = data.cep || '';
                 document.getElementById('comprador_bairro').value = data.bairro || '';
