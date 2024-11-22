@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt->bindParam(':complemento', $complemento);
 
     if ($stmt->execute()) {
-        header("Location: ../../views/lista_imovel.php");
+        header(header: "Location: ../../views/lista_imovel.php");
         exit();
     } else {
         echo "Erro ao atualizar imóvel: " . $stmt->errorInfo()[2];

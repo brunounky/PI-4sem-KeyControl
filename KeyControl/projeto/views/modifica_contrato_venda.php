@@ -71,7 +71,7 @@
 
   <section id="contrato_aluguel_caucao">
     <!-- inicio do form -->
-    <form action="../app/controllers/contrato_venda.php" method="post">
+    <form action="../app/controllers/altera_contrato_venda.php" method="post">
       <input type="hidden" name="id" value="<?= htmlspecialchars($contrato['id']) ?>">
       <input type="hidden" name="action" value="atualizar">
       <div class="container">
@@ -214,8 +214,7 @@
       <!-- rodape -->
       <footer class="py-3">
         <div class="container">
-          <button type="submit" class="btn btn_salvar">Salvar</button>
-          <button type="button" class="btn btn_salvar"><i class="bi bi-eye"></i> Pré visualizar</button>
+          <button type="submit" class="btn btn_salvar">Alterar</button>
         </div>
       </footer>
       <!-- fim do form -->
