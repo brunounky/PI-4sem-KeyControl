@@ -53,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     try {
         $pdo->beginTransaction();
 
-        $sql_contrato = "INSERT INTO contrato_venda (comprador_nome, comprador_data_nascimento, comprador_nacionalidade, comprador_cep, comprador_bairro, comprador_estado, comprador_cpf_cnpj, comprador_telefone, comprador_estado_civil, comprador_rua, comprador_complemento, comprador_pais, comprador_rg_ie, comprador_email, comprador_profissao, comprador_numero, comprador_cidade, imovel_proprietario_cpf_cnpj, imovel_tipo, imovel_numero, imovel_cidade, imovel_taxa_venda, imovel_cep, imovel_bairro, imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, data_emissao, data_vencimento, forma_pagamento) 
-                VALUES (:nome, :data_nascimento_fundacao, :nacionalidade, :cep, :bairro, :estado, :cpf_cnpj, :telefone, :estado_civil, :rua, :complemento, :pais, :rg_ie, :email, :profissao, :numero, :cidade, :cpf_cnpj_proprietario, :tipo_imovel, :numero_imovel, :cidade_imovel, :taxa_venda, :cep_imovel, :bairro_imovel, :estado_imovel, :valor_imovel, :registro_imovel, :rua_imovel, :complemento_imovel, :pais_imovel, :emissao, :data_vencimento, :forma_pagamento)";
+        $sql_contrato = "INSERT INTO contrato_venda (comprador_nome, comprador_data_nascimento, comprador_nacionalidade, comprador_cep, comprador_bairro, comprador_estado, comprador_cpf_cnpj, comprador_telefone, comprador_estado_civil, comprador_rua, comprador_complemento, comprador_pais, comprador_rg_ie, comprador_email, comprador_profissao, comprador_numero, comprador_cidade, imovel_proprietario_cpf_cnpj, imovel_tipo, imovel_numero, imovel_cidade, imovel_taxa_venda, imovel_cep, imovel_bairro, imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, data_emissao, data_vencimento, forma_pagamento, id_imobiliaria) 
+                VALUES (:nome, :data_nascimento_fundacao, :nacionalidade, :cep, :bairro, :estado, :cpf_cnpj, :telefone, :estado_civil, :rua, :complemento, :pais, :rg_ie, :email, :profissao, :numero, :cidade, :cpf_cnpj_proprietario, :tipo_imovel, :numero_imovel, :cidade_imovel, :taxa_venda, :cep_imovel, :bairro_imovel, :estado_imovel, :valor_imovel, :registro_imovel, :rua_imovel, :complemento_imovel, :pais_imovel, :emissao, :data_vencimento, :forma_pagamento, :id_imobiliaria)";
 
         $stmt_contrato = $pdo->prepare($sql_contrato);
 
@@ -91,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt_contrato->bindParam(':emissao', $emissao);
         $stmt_contrato->bindParam(':data_vencimento', $data_vencimento);
         $stmt_contrato->bindParam(':forma_pagamento', $forma_pagamento);
+        $stmt->bindParam(':id_imobiliaria', $id_imobiliaria);
 
         $stmt_contrato->execute();
 

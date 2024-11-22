@@ -29,13 +29,13 @@ $dompdf = new Dompdf($options);
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     
-$queryContrato = "SELECT * 
+$query = "SELECT * 
           FROM contrato_venda cv
           INNER JOIN imobiliaria i ON cv.id_imobiliaria = i.cnpj
           WHERE cv.id = ?";
-$stmtContrato = $pdo->prepare($queryContrato);
-$stmtContrato->execute([$id]);
-$Contrato = $stmtContrato->fetch();
+$stmt = $pdo->prepare($query);
+$stmt->execute([$id]);
+$contrato = $stmt->fetch();
 
 $html = '
     <style>
@@ -64,18 +64,18 @@ $html = '
 
      <div class="container">
             <div class="header">
-                    <p class="cabecalho"><strong>' . htmlspecialchars($Contrato['nome_fantasia']) . '</strong></p>
-                    <p class="cabecalho2">CNPJ: ' . htmlspecialchars(formatarCNPJ($Contrato['id_imobiliaria'])) . '</p>
-                    <p class="cabecalho2">Telefone: ' . htmlspecialchars($Contrato['telefoneimobiliaria']) . '</p>
-                    <p class="cabecalho2">E-mail: ' . htmlspecialchars($Contrato['emailimobiliaria']) . '</p>
+                    <p class="cabecalho"><strong>' . htmlspecialchars($contrato['nome_fantasia']) . '</strong></p>
+                    <p class="cabecalho2">CNPJ: ' . htmlspecialchars(formatarCNPJ($contrato['id_imobiliaria'])) . '</p>
+                    <p class="cabecalho2">Telefone: ' . htmlspecialchars($contrato['telefoneimobiliaria']) . '</p>
+                    <p class="cabecalho2">E-mail: ' . htmlspecialchars($contrato['emailimobiliaria']) . '</p>
             </div>
 
             <div class="section">
                 <h2 class="section-title">Dados Principais do Comprador</h2>
                     <div class="row">
-                    <div class="col-3"><strong>Comprador:</strong> ' . htmlspecialchars($Contrato['comprador_nome']) . '</div>
-                    <div class="col-3"><strong>CPF/CNPJ:</strong> ' . htmlspecialchars($Contrato['comprador_cpf_cnpj']) . '</div>
-                    <div class="col-3"><strong>Telefone:</strong> ' . htmlspecialchars($Contrato['comprador_telefone']) . '</div>
+                    <div class="col-3"><strong>Comprador:</strong> ' . htmlspecialchars($contrato['comprador_nome']) . '</div>
+                    <div class="col-3"><strong>CPF/CNPJ:</strong> ' . htmlspecialchars($contrato['comprador_cpf_cnpj']) . '</div>
+                    <div class="col-3"><strong>Telefone:</strong> ' . htmlspecialchars($contrato['comprador_telefone']) . '</div>
                 </div>
         </div>
 
@@ -90,11 +90,11 @@ $html = '
                         <th>Cidade</th>
                     </tr>
                     <tr>
-                        <td>' . htmlspecialchars($Contrato['imovel_proprietario_cpf_cnpj']) . '</td>
-                        <td>' . htmlspecialchars($Contrato['imovel_rua']) . '</td>
-                        <td>' . htmlspecialchars($Contrato['imovel_bairro']) . '</td>
-                        <td>' . htmlspecialchars($Contrato['imovel_cep']) . '</td>
-                        <td>' . htmlspecialchars($Contrato['imovel_cidade']) . '</td>
+                        <td>' . htmlspecialchars($contrato['imovel_proprietario_cpf_cnpj']) . '</td>
+                        <td>' . htmlspecialchars($contrato['imovel_rua']) . '</td>
+                        <td>' . htmlspecialchars($contrato['imovel_bairro']) . '</td>
+                        <td>' . htmlspecialchars($contrato['imovel_cep']) . '</td>
+                        <td>' . htmlspecialchars($contrato['imovel_cidade']) . '</td>
                     </tr>
                 </table>
             </div>
@@ -108,9 +108,7 @@ $html = '
                         <th>Forma de pagamento</th>
                     </tr>
                     <tr>
-                        <td>' . htmlspecialchars($Contrato['Contrato_vigencia']) . '</td>
-                        <td>' . htmlspecialchars($Contrato['Contrato_dia_vencimento']) . '</td>
-                        <td>' . htmlspecialchars($Contrato['Contrato_forma_pagamento']) . '</td>
+                        <td>' . htmlspecialchars($contrato['forma_pagamento']) . '</td>
 
                     </tr>
                 </table>
@@ -120,3 +118,8 @@ $html = '
             </div>
         </div>
 ';
+
+$dompdf->loadHtml($html);
+$dompdf->setPaper('A4', 'portrait');
+$dompdf->render();
+$dompdf->stream("contrato_venda.pdf", ["Attachment" => false]);
