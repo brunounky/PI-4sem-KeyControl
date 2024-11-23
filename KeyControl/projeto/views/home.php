@@ -11,7 +11,7 @@
     <!-- Estilo customizado -->
     <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
     <!-- ICONE -->
-    <link rel="icon" href="../public/assets/img/Logotipo.png">
+    <link rel="icon" href="../public/assets/img/Logotipo.svg">
 
     <title>Home</title>
 
@@ -34,7 +34,7 @@
 <section id="home">
     <div class="container-fluid">
         <div id="home-img">
-            <img src="../public/assets/img/Logotipo.png">
+            <img src="../public/assets/img/Logotipo.svg">
             <p>Gestor Imobiliário</p>
         </div>
     </div> 

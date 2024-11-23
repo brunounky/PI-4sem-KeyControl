@@ -18,7 +18,7 @@ include '../app/controllers/filtros_pessoas.php';
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600&display=swap" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
-   <link rel="icon" href="../public/assets/img/Logotipo.png">
+   <link rel="icon" href="../public/assets/img/Logotipo.svg">
    <title>Clientes</title>
 </head>
 

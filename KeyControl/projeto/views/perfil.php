@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
   <link rel="stylesheet" type="text/css" href="../public/assets/css/modal_avisos.css">
   <!-- ICONE -->
-  <link rel="icon" href="../public/assets/img/Logotipo.png">
+  <link rel="icon" href="../public/assets/img/Logotipo.svg">
 
   <title>Perfil do Usuário</title>
 </head>

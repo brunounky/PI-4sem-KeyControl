@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav align-items-center">
         <li>
-          <a class="nav-link" href="../views/home.php"><img src="../public/assets/img/Logomarca.png" width="110px"></a>
+          <a class="nav-link" href="../views/home.php"><img src="../public/assets/img/Logomarca.svg" width="110px"></a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">

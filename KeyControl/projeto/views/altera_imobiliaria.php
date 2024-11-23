@@ -12,7 +12,7 @@
   <!-- Estilo customizado -->
   <link rel="stylesheet" type="text/css" href="../public/assets/css/style2.css">
   <!-- ICONE -->
-  <link rel="icon" href="../public/assets/img/Logotipo.png">
+  <link rel="icon" href="../public/assets/img/Logotipo.svg">
 
   <title>Cadastro de Imobiliária</title>
 </head>
