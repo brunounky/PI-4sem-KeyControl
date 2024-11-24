@@ -154,6 +154,7 @@
                      <th>Vencimento</th>
                      <th>Liquidação</th>
                      <th>Tipo de Lançamento</th>
+                     <th>Valor</th>
                      <th></th>
                   </tr>
                </thead>

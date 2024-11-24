@@ -60,7 +60,7 @@
       </ul>
       <ul class="navbar-nav align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link" href="#">Dashboard</a>
+          <a class="nav-link" href="../views/dashboard.php">Dashboard</a>
         </li>
       </ul>
       <ul class="navbar-nav align-items-center">

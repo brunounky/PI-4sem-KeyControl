@@ -307,3 +307,65 @@ h2.mb-0 {
   .hide-arrow::after {
     display: none; 
 }
+
+/** dashboard **/ 
+
+.card-superior{
+  box-shadow: 0 4px 30px 0 rgba(218, 224, 230, 0.878);
+  border: none;
+  margin-bottom: 50px;
+}
+
+.card-branco {
+  background-color: #EDF4F0;
+  color: black;
+  text-align: right;
+  padding: 8px 15px;
+  margin: 20px 25px;
+  border: none;
+  border-radius: 10px;
+}
+
+.card-azul {
+  background-color: #50A3F0;
+  color: white;
+  text-align: right;
+  padding: 8px 15px;
+  margin: 20px 25px;
+  border: none;
+  border-radius: 10px;
+}
+
+.card-azul-escuro {
+  background-color: #1A1341;
+  color: white;
+  text-align: right;
+  padding: 8px 15px;
+  margin: 20px 25px;
+  border: none;
+  border-radius: 10px;
+}
+
+.card-verde {
+  background-color: #B4C346;
+  color: white;
+  text-align: right;
+  padding: 8px 15px;
+  margin: 20px 25px;
+  border: none;
+  border-radius: 10px;
+}
+
+#dashboard h5 {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+#dashboard h6 {
+  margin-bottom: 17px;
+}
+
+#dashboard img {
+  width: 45%;
+  margin: 20px;
+}
