@@ -143,15 +143,15 @@
       <script src="../public/assets/js/submenu.js"></script>
 
       <script>
-    function redirectToRelatorio(id) {
-        window.location.href = '../reports/impressao_imovel.php?id=' + id;
-    }
-    function deleteRecord(id) {
-      if (confirm('Você realmente deseja excluir este cliente?')) {
-         window.location.href = '../app/controllers/apaga_imovel.php?id=' + id;
-      }
-   }
-</script>
+         function redirectToRelatorio(id) {
+            window.open('../reports/impressao_imovel.php?id=' + id, '_blank');
+         }
+         function deleteRecord(id) {
+            if (confirm('Você realmente deseja excluir este cliente?')) {
+               window.location.href = '../app/controllers/apaga_imovel.php?id=' + id;
+            }
+         }  
+      </script>
 
    </body>
 </html>
