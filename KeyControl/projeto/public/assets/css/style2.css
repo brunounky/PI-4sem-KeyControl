@@ -369,3 +369,9 @@ h2.mb-0 {
   width: 45%;
   margin: 20px;
 }
+
+/** perfil **/ 
+
+#modal .bi {
+  color: #B4C346;
+}

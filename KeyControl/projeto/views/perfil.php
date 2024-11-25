@@ -162,14 +162,14 @@ include 'navbar.php';
   <!-- Modal -->
   <!-- Modal -->
   <div id="modal">
-        <div id="modal-content">
-            <img src="" alt="Ícone de sucesso">
-            <p id="modal-message">Suas informações foram salvas com sucesso!</p>
-            <button onclick="fecharModal()">OK</button>
-        </div>
+    <div id="modal-content">
+      <i class="bi bi-check-circle fs-1"></i>
+      <p id="modal-message">Suas informações foram salvas com sucesso!</p>
+      <button onclick="fecharModal()">OK</button>
     </div>
+  </div>
 
-    <script src="../public/assets/js/valida_troca_senha.js"></script>
+  <script src="../public/assets/js/valida_troca_senha.js"></script>
   <script src="../public/assets/js/consultacep.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb5T5ggK+5l0VO4y7nVR+nQmvWn4U5jp6m3FQTVpM5VbcFz/m" crossorigin="anonymous"></script>
 </body>
