@@ -18,25 +18,3 @@ function toggleSubMenu(button) {
       activeSubmenu = null;
     }
   });
-
-  function removeSelected(selectId) {
-    const select = document.getElementById(selectId);
-    select.selectedIndex = 0;  // Reseta a seleção para o primeiro item (default)
-    select.value = "";  // Limpa o valor do select
-
-    const form = select.closest('form');  // Encontra o formulário mais próximo
-    if (form) {
-        form.submit();  // Submete o formulário após limpar a seleção
-    }
-}
-
-function checkSelection(selectId) {
-  const select = document.getElementById(selectId);
-  const removeIcon = document.querySelector(`span[data-select="${selectId}"]`);
-
-  if (select.value === "") {
-      removeIcon.style.display = 'none';  // Esconde o ícone se não houver seleção
-  } else {
-      removeIcon.style.display = 'block';  // Mostra o ícone se houver uma seleção
-  }
-}
