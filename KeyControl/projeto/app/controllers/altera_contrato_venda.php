@@ -139,15 +139,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             ':forma_pagamento' => $forma_pagamento,
             ':id' => $id
         ])) {
-            // Redireciona se ambas as queries forem bem-sucedidas
             header("Location: ../../views/lista_contrato_venda.php");
             exit();
         } else {
-            // Exibe o erro específico da tabela lancamento_financeiro
             echo "Erro ao atualizar lancamento_financeiro: " . $stmt_lancamento->errorInfo()[2];
         }
     } else {
-        // Exibe o erro específico da tabela contrato_venda
         echo "Erro ao atualizar contrato_venda: " . $stmt_contrato->errorInfo()[2];
     }
     
