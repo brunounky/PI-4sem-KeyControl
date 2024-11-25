@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../app/controllers/verifica_login.php");
+    exit();
+}
+
 require '../controllers/db_conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'atualizar') {
@@ -37,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
     $data_emissao = $_POST['data_emissao'] ?? null;
     $data_vencimento = $_POST['data_vencimento'] ?? null;
-    $contrato_forma_pagamento = $_POST['forma_pagamento'] ?? null;
+    $forma_pagamento = $_POST['forma_pagamento'] ?? null;
     $id = $_POST['id'] ?? null;
 
     $sql_contrato = "UPDATE contrato_venda SET 
@@ -100,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt_contrato->bindParam(':numero_imovel', $numero_imovel);
     $stmt_contrato->bindParam(':cidade_imovel', $cidade_imovel);
     $stmt_contrato->bindParam(':taxa_venda', $taxa_venda);
-    $stmt_contrato->bindParam(':cep_imovel', $cep_imovel);
+    $stmt_contrato->bindParam(':cep_imovel', $cep_imovel)   ;
     $stmt_contrato->bindParam(':bairro_imovel', $bairro_imovel);
     $stmt_contrato->bindParam(':estado_imovel', $estado_imovel);
     $stmt_contrato->bindParam(':valor_imovel', $valor_imovel);
@@ -114,10 +121,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt_contrato->bindParam(':id', $id);
 
     if ($stmt_contrato->execute()) {
-        header("Location: ../../views/lista_contrato_venda.php");
-        exit();
+        $sql_lancamento = "UPDATE lancamento_financeiro SET 
+            valor_total = :valor_imovel,
+            registro_imovel = :registro_imovel,
+            data_emissao = :data_emissao,
+            data_vencimento = :data_vencimento,
+            forma_pagamento = :forma_pagamento
+        WHERE id_lancamento = :id";
+    
+        $stmt_lancamento = $pdo->prepare($sql_lancamento);
+    
+        if ($stmt_lancamento->execute([
+            ':valor_imovel' => $valor_imovel,
+            ':registro_imovel' => $registro_imovel,
+            ':data_emissao' => $data_emissao,
+            ':data_vencimento' => $data_vencimento,
+            ':forma_pagamento' => $forma_pagamento,
+            ':id' => $id
+        ])) {
+            // Redireciona se ambas as queries forem bem-sucedidas
+            header("Location: ../../views/lista_contrato_venda.php");
+            exit();
+        } else {
+            // Exibe o erro específico da tabela lancamento_financeiro
+            echo "Erro ao atualizar lancamento_financeiro: " . $stmt_lancamento->errorInfo()[2];
+        }
     } else {
-        echo "Erro ao atualizar imóvel: " . $stmt_contrato->errorInfo()[2];
+        // Exibe o erro específico da tabela contrato_venda
+        echo "Erro ao atualizar contrato_venda: " . $stmt_contrato->errorInfo()[2];
     }
+    
 }
 ?>

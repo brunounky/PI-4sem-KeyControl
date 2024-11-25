@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt_contrato->bindParam(':emissao', $emissao);
         $stmt_contrato->bindParam(':data_vencimento', $data_vencimento);
         $stmt_contrato->bindParam(':forma_pagamento', $forma_pagamento);
-        $stmt->bindParam(':id_imobiliaria', $id_imobiliaria);
+        $stmt_contrato->bindParam(':id_imobiliaria', $id_imobiliaria);
 
         $stmt_contrato->execute();
 
