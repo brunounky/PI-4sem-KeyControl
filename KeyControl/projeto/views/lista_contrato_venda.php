@@ -46,14 +46,14 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                                 value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
                         </div>
                         <div class="col-md-2">
-                            <label for="vigencia" class="form-label">Vigência</label>
-                            <input type="text" id="vigencia" class="form-control" name="vigencia"
-                                value="<?= htmlspecialchars($_POST['vigencia'] ?? '') ?>">
+                            <label for="data_emissao" class="form-label">Emissão</label>
+                            <input type="text" id="data_emissao" class="form-control" name="data_emissao"
+                                value="<?= htmlspecialchars($_POST['data_emissao'] ?? '') ?>" oninput="formatarData(this)" />
                         </div>
                         <div class="col-md-2">
-                            <label for="dia_pagamento" class="form-label">Pagamento</label>
-                            <input type="text" id="dia_pagamento" class="form-control" name="dia_pagamento"
-                                value="<?= htmlspecialchars($_POST['dia_pagamento'] ?? '') ?>">
+                            <label for="data_vencimento" class="form-label">Vencimento</label>
+                            <input type="text" id="data_vencimento" class="form-control" name="data_vencimento"
+                                value="<?= htmlspecialchars($_POST['data_vencimento'] ?? '') ?>" oninput="formatarData(this)" />
                         </div>
                         <div class="col-md-2">
                             <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
@@ -76,19 +76,19 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                         <div class="col-sm-2">
                             <label for="forma_pagamento" class="mb-2">Tipo Pagamento</label>
                             <div class="position-relative">
-                                <select class="form-control mb-3" name="contrato_forma_pagamento" id="forma_pagamento"
+                                <select class="form-control mb-3" name="forma_pagamento" id="forma_pagamento"
                                     onchange="checkSelection('forma_pagamento')">
-                                    <option value="" disabled <?= !isset($_POST['contrato_forma_pagamento']) ? 'selected' : '' ?>>Escolha um Pagamento</option>
-                                    <option value="financiamento" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'financiamento' ? 'selected' : '' ?>>Financiamento</option>
-                                    <option value="dinheiro" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
-                                    <option value="boleto" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'boleto' ? 'selected' : '' ?>>Boleto</option>
-                                    <option value="pix" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'pix' ? 'selected' : '' ?>>PIX</option>
-                                    <option value="transferencia" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'transferencia' ? 'selected' : '' ?>>Transferência</option>
-                                    <option value="cartao_credito" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : '' ?>>Cartão de crédito</option>
-                                    <option value="cartao_debito" <?= ($_POST['contrato_forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' : '' ?>>Cartão de débito</option>
+                                    <option value="" disabled <?= !isset($_POST['forma_pagamento']) ? 'selected' : '' ?>>Escolha um Pagamento</option>
+                                    <option value="financiamento" <?= ($_POST['forma_pagamento'] ?? '') == 'financiamento' ? 'selected' : '' ?>>Financiamento</option>
+                                    <option value="dinheiro" <?= ($_POST['forma_pagamento'] ?? '') == 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
+                                    <option value="boleto" <?= ($_POST['forma_pagamento'] ?? '') == 'boleto' ? 'selected' : '' ?>>Boleto</option>
+                                    <option value="pix" <?= ($_POST['forma_pagamento'] ?? '') == 'pix' ? 'selected' : '' ?>>PIX</option>
+                                    <option value="transferencia" <?= ($_POST['forma_pagamento'] ?? '') == 'transferencia' ? 'selected' : '' ?>>Transferência</option>
+                                    <option value="cartao_credito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : '' ?>>Cartão de crédito</option>
+                                    <option value="cartao_debito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' : '' ?>>Cartão de débito</option>
                                 </select>
                                 <span class="position-absolute"
-                                    style="right: 25px; top: 6px; cursor: pointer; color: red; display: <?= isset($_POST['contrato_forma_pagamento']) && $_POST['contrato_forma_pagamento'] != '' ? 'block' : 'none' ?>;"
+                                    style="right: 25px; top: 6px; cursor: pointer; color: red; display: <?= isset($_POST['forma_pagamento']) && $_POST['forma_pagamento'] != '' ? 'block' : 'none' ?>;"
                                     data-select="forma_pagamento" onclick="removeSelected('forma_pagamento')">x</span>
                             </div>
                         </div>
@@ -160,6 +160,8 @@ include_once '../app/controllers/filtro_contrato_venda.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../public/assets/js/submenu.js"></script>
     <script src="../public/assets/js/remover_filtro.js"></script>
+    <script src="../public/assets/js/formatar_filtro.js"></script>
+
 
 
     <script>
