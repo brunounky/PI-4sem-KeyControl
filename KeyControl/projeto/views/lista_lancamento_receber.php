@@ -5,6 +5,28 @@
       header("Location: ../app/controllers/verifica_login.php");
       exit();
    }
+
+   include '../app/controllers/db_conexao.php';
+
+   try {
+      $stmt = $pdo->prepare("
+        SELECT imobiliaria.nome_fantasia
+        FROM usuarios
+        INNER JOIN imobiliaria ON usuarios.cnpj = imobiliaria.cnpj
+        WHERE usuarios.id = :user_id
+      ");
+      $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+      $stmt->execute(); 
+      $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+      if (!$dados) {
+        echo "Dados da imobiliária ou do usuário não encontrados.";
+        exit();
+      }
+    } catch (PDOException $e) {
+      echo "Erro ao buscar os dados: " . $e->getMessage();
+      exit();
+    }
    
 ?>
 
@@ -50,10 +72,11 @@
                   </div>
                   <div class="modal-body">
                      <form id="formLançamento">
+                        <input type="hidden" name="action" value="cadastrar">
                         <div class="row">
                            <div class="col-md-4">
                               <label for="idimobiliaria" class="form-label">Imobiliária</label>
-                              <input class="form-control" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['cnpj']); ?>" required disabled>
+                              <input class="form-control" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required readonly>
                               <label for="id_lancamento_pagar" class="form-label">N°</label>
                               <input type="text" id="id_lancamento_pagar" class="form-control" name="id_lancamento_pagar">
                               <label for="valor" class="form-label">Valor</label>
@@ -61,17 +84,17 @@
                            </div>
                            <div class="col-md-4">
                               <label for="tipoLançamento" class="form-label">Tipo</label>
-                              <select class="form-select" id="tipoLançamento" required disabled>
+                              <select class="form-select" id="tipoLançamento" required readonly>
                                 <option value="Aluguel">Aluguel</option>
                                 <option value="IPTU">IPTU</option>
                                 <option value="Água">Água</option>
                                 <option value="Reparos">Reparos</option>
                                </select>
                                <label for="data_emissao" class="form-label">Emissão</label>
-                               <input type="date" class="form-control " id="data_emissao" required>
+                              <input type="date" class="form-control " id="data_emissao" name="data_emissao" required>
                                <label for="forma_pagamento" class="form-label">Forma de pagamento</label>
                                  <select class="form-control" name="forma_pagamento" id="forma_pagamento" required>
-                                    <option value="" disabled selected>Selecionar</option>
+                                    <option value="" readonly selected>Selecionar</option>
                                     <option value="Boleto">Financiamento</option>
                                     <option value="Dinheiro">Dinheiro</option>
                                     <option value="Boleto">Boleto</option>
@@ -82,12 +105,12 @@
                                  </select>
                            </div>
                            <div class="col-md-4">
-                              <label for="beneficiario" class="form-label">Beneficiário</label>
-                              <input type="text" id="cpf_cnpj_proprietario" class="form-control" name="beneficiario">
+                              <label for="registro_imovel" class="form-label">Registro do Imovel</label>
+                              <input type="text" id="registro_imovel" class="form-control" name="registro_imovel">
                               <label for="data_vencimento" class="form-label">Vencimento</label>
-                              <input type="date" class="form-control" id="data_vencimento" required>
+                              <input type="date" class="form-control" id="data_vencimento" name="data_vencimento" required>
                               <label for="observacao" class="form-label">Observações</label>
-                              <input type="text" class="form-control" id="observacao" required>
+                              <input type="text" class="form-control" id="observacao" name="observacao" required>
                            </div>
                         </div>
                         <button type="submit" class="btn btn_salvar mt-5">Salvar</button>
@@ -125,7 +148,7 @@
                      <label for="tipo_lancamento" class="mb-2">Tipo</label>
                      <div class="position-relative">
                         <select class="form-control" name="tipo_lancamento" id="tipo_lancamento" onchange="checkSelection('tipo_lancamento')">
-                           <option value="" disabled <?= !isset($_POST['tipo_lancamento']) ? 'selected' : '' ?>>Selecione um Tipo</option>
+                           <option value="" readonly <?= !isset($_POST['tipo_lancamento']) ? 'selected' : '' ?>>Selecione um Tipo</option>
                            <option value="aluguel" <?= ($_POST['tipo_lancamento'] ?? '') == 'aluguel' ? 'selected' : '' ?>>Aluguel</option>
                            <option value="iptu" <?= ($_POST['tipo_lancamento'] ?? '') == 'iptu' ? 'selected' : '' ?>>IPTU</option>
                            <option value="agua" <?= ($_POST['tipo_lancamento'] ?? '') == 'agua' ? 'agua' : '' ?>>Água</option>

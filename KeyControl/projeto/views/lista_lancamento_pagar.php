@@ -73,28 +73,29 @@
                   </div>
                   <div class="modal-body">
                      <form method="POST" action="../app/controllers/cadastro_lancamento.php">
+                        <input type="hidden" name="action" value="cadastrar">
                         <div class="row">
                            <div class="col-md-4">
                               <label for="nome_fantasia" class="form-label">Imobiliária</label>
-                              <input class="form-control" type="text" name="nome_fantasia" id="nome_fantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required disabled>
+                              <input class="form-control" type="text" name="nome_fantasia" id="nome_fantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required readonly>
                               <label for="idlancamento" class="form-label">N° do Lançamento</label>
                               <input type="text" id="idlancamento" class="form-control" name="idlancamento">
                               <label for="valor_total" class="form-label">Valor</label>
                               <input type="text" id="valor_total" class="form-control" name="valor_total">
                            </div>
                            <div class="col-md-4">
-                              <label for="tipo_lancamento" class="form-label">Tipo</label>
-                              <select class="form-select" id="tipo_lancamento" required disabled>
+                           <label for="tipo_lancamento" class="form-label">Tipo</label>
+                              <select class="form-select" id="tipo_lancamento" name="tipo_lancamento" required readonly>
                                  <option value="Aluguel">Aluguel</option>
                                  <option value="IPTU">IPTU</option>
                                  <option value="Água">Água</option>
                                  <option value="Reparos">Reparos</option>
                               </select>
                               <label for="data_emissao" class="form-label">Emissão</label>
-                              <input type="date" class="form-control " id="data_emissao" required>
+                              <input type="date" class="form-control" id="data_emissao" name="data_emissao" required>
                               <label for="forma_pagamento" class="form-label">Forma de pagamento</label>
                               <select class="form-control" name="forma_pagamento" id="forma_pagamento" required>
-                                 <option value="" disabled selected>Selecionar</option>
+                                 <option value="" readonly selected>Selecionar</option>
                                  <option value="Boleto">Financiamento</option>
                                  <option value="Dinheiro">Dinheiro</option>
                                  <option value="Boleto">Boleto</option>
@@ -108,9 +109,9 @@
                               <label for="registro_imovel" class="form-label">Registro do Imovel</label>
                               <input type="text" id="registro_imovel" class="form-control" name="registro_imovel">
                               <label for="data_vencimento" class="form-label">Vencimento</label>
-                              <input type="date" class="form-control" id="data_vencimento" required>
+                              <input type="date" class="form-control" id="data_vencimento" name="data_vencimento" required>
                               <label for="observacoes" class="form-label">Observações</label>
-                              <input type="text" class="form-control" id="observacoes" required>
+                              <input type="text" class="form-control" id="observacoes" name="observacoes">
                            </div>
                            <button type="submit" class="btn btn_salvar mt-5">Salvar</button>
                         </div>
@@ -163,8 +164,10 @@
                      </button>
                   </div>
                </div>
-            </form>
-         </div>
+            </div>
+         </form>
+
+         
          <div class="card_relatório">
             <table class="table table-hover">
                <thead>
@@ -181,46 +184,47 @@
                </thead>
                <tbody>
                   <?php
-                     if (isset($result) && count($result) > 0) {
-                        foreach ($result as $row) {
-                     
-                           echo "<tr>
-                              <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
-                              <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
-                              <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
-                              <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
-                              <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
-                              <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
-                              <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
-                              <td>
-                                  <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                    if (isset($result) && count($result) > 0) {
+                     foreach ($result as $row) {
+                         echo "<tr>
+                             <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['nome_fantasia'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['tipo_lancamento'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['data_vencimento'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['observacoes'] ?? '-') . "</td>
+                             <td>
+                                 <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
                                      <i class='bi bi-pencil-square'></i>
-                                  </button>
-                                  <button class='btn' onclick='toggleSubMenu(this)'>
+                                 </button>
+                                 <button class='btn' onclick='toggleSubMenu(this)'>
                                      <i class='bi bi-chevron-down'></i>
-                                  </button>
-                                  <div class='submenu' style='display: none;'>
+                                 </button>
+                                 <div class='submenu' style='display: none;'>
                                      <div class='submenu-options'>
-                                        <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
-                                          <i class='bi bi-printer'></i> Imprimir
-                                        </button>
-                                        <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
-                                          <i class='bi bi-envelope'></i> E-mail
-                                        </button>
-                                        <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
-                                          <i class='bi bi-trash'></i> Excluir
-                                        </button>
+                                         <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                             <i class='bi bi-printer'></i> Imprimir
+                                         </button>
+                                         <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
+                                             <i class='bi bi-envelope'></i> E-mail
+                                         </button>
+                                         <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                             <i class='bi bi-trash'></i> Excluir
+                                         </button>
                                      </div>
-                                  </div>
-                              </td>
-                           </tr>";
-                        }
-                     } else {
-                        echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
+                                 </div>
+                             </td>
+                         </tr>";
                      }
+                 } else {
+                     echo "<tr><td colspan='9'>Nenhum registro encontrado</td></tr>";
+                 }
+                 
                   ?>
                </tbody>
-            </table>
+            </table> 
          </div>
       </section>
 
