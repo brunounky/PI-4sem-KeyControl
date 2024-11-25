@@ -156,14 +156,15 @@ include '../app/controllers/filtros_pessoas.php';
 
    <script>
     function redirectToRelatorio(id) {
-        window.location.href = '../reports/impressao_cliente.php?id=' + id;
+        window.open('../reports/impressao_cliente.php?id=' + id, '_blank');
     }
+
     function deleteRecord(id) {
-      if (confirm('Você realmente deseja excluir este cliente?')) {
-         window.location.href = '../app/controllers/apaga_cliente.php?id=' + id;
-      }
-   }
-</script>
+        if (confirm('Você realmente deseja excluir este cliente?')) {
+            window.location.href = '../app/controllers/apaga_cliente.php?id=' + id;
+        }
+    }
+   </script>
 </body>
 
 </html>
