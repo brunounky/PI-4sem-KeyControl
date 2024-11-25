@@ -141,6 +141,8 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       <script src="../public/assets/js/consultacep.js"></script>
       <script src="../public/assets/js/submenu.js"></script>
+      <script src="../public/assets/js/remover_filtro.js"></script>
+
 
       <script>
          function redirectToRelatorio(id) {
