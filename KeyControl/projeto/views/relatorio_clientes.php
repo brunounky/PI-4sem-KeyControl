@@ -37,35 +37,49 @@ include '../app/controllers/filtros_pessoas.php';
                <div class="row g-12">
                   <div class="col-md-1">
                      <label for="id" class="form-label">ID</label>
-                     <input type="text" id="id" class="form-control" name="id" value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
+                     <input type="text" id="id" class="form-control" name="id"
+                        value="<?= htmlspecialchars($_POST['id'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="nome" class="form-label">Pessoa</label>
-                     <input type="text" id="nome" class="form-control" name="nome" value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
+                     <input type="text" id="nome" class="form-control" name="nome"
+                        value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="cpf_cnpj" class="form-label">CPF/CNPJ</label>
-                     <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" value="<?= htmlspecialchars($_POST['cpf_cnpj'] ?? '') ?>">
+                     <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj"
+                        value="<?= htmlspecialchars($_POST['cpf_cnpj'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="telefone" class="form-label">Telefone</label></label>
-                     <input type="text" id="telefone" class="form-control" name="telefone" value="<?= htmlspecialchars($_POST['telefone'] ?? '') ?>">
+                     <input type="text" id="telefone" class="form-control" name="telefone"
+                        value="<?= htmlspecialchars($_POST['telefone'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="estado_civil" class="form-label">Estado Civil</label>
-                     <input type="text" id="estado_civil" class="form-control" name="estado_civil" value="<?= htmlspecialchars($_POST['estado_civil'] ?? '') ?>">
+                     <input type="text" id="estado_civil" class="form-control" name="estado_civil"
+                        value="<?= htmlspecialchars($_POST['estado_civil'] ?? '') ?>">
                   </div>
                   <div class="col-md-2 position-relative">
                      <label for="categoria" class="mb-2">Categoria</label>
-                     <select class="form-control" name="categoria" id="categoria" onchange="checkSelection('categoria')">
-                        <option value="" disabled <?= !isset($_POST['categoria']) ? 'selected' : '' ?>>Selecione a Categoria</option>
-                        <option value="locador" <?= ($_POST['categoria'] ?? '') == 'locador' ? 'selected' : '' ?>>Locador</option>
-                        <option value="locatario" <?= ($_POST['categoria'] ?? '') == 'locatario' ? 'selected' : '' ?>>Locatário</option>
-                        <option value="fiador" <?= ($_POST['categoria'] ?? '') == 'fiador' ? 'selected' : '' ?>>Fiador</option>
-                        <option value="comprador" <?= ($_POST['categoria'] ?? '') == 'comprador' ? 'selected' : '' ?>>Comprador</option>
+                     <select class="form-control" name="categoria" id="categoria"
+                        onchange="checkSelection('categoria')">
+                        <option value="" disabled <?= !isset($_POST['categoria']) ? 'selected' : '' ?>>Selecione a
+                           Categoria</option>
+                        <option value="locador" <?= ($_POST['categoria'] ?? '') == 'locador' ? 'selected' : '' ?>>Locador
+                        </option>
+                        <option value="locatario" <?= ($_POST['categoria'] ?? '') == 'locatario' ? 'selected' : '' ?>>
+                           Locatário</option>
+                        <option value="fiador" <?= ($_POST['categoria'] ?? '') == 'fiador' ? 'selected' : '' ?>>Fiador
+                        </option>
+                        <option value="comprador" <?= ($_POST['categoria'] ?? '') == 'comprador' ? 'selected' : '' ?>>
+                           Comprador</option>
                      </select>
-                     <span class="position-absolute" style="right: 25px; top: 40px; cursor: pointer; color: red; display: <?= isset($_POST['categoria']) && $_POST['categoria'] != '' ? 'block' : 'none' ?>;" data-select="categoria" onclick="removeSelected('categoria')">x</span>
+                     <span class="position-absolute"
+                        style="right: 25px; top: 40px; cursor: pointer; color: red; display: <?= isset($_POST['categoria']) && $_POST['categoria'] != '' ? 'block' : 'none' ?>;"
+                        data-select="categoria" onclick="removeSelected('categoria')">x</span>
                   </div>
+
                   <div class="col-md-1">
                      <button class="btn btn-buscar" type="submit">
                         <i class="bi bi-search"></i>
@@ -86,10 +100,17 @@ include '../app/controllers/filtros_pessoas.php';
                      <th>ID</th>
                      <th>Pessoa</th>
                      <th>CPF/CNPJ</th>
-                     <th>E-mail</th>
+                     <th>Telefone</th>
                      <th>Bairro</th>
                      <th>Cidade</th>
                      <th>Categoria</th>
+                     <th>
+                        <form method="POST" action="../../projeto/reports/excel_cliente.php">
+                           <button class="btn btn-success btn-sm" type="submit" name="exportar" value="1">
+                              <i class="bi bi-file-earmark-excel"></i>
+                           </button>
+                        </form>
+                     </th>
                      <th></th>
                   </tr>
                </thead>
@@ -134,19 +155,21 @@ include '../app/controllers/filtros_pessoas.php';
       </div>
    </section>
 
+
+
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
    <script src="../public/assets/js/submenu.js"></script>
 
    <script>
-    function redirectToRelatorio(id) {
-        window.location.href = '../reports/impressao_cliente.php?id=' + id;
-    }
-    function deleteRecord(id) {
-      if (confirm('Você realmente deseja excluir este cliente?')) {
-         window.location.href = '../app/controllers/apaga_cliente.php?id=' + id;
+      function redirectToRelatorio(id) {
+         window.location.href = '../reports/impressao_cliente.php?id=' + id;
       }
-   }
-</script>
+      function deleteRecord(id) {
+         if (confirm('Você realmente deseja excluir este cliente?')) {
+            window.location.href = '../app/controllers/apaga_cliente.php?id=' + id;
+         }
+      }
+   </script>
 </body>
 
 </html>
