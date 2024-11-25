@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $complemento_imovel = $_POST['imovel_complemento'] ?? null;
     $pais_imovel = $_POST['imovel_pais'] ?? null;
 
-    $contrato_vigencia = $_POST['contrato_vigencia'] ?? null;
-    $contrato_dia_vencimento = $_POST['contrato_dia_vencimento'] ?? null;
-    $contrato_forma_pagamento = $_POST['contrato_forma_pagamento'] ?? null;
+    $data_emissao = $_POST['data_emissao'] ?? null;
+    $data_vencimento = $_POST['data_vencimento'] ?? null;
+    $contrato_forma_pagamento = $_POST['forma_pagamento'] ?? null;
     $id = $_POST['id'] ?? null;
 
     $sql_contrato = "UPDATE contrato_venda SET 
@@ -71,9 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         imovel_rua = :rua_imovel,
         imovel_complemento = :complemento_imovel,
         imovel_pais = :pais_imovel,
-        contrato_vigencia = :contrato_vigencia,
-        contrato_dia_vencimento = :contrato_dia_vencimento,
-        contrato_forma_pagamento = :contrato_forma_pagamento
+        data_emissao = :data_emissao,
+        data_vencimento = :data_vencimento,
+        forma_pagamento = :forma_pagamento
     WHERE id = :id";
 
     $stmt_contrato = $pdo->prepare($sql_contrato);
@@ -108,9 +108,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $stmt_contrato->bindParam(':rua_imovel', $rua_imovel);
     $stmt_contrato->bindParam(':complemento_imovel', $complemento_imovel);
     $stmt_contrato->bindParam(':pais_imovel', $pais_imovel);
-    $stmt_contrato->bindParam(':contrato_vigencia', $contrato_vigencia);
-    $stmt_contrato->bindParam(':contrato_dia_vencimento', $contrato_dia_vencimento);
-    $stmt_contrato->bindParam(':contrato_forma_pagamento', $contrato_forma_pagamento);
+    $stmt_contrato->bindParam(':data_emissao', $data_emissao);
+    $stmt_contrato->bindParam(':data_vencimento', $data_vencimento);
+    $stmt_contrato->bindParam(':forma_pagamento', $forma_pagamento);
     $stmt_contrato->bindParam(':id', $id);
 
     if ($stmt_contrato->execute()) {
