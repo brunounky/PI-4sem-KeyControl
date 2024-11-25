@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         imovel_bairro = :bairro_imovel,
         imovel_estado = :estado_imovel,
         imovel_valor = :valor_imovel,
-        imovel_registro = :registro_imovel,
+        imovel_registro = :registro_imovel, 
         imovel_rua = :rua_imovel,
         imovel_complemento = :complemento_imovel,
         imovel_pais = :pais_imovel,
@@ -122,22 +122,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
     if ($stmt_contrato->execute()) {
         $sql_lancamento = "UPDATE lancamento_financeiro SET 
-            valor_total = :valor_imovel,
-            registro_imovel = :registro_imovel,
-            data_emissao = :data_emissao,
-            data_vencimento = :data_vencimento,
-            forma_pagamento = :forma_pagamento
-        WHERE id_lancamento = :id";
-    
-        $stmt_lancamento = $pdo->prepare($sql_lancamento);
-    
-        if ($stmt_lancamento->execute([
-            ':valor_imovel' => $valor_imovel,
-            ':registro_imovel' => $registro_imovel,
-            ':data_emissao' => $data_emissao,
-            ':data_vencimento' => $data_vencimento,
-            ':forma_pagamento' => $forma_pagamento,
-            ':id' => $id
+    valor_total = :valor_imovel,
+    registro_imovel = :registro_imovel,
+    data_emissao = :data_emissao,
+    data_vencimento = :data_vencimento,
+    forma_pagamento = :forma_pagamento
+WHERE id_lancamento = (SELECT id_lancamento FROM contrato_venda WHERE id = :id)";
+
+$stmt_lancamento = $pdo->prepare($sql_lancamento);
+
+if ($stmt_lancamento->execute([
+    ':valor_imovel' => $valor_imovel,
+    ':registro_imovel' => $registro_imovel,
+    ':data_emissao' => $data_emissao,
+    ':data_vencimento' => $data_vencimento,
+    ':forma_pagamento' => $forma_pagamento,
+    ':id' => $id 
         ])) {
             header("Location: ../../views/lista_contrato_venda.php");
             exit();
