@@ -3,7 +3,7 @@ include '../app/controllers/db_conexao.php';
 
 $result = null; 
 
-function buildQuery($contrato_id, $nome, $tipo_imovel, $forma_pagamento) {
+function buildQuery($contrato_id, $nome, $imovel_taxa_venda, $data_emissao, $data_vencimento, $imovel_valor, $tipo_imovel, $forma_pagamento) {
     $sql = "
         SELECT DISTINCT 
             cv.id AS contrato_id,
@@ -35,10 +35,10 @@ function buildQuery($contrato_id, $nome, $tipo_imovel, $forma_pagamento) {
         $sql .= " AND cv.imovel_taxa_venda = :imovel_taxa_venda"; 
     }
     if (!empty($data_emissao)) {
-        $sql .= " AND cv.data_emissao = :data_emissao"; 
+        $sql .= " AND cv.data_emissao = :data_emissao"; // Use "=" para comparação de datas
     }
     if (!empty($data_vencimento)) {
-        $sql .= " AND cv.data_vencimento = :data_vencimento"; 
+        $sql .= " AND cv.data_vencimento = :data_vencimento"; // Use "=" para comparação de datas
     }
     if (!empty($imovel_valor)) {
         $sql .= " AND cv.imovel_valor = :imovel_valor"; 
@@ -48,6 +48,10 @@ function buildQuery($contrato_id, $nome, $tipo_imovel, $forma_pagamento) {
     }
     if (!empty($forma_pagamento)) {
         $sql .= " AND cv.forma_pagamento = :forma_pagamento"; 
+    }
+
+    if (!empty($nome)) {
+        $sql .= " AND (cc.nome LIKE :nome OR pc.nome LIKE :nome)";
     }
 
     return $sql;
@@ -71,6 +75,14 @@ $imovel_valor = htmlspecialchars($imovel_valor);
 $tipo_imovel = htmlspecialchars($tipo_imovel);
 $forma_pagamento = htmlspecialchars($forma_pagamento);
 
+if (!empty($data_emissao)) {
+    $data_emissao = date('Y-m-d', strtotime(str_replace('/', '-', $data_emissao))); 
+}
+
+if (!empty($data_vencimento)) {
+    $data_vencimento = date('Y-m-d', strtotime(str_replace('/', '-', $data_vencimento))); 
+}
+
 $sql = buildQuery($contrato_id, $nome, $imovel_taxa_venda, $data_emissao, $data_vencimento, $imovel_valor,  $tipo_imovel, $forma_pagamento);
 
 try {
@@ -87,11 +99,9 @@ try {
         $stmt->bindParam(':imovel_taxa_venda', $imovel_taxa_venda);
     }
     if (!empty($data_emissao)) {
-        $data_emissao = "%$data_emissao%";
         $stmt->bindParam(':data_emissao', $data_emissao);
     }
     if (!empty($data_vencimento)) {
-        $data_vencimento = "%$data_vencimento%";
         $stmt->bindParam(':data_vencimento', $data_vencimento);
     }    
     if (!empty($imovel_valor)) {

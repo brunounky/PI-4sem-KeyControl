@@ -47,7 +47,8 @@
                      </div>
                      <div class="col-md-2">
                         <label for="cep" class="form-label">CEP</label>
-                        <input type="text" id="cep" class="form-control" name="cep" value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>" pattern="\d{5}-\d{3}" placeholder="00000-000" title="Formato: 12345-678" maxlength="9">
+                        <input type="text" id="cep" class="form-control" name="cep" 
+                              value="<?= htmlspecialchars($_POST['cep'] ?? '') ?>" oninput="formatarCEP(this)" maxlength="9">
                      </div>
                      <div class="col-md-2">
                         <label for="cidade" class="form-label">Cidade</label>
@@ -142,6 +143,7 @@
       <script src="../public/assets/js/consultacep.js"></script>
       <script src="../public/assets/js/submenu.js"></script>
       <script src="../public/assets/js/remover_filtro.js"></script>
+      <script src="../public/assets/js/formatar_filtro.js"></script>
 
 
       <script>
