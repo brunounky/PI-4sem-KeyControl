@@ -33,7 +33,7 @@
 
   <section id="contrato_aluguel_caucao">
     <!-- inicio do form -->
-    <form action="../app/controllers/contrato_aluguel.php" method="post">
+    <form action="../app/controllers/contrato_aluguel_caucao.php" method="post">
       <input type="hidden" name="action" value="cadastrar">
       <div class="container">
         <div class="row">
@@ -92,51 +92,51 @@
 
 
 <div class="row">
-  <!-- imovel -->
-  <div class="col-md-12">
-    <h4>Dados do Imóvel:</h4>
-    <div class="card">
-      <div class="row">
-        <div class="col-sm-4">
-        <label for="imovel_cep" class="mb-2">CEP</label>
-        <input class="form-control mb-3" type="text" name="imovel_cep" id="imovel_cep" required>
-          <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
-          <select class="form-control mb-3" name="imovel_tipo" id="tipo_imovel" required>
-            <option value="" disabled selected>Selecione um tipo</option>
-            <option value="apartamento">Apartamento</option>
-            <option value="casa">Casa</option>
-            <option value="comercial">Comercial</option>
-          </select>
-          <label for="numero" class="mb-2">Número</label>
-          <input class="form-control mb-3" type="number" name="imovel_numero" id="numero" required>
-          <label for="cidade" class="mb-2">Cidade</label>
-          <input class="form-control mb-3" type="text" name="imovel_cidade" id="cidade" required>
-          <label for="imovel_taxa_venda" class="mb-2">% Taxa administrativa</label>
-          <input class="form-control mb-3" type="text" name="imovel_taxa_venda" id="imovel_taxa_venda" required>
-        </div>
-        <div class="col-sm-4">
-          <label for="cep" class="mb-2">CEP</label>
-          <input class="form-control mb-3" type="text" name="imovel_cep" id="cep" required>
-          <label for="bairro" class="mb-2">Bairro</label>
-          <input class="form-control mb-3" type="text" name="imovel_bairro" id="bairro" required>
-          <label for="estado" class="mb-2">Estado</label>
-          <input class="form-control mb-3" type="text" name="imovel_estado" id="estado" required>
-          <label for="valor_venda" class="mb-2">Valor do imóvel</label>
-          <input class="form-control mb-3" type="text" name="imovel_valor" id="valor_venda" required>
-        </div>
-        <div class="col-sm-4">
-          <label for="registro_imovel" class="mb-2">N° de registro do Imóvel</label>
-          <input class="form-control mb-3" type="number" name="imovel_registro" id="registro_imovel" required>
-          <label for="rua" class="mb-2">Rua</label>
-          <input class="form-control mb-3" type="text" name="imovel_rua" id="rua" required>
-          <label for="complemento" class="mb-2">Complemento</label>
-          <input class="form-control mb-3" type="text" name="imovel_complemento" id="complemento" required>
-          <label for="pais" class="mb-2">País</label>
-          <input class="form-control mb-3" type="text" name="imovel_pais" id="pais" required>
-        </div>
-      </div>
-    </div>
-  </div>
+            <!-- imovel -->
+            <div class="col-md-12">
+              <h4>Dados do Imóvel:</h4>
+              <div class="card">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label for="imovel_proprietario_cpf_cnpj" class="mb-2">Proprietário</label>
+                    <input class="form-control mb-3" type="number" name="imovel_proprietario_cpf_cnpj" id="imovel_proprietario_cpf_cnpj" required>
+                    <label for="imovel_tipo" class="mb-2">Tipo do Imóvel</label>
+                    <select class="form-control mb-3" name="imovel_tipo" id="imovel_tipo" required>
+                      <option value="" disabled selected>Selecione um tipo</option>
+                      <option value="apartamento">Apartamento</option>
+                      <option value="casa">Casa</option>
+                      <option value="comercial">Comercial</option>
+                    </select>
+                    <label for="imovel_numero" class="mb-2">Número</label>
+                    <input class="form-control mb-3" type="number" name="imovel_numero" id="imovel_numero" required>
+                    <label for="imovel_cidade" class="mb-2">Cidade</label>
+                    <input class="form-control mb-3" type="text" name="imovel_cidade" id="imovel_cidade" required>
+                    <label for="imovel_taxa_venda" class="mb-2">% Taxa administrativa</label>
+                    <input class="form-control mb-3" type="text" name="imovel_taxa_venda" id="imovel_taxa_venda" required>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="imovel_cep" class="mb-2">CEP</label>
+                    <input class="form-control mb-3" type="text" name="imovel_cep" id="imovel_cep" required>
+                    <label for="imovel_bairro" class="mb-2">Bairro</label>
+                    <input class="form-control mb-3" type="text" name="imovel_bairro" id="imovel_bairro" required>
+                    <label for="imovel_estado" class="mb-2">Estado</label>
+                    <input class="form-control mb-3" type="text" name="imovel_estado" id="imovel_estado" required>
+                    <label for="imovel_valor" class="mb-2">Valor do imóvel</label>
+                    <input class="form-control mb-3" type="text" name="imovel_valor" id="imovel_valor" required>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="imovel_registro" class="mb-2">N° de registro do Imóvel</label>
+                    <input class="form-control mb-3" type="number" name="imovel_registro" id="imovel_registro" required>
+                    <label for="imovel_rua" class="mb-2">Rua</label>
+                    <input class="form-control mb-3" type="text" name="imovel_rua" id="imovel_rua" required>
+                    <label for="imovel_complemento" class="mb-2">Complemento</label>
+                    <input class="form-control mb-3" type="text" name="imovel_complemento" id="imovel_complemento" required>
+                    <label for="imovel_pais" class="mb-2">País</label>
+                    <input class="form-control mb-3" type="text" name="imovel_pais" id="imovel_pais" required>
+                  </div>
+                </div>
+              </div>
+            </div>
 </div>
 
 
@@ -239,7 +239,7 @@
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="../public/assets/js/buscador_cliente.js"></script>
+  <script src="../public/assets/js/buscador_locatario.js"></script>
   <script src="../public/assets/js/buscador_imovel.js"></script>
 
 </body>
