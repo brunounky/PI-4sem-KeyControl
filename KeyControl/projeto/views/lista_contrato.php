@@ -90,7 +90,7 @@
                 <thead>
                     <tr>
                         <th>ID Contrato</th>
-                        <th>Comprador</th>
+                        <th>Locatario</th>
                         <th>Proprietário</th>
                         <th>Cidade</th>
                         <th>Data Vigência</th>
@@ -105,14 +105,15 @@
                             foreach ($result as $row) {
 
                                 echo "<tr>
-                                    <td>" . htmlspecialchars($row['id']) . "</td>
+                                    <td>" . htmlspecialchars($row['contrato_id'] ?? '-') . "</td>   
                                     <td>" . htmlspecialchars($row['locatario_nome']) . "</td>
-                                    <td>" . htmlspecialchars($row['locatario'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['vigencia'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['cpf_cnpj_proprietario'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['imovel_cidade'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['contrato_vigencia'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars($row['contrato_forma_pagamento'] ?? '-') . "</td>
                                     <td>
-                                        <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                        <button class='btn' onclick='editRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
                                             <i class='bi bi-pencil-square'></i>
                                         </button>
                                         <button class='btn' onclick='toggleSubMenu(this)'>
@@ -120,10 +121,10 @@
                                         </button>
                                         <div class='submenu' style='display: none;'>
                                             <div class='submenu-options'>
-                                                <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                                <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                     <i class='bi bi-printer'></i> Imprimir
                                                 </button>
-                                                <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                                <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                     <i class='bi bi-trash'></i> Excluir
                                                 </button>
                                             </div>
