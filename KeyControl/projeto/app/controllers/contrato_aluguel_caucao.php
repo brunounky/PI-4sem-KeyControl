@@ -80,7 +80,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
                 $stmt_lancamento->execute();
 
-                $id_lancamento = $pdo->lastInsertId();
+        $sql_lancamento2 = "INSERT INTO lancamento_financeiro (
+                meses_caucao, data_vencimento, valor_total, forma_pagamento, id_imobiliaria, registro_imovel, data_emissao, tipo_lancamento
+            ) 
+            VALUES (
+                :meses_caucao, :vencimento_caucao, :total_caucao, :forma_pagamento_caucao, :id_imobiliaria, :registro_imovel, :data_emissao, :tipo_lancamento
+            )";
+
+                $stmt_lancamento2 = $pdo->prepare($sql_lancamento2);
+
+                $stmt_lancamento2->bindParam(':meses_caucao', $meses_caucao);
+                $stmt_lancamento2->bindParam(':vencimento_caucao', $vencimento_caucao);
+                $stmt_lancamento2->bindParam(':total_caucao', $total_caucao);
+                $stmt_lancamento2->bindParam(':forma_pagamento_caucao', $forma_pagamento_caucao);
+                $stmt_lancamento2->bindParam(':id_imobiliaria', $id_imobiliaria);
+                $stmt_lancamento2->bindParam(':registro_imovel', $registro_imovel);
+                $stmt_lancamento2->bindParam(':data_emissao', $data_emissao);
+                $stmt_lancamento2->bindParam(':tipo_lancamento', $tipo_lancamento);
+
+                $stmt_lancamento2->execute();
+
+
+                $id_lancamento = $pdo->lastInsertId(); //isso que pega o ultimo id criado em lancamento (se o sistema for usado por mais de uma pessoa por vez pode ocorrer erro em caso simultaneo)
 
         $sql_contrato = "INSERT INTO contrato_aluguel (
                             locatario_nome, locatario_data_nascimento, locatario_nacionalidade, locatario_cep, locatario_bairro, locatario_estado, 
