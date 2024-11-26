@@ -35,7 +35,7 @@
             <div class="filtros-container">
                 <div class="row g-12">
                     <div class="col-md-2">
-                        <label for="beneficiario" class="form-label">Beneficiário</label>
+                        <label for="beneficiario" class="form-label">N° Registro Imovel</label>
                         <input type="text" id="beneficiario" class="form-control" name="beneficiario" value="<?= htmlspecialchars($_POST['beneficiario'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
@@ -146,7 +146,7 @@
                             foreach ($result as $row) {
 
                                 echo "<tr>
-                                    <td>" . htmlspecialchars($row['beneficiário']) . "</td>
+                                    <td>" . htmlspecialchars($row['registro_imovel']) . "</td>
                                     <td>" . htmlspecialchars($row['telefone']) . "</td>
                                     <td>" . htmlspecialchars($row['email'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>

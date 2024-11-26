@@ -30,7 +30,7 @@ $dompdf = new Dompdf($options);
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     
 $query = "SELECT * 
-          FROM contrato_venda cv
+          FROM contrato_aluguel cv
           INNER JOIN imobiliaria i ON cv.id_imobiliaria = i.cnpj
           WHERE cv.id = ?";
 $stmt = $pdo->prepare($query);
@@ -69,9 +69,27 @@ $html = '
                     <p class="cabecalho2">Telefone: ' . htmlspecialchars($contrato['telefoneimobiliaria']) . '</p>
                     <p class="cabecalho2">E-mail: ' . htmlspecialchars($contrato['emailimobiliaria']) . '</p>
             </div>
+
+            CONTRATO DE LOCAÇÃO RESIDENCIAL
+
             <div class="section">
-                <p>
-        </div>
+                <p>01-) LOCADOR(A): SR(A). ' . htmlspecialchars($contrato['locatario_nome']) . ',
+                 ' . htmlspecialchars($contrato['locatario_nacionalidade']) . ',
+                ' . htmlspecialchars($contrato['locatario_estado_civil']) . ',
+                ' . htmlspecialchars($contrato['locatario_profissao']) . ', 
+                portador do ' . htmlspecialchars($contrato['locatario_cpf_cnpj']) . ' e do 
+                ' . htmlspecialchars($contrato['locatario_rg_ie']) . '
+                 SSP/SP, residente e domiciliado na cidade ' . htmlspecialchars($contrato['locatario_cidade']) . '. 
+                Representado(a) por sua bastante administradora e procuradora, ' . htmlspecialchars($contrato['nome_fantasia']) . '., 
+                CRECI n.º 24.378-J, portadora do CNPJ n.º ' . htmlspecialchars(formatarCNPJ($contrato['id_imobiliaria'])) . ', com sede nesta cidade, 
+                à ' . htmlspecialchars($contrato['locatario_rua']) . ', n.º ' . htmlspecialchars($contrato['locatario_numero']) . ', ' . htmlspecialchars($contrato['locatario_bairro']) . ' – ' . htmlspecialchars($contrato['locatario_cidade']) . '/' . htmlspecialchars($contrato['locatario_estado']) . '.</p>
+            </div>
+            <div class="section">
+
+                
+
+            </div>
+
 
             <div class="footer">
                 <p>Documento gerado em ' . date("d/m/Y") . '</p>

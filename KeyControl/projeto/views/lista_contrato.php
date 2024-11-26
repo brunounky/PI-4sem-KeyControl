@@ -122,7 +122,10 @@
                                         <div class='submenu' style='display: none;'>
                                             <div class='submenu-options'>
                                                 <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                    <i class='bi bi-printer'></i> Imprimir
+                                                    <i class='bi bi-printer'></i> Imprimir Registro
+                                                </button>
+                                                <button class='imprimir' title='imprimirContrato' onclick='redirectToRelatorio2(" . htmlspecialchars($row['contrato_id']) . ")'>
+                                                <i class='bi bi-printer'></i> Imprimir Contrato
                                                 </button>
                                                 <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                     <i class='bi bi-trash'></i> Excluir
@@ -141,6 +144,18 @@
         </div>
     </div>
 </section>
+
+<script>
+        function redirectToRelatorio(id) {
+            window.open('../reports/impressao_registro_aluguel.php?id=' + id, '_blank'); //tem que fazer a impressao do resgistro de aluguel
+        }
+    </script>
+
+    <script>
+            function redirectToRelatorio2(id) {
+                window.open('../reports/impressao_contrato_aluguel.php?id=' + id, '_blank');
+            }
+        </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../public/assets/js/submenu.js"></script>
