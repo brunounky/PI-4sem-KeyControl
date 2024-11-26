@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/11/2024 às 12:26
+-- Tempo de geração: 26/11/2024 às 03:03
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -212,17 +212,17 @@ CREATE TABLE `contrato_venda` (
   `data_emissao` date DEFAULT NULL,
   `data_vencimento` date DEFAULT NULL,
   `forma_pagamento` varchar(20) DEFAULT NULL,
-  `id_imobiliaria` varchar(20) NOT NULL
+  `id_imobiliaria` varchar(20) NOT NULL,
+  `id_lancamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `contrato_venda`
 --
 
-INSERT INTO `contrato_venda` (`id`, `comprador_nome`, `comprador_data_nascimento`, `comprador_nacionalidade`, `comprador_cep`, `comprador_bairro`, `comprador_estado`, `comprador_cpf_cnpj`, `comprador_telefone`, `comprador_estado_civil`, `comprador_rua`, `comprador_complemento`, `comprador_pais`, `comprador_rg_ie`, `comprador_email`, `comprador_profissao`, `comprador_numero`, `comprador_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `data_emissao`, `data_vencimento`, `forma_pagamento`, `id_imobiliaria`) VALUES
-(7, '2', '2024-11-29', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', 2, '2', '2', 'casa', 2, '2', 2.00, '2', '2', '2', 2.00, '2', '2', '2', '2', '2024-02-02', '2024-11-28', 'Cartão de crédito', '73943371000180'),
-(8, '3', '2024-10-30', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', 3, '3', '3', 'apartamento', 3, '3', 3.00, '3', '3', '3', 3.00, '3', '3', '3', '3', '2024-11-21', '2024-12-07', 'Dinheiro', '73943371000180'),
-(9, 'vitoria lucianetti dos santos', '2024-12-07', '4', '13506-560', 'Vila Nova', 'SP', '54234346578', '19996886205', 'SP', 'Rua 16 A', '4', 'Brasil', '44234432', '627sp@al.educacao.sp.gov.bd', '4', 16, 'Rio Claro', '54234346578', 'apartamento', 1, 'Rio Claro', 111.00, '13506180', 'Parque Mãe Preta', 'SP', 12.00, '22', 'Rua 10 MP', '1', 'Brasil', '2024-11-22', '2024-11-20', 'Dinheiro', '73943371000180');
+INSERT INTO `contrato_venda` (`id`, `comprador_nome`, `comprador_data_nascimento`, `comprador_nacionalidade`, `comprador_cep`, `comprador_bairro`, `comprador_estado`, `comprador_cpf_cnpj`, `comprador_telefone`, `comprador_estado_civil`, `comprador_rua`, `comprador_complemento`, `comprador_pais`, `comprador_rg_ie`, `comprador_email`, `comprador_profissao`, `comprador_numero`, `comprador_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `data_emissao`, `data_vencimento`, `forma_pagamento`, `id_imobiliaria`, `id_lancamento`) VALUES
+(12, 'vitoria lucianetti dos santos', '2024-12-07', '4', '13506-560', 'Vila Nova', 'SP', '54234346578', '19996886205', 'SP', 'Rua 16 A', '4', 'Brasil', '44234432', '627sp@al.educacao.sp.gov.bd', '4', 16, 'Rio Claro', '54234346578', '', 1, 'Rio Claro', 111.00, '13506180', 'Parque Mãe Preta', 'SP', 12.00, '22', 'Rua 10 MP', '1', '', '2024-11-25', '2024-11-27', 'Cartão de crédito', '73943371000180', 12),
+(13, 'Guilherme Ribeiro Bonatti', '2005-03-26', 'Brasileiro', '13505493', 'Jardim Residencial São José', 'SP', '39911823865', '19996236443', 'Solteiro', 'Avenida M 49', 'Portao cinza', 'Brasil', '640022947', 'guilhermeribeirobonatti@gmail.com', 'Operador de caixa', 2430, 'Rio Claro', '54234346578', '', 1, 'Rio Claro', 111.00, '13506180', 'Parque Mãe Preta', 'SP', 12.00, '22', 'Rua 10 MP', '1', '', '2024-11-25', '2024-11-29', 'Boleto', '73943371000180', 14);
 
 -- --------------------------------------------------------
 
@@ -273,8 +273,11 @@ CREATE TABLE `lancamento_financeiro` (
 --
 
 INSERT INTO `lancamento_financeiro` (`id_lancamento`, `id_imobiliaria`, `tipo_lancamento`, `registro_imovel`, `data_emissao`, `data_vencimento`, `valor_total`, `forma_pagamento`, `observacoes`, `data_vigencia`, `meses_caucao`) VALUES
-(2, '73943371000180', 'venda imovel', '3', '2024-11-21', '2024-12-07', 3, '0', '', '0000-00-00', 0),
-(3, '73943371000180', 'venda imovel', '22', '2024-11-22', '2024-11-20', 12, 'Dinheiro', NULL, NULL, NULL);
+(8, '73943371000180', 'venda imovel', '22', '2024-11-25', '2024-12-04', 12, 'Cartão de crédito', NULL, NULL, NULL),
+(10, '73943371000180', 'venda imovel', '22', '2024-11-20', '2024-12-05', 12, 'Cartão de débito', NULL, NULL, NULL),
+(12, '73943371000180', 'venda imovel', '22', '2024-11-25', '2024-11-27', 12, 'Cartão de crédito', NULL, NULL, NULL),
+(13, '73943371000180', 'Aluguel', '22', '2024-11-06', '2024-10-30', 33, 'Dinheiro', '3', NULL, NULL),
+(14, '73943371000180', 'venda imovel', '22', '2024-11-25', '2024-11-29', 12, 'Boleto', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -420,13 +423,13 @@ ALTER TABLE `contrato_aluguel`
 -- AUTO_INCREMENT de tabela `contrato_venda`
 --
 ALTER TABLE `contrato_venda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `lancamento_financeiro`
 --
 ALTER TABLE `lancamento_financeiro`
-  MODIFY `id_lancamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_lancamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `superior`
