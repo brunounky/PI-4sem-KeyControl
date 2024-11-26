@@ -1,0 +1,87 @@
+.transparent-navbar {
+    background-color: rgba(255, 255, 255, 0); 
+    transition: background-color 0.3s ease;
+}
+
+.transparent-navbar .navbar-nav .nav-item a.nav-link {
+    text-decoration: none; 
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* navbar com fundo sólido */
+.solid-navbar {
+    background-color: rgb(4, 63, 35); 
+    box-shadow: 0px 0px 5px grey;
+}
+
+.navbar ul li {
+    margin: 7px;
+    padding: 13px;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-nav i {
+    color: rgb(4, 63, 35);
+}
+
+.nav-item button {
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(26, 86, 215);
+    float: right;
+}
+
+.nav-item button:hover {
+    box-shadow: 1px 1px 5px rgb(67, 114, 216);
+}
+
+.nav-item button a.nav-link:hover {
+    color: white !important;
+    text-decoration: none;
+}
+
+#fundo {
+    background-image: url(https://img.freepik.com/fotos-gratis/fundo-texturizado-abstrato_1258-30506.jpg?t=st=1732624541~exp=1732628141~hmac=7e5cc2d1c2aac95079d845c7275025bbcce05b19bbf7bfbe7f1ded94e07fa596&w=740);
+    background-size: 100% auto; 
+    height: 100%;
+}
+
+.fundo-item {
+    color: #ffffffff;
+    align-items: center;
+    padding-top: 220px;
+    padding-left: 40px;
+}
+
+#fundo button {    
+    text-align: center;
+}
+
+#fundo h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+
+#fundo p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+}
+
+#fundo .btn-index {
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: rgb(10, 224, 3);
+    width: auto;
+    height: 50px;
+}
+
+.btn-index:hover {
+    box-shadow: 0px 0px 4px rgb(255, 245, 112);
+}
