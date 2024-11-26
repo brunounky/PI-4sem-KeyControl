@@ -7,7 +7,6 @@ function buildQuery($contrato_id, $locatario_nome, $contrato_vigencia, $tipo_imo
     $sql = "
         SELECT * 
             FROM contrato_aluguel 
-            JOIN cadastro_cliente c_cliente ON contrato_aluguel.id_imobiliaria = c_cliente.id_imobiliaria 
             JOIN cadastro_imovel c_imovel ON contrato_aluguel.id_imobiliaria = c_imovel.id_imobiliaria WHERE 1=1";
 
     $conditions = [];
