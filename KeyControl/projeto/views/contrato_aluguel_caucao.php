@@ -98,8 +98,8 @@
     <div class="card">
       <div class="row">
         <div class="col-sm-4">
-          <label for="imovel_proprietario_cpf_cnpj" class="mb-2">CPF/CNPJ Proprietário</label>
-          <input class="form-control mb-3" type="text" name="imovel_proprietario_cpf_cnpj" id="imovel_proprietario_cpf_cnpj" required>
+        <label for="imovel_cep" class="mb-2">CEP</label>
+        <input class="form-control mb-3" type="text" name="imovel_cep" id="imovel_cep" required>
           <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
           <select class="form-control mb-3" name="imovel_tipo" id="tipo_imovel" required>
             <option value="" disabled selected>Selecione um tipo</option>
@@ -239,6 +239,8 @@
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="../public/assets/js/buscador_cliente.js"></script>
+  <script src="../public/assets/js/buscador_imovel.js"></script>
 
 </body>
 
