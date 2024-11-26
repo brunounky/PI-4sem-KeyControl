@@ -1,4 +1,5 @@
 <?php 
+
    session_start();
    
    if (!isset($_SESSION['user_id'])) {
@@ -43,12 +44,12 @@
       <title>Lançamentos a Receber</title>
    </head>
    <body>
-
-   <?php include 'navbar.php';?>
+      <?php include 'navbar.php';?>
 
    <section id="lancamentos">
 
       <div class="container">
+
          <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="mb-0">Lançamentos a Receber</h2>
             <a class="button_adicionarnovo floating dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false" href="#">
@@ -71,62 +72,59 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                     <form id="formLançamento">
+                     <form method="POST" action="../app/controllers/cadastro_lancamento_receber.php">
                         <input type="hidden" name="action" value="cadastrar">
                         <div class="row">
                            <div class="col-md-4">
-                              <label for="idimobiliaria" class="form-label">Imobiliária</label>
-                              <input class="form-control" type="text" name="idimobiliaria" id="idimobiliaria" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required readonly>
-                              <label for="id_lancamento_pagar" class="form-label">N°</label>
-                              <input type="text" id="id_lancamento_pagar" class="form-control" name="id_lancamento_pagar">
-                              <label for="valor" class="form-label">Valor</label>
-                              <input type="text" id="valor" class="form-control" name="valor">
+                              <label for="nome_fantasia" class="form-label">Imobiliária</label>
+                              <input class="form-control" type="text" name="nome_fantasia" id="nome_fantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required readonly>
+                              <label for="valor_total" class="form-label">Valor</label>
+                              <input type="text" id="valor_total" class="form-control" name="valor_total">
+                              <label for="observacoes" class="form-label">Observações</label>
+                              <input type="text" class="form-control" id="observacoes" name="observacoes">
                            </div>
                            <div class="col-md-4">
-                              <label for="tipoLançamento" class="form-label">Tipo</label>
-                              <select class="form-select" id="tipoLançamento" required readonly>
-                                <option value="Aluguel">Aluguel</option>
-                                <option value="IPTU">IPTU</option>
-                                <option value="Água">Água</option>
-                                <option value="Reparos">Reparos</option>
-                               </select>
-                               <label for="data_emissao" class="form-label">Emissão</label>
-                              <input type="date" class="form-control " id="data_emissao" name="data_emissao" required>
-                               <label for="forma_pagamento" class="form-label">Forma de pagamento</label>
-                                 <select class="form-control" name="forma_pagamento" id="forma_pagamento" required>
-                                    <option value="" readonly selected>Selecionar</option>
-                                    <option value="Boleto">Financiamento</option>
-                                    <option value="Dinheiro">Dinheiro</option>
-                                    <option value="Boleto">Boleto</option>
-                                    <option value="PIX">PIX</option> 
-                                    <option value="Transferência">Transferência</option> 
-                                    <option value="Cartão de crédito">Cartão de crédito</option>
-                                    <option value="Cartão de débito">Cartão de débito</option>
-                                 </select>
+                           <label for="tipo_lancamento" class="form-label">Tipo</label>
+                              <select class="form-select" id="tipo_lancamento" name="tipo_lancamento" required readonly>
+                                 <option value="Aluguel">Aluguel</option>
+                                 <option value="IPTU">IPTU</option>
+                                 <option value="Água">Água</option>
+                                 <option value="Reparos">Reparos</option>
+                              </select>
+                              <label for="data_emissao" class="form-label">Emissão</label>
+                              <input type="date" class="form-control" id="data_emissao" name="data_emissao" required>
+                              <label for="forma_pagamento" class="form-label">Forma de pagamento</label>
+                              <select class="form-control" name="forma_pagamento" id="forma_pagamento" required>
+                                 <option value="" readonly selected>Selecionar</option>
+                                 <option value="Boleto">Financiamento</option>
+                                 <option value="Dinheiro">Dinheiro</option>
+                                 <option value="Boleto">Boleto</option>
+                                 <option value="PIX">PIX</option> 
+                                 <option value="Transferência">Transferência</option> 
+                                 <option value="Cartão de crédito">Cartão de crédito</option>
+                                 <option value="Cartão de débito">Cartão de débito</option>
+                              </select>
                            </div>
                            <div class="col-md-4">
                               <label for="registro_imovel" class="form-label">Registro do Imovel</label>
                               <input type="text" id="registro_imovel" class="form-control" name="registro_imovel">
                               <label for="data_vencimento" class="form-label">Vencimento</label>
                               <input type="date" class="form-control" id="data_vencimento" name="data_vencimento" required>
-                              <label for="observacao" class="form-label">Observações</label>
-                              <input type="text" class="form-control" id="observacao" name="observacao" required>
                            </div>
+                           <button type="submit" class="btn btn_salvar mt-5">Salvar</button>
                         </div>
-                        <button type="submit" class="btn btn_salvar mt-5">Salvar</button>
                      </form>
                   </div>
-                  
                </div>
             </div>
-         </div>
-         
+         </div>         
+
          <form method="POST" action="">
             <div class="filtros-container">
                <div class="row g-12">
                   <div class="col-md-1">
-                     <label for="id_lancamento_receber" class="form-label">N°</label>
-                     <input type="text" id="id_lancamento_receber" class="form-control" name="id_lancamento_receber" value="<?= htmlspecialchars($_POST['id_lancamento_receber'] ?? '') ?>">
+                     <label for="id_lancamento_pagar" class="form-label">N°</label>
+                     <input type="text" id="id_lancamento_pagar" class="form-control" name="id_lancamento_pagar" value="<?= htmlspecialchars($_POST['id_lancamento_pagar'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="beneficiario" class="form-label">Beneficiário</label>
@@ -148,7 +146,7 @@
                      <label for="tipo_lancamento" class="mb-2">Tipo</label>
                      <div class="position-relative">
                         <select class="form-control" name="tipo_lancamento" id="tipo_lancamento" onchange="checkSelection('tipo_lancamento')">
-                           <option value="" readonly <?= !isset($_POST['tipo_lancamento']) ? 'selected' : '' ?>>Selecione um Tipo</option>
+                           <option value="" disabled <?= !isset($_POST['tipo_lancamento']) ? 'selected' : '' ?>>Selecione um Tipo</option>
                            <option value="aluguel" <?= ($_POST['tipo_lancamento'] ?? '') == 'aluguel' ? 'selected' : '' ?>>Aluguel</option>
                            <option value="iptu" <?= ($_POST['tipo_lancamento'] ?? '') == 'iptu' ? 'selected' : '' ?>>IPTU</option>
                            <option value="agua" <?= ($_POST['tipo_lancamento'] ?? '') == 'agua' ? 'agua' : '' ?>>Água</option>
@@ -167,6 +165,7 @@
             </div>
          </form>
 
+         
          <div class="card_relatório">
             <table class="table table-hover">
                <thead>
@@ -183,50 +182,63 @@
                </thead>
                <tbody>
                   <?php
-                     if (isset($result) && count($result) > 0) {
-                        foreach ($result as $row) {
-                     
-                           echo "<tr>
-                                 <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
-                                 <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
-                                 <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
-                                 <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
-                                 <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
-                                 <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
-                                 <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
-                                 <td>
-                                    <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
-                                       <i class='bi bi-pencil-square'></i>
-                                    </button>
-                                    <button class='btn' onclick='toggleSubMenu(this)'>
-                                       <i class='bi bi-chevron-down'></i>
-                                    </button>
-                                      <div class='submenu' style='display: none;'>
-                                          <div class='submenu-options'>
-                                              <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
-                                                  <i class='bi bi-printer'></i> Imprimir
-                                              </button>
-                                               <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
-                                                   <i class='bi bi-envelope'></i> E-mail
-                                               </button>
-                                               <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
-                                                   <i class='bi bi-trash'></i> Excluir
-                                               </button>
-                                          </div>
-                                       </div>
-                                    </td>
-                                 </tr>";
-                              }
-                        } else {
-                        echo "<tr><td colspan='8'>Nenhum registro encontrado</td></tr>";
+                    if (isset($result) && count($result) > 0) {
+                     foreach ($result as $row) {
+                         echo "<tr>
+                             <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['nome_fantasia'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['tipo_lancamento'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['data_vencimento'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['observacoes'] ?? '-') . "</td>
+                             <td>
+                                 <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                     <i class='bi bi-pencil-square'></i>
+                                 </button>
+                                 <button class='btn' onclick='toggleSubMenu(this)'>
+                                     <i class='bi bi-chevron-down'></i>
+                                 </button>
+                                 <div class='submenu' style='display: none;'>
+                                     <div class='submenu-options'>
+                                         <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                             <i class='bi bi-printer'></i> Imprimir
+                                         </button>
+                                         <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
+                                             <i class='bi bi-envelope'></i> E-mail
+                                         </button>
+                                         <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                             <i class='bi bi-trash'></i> Excluir
+                                         </button>
+                                     </div>
+                                 </div>
+                             </td>
+                         </tr>";
                      }
+                 } else {
+                     echo "<tr><td colspan='9'>Nenhum registro encontrado</td></tr>";
+                 }
+                 
                   ?>
                </tbody>
-            </table>
+            </table> 
          </div>
       </section>
-   
+
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       <script src="../public/assets/js/submenu.js"></script>
+      <script>
+         const tipoLinks = document.querySelectorAll('.dropdown-item');
+
+         tipoLinks.forEach(link => {
+            link.addEventListener('click', function() {
+               const tipo = this.getAttribute('data-tipo');
+               document.getElementById('tipo_lancamento').value = tipo;
+            });
+         });
+      </script>
+
+
    </body>
 </html>
