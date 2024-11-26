@@ -29,24 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $numero_locatario = $_POST['locatario_numero'];
     $cidade_locatario = $_POST['locatario_cidade'];
 
-    $nome_fiador = $_POST['fiador_nome'] ?? null;
-    $data_nascimento_fiador = $_POST['fiador_data_nascimento'] ?? null;
-    $nacionalidade_fiador = $_POST['fiador_nacionalidade'] ?? null;
-    $cep_fiador = $_POST['fiador_cep'] ?? null;
-    $bairro_fiador = $_POST['fiador_bairro'] ?? null;
-    $estado_fiador = $_POST['fiador_estado'] ?? null;
-    $cpf_cnpj_fiador = $_POST['fiador_cpf_cnpj'] ?? null;
-    $telefone_fiador = $_POST['fiador_telefone'] ?? null;
-    $estado_civil_fiador = $_POST['fiador_estado_civil'] ?? null;
-    $rua_fiador = $_POST['fiador_rua'] ?? null;
-    $complemento_fiador = $_POST['fiador_complemento'] ?? null;
-    $pais_fiador = $_POST['fiador_pais'] ?? null;
-    $rg_ie_fiador = $_POST['fiador_rg_ie'] ?? null;
-    $email_fiador = $_POST['fiador_email'] ?? null;
-    $profissao_fiador = $_POST['fiador_profissao'] ?? null;
-    $numero_fiador = $_POST['fiador_numero'] ?? null;
-    $cidade_fiador = $_POST['fiador_cidade'] ?? null;
-
     $cpf_cnpj_proprietario = $_POST['imovel_proprietario_cpf_cnpj'];
     $tipo_imovel = $_POST['imovel_tipo'];
     $numero_imovel = $_POST['imovel_numero'];
@@ -74,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
     $id_imobiliaria = $_SESSION['user_cnpj'];
     $data_emissao = date("Y-m-d");
-    $tipo_lancamento = "aluguel fiador";
+    $tipo_lancamento = "aluguel caucao";
 
     try {
         $sql_lancamento = "INSERT INTO lancamento_financeiro (
@@ -103,9 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $sql_contrato = "INSERT INTO contrato_aluguel (
                             locatario_nome, locatario_data_nascimento, locatario_nacionalidade, locatario_cep, locatario_bairro, locatario_estado, 
                             locatario_cpf_cnpj, locatario_telefone, locatario_estado_civil, locatario_rua, locatario_complemento, locatario_pais, 
-                            locatario_rg_ie, locatario_email, locatario_profissao, locatario_numero, locatario_cidade, fiador_nome, fiador_data_nascimento, 
-                            fiador_nacionalidade, fiador_cep, fiador_bairro, fiador_estado, fiador_cpf_cnpj, fiador_telefone, fiador_estado_civil, 
-                            fiador_rua, fiador_complemento, fiador_pais, fiador_rg_ie, fiador_email, fiador_profissao, fiador_numero, fiador_cidade, 
+                            locatario_rg_ie, locatario_email, locatario_profissao, locatario_numero, locatario_cidade, 
                             imovel_proprietario_cpf_cnpj, imovel_tipo, imovel_numero, imovel_cidade, imovel_taxa_venda, imovel_cep, imovel_bairro, 
                             imovel_estado, imovel_valor, imovel_registro, imovel_rua, imovel_complemento, imovel_pais, contrato_vigencia, contrato_forma_pagamento, contrato_data_vencimento, id_imobiliaria, meses_caucao, vencimento_caucao, 
                             total_caucao, forma_pagamento_caucao, id_lancamento
@@ -113,9 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                         VALUES (
                             :nome_locatario, :data_nascimento_locatario, :nacionalidade_locatario, :cep_locatario, :bairro_locatario, :estado_locatario, 
                             :cpf_cnpj_locatario, :telefone_locatario, :estado_civil_locatario, :rua_locatario, :complemento_locatario, :pais_locatario, 
-                            :rg_ie_locatario, :email_locatario, :profissao_locatario, :numero_locatario, :cidade_locatario, :nome_fiador, :data_nascimento_fiador, 
-                            :nacionalidade_fiador, :cep_fiador, :bairro_fiador, :estado_fiador, :cpf_cnpj_fiador, :telefone_fiador, :estado_civil_fiador, 
-                            :rua_fiador, :complemento_fiador, :pais_fiador, :rg_ie_fiador, :email_fiador, :profissao_fiador, :numero_fiador, :cidade_fiador, 
+                            :rg_ie_locatario, :email_locatario, :profissao_locatario, :numero_locatario, :cidade_locatario, 
                             :cpf_cnpj_proprietario, :tipo_imovel, :numero_imovel, :cidade_imovel, :taxa_venda, :cep_imovel, :bairro_imovel, :estado_imovel, 
                             :valor_imovel, :registro_imovel, :rua_imovel, :complemento_imovel, :pais_imovel, :vigencia, :forma_pagamento, 
                             :data_vencimento, :id_imobiliaria, :meses_caucao, :vencimento_caucao, :total_caucao, :forma_pagamento_caucao, :id_lancamento
@@ -140,23 +118,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt_contrato->bindParam(':profissao_locatario', $profissao_locatario);
         $stmt_contrato->bindParam(':numero_locatario', $numero_locatario);
         $stmt_contrato->bindParam(':cidade_locatario', $cidade_locatario);
-        $stmt_contrato->bindParam(':nome_fiador', $nome_fiador);
-        $stmt_contrato->bindParam(':data_nascimento_fiador', $data_nascimento_fiador);
-        $stmt_contrato->bindParam(':nacionalidade_fiador', $nacionalidade_fiador);
-        $stmt_contrato->bindParam(':cep_fiador', $cep_fiador);
-        $stmt_contrato->bindParam(':bairro_fiador', $bairro_fiador);
-        $stmt_contrato->bindParam(':estado_fiador', $estado_fiador);
-        $stmt_contrato->bindParam(':cpf_cnpj_fiador', $cpf_cnpj_fiador);
-        $stmt_contrato->bindParam(':telefone_fiador', $telefone_fiador);
-        $stmt_contrato->bindParam(':estado_civil_fiador', $estado_civil_fiador);
-        $stmt_contrato->bindParam(':rua_fiador', $rua_fiador);
-        $stmt_contrato->bindParam(':complemento_fiador', $complemento_fiador);
-        $stmt_contrato->bindParam(':pais_fiador', $pais_fiador);
-        $stmt_contrato->bindParam(':rg_ie_fiador', $rg_ie_fiador);
-        $stmt_contrato->bindParam(':email_fiador', $email_fiador);
-        $stmt_contrato->bindParam(':profissao_fiador', $profissao_fiador);
-        $stmt_contrato->bindParam(':numero_fiador', $numero_fiador);
-        $stmt_contrato->bindParam(':cidade_fiador', $cidade_fiador);
         $stmt_contrato->bindParam(':cpf_cnpj_proprietario', $cpf_cnpj_proprietario);
         $stmt_contrato->bindParam(':tipo_imovel', $tipo_imovel);
         $stmt_contrato->bindParam(':numero_imovel', $numero_imovel);
