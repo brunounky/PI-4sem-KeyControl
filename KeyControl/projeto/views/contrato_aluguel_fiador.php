@@ -33,7 +33,7 @@
 
   <section id="contrato_aluguel_fiador">
     <!-- inicio do form -->
-    <form action="../app/controllers/contrato_aluguel.php" method="post">
+    <form action="../app/controllers/contrato_aluguel_fiador.php" method="post">
       <input type="hidden" name="action" value="cadastrar">
       <div class="container">
         <div class="row">
