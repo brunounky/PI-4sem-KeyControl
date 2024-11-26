@@ -70,9 +70,52 @@ $html = '
                     <p class="cabecalho2">E-mail: ' . htmlspecialchars($contrato['emailimobiliaria']) . '</p>
             </div>
             <div class="section">
-                <p>
+                <h2 class="section-title">Dados Principais do Comprador</h2>
+                    <div class="row">
+                    <div class="col-4"><strong>Comprador:</strong> ' . htmlspecialchars($contrato['comprador_nome']) . '</div>
+                    <div class="col-3"><strong>CPF/CNPJ:</strong> ' . htmlspecialchars($contrato['comprador_cpf_cnpj']) . '</div>
+                    <div class="col-3"><strong>Telefone:</strong> ' . htmlspecialchars($contrato['comprador_telefone']) . '</div>
+                </div>
         </div>
 
+        <div class="section">
+                <h2 class="section-title">Detalhes do Imóvel</h2>
+                <table class="table">
+                    <tr>
+                        <th>Proprietário</th>
+                        <th>Endereço</th>
+                        <th>Bairro</th>
+                        <th>CEP</th>
+                        <th>Cidade</th>
+                    </tr>
+                    <tr>
+                        <td>' . htmlspecialchars($contrato['imovel_proprietario_cpf_cnpj']) . '</td>
+                        <td>' . htmlspecialchars($contrato['imovel_rua']) . '</td>
+                        <td>' . htmlspecialchars($contrato['imovel_bairro']) . '</td>
+                        <td>' . htmlspecialchars($contrato['imovel_cep']) . '</td>
+                        <td>' . htmlspecialchars($contrato['imovel_cidade']) . '</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Detalhes do Contrato</h2>
+                <table class="table">
+                    <tr>
+                        <th>% Taxa administrativa</th>
+                        <th>Data da Emissão</th>
+                        <th>Data de Pagamento</th>
+                        <th>Forma de pagamento</th>
+                    </tr>
+                    <tr>
+                        <td>' . htmlspecialchars(string: $contrato['imovel_taxa_venda']) . '</td>
+                        <td>' . htmlspecialchars(date("d/m/Y", strtotime($contrato['data_emissao']))) . '</td>
+                        <td>' . htmlspecialchars(date("d/m/Y", strtotime($contrato['data_vencimento']))) . '</td>
+                        <td>' . htmlspecialchars(string: $contrato['forma_pagamento']) . '</td>
+
+                    </tr>
+                </table>
+            </div>
             <div class="footer">
                 <p>Documento gerado em ' . date("d/m/Y") . '</p>
             </div>

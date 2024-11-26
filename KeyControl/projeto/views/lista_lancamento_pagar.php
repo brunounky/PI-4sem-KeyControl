@@ -72,16 +72,16 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                     <form method="POST" action="../app/controllers/cadastro_lancamento.php">
+                     <form method="POST" action="../app/controllers/cadastro_lancamento_pagar.php">
                         <input type="hidden" name="action" value="cadastrar">
                         <div class="row">
                            <div class="col-md-4">
                               <label for="nome_fantasia" class="form-label">Imobiliária</label>
                               <input class="form-control" type="text" name="nome_fantasia" id="nome_fantasia" value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required readonly>
-                              <label for="idlancamento" class="form-label">N° do Lançamento</label>
-                              <input type="text" id="idlancamento" class="form-control" name="idlancamento">
                               <label for="valor_total" class="form-label">Valor</label>
                               <input type="text" id="valor_total" class="form-control" name="valor_total">
+                              <label for="observacoes" class="form-label">Observações</label>
+                              <input type="text" class="form-control" id="observacoes" name="observacoes">
                            </div>
                            <div class="col-md-4">
                            <label for="tipo_lancamento" class="form-label">Tipo</label>
@@ -110,8 +110,6 @@
                               <input type="text" id="registro_imovel" class="form-control" name="registro_imovel">
                               <label for="data_vencimento" class="form-label">Vencimento</label>
                               <input type="date" class="form-control" id="data_vencimento" name="data_vencimento" required>
-                              <label for="observacoes" class="form-label">Observações</label>
-                              <input type="text" class="form-control" id="observacoes" name="observacoes">
                            </div>
                            <button type="submit" class="btn btn_salvar mt-5">Salvar</button>
                         </div>

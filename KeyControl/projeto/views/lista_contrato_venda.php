@@ -140,7 +140,10 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                                     <div class='submenu' style='display: none;'>
                                         <div class='submenu-options'>
                                             <button class='imprimir' title='Imprimir' onclick='redirectToRelatorio(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                <i class='bi bi-printer'></i> Imprimir
+                                                <i class='bi bi-printer'></i> Imprimir Registro
+                                            </button>
+                                            <button class='imprimir' title='imprimirContrato' onclick='redirectToRelatorio2(" . htmlspecialchars($row['contrato_id']) . ")'>
+                                                <i class='bi bi-printer'></i> Imprimir Contrato
                                             </button>
                                         </div>
                                     </div>
@@ -166,9 +169,15 @@ include_once '../app/controllers/filtro_contrato_venda.php';
 
     <script>
         function redirectToRelatorio(id) {
-            window.open('../reports/impressao_contrato_venda.php?id=' + id, '_blank');
+            window.open('../reports/impressao_registro_venda.php?id=' + id, '_blank');
         }
     </script>
+
+    <script>
+            function redirectToRelatorio2(id) {
+                window.open('../reports/impressao_contrato_venda.php?id=' + id, '_blank');
+            }
+        </script>
 
 </body>
 

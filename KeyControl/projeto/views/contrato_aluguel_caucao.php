@@ -171,7 +171,7 @@
                   </div>
                   <div class="col-sm-3">
                     <label for="total_caucao" class="mb-2">Valor total</label>
-                    <input class="form-control mb-3" type="number" name="total_caucao" id="total_caucao" required>
+                    <input class="form-control mb-3" type="number" name="total_caucao" id="total_caucao" readonly>
                   </div>
                   <div class="col-sm-3">
                     <label for="forma_pagamento_caucao" class="mb-2">Forma de pagamento</label>
@@ -205,10 +205,6 @@
                     <input class="form-control mb-3" type="date" name="contrato_data_vencimento" id="contrato_data_vencimento" required>
                   </div>
                   <div class="col-sm-3">
-                    <label for="dia_cobranca" class="mb-2">Dia de Cobrança</label>
-                    <input class="form-control mb-3" type="number" name="dia_cobranca" id="dia_cobranca" required>
-                  </div>
-                  <div class="col-sm-3">
                     <label for="contrato_forma_pagamento" class="mb-2">Forma de pagamento</label>
                     <select class="form-control mb-3" name="contrato_forma_pagamento" id="contrato_forma_pagamento" required>
                       <option value="" disabled selected>Selecionar</option>
@@ -240,8 +236,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="../public/assets/js/buscador_locatario.js"></script>
-  <script src="../public/assets/js/buscador_imovel.js"></script>
-
+  <script src="../public/assets/js/buscador_imovel_aluguel.js"></script>
+  <script src="../public/assets/js/multiplica_caucao.js"></script>
+  
 </body>
 
 </html>

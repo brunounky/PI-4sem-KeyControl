@@ -236,7 +236,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="../public/assets/js/buscador_locatario.js"></script>
   <script src="../public/assets/js/buscador_fiador.js"></script>
-  <script src="../public/assets/js/buscador_imovel.js"></script>
+  <script src="../public/assets/js/buscador_imovel_aluguel.js"></script>
 
 </body>
 
