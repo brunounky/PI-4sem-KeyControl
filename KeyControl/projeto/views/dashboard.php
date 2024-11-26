@@ -7,6 +7,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!-- Bootstrap Icon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Grafico -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
   <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <!-- Estilo customizado -->
@@ -26,6 +28,28 @@
   }
 
   include 'navbar.php';
+
+  /** teste grafico **/
+
+  $clientes = [
+    "Locador" => 100,
+    "Locatário" => 354,
+    "Fiador" => 231,
+    "Comprador" => 120
+    ];
+
+    $imoveis = [
+        "Apartamento" => 150,
+        "Casa" => 386,
+        "Comercial" => 247
+    ];
+
+// Transformar os dados em formato utilizável pelo JavaScript
+$labels = json_encode(array_keys($clientes)); // ["Locador", "Locatário", "Fiador", "Comprador"]
+$data = json_encode(array_values($clientes)); // [100, 354, 231, 120]
+
+$property_types = json_encode(array_keys($imoveis)); // ["Apartamento", "Casa", "Comercial"]
+$property_counts = json_encode(array_values($imoveis)); // [150, 386, 247]
 
 ?>
 
@@ -71,29 +95,16 @@
             <div class="col-md-6">
                 <div class="card card-superior">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <h5>Tipos de Imóveis</h5>
-                            <img src="../public/assets/img/teste.png">                            
-                        </div>
-                        <div class="col-md-6 mt-5">
-                            <h6>150 - Apartamento</h6>
-                            <h6>386 - Casa</h6>
-                            <h6>247 - Comercial</h6>
+                            <canvas id="grafico_imoveis"></canvas>  
                         </div>
                     </div>
                 </div>
                 <div class="card card-superior">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5>Tipos de Clientes</h5>
-                            <img src="../public/assets/img/teste.png">  
-                        </div>
-                        <div class="col-md-6 mt-5">                            
-                            <h6>100 - Locador</h6>
-                            <h6>354 - Locatário</h6>
-                            <h6>231 - Fiador</h6>
-                            <h6>120 - Comprador</h6>
-                        </div>
+                    <div class="col-md-12">
+                        <h5>Tipos de Clientes</h5>
+                        <canvas id="grafico_clientes"></canvas>  
                     </div>
                 </div>
             </div>
@@ -164,5 +175,122 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    // Dados vindos do PHP
+    const labels = <?php echo $labels; ?>;
+    const data = <?php echo $data; ?>;
+
+    // Configuração do gráfico de Clientes
+    const ctxClientes = document.getElementById('grafico_clientes').getContext('2d');
+    const grafico_clientes = new Chart(ctxClientes, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Quantidade de Clientes',
+                data: data,
+                backgroundColor: [
+                    '#28ADF7', 
+                    '#C4DF16', 
+                    '#93A60F', 
+                    '#0541FF' 
+                ],
+                borderColor: '#fff',
+                borderWidth: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        generateLabels: function(chart) {
+                            const data = chart.data;
+                            return data.labels.map((label, i) => {
+                                const value = data.datasets[0].data[i]; 
+                                return {
+                                    text: `${label} - ${value}`, // Nome com número
+                                    fillStyle: data.datasets[0].backgroundColor[i], 
+                                    hidden: false,
+                                    index: i,
+                                    strokeStyle: 'transparent', // Remove o contorno
+                                    lineWidth: 0
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            const label = labels[tooltipItem.dataIndex];
+                            const value = data[tooltipItem.dataIndex];
+                            return `${label}: ${value}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Dados vindos do PHP para o gráfico de Imóveis
+    const propertyLabels = <?php echo $property_types; ?>;
+    const propertyData = <?php echo $property_counts; ?>;
+
+    // Configuração do gráfico de Imóveis
+    const ctxImoveis = document.getElementById('grafico_imoveis').getContext('2d');
+    const grafico_imoveis = new Chart(ctxImoveis, {
+        type: 'pie',
+        data: {
+            labels: propertyLabels,
+            datasets: [{
+                label: 'Quantidade de Imóveis',
+                data: propertyData,
+                backgroundColor: [
+                    '#F39C12', // Amarelo
+                    '#3498DB', // Azul
+                    '#2ECC71'  // Verde
+                ],
+                borderColor: '#fff',
+                borderWidth: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        generateLabels: function(chart) {
+                            const data = chart.data;
+                            return data.labels.map((label, i) => {
+                                const value = data.datasets[0].data[i]; 
+                                return {
+                                    text: `${label} - ${value}`, // Nome com número
+                                    fillStyle: data.datasets[0].backgroundColor[i], 
+                                    hidden: false,
+                                    index: i,
+                                    strokeStyle: 'transparent', // Remove o contorno
+                                    lineWidth: 0
+                                };
+                            });
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            const label = propertyLabels[tooltipItem.dataIndex];
+                            const value = propertyData[tooltipItem.dataIndex];
+                            return `${label}: ${value}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 </body>
 </html>
