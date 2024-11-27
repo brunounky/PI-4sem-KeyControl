@@ -2,14 +2,14 @@
 include '../app/controllers/db_conexao.php'; 
 $result = null;
 
-function buildQuery($id_lancamento, $data_inicial, $data_final) {
+function buildQuery($registro_imovel, $data_inicial, $data_final) {
     $sql = "SELECT * FROM lancamento_financeiro";
     $conditions = [];
     $params = [];
 
-    if (!empty($id_lancamento)) {
-        $conditions[] = "id_lancamento = :id_lancamento";
-        $params['id_lancamento'] = $id_lancamento;
+    if (!empty($registro_imovel)) {
+        $conditions[] = "registro_imovel = :registro_imovel";
+        $params['registro_imovel'] = $registro_imovel;
     }
 
     if (!empty($data_inicial)) {
@@ -32,11 +32,11 @@ function buildQuery($id_lancamento, $data_inicial, $data_final) {
     return [$sql, $params];
 }
 
-$id_lancamento = $_POST['id_lancamento'] ?? '';
+$registro_imovel = $_POST['registro_imovel'] ?? '';
 $data_inicial = $_POST['data_inicial'] ?? '';
 $data_final = $_POST['data_final'] ?? '';
 
-list($sql, $params) = buildQuery($id_lancamento, $data_inicial, $data_final);
+list($sql, $params) = buildQuery($registro_imovel, $data_inicial, $data_final);
 
 try {
     if ($pdo) {
