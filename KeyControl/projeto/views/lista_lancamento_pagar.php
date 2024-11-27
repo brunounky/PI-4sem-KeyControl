@@ -155,24 +155,27 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                      </div>
                   </div>
                   <div class="col-sm-2">
-                            <label for="forma_pagamento" class="mb-2">Tipo Pagamento</label>
-                            <div class="position-relative">
-                                <select class="form-control mb-3" name="forma_pagamento" id="forma_pagamento"
-                                    onchange="checkSelection('forma_pagamento')">
-                                    <option value="" disabled <?= !isset($_POST['forma_pagamento']) ? 'selected' : '' ?>>Escolha um Pagamento</option>
-                                    <option value="financiamento" <?= ($_POST['forma_pagamento'] ?? '') == 'financiamento' ? 'selected' : '' ?>>Financiamento</option>
-                                    <option value="dinheiro" <?= ($_POST['forma_pagamento'] ?? '') == 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
-                                    <option value="boleto" <?= ($_POST['forma_pagamento'] ?? '') == 'boleto' ? 'selected' : '' ?>>Boleto</option>
-                                    <option value="pix" <?= ($_POST['forma_pagamento'] ?? '') == 'pix' ? 'selected' : '' ?>>PIX</option>
-                                    <option value="transferencia" <?= ($_POST['forma_pagamento'] ?? '') == 'transferencia' ? 'selected' : '' ?>>Transferência</option>
-                                    <option value="cartao_credito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : '' ?>>Cartão de crédito</option>
-                                    <option value="cartao_debito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' : '' ?>>Cartão de débito</option>
-                                </select>
-                                <span class="position-absolute"
-                                    style="right: 25px; top: 6px; cursor: pointer; color: red; display: <?= isset($_POST['forma_pagamento']) && $_POST['forma_pagamento'] != '' ? 'block' : 'none' ?>;"
-                                    data-select="forma_pagamento" onclick="removeSelected('forma_pagamento')">x</span>
-                            </div>
-                        </div>
+                     <label for="forma_pagamento" class="mb-2">Tipo Pagamento</label>
+                     <div class="position-relative">
+                        <select class="form-control mb-3" name="forma_pagamento" id="forma_pagamento"
+                           onchange="checkSelection('forma_pagamento')">
+                           <option value="" disabled <?= !isset($_POST['forma_pagamento']) ? 'selected' : '' ?>>Escolha
+                              um Pagamento</option>
+                           <option value="financiamento" <?= ($_POST['forma_pagamento'] ?? '') == 'financiamento' ? 'selected' : '' ?>>Financiamento</option>
+                           <option value="dinheiro" <?= ($_POST['forma_pagamento'] ?? '') == 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
+                           <option value="boleto" <?= ($_POST['forma_pagamento'] ?? '') == 'boleto' ? 'selected' : '' ?>>
+                              Boleto</option>
+                           <option value="pix" <?= ($_POST['forma_pagamento'] ?? '') == 'pix' ? 'selected' : '' ?>>PIX
+                           </option>
+                           <option value="transferencia" <?= ($_POST['forma_pagamento'] ?? '') == 'transferencia' ? 'selected' : '' ?>>Transferência</option>
+                           <option value="cartao_credito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : '' ?>>Cartão de crédito</option>
+                           <option value="cartao_debito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' : '' ?>>Cartão de débito</option>
+                        </select>
+                        <span class="position-absolute"
+                           style="right: 25px; top: 6px; cursor: pointer; color: red; display: <?= isset($_POST['forma_pagamento']) && $_POST['forma_pagamento'] != '' ? 'block' : 'none' ?>;"
+                           data-select="forma_pagamento" onclick="removeSelected('forma_pagamento')">x</span>
+                     </div>
+                  </div>
                   <div class="col-md-1">
                      <button class="btn btn-buscar" type="submit">
                         <i class="bi bi-search"></i>
@@ -210,19 +213,23 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                              <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
                              <td>
-                                 <button class='btn' onclick='toggleSubMenu(this)'>
-                                     <i class='bi bi-chevron-down'></i>
-                                 </button>
-                                 <div class='submenu' style='display: none;'>
-                                     <div class='submenu-options'>
-                                         <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id_lancamento']) . ")'>
-                                             <i class='bi bi-printer'></i> Imprimir
-                                         </button>
-                                         <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id_lancamento']) . ")'>
-                                             <i class='bi bi-trash'></i> Excluir
-                                         </button>
-                                     </div>
-                                 </div>
+                                            <button class='btn' onclick='toggleSubMenu(this)'>
+                                                <i class='bi bi-chevron-down'></i>
+                                            </button>
+                                            <div class='submenu' style='display: none;'>
+                                                <div class='submenu-options'>
+                                                    <button class='imprimir' onclick='redirectToImpressao(" . htmlspecialchars($row['id_lancamento']) . ")'>
+                                                        <i class='bi bi-printer'></i> Impressão
+                                                    </button>
+                                                         <button class='imprimir' onclick='redirectToComprovante(" . htmlspecialchars($row['id_lancamento']) . ")'>
+                                                        <i class='bi bi-printer'></i> Comprovante
+                                                    </button>
+
+                                                    <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id_lancamento']) . ")'>
+                                                        <i class='bi bi-trash'></i> Excluir
+                                                    </button>
+                                                </div>
+                                            </div>
                              </td>
                          </tr>";
                      }
@@ -237,16 +244,15 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
    </section>
 
    <script>
-        function redirectToRelatorio(id) {
-            window.open('../reports/impressao_registro_aluguel.php?id=' + id, '_blank');
-        }
-    </script>
+      function redirectToImpressao(id_lancamento) {
+         window.open('../reports/impressao_a_pagar.php?id=' + id_lancamento, '_blank');
+      }
 
-    <script>
-            function redirectToRelatorio2(id) {
-                window.open('../reports/impressao_contrato_aluguel.php?id=' + id, '_blank');
-            }
-</script>
+      function redirectToComprovante(id_lancamento) {
+         window.open('../reports/comprovante_pagar.php?id=' + id_lancamento, '_blank');
+      }
+   </script>
+   </script>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
    <script src="../public/assets/js/submenu.js"></script>
@@ -264,4 +270,5 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
    </script>
 
 </body>
+
 </html>
