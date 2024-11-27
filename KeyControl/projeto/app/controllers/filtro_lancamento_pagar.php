@@ -13,7 +13,7 @@ function buildQuery($id_lancamento, $tipo_lancamento, $registro_imovel, $data_em
     
         if (!empty($tipo_lancamento)) {
             $sql .= " AND tipo_lancamento = :tipo_lancamento";
-            $params['tipo_lancamento'] = $tipo_lancamento;
+            $params[':tipo_lancamento'] = $tipo_lancamento;
         }
         if (!empty($registro_imovel)) {
             $sql .= " AND registro_imovel = :registro_imovel";
@@ -57,7 +57,8 @@ function buildQuery($id_lancamento, $tipo_lancamento, $registro_imovel, $data_em
     $data_vigencia = $_POST['data_vigencia'] ?? '';
     $liquidado = $_POST['liquidado'] ?? '';
 
-    list($sql, $params) = buildQuery($id_lancamento, $tipo_lancamento, $registro_imovel, $data_emissao, $data_emissao, $data_vencimento, $valor_total, $forma_pagamento, $data_vigencia, $liquidado);
+    list($sql, $params) = buildQuery($id_lancamento, $tipo_lancamento, $registro_imovel, $data_emissao, $data_vencimento, $valor_total, $forma_pagamento, $data_vigencia, $liquidado);
+
 
 
     if (isset($pdo) && $pdo) {
