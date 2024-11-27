@@ -53,8 +53,8 @@
           <ul class="dropdown-menu" aria-labelledby="drop">
             <li><a class="dropdown-item nav-link" href="../views/relatorio_clientes.php">Clientes</a></li>
             <li><a class="dropdown-item nav-link" href="../views/relatorio_imovel.php">Imóveis</a></li>
-            <li><a class="dropdown-item nav-link" href="../views/relatorio_a_receber.php">Contas a Receber</a></li>
             <li><a class="dropdown-item nav-link" href="../views/relatorio_a_pagar.php">Contas a Pagar</a></li>
+            <li><a class="dropdown-item nav-link" href="../views/relatorio_a_receber.php">Contas a Receber</a></li>
           </ul>
         </li>
       </ul>

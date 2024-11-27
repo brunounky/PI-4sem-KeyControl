@@ -85,11 +85,14 @@ include_once '../app/controllers/filtro_fechamento.php';
                     <tbody> 
                         <?php
                         foreach ($result as $row) {
+                            // Formatação do valor do imóvel
+                            $valor = $row['valor_total'] ?? '-';
+                            $formatted_valor = ($valor !== '-') ? 'R$ ' . number_format($valor, 2, ',', '.') : '-';
                             echo "<tr>
                                 <td>" . htmlspecialchars($row['id_lancamento']) . "</td>
                                 <td>" . htmlspecialchars($row['tipo_lancamento']) . "</td>
                                 <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_emissao'] ?? ''))) . "</td>
-                                <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
+                                <td>" . $formatted_valor . "</td>
                                 <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
                             </tr>";

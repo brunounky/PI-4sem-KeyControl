@@ -204,6 +204,9 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                   <?php
                   if (isset($result) && count($result) > 0) {
                      foreach ($result as $row) {
+                        $valor = $row['valor_total'] ?? '-';
+                        $formatted_valor = ($valor !== '-') ? 'R$ ' . number_format($valor, 2, ',', '.') : '-';
+
                         echo "<tr>
                              <td>" . htmlspecialchars($row['id_lancamento'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['tipo_lancamento'] ?? '-') . "</td>
@@ -211,7 +214,7 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                              <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_vencimento'] ?? ''))) . "</td>
                              <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
+                             <td>" . $formatted_valor . "</td>
                              <td>
                                             <button class='btn' onclick='toggleSubMenu(this)'>
                                                 <i class='bi bi-chevron-down'></i>

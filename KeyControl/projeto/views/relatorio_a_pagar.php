@@ -67,13 +67,13 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                                     <option value="" disabled <?= !isset($_POST['tipo_lancamento']) ? 'selected' : '' ?>>
                                         Selecione
                                         um Tipo</option>
-                                    <option value="aluguel" <?= ($_POST['tipo_lancamento'] ?? '') == 'aluguel' ? 'selected' : '' ?>>
+                                    <option value="Aluguel" <?= ($_POST['tipo_lancamento'] ?? '') == 'Aluguel' ? 'Aluguel' : '' ?>>
                                         Aluguel</option>
-                                    <option value="iptu" <?= ($_POST['tipo_lancamento'] ?? '') == 'iptu' ? 'selected' : '' ?>>IPTU
+                                    <option value="IPTU" <?= ($_POST['tipo_lancamento'] ?? '') == 'IPTU' ? 'IPTU' : '' ?>>IPTU
                                     </option>
-                                    <option value="agua" <?= ($_POST['tipo_lancamento'] ?? '') == 'agua' ? 'selected' : '' ?>>Água</option>
-                                    <option value="reparos" <?= ($_POST['tipo_lancamento'] ?? '') == 'reparos' ? 'selected' : '' ?>>Reparos</option>
-                                    <option value="caucao" <?= ($_POST['tipo_lancamento'] ?? '') == 'caucao' ? 'selected' : '' ?>>Caução</option>
+                                    <option value="Agua" <?= ($_POST['tipo_lancamento'] ?? '') == 'Agua' ? 'Agua' : '' ?>>Água</option>
+                                    <option value="Reparos" <?= ($_POST['tipo_lancamento'] ?? '') == 'Reparos' ? 'Reparos' : '' ?>>Reparos</option>
+                                    <option value="Caucao" <?= ($_POST['tipo_lancamento'] ?? '') == 'Caucao' ? 'Caucao' : '' ?>>Caução</option>
                                 </select>
                                 <span class="position-absolute"
                                     style="right: 20px; top: 6px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_lancamento']) && $_POST['tipo_lancamento'] != '' ? 'block' : 'none' ?>;"
@@ -134,6 +134,9 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                         <?php
                         if (isset($result) && count($result) > 0) {
                             foreach ($result as $row) {
+                            $valor = $row['valor_total'] ?? '-';
+                            $formatted_valor = ($valor !== '-') ? 'R$ ' . number_format($valor, 2, ',', '.') : '-';
+        
                                 echo "<tr>
                              <td>" . htmlspecialchars($row['id_lancamento'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['tipo_lancamento'] ?? '-') . "</td>
@@ -141,7 +144,7 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                              <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_vencimento'] ?? ''))) . "</td>
                              <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
+                             <td>" . $formatted_valor . "</td>
                              <td>
                              </td>
                          </tr>";

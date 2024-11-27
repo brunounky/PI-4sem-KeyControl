@@ -2,8 +2,8 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-   header("Location: ../app/controllers/verifica_login.php");
-   exit();
+    header("Location: ../app/controllers/verifica_login.php");
+    exit();
 }
 
 
@@ -80,7 +80,7 @@ $data = json_encode(array_column($clientes, 'quantidade'));
 ?>
 
 <body>
-<?php include 'navbar.php'; ?>
+    <?php include 'navbar.php'; ?>
 
     <section id="dashboard">
         <div class="container">
@@ -154,13 +154,15 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                                 <?php
                                 if (isset($result) && count($result) > 0) {
                                     foreach ($result as $row) {
+                                        $valor = $row['valor_total'] ?? '-';
+                                        $formatted_valor = ($valor !== '-') ? 'R$ ' . number_format($valor, 2, ',', '.') : '-';
 
                                         echo "<tr>
                                        <td>" . htmlspecialchars($row['id_lancamento'] ?? '-') . "</td>
                                        <td>" . htmlspecialchars($row['tipo_lancamento'] ?? '-') . "</td>
                                        <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_emissao'] ?? ''))) . "</td>
                                        <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_vencimento'] ?? ''))) . "</td>
-                                       <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
+                                        <td>" . $formatted_valor . "</td>
                                        <td>
                                        </td>
                                     </tr>";
@@ -180,142 +182,142 @@ $data = json_encode(array_column($clientes, 'quantidade'));
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous">
-    </script>
-   <script>
-    // Dados vindos do PHP
-    const rawLabels = <?php echo isset($labels) ? $labels : '[]'; ?>; // Labels originais
-    const rawData = <?php echo isset($data) ? $data : '[]'; ?>; // Dados originais
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+    <script>
+        // Dados vindos do PHP
+        const rawLabels = <?php echo isset($labels) ? $labels : '[]'; ?>; // Labels originais
+        const rawData = <?php echo isset($data) ? $data : '[]'; ?>; // Dados originais
 
-    // Função para agrupar dados duplicados (locador e locatário, etc.)
-    const aggregateData = (labels, data) => {
-        const aggregated = {};
-        labels.forEach((label, index) => {
-            if (aggregated[label]) {
-                aggregated[label] += data[index]; // Soma os valores duplicados
-            } else {
-                aggregated[label] = data[index];
-            }
-        });
-        return {
-            labels: Object.keys(aggregated),
-            data: Object.values(aggregated)
+        // Função para agrupar dados duplicados (locador e locatário, etc.)
+        const aggregateData = (labels, data) => {
+            const aggregated = {};
+            labels.forEach((label, index) => {
+                if (aggregated[label]) {
+                    aggregated[label] += data[index]; // Soma os valores duplicados
+                } else {
+                    aggregated[label] = data[index];
+                }
+            });
+            return {
+                labels: Object.keys(aggregated),
+                data: Object.values(aggregated)
+            };
         };
-    };
 
-    // Processar dados de clientes
-    const { labels, data } = aggregateData(rawLabels, rawData);
+        // Processar dados de clientes
+        const { labels, data } = aggregateData(rawLabels, rawData);
 
-    // Processar dados de propriedades
-    const propertyLabels = <?php echo isset($property_types) ? $property_types : '[]'; ?>;
-    const propertyData = <?php echo isset($property_counts) ? $property_counts : '[]'; ?>;
+        // Processar dados de propriedades
+        const propertyLabels = <?php echo isset($property_types) ? $property_types : '[]'; ?>;
+        const propertyData = <?php echo isset($property_counts) ? $property_counts : '[]'; ?>;
 
-    // Configuração do gráfico de Clientes
-    if (labels.length > 0 && data.length > 0) {
-        const ctxClientes = document.getElementById('grafico_clientes').getContext('2d');
-        new Chart(ctxClientes, {
-            type: 'pie',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Quantidade de Clientes',
-                    data: data,
-                    backgroundColor: [
-                        '#28ADF7', // Azul Claro
-                        '#C4DF16', // Verde Limão
-                        '#93A60F', // Verde Musgo
-                        '#0541FF'  // Azul Escuro
-                    ],
-                    borderColor: '#fff',
-                    borderWidth: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            generateLabels: (chart) => {
-                                return chart.data.labels.map((label, i) => {
-                                    const value = chart.data.datasets[0].data[i];
-                                    return {
-                                        text: `${label} - ${value}`,
-                                        fillStyle: chart.data.datasets[0].backgroundColor[i],
-                                        index: i
-                                    };
-                                });
+        // Configuração do gráfico de Clientes
+        if (labels.length > 0 && data.length > 0) {
+            const ctxClientes = document.getElementById('grafico_clientes').getContext('2d');
+            new Chart(ctxClientes, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Quantidade de Clientes',
+                        data: data,
+                        backgroundColor: [
+                            '#28ADF7', // Azul Claro
+                            '#C4DF16', // Verde Limão
+                            '#93A60F', // Verde Musgo
+                            '#0541FF'  // Azul Escuro
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                generateLabels: (chart) => {
+                                    return chart.data.labels.map((label, i) => {
+                                        const value = chart.data.datasets[0].data[i];
+                                        return {
+                                            text: `${label} - ${value}`,
+                                            fillStyle: chart.data.datasets[0].backgroundColor[i],
+                                            index: i
+                                        };
+                                    });
+                                }
                             }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: (tooltipItem) => {
-                                const label = labels[tooltipItem.dataIndex];
-                                const value = data[tooltipItem.dataIndex];
-                                return `${label}: ${value}`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    // Configuração do gráfico de Imóveis
-    if (propertyLabels.length > 0 && propertyData.length > 0) {
-        const ctxImoveis = document.getElementById('grafico_imoveis').getContext('2d');
-        new Chart(ctxImoveis, {
-            type: 'pie',
-            data: {
-                labels: propertyLabels,
-                datasets: [{
-                    label: 'Quantidade de Imóveis',
-                    data: propertyData,
-                    backgroundColor: [
-                        '#F39C12', // Amarelo
-                        '#3498DB', // Azul
-                        '#2ECC71'  // Verde
-                    ],
-                    borderColor: '#fff',
-                    borderWidth: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            generateLabels: (chart) => {
-                                return chart.data.labels.map((label, i) => {
-                                    const value = chart.data.datasets[0].data[i];
-                                    return {
-                                        text: `${label} - ${value}`,
-                                        fillStyle: chart.data.datasets[0].backgroundColor[i],
-                                        index: i
-                                    };
-                                });
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: (tooltipItem) => {
-                                const label = propertyLabels[tooltipItem.dataIndex];
-                                const value = propertyData[tooltipItem.dataIndex];
-                                return `${label}: ${value}`;
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (tooltipItem) => {
+                                    const label = labels[tooltipItem.dataIndex];
+                                    const value = data[tooltipItem.dataIndex];
+                                    return `${label}: ${value}`;
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
-    }
-</script>
+            });
+        }
+
+        // Configuração do gráfico de Imóveis
+        if (propertyLabels.length > 0 && propertyData.length > 0) {
+            const ctxImoveis = document.getElementById('grafico_imoveis').getContext('2d');
+            new Chart(ctxImoveis, {
+                type: 'pie',
+                data: {
+                    labels: propertyLabels,
+                    datasets: [{
+                        label: 'Quantidade de Imóveis',
+                        data: propertyData,
+                        backgroundColor: [
+                            '#F39C12', // Amarelo
+                            '#3498DB', // Azul
+                            '#2ECC71'  // Verde
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                generateLabels: (chart) => {
+                                    return chart.data.labels.map((label, i) => {
+                                        const value = chart.data.datasets[0].data[i];
+                                        return {
+                                            text: `${label} - ${value}`,
+                                            fillStyle: chart.data.datasets[0].backgroundColor[i],
+                                            index: i
+                                        };
+                                    });
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (tooltipItem) => {
+                                    const label = propertyLabels[tooltipItem.dataIndex];
+                                    const value = propertyData[tooltipItem.dataIndex];
+                                    return `${label}: ${value}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 
 
 
 </body>
+
 </html>

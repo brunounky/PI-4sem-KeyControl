@@ -118,43 +118,49 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                    <?php
-                    if (isset($result) && count($result) > 0) {
-                        foreach ($result as $row) {
-                            echo "<tr>
-                                <td>" . htmlspecialchars($row['contrato_id'] ?? '-') . "</td>
-                                <td>" . htmlspecialchars($row['comprador_nome'] ?? '-') . "</td>
-                                <td>" . htmlspecialchars($row['imovel_taxa_venda'] ?? '-') . "</td>
-                                <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_emissao'] ?? ''))) . "</td>
-                                <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_vencimento'] ?? ''))) . "</td>
-                                <td>" . htmlspecialchars($row['imovel_valor'] ?? '-') . "</td>
-                                <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
-                                <td>
-                                    <button class='btn' onclick=\"window.location.href='../views/modifica_contrato_venda.php?id=" . htmlspecialchars($row['contrato_id']) . "'\">
-                                        <i class='bi bi-pencil-square'></i>
-                                    </button>
-                                    <button class='btn' onclick='toggleSubMenu(this)'>
-                                        <i class='bi bi-chevron-down'></i>
-                                    </button>
-                                    <div class='submenu' style='display: none;'>
-                                        <div class='submenu-options'>
-                                            <button class='imprimir' title='Imprimir' onclick='redirectToRelatorio(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                <i class='bi bi-printer'></i> Imprimir Registro
-                                            </button>
-                                            <button class='imprimir' title='imprimirContrato' onclick='redirectToRelatorio2(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                <i class='bi bi-printer'></i> Imprimir Contrato
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='6'>Nenhum registro encontrado</td></tr>";
-                    }
-                    ?>
-                </tbody>
+<tbody>
+    <?php
+    if (isset($result) && count($result) > 0) {
+        foreach ($result as $row) {
+            // Formatação do valor do imóvel
+            $valor = $row['imovel_valor'] ?? '-';
+            $formatted_valor = ($valor !== '-') ? 'R$ ' . number_format($valor, 2, ',', '.') : '-';
+
+            // Exibição dos dados
+            echo "<tr>
+                <td>" . htmlspecialchars($row['contrato_id'] ?? '-') . "</td>
+                <td>" . htmlspecialchars($row['comprador_nome'] ?? '-') . "</td>
+                <td>" . htmlspecialchars($row['imovel_taxa_venda'] ?? '-') . "</td>
+                <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_emissao'] ?? ''))) . "</td>
+                <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_vencimento'] ?? ''))) . "</td>
+                <td>" . $formatted_valor . "</td>
+                <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
+                <td>
+                    <button class='btn' onclick=\"window.location.href='../views/modifica_contrato_venda.php?id=" . htmlspecialchars($row['contrato_id']) . "'\">
+                        <i class='bi bi-pencil-square'></i>
+                    </button>
+                    <button class='btn' onclick='toggleSubMenu(this)'>
+                        <i class='bi bi-chevron-down'></i>
+                    </button>
+                    <div class='submenu' style='display: none;'>
+                        <div class='submenu-options'>
+                            <button class='imprimir' title='Imprimir' onclick='redirectToRelatorio(" . htmlspecialchars($row['contrato_id']) . ")'>
+                                <i class='bi bi-printer'></i> Imprimir Registro
+                            </button>
+                            <button class='imprimir' title='imprimirContrato' onclick='redirectToRelatorio2(" . htmlspecialchars($row['contrato_id']) . ")'>
+                                <i class='bi bi-printer'></i> Imprimir Contrato
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>";
+        }
+    } else {
+        echo "<tr><td colspan='6'>Nenhum registro encontrado</td></tr>";
+    }
+    ?>
+</tbody>
+
                 </table>
             </div>
         </div>
