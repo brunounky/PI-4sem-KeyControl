@@ -28,3 +28,9 @@ Esse projeto foi desenvolvido com as seguintes ferramentas:
 - [Bruno Campagnol de Oliveira](https://github.com/brunounky)
 - [Maria Vitoria Suzarth](https://github.com/mvitoriasuz)
 
+## 📝 Licença
+
+<!--Este projeto está sob a licença [Apache 2.0](./LICENSE). -->
+
+Equipe Key Conytrol <img src="https://github.com/beamclive/PI-4sem-KeyControl/blob/main/Documentação/Design/Logotipo.png" width="10"/>
+
