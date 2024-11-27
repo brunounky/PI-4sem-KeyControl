@@ -96,6 +96,7 @@ include 'navbar.php';
                                             <option value="casa" <?= ($imovel['tipo_imovel'] == 'casa') ? 'selected' : '' ?>>Casa</option>
                                             <option value="comercial" <?= ($imovel['tipo_imovel'] == 'comercial') ? 'selected' : '' ?>>Comercial</option>
                                         </select>
+                                        
                                         <label for="registro_imovel" class="mb-2">N° de registro do Imóvel</label>
                                         <input class="form-control mb-3" type="number" name="registro_imovel" id="registro_imovel" required value="<?= htmlspecialchars($imovel['registro_imovel']) ?>">
                                         <label for="banheiros" class="mb-2">Banheiros</label>

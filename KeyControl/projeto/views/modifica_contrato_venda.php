@@ -164,15 +164,13 @@
                     <input class="form-control mb-3" type="number" name="imovel_proprietario_cpf_cnpj"
                       id="imovel_proprietario_cpf_cnpj" required
                       value="<?= htmlspecialchars($contrato['imovel_proprietario_cpf_cnpj']) ?>">
-                    <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
-                    <select class="form-control mb-3" name="tipo_imovel" id="tipo_imovel" required>
-                      <option value="" disabled>Selecione um tipo</option>
-                      <option value="apartamento" <?= ($contrato['tipo_imovel'] == 'apartamento') ? 'selected' : '' ?>>
-                        Apartamento</option>
-                      <option value="casa" <?= ($contrato['tipo_imovel'] == 'casa') ? 'selected' : '' ?>>Casa</option>
-                      <option value="comercial" <?= ($contrato['tipo_imovel'] == 'comercial') ? 'selected' : '' ?>>
-                        Comercial</option>
-                    </select>
+                      <label for="imovel_tipo" class="mb-2">Tipo do Imóvel</label>
+                      <select class="form-control mb-3" name="imovel_tipo" id="imovel_tipo" required>
+                        <option value="" disabled>Selecione um tipo</option>
+                        <option value="apartamento" <?= ($contrato['imovel_tipo'] == 'apartamento') ? 'selected' : '' ?>>Apartamento</option>
+                        <option value="casa" <?= ($contrato['imovel_tipo'] == 'casa') ? 'selected' : '' ?>>Casa</option>
+                        <option value="comercial" <?= ($contrato['imovel_tipo'] == 'comercial') ? 'selected' : '' ?>>Comercial</option>
+                      </select>
                     <label for="imovel_numero" class="mb-2">Número</label>
                     <input class="form-control mb-3" type="number" name="imovel_numero" id="imovel_numero" required
                       value="<?= htmlspecialchars($contrato['imovel_numero']) ?>">
