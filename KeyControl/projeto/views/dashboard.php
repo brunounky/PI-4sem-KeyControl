@@ -50,21 +50,31 @@ $query_contas_a_receber = "SELECT SUM(valor_total) AS total_receber FROM lancame
 $stmt_receber = $pdo->query($query_contas_a_receber);
 $total_receber = $stmt_receber->fetch(PDO::FETCH_ASSOC)['total_receber'];
 
-$query_contas_a_pagar = "SELECT SUM(valor_total) AS total_pagar FROM contas WHERE valor_total LIKE '-%'";
+$query_contas_a_pagar = "SELECT SUM(valor_total) AS total_pagar FROM lancamento_financeiro WHERE valor_total LIKE '-%'";
 $stmt_pagar = $pdo->query($query_contas_a_pagar);
 $total_pagar = $stmt_pagar->fetch(PDO::FETCH_ASSOC)['total_pagar'];
 
 // Gráfico de Tipos de Imóveis
-$query_imoveis_tipo = "SELECT tipo_imovel, COUNT(*) AS quantidade FROM imoveis GROUP BY tipo_imovel";
+$query_imoveis_tipo = "SELECT tipo_imovel, COUNT(*) AS quantidade FROM cadastro_imovel GROUP BY tipo_imovel";
 $stmt_imoveis_tipo = $pdo->query($query_imoveis_tipo);
 $imoveis = $stmt_imoveis_tipo->fetchAll(PDO::FETCH_ASSOC);
 $property_types = json_encode(array_column($imoveis, 'tipo_imovel'));
 $property_counts = json_encode(array_column($imoveis, 'quantidade'));
 
 // Gráfico de Tipos de Clientes
-$query_clientes_tipo = "SELECT tipo_cliente, COUNT(*) AS quantidade FROM clientes GROUP BY tipo_cliente";
+$query_clientes_tipo = "SELECT CASE WHEN locador = 1 THEN 'Locador' 
+                                    WHEN locatario = 1 THEN 'Locatario'
+                                    WHEN fiador = 1 THEN 'Fiador'
+                                    WHEN comprador = 1 THEN 'Comprador'
+                                ELSE 'Outro'
+                            END AS tipo_cliente, 
+                        COUNT(*) AS quantidade 
+                    FROM cadastro_cliente 
+                GROUP BY tipo_cliente";
+
 $stmt_clientes_tipo = $pdo->query($query_clientes_tipo);
 $clientes = $stmt_clientes_tipo->fetchAll(PDO::FETCH_ASSOC);
+
 $labels = json_encode(array_column($clientes, 'tipo_cliente'));
 $data = json_encode(array_column($clientes, 'quantidade'));
 
