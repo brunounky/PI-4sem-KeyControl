@@ -109,7 +109,7 @@
                                     <td>" . htmlspecialchars($row['locatario_nome']) . "</td>
                                     <td>" . htmlspecialchars($row['cpf_cnpj_proprietario'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['imovel_cidade'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['contrato_vigencia'] ?? '-') . "</td>
+                <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['contrato_vigencia'] ?? ''))) . "</td>
                                     <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['contrato_forma_pagamento'] ?? '-') . "</td>
                                     <td>
@@ -141,12 +141,12 @@
         </div>
     </div>
 </section>
-
+<!-- 
 <script>
         function redirectToRelatorio(id) {
             window.open('../reports/impressao_registro_aluguel.php?id=' + id, '_blank'); //tem que fazer a impressao do resgistro de aluguel
         }
-    </script>
+    </script> -->
 
     <script>
             function redirectToRelatorio2(id) {

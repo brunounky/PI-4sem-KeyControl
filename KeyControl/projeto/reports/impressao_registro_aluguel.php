@@ -30,12 +30,12 @@ $dompdf = new Dompdf($options);
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     
 $query = "SELECT * 
-          FROM contrato_aluguel ca
-          INNER JOIN imobiliaria i ON ca.id_imobiliaria = i.cnpj
-          WHERE ca.id = ?";
+          FROM contrato_aluguel cv
+          INNER JOIN imobiliaria i ON cv.id_imobiliaria = i.cnpj
+          WHERE cv.id = ?";
 $stmt = $pdo->prepare($query);
 $stmt->execute([$id]);
-$contrato = $stmt->fetch();
+$aluguel = $stmt->fetch();
 
 $html = '
     <style>
@@ -64,20 +64,17 @@ $html = '
 
      <div class="container">
             <div class="header">
-                    <p class="cabecalho"><strong>' . htmlspecialchars($contrato['nome_fantasia']) . '</strong></p>
-                    <p class="cabecalho2">CNPJ: ' . htmlspecialchars(formatarCNPJ($contrato['id_imobiliaria'])) . '</p>
-                    <p class="cabecalho2">Telefone: ' . htmlspecialchars($contrato['telefoneimobiliaria']) . '</p>
-                    <p class="cabecalho2">E-mail: ' . htmlspecialchars($contrato['emailimobiliaria']) . '</p>
+                    <p class="cabecalho"><strong>' . htmlspecialchars($aluguel['nome_fantasia']) . '</strong></p>
+                    <p class="cabecalho2">CNPJ: ' . htmlspecialchars(formatarCNPJ($aluguel['id_imobiliaria'])) . '</p>
+                    <p class="cabecalho2">Telefone: ' . htmlspecialchars($aluguel['telefoneimobiliaria']) . '</p>
+                    <p class="cabecalho2">E-mail: ' . htmlspecialchars($aluguel['emailimobiliaria']) . '</p>
             </div>
             <div class="section">
-                <p>
-        </div>
-    <div class="section">
-                <h2 class="section-title">Dados Principais do Comprador</h2>
+                <h2 class="section-title">Dados Principais do Locatario</h2>
                     <div class="row">
-                    <div class="col-4"><strong>Comprador:</strong> ' . htmlspecialchars($contrato['comprador_nome']) . '</div>
-                    <div class="col-3"><strong>CPF/CNPJ:</strong> ' . htmlspecialchars($contrato['comprador_cpf_cnpj']) . '</div>
-                    <div class="col-3"><strong>Telefone:</strong> ' . htmlspecialchars($contrato['comprador_telefone']) . '</div>
+                    <div class="col-4"><strong>Comprador:</strong> ' . htmlspecialchars($aluguel['locatario_nome']) . '</div>
+                    <div class="col-3"><strong>CPF/CNPJ:</strong> ' . htmlspecialchars($aluguel['locatario_cpf_cnpj']) . '</div>
+                    <div class="col-3"><strong>Telefone:</strong> ' . htmlspecialchars($aluguel['locatario_telefone']) . '</div>
                 </div>
         </div>
 
@@ -92,11 +89,11 @@ $html = '
                         <th>Cidade</th>
                     </tr>
                     <tr>
-                        <td>' . htmlspecialchars($contrato['imovel_proprietario_cpf_cnpj']) . '</td>
-                        <td>' . htmlspecialchars($contrato['imovel_rua']) . '</td>
-                        <td>' . htmlspecialchars($contrato['imovel_bairro']) . '</td>
-                        <td>' . htmlspecialchars($contrato['imovel_cep']) . '</td>
-                        <td>' . htmlspecialchars($contrato['imovel_cidade']) . '</td>
+                        <td>' . htmlspecialchars($aluguel['imovel_proprietario_cpf_cnpj']) . '</td>
+                        <td>' . htmlspecialchars($aluguel['imovel_rua']) . '</td>
+                        <td>' . htmlspecialchars($aluguel['imovel_bairro']) . '</td>
+                        <td>' . htmlspecialchars($aluguel['imovel_cep']) . '</td>
+                        <td>' . htmlspecialchars($aluguel['imovel_cidade']) . '</td>
                     </tr>
                 </table>
             </div>
@@ -111,15 +108,14 @@ $html = '
                         <th>Forma de pagamento</th>
                     </tr>
                     <tr>
-                        <td>' . htmlspecialchars(string: $contrato['imovel_taxa_venda']) . '</td>
-                        <td>' . htmlspecialchars(date("d/m/Y", strtotime($contrato['data_emissao']))) . '</td>
-                        <td>' . htmlspecialchars(date("d/m/Y", strtotime($contrato['data_vencimento']))) . '</td>
-                        <td>' . htmlspecialchars(string: $contrato['forma_pagamento']) . '</td>
+                        <td>' . htmlspecialchars(string: $aluguel['total_caucao']) . '</td>
+                        <td>' . htmlspecialchars(date("d/m/Y", strtotime($aluguel['vencimento_caucao']))) . '</td>
+                        <td>' . htmlspecialchars(date("d/m/Y", strtotime($aluguel['forma_pagamento_caucao']))) . '</td>
+                        <td>' . htmlspecialchars(string: $aluguel['forma_pagamento']) . '</td>
 
                     </tr>
-
-
-
+                </table>
+            </div>
             <div class="footer">
                 <p>Documento gerado em ' . date("d/m/Y") . '</p>
             </div>
