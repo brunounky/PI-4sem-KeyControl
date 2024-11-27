@@ -1,12 +1,12 @@
 <?php 
-    session_start();
+session_start();
 
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: ../app/controllers/verifica_login.php");
-        exit();
-    }
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../app/controllers/verifica_login.php");
+    exit();
+}
 
-    include_once '../app/controllers/filtro_fechamento.php';
+include_once '../app/controllers/filtro_fechamento.php';
 
 ?>
 
@@ -58,57 +58,58 @@
     </div>
 </section>
 
-<button onclick="window.location.href='../reports/impressao_fechamento.php'">
+<button onclick="redirectToRelatorio('<?php echo htmlspecialchars($registro_imovel); ?>', '<?php echo htmlspecialchars($data_inicial); ?>', '<?php echo htmlspecialchars($data_final); ?>')">
     <i class="">Imprimir Recibo</i>
 </button>
 <button onclick="window.location.href='../app/controllers/liquida_tudo.php'">
     <i class="">Liquidar tudo</i>
 </button>
 
-
-
 <section id="fechamento">
     <div class="container">
         <div class="card_relatório">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>ID do lançamento</th>
-                        <th>Tipo de Lançamento</th>
-                        <th>Data Emissão</th>
-                        <th>Valor</th>
-                        <th>Forma de Pagamento</th>
-                        <th>Liquidado</th>
-                    </tr>
-                </thead>
-                <tbody> 
-                    <?php
-                        if (isset($result) && count($result) > 0) {
-                            foreach ($result as $row) {
-                                echo "<tr>
-                                    <td>" . htmlspecialchars($row['id_lancamento']) . "</td>
-                                    <td>" . htmlspecialchars($row['tipo_lancamento']) . "</td>
-                                    <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
-                                    <td>
-                                       
-                                    </td>
-                                </tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='7'>Infome um Registro de Imovel para liquidar lançamentos</td></tr>";
+            <?php if (!isset($_POST['registro_imovel']) || empty($_POST['registro_imovel']) || !isset($result) || count($result) == 0) : ?>
+                <p class="text-center">Informe um Registro de Imóvel para liquidar lançamentos</p>
+            <?php else : ?>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID do lançamento</th>
+                            <th>Tipo de Lançamento</th>
+                            <th>Data Emissão</th>
+                            <th>Valor</th>
+                            <th>Forma de Pagamento</th>
+                            <th>Liquidado</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <?php
+                        foreach ($result as $row) {
+                            echo "<tr>
+                                <td>" . htmlspecialchars($row['id_lancamento']) . "</td>
+                                <td>" . htmlspecialchars($row['tipo_lancamento']) . "</td>
+                                <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
+                            </tr>";
                         }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
         </div>
     </div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../public/assets/js/submenu.js"></script>
+<script>
+    function redirectToRelatorio(registro_imovel, data_inicial, data_final) {
+        var url = '../reports/impressao_fechamento.php?registro_imovel=' + registro_imovel + '&data_inicial=' + data_inicial + '&data_final=' + data_final;
+        window.open(url, '_blank');
+    }
+</script>
 
 </body>
 </html>

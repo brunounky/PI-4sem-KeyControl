@@ -22,17 +22,17 @@ $options->set('isPhpEnabled', true);
 
 $dompdf = new Dompdf($options);
 
-$id_lancamento = $_POST['id_lancamento'] ?? '';
-$data_inicial = $_POST['data_inicial'] ?? '';
-$data_final = $_POST['data_final'] ?? '';
+$registro_imovel = $_GET['registro_imovel'] ?? '';
+$data_inicial = $_GET['data_inicial'] ?? '';
+$data_final = $_GET['data_final'] ?? '';
 
 $sql = "SELECT * FROM lancamento_financeiro";
 $conditions = [];
 $params = [];
 
-if (!empty($id_lancamento)) {
-    $conditions[] = "id_lancamento = :id_lancamento";
-    $params[':id_lancamento'] = $id_lancamento;
+if (!empty($registro_imovel)) {
+    $conditions[] = "registro_imovel = :registro_imovel";
+    $params[':registro_imovel'] = $registro_imovel;
 }
 if (!empty($data_inicial) && !empty($data_final)) {
     $conditions[] = "data_emissao BETWEEN :data_inicial AND :data_final";
@@ -102,7 +102,7 @@ if (count($lancamentos) > 0) {
 } else {
     $html .= '
             <tr>
-                <td colspan="6" style="text-align: center;">Nenhum lançamento encontrado para os filtros aplicados.</td>
+                <td colspan="5" style="text-align: center;">Nenhum lançamento encontrado para os filtros aplicados.</td>
             </tr>';
 }
 
