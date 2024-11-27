@@ -210,9 +210,6 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                              <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
                              <td>
-                                 <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id_lancamento']) . ")'>
-                                     <i class='bi bi-pencil-square'></i>
-                                 </button>
                                  <button class='btn' onclick='toggleSubMenu(this)'>
                                      <i class='bi bi-chevron-down'></i>
                                  </button>
@@ -220,9 +217,6 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                                      <div class='submenu-options'>
                                          <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id_lancamento']) . ")'>
                                              <i class='bi bi-printer'></i> Imprimir
-                                         </button>
-                                         <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
-                                             <i class='bi bi-envelope'></i> E-mail
                                          </button>
                                          <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id_lancamento']) . ")'>
                                              <i class='bi bi-trash'></i> Excluir
@@ -242,6 +236,18 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
          </div>
    </section>
 
+   <script>
+        function redirectToRelatorio(id) {
+            window.open('../reports/impressao_registro_aluguel.php?id=' + id, '_blank');
+        }
+    </script>
+
+    <script>
+            function redirectToRelatorio2(id) {
+                window.open('../reports/impressao_contrato_aluguel.php?id=' + id, '_blank');
+            }
+</script>
+
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
    <script src="../public/assets/js/submenu.js"></script>
    <script src="../public/assets/js/remover_filtro.js"></script>
@@ -257,7 +263,5 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
       });
    </script>
 
-
 </body>
-
 </html>
