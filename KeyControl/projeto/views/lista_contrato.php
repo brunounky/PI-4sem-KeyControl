@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="vigencia" class="form-label">Data Vigência</label>
-                        <input type="text" id="vigencia" class="form-control" name="vigencia" value="<?= htmlspecialchars($_POST['vigencia'] ?? '') ?>">
+                        <input type="date" id="vigencia" class="form-control" name="vigencia" value="<?= htmlspecialchars($_POST['vigencia'] ?? '') ?>">
                     </div>
                     <div class="col-md-2">
                         <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
