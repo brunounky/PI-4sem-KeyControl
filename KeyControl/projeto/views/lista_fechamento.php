@@ -88,7 +88,7 @@ include_once '../app/controllers/filtro_fechamento.php';
                             echo "<tr>
                                 <td>" . htmlspecialchars($row['id_lancamento']) . "</td>
                                 <td>" . htmlspecialchars($row['tipo_lancamento']) . "</td>
-                                <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
+                                <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_emissao'] ?? ''))) . "</td>
                                 <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
