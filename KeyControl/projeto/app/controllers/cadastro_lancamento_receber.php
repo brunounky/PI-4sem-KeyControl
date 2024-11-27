@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt->bindParam(':id_imobiliaria', $id_imobiliaria);
 
         if ($stmt->execute()) {
-            header("Location: ../../views/lista_lancamento_pagar.php");
+            header("Location: ../../views/lista_lancamento_receber.php");
             exit();
         } else {
             throw new Exception("Erro ao cadastrar lançamento. Verifique os dados e tente novamente.");
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         exit();
     }
 } else {
-    header("Location: ../../views/lista_lancamento_pagar.php");
+    header("Location: ../../views/lista_lancamento_receber.php");
     exit();
 }
 ?>

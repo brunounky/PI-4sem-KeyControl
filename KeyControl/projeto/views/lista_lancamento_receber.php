@@ -57,13 +57,13 @@ include_once '../app/controllers/filtro_lancamento_receber.php';
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                     <form method="POST" action="../app/controllers/cadastro_lancamento_pagar.php">
+                     <form method="POST" action="../app/controllers/cadastro_lancamento_receber.php">
                         <input type="hidden" name="action" value="cadastrar">
                         <div class="row">
                            <div class="col-md-4">
-                              <label for="nome_fantasia" class="form-label">Imobiliária</label>
-                              <input class="form-control" type="text" name="nome_fantasia" id="nome_fantasia"
-                                 value="<?php echo htmlspecialchars($dados['nome_fantasia']); ?>" required readonly>
+                           <label for="id_imobiliaria" class="form-label">Imobiliária</label>
+                           <input class="form-control" type="text" name="id_imobiliaria" id="id_imobiliaria"
+                               value="73943371000180" required readonly>
                               <label for="valor_total" class="form-label">Valor</label>
                               <input type="text" id="valor_total" class="form-control" name="valor_total">
                               <label for="observacoes" class="form-label">Observações</label>
