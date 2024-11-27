@@ -101,8 +101,8 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
             <div class="filtros-container">
                <div class="row g-12">
                   <div class="col-md-1">
-                     <label for="id_lancamento_pagar" class="form-label">N°</label>
-                     <input type="text" id="id_lancamento_pagar" class="form-control" name="id_lancamento_pagar" value="<?= htmlspecialchars($_POST['id_lancamento_pagar'] ?? '') ?>">
+                     <label for="id_lancamento" class="form-label">N°</label>
+                     <input type="text" id="id_lancamento" class="form-control" name="id_lancamento" value="<?= htmlspecialchars($_POST['id_lancamento'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="beneficiario" class="form-label">Beneficiário</label>
@@ -148,12 +148,12 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
             <table class="table table-hover">
                <thead>
                   <tr>
-                     <th>N°</th>
-                     <th>Beneficiário</th>
+                     <th>Nº</th>
+                     <th>Tipo</th>
                      <th>Emissão</th>
                      <th>Vencimento</th>
+                     <th>Forma pagamento</th>
                      <th>Liquidação</th>
-                     <th>Tipo de Lançamento</th>
                      <th>Valor</th>
                      <th></th>
                   </tr>
@@ -163,16 +163,15 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                     if (isset($result) && count($result) > 0) {
                      foreach ($result as $row) {
                          echo "<tr>
-                             <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['nome_fantasia'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['id_lancamento'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['tipo_lancamento'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['data_vencimento'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['observacoes'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
                              <td>
-                                 <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
+                                 <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id_lancamento']) . ")'>
                                      <i class='bi bi-pencil-square'></i>
                                  </button>
                                  <button class='btn' onclick='toggleSubMenu(this)'>
@@ -180,13 +179,13 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                                  </button>
                                  <div class='submenu' style='display: none;'>
                                      <div class='submenu-options'>
-                                         <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                         <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id_lancamento']) . ")'>
                                              <i class='bi bi-printer'></i> Imprimir
                                          </button>
                                          <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
                                              <i class='bi bi-envelope'></i> E-mail
                                          </button>
-                                         <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                         <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id_lancamento']) . ")'>
                                              <i class='bi bi-trash'></i> Excluir
                                          </button>
                                      </div>
