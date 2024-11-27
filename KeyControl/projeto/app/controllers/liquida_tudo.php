@@ -13,7 +13,7 @@ $data_inicial = $_GET['data_inicial'] ?? '';
 $data_final = $_GET['data_final'] ?? '';
 
 if (empty($registro_imovel) || empty($data_inicial) || empty($data_final)) {
-    echo "<script>alert('Todos os filtros devem ser preenchidos.'); window.history.back();</script>";
+    header("Location: ../views/lista_fechamento.php");
     exit();
 }
 
@@ -30,11 +30,10 @@ try {
 
     $stmt->execute();
 
-    if ($stmt->rowCount() > 0) {
-        echo "<script>alert('Lançamentos atualizados com sucesso!'); window.location.href='../views/lista_fechamento.php';</script>";
-    } else {
-        echo "<script>alert('Nenhum lançamento encontrado para os filtros aplicados.'); window.history.back();</script>";
-    }
+    header("Location: ../views/lista_fechamento.php");
+    exit();
 } catch (PDOException $e) {
-    echo "<script>alert('Erro ao atualizar os lançamentos: " . $e->getMessage() . "'); window.history.back();</script>";
+
+    header("Location: ../views/lista_fechamento.php");
+    exit();
 }
