@@ -58,12 +58,14 @@
     </div>
 </section>
 
-<button>
-<i class="">Imprimir Recibo</i>
+<button onclick="window.location.href='../reports/impressao_fechamento.php'">
+    <i class="">Imprimir Recibo</i>
 </button>
-<button>
-<i class="">Liquidar tudo</i>
+<button onclick="window.location.href='../app/controllers/liquida_tudo.php'">
+    <i class="">Liquidar tudo</i>
 </button>
+
+
 
 <section id="fechamento">
     <div class="container">
