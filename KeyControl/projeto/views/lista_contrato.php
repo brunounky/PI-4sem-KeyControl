@@ -121,9 +121,7 @@
                                         </button>
                                         <div class='submenu' style='display: none;'>
                                             <div class='submenu-options'>
-                                                <button class='imprimir' title='imprimirContrato' onclick='redirectToRelatorio(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                <i class='bi bi-printer'></i> Imprimir Registro
-                                                </button>
+
                                                 <button class='imprimir' title='imprimirContrato' onclick='redirectToRelatorio2(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                 <i class='bi bi-printer'></i> Imprimir Contrato
                                                 </button>
