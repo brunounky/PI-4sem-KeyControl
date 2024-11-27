@@ -122,11 +122,11 @@ include_once '../app/controllers/filtro_lancamento_receber.php';
                      <th>Valor</th>
                      <th>
                         <form method="POST" action="../../projeto/reports/excel_cliente.php">
-                           <button class="btn btn-success btn-sm" type="submit" name="exportar" value="1">
-                              <i class="bi bi-file-earmark-excel"></i>
-                           </button>
+                           <button class="btn btn-sm" type="submit" name="exportar" value="1">
+                           <i class="bi bi-file-earmark-spreadsheet"></i>                           
+                        </button>
                         </form>
-                    </th>
+                     </th>
                   </tr>
                </thead>
                <tbody>

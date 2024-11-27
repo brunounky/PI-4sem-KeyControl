@@ -88,8 +88,13 @@
                         <th>Bairro</th>
                         <th>Cidade</th>
                         <th>Tipo</th>
-                        <th></th>
-                     </tr>
+                        <th>
+                        <form method="POST" action="../../projeto/reports/excel_cliente.php">
+                           <button class="btn btn-sm" type="submit" name="exportar" value="1">
+                           <i class="bi bi-file-earmark-spreadsheet"></i>                           
+                        </button>
+                        </form>
+                     </th>                     </tr>
                   </thead>
                   <tbody>
                      <?php
