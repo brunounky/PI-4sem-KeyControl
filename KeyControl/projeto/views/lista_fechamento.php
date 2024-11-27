@@ -64,7 +64,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Registro do Imovel</th>
+                        <th>ID do lançamento</th>
                         <th>Tipo de Lançamento</th>
                         <th>Data Emissão</th>
                         <th>Valor</th>
@@ -77,7 +77,7 @@
                         if (isset($result) && count($result) > 0) {
                             foreach ($result as $row) {
                                 echo "<tr>
-                                    <td>" . htmlspecialchars($row['registro_imovel']) . "</td>
+                                    <td>" . htmlspecialchars($row['id_lancamento']) . "</td>
                                     <td>" . htmlspecialchars($row['tipo_lancamento']) . "</td>
                                     <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
