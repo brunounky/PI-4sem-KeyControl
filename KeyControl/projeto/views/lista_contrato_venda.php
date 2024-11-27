@@ -47,12 +47,12 @@ include_once '../app/controllers/filtro_contrato_venda.php';
                         </div>
                         <div class="col-md-2">
                             <label for="data_emissao" class="form-label">Emissão</label>
-                            <input type="text" id="data_emissao" class="form-control" name="data_emissao"
+                            <input type="date" id="data_emissao" class="form-control" name="data_emissao"
                                 value="<?= htmlspecialchars($_POST['data_emissao'] ?? '') ?>" oninput="formatarData(this)" />
                         </div>
                         <div class="col-md-2">
                             <label for="data_vencimento" class="form-label">Vencimento</label>
-                            <input type="text" id="data_vencimento" class="form-control" name="data_vencimento"
+                            <input type="date" id="data_vencimento" class="form-control" name="data_vencimento"
                                 value="<?= htmlspecialchars($_POST['data_vencimento'] ?? '') ?>" oninput="formatarData(this)" />
                         </div>
                         <div class="col-md-2">

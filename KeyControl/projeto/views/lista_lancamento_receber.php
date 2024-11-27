@@ -1,34 +1,12 @@
-<?php 
+<?php
+session_start();
 
-   session_start();
-   
-   if (!isset($_SESSION['user_id'])) {
-      header("Location: ../app/controllers/verifica_login.php");
-      exit();
-   }
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../app/controllers/verifica_login.php");
+    exit();
+}
 
-   include '../app/controllers/db_conexao.php';
-
-   try {
-      $stmt = $pdo->prepare("
-        SELECT imobiliaria.nome_fantasia
-        FROM usuarios
-        INNER JOIN imobiliaria ON usuarios.cnpj = imobiliaria.cnpj
-        WHERE usuarios.id = :user_id
-      ");
-      $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-      $stmt->execute(); 
-      $dados = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-      if (!$dados) {
-        echo "Dados da imobiliária ou do usuário não encontrados.";
-        exit();
-      }
-    } catch (PDOException $e) {
-      echo "Erro ao buscar os dados: " . $e->getMessage();
-      exit();
-    }
-   
+include_once '../app/controllers/filtro_lancamento_receber.php';
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +50,7 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                     <form method="POST" action="../app/controllers/cadastro_lancamento_receber.php">
+                     <form method="POST" action="../app/controllers/cadastro_lancamento_pagar.php">
                         <input type="hidden" name="action" value="cadastrar">
                         <div class="row">
                            <div class="col-md-4">
@@ -123,39 +101,69 @@
             <div class="filtros-container">
                <div class="row g-12">
                   <div class="col-md-1">
-                     <label for="id_lancamento_pagar" class="form-label">N°</label>
-                     <input type="text" id="id_lancamento_pagar" class="form-control" name="id_lancamento_pagar" value="<?= htmlspecialchars($_POST['id_lancamento_pagar'] ?? '') ?>">
-                  </div>
-                  <div class="col-md-2">
-                     <label for="beneficiario" class="form-label">Beneficiário</label>
-                     <input type="text" id="cpf_cnpj_proprietario" class="form-control" name="beneficiario" value="<?= htmlspecialchars($_POST['beneficiario'] ?? '') ?>">
+                     <label for="id_lancamento" class="form-label">N°</label>
+                     <input type="text" id="id_lancamento" class="form-control" name="id_lancamento"
+                        value="<?= htmlspecialchars($_POST['id_lancamento'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="emissao" class="form-label">Emissão</label>
-                     <input type="text" id="emissao" class="form-control" name="emissao" value="<?= htmlspecialchars($_POST['emissao'] ?? '') ?>">
+                     <input type="date" id="emissao" class="form-control" name="emissao"
+                        value="<?= htmlspecialchars($_POST['emissao'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="vencimento" class="form-label">Vencimento</label>
-                     <input type="text" id="vencimento" class="form-control" name="vencimento" value="<?= htmlspecialchars($_POST['vencimento'] ?? '') ?>">
+                     <input type="date" id="vencimento" class="form-control" name="vencimento"
+                        value="<?= htmlspecialchars($_POST['vencimento'] ?? '') ?>">
                   </div>
                   <div class="col-md-2">
                      <label for="liquidacao" class="form-label">Liquidação</label>
-                     <input type="text" id="liquidacao" class="form-control" name="liquidacao" value="<?= htmlspecialchars($_POST['liquidacao'] ?? '') ?>">
+                     <input type="text" id="liquidacao" class="form-control" name="liquidacao"
+                        value="<?= htmlspecialchars($_POST['liquidacao'] ?? '') ?>">
                   </div>
+
+
                   <div class="col-md-2">
                      <label for="tipo_lancamento" class="mb-2">Tipo</label>
                      <div class="position-relative">
-                        <select class="form-control" name="tipo_lancamento" id="tipo_lancamento" onchange="checkSelection('tipo_lancamento')">
-                           <option value="" disabled <?= !isset($_POST['tipo_lancamento']) ? 'selected' : '' ?>>Selecione um Tipo</option>
-                           <option value="aluguel" <?= ($_POST['tipo_lancamento'] ?? '') == 'aluguel' ? 'selected' : '' ?>>Aluguel</option>
-                           <option value="iptu" <?= ($_POST['tipo_lancamento'] ?? '') == 'iptu' ? 'selected' : '' ?>>IPTU</option>
-                           <option value="agua" <?= ($_POST['tipo_lancamento'] ?? '') == 'agua' ? 'agua' : '' ?>>Água</option>
-                           <option value="reparos" <?= ($_POST['tipo_lancamento'] ?? '') == 'reparos' ? 'reparos' : '' ?>>Reparos</option>
-                           <option value="caucao" <?= ($_POST['tipo_lancamento'] ?? '') == 'caucao' ? 'caucao' : '' ?>>Caução</option>
+                        <select class="form-control" name="tipo_lancamento" id="tipo_lancamento"
+                           onchange="checkSelection('tipo_lancamento')">
+                           <option value="" disabled <?= !isset($_POST['tipo_lancamento']) ? 'selected' : '' ?>>Selecione
+                              um Tipo</option>
+                           <option value="aluguel" <?= ($_POST['tipo_lancamento'] ?? '') == 'aluguel' ? 'selected' : '' ?>>
+                              Aluguel</option>
+                           <option value="iptu" <?= ($_POST['tipo_lancamento'] ?? '') == 'iptu' ? 'selected' : '' ?>>IPTU
+                           </option>
+                           <option value="agua" <?= ($_POST['tipo_lancamento'] ?? '') == 'agua' ? 'agua' : '' ?>>Água
+                           </option>
+                           <option value="reparos" <?= ($_POST['tipo_lancamento'] ?? '') == 'reparos' ? 'reparos' : '' ?>>
+                              Reparos</option>
+                           <option value="caucao" <?= ($_POST['tipo_lancamento'] ?? '') == 'caucao' ? 'caucao' : '' ?>>
+                              Caução</option>
                         </select>
-                        <span class="position-absolute" style="right: 20px; top: 6px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_lancamento']) && $_POST['tipo_imovel'] != '' ? 'block' : 'none' ?>;" data-select="tipo_imovel" onclick="removeSelected('tipo_imovel')">x</span>
+                        <span class="position-absolute"
+                           style="right: 20px; top: 6px; cursor: pointer; color: red; display: <?= isset($_POST['tipo_lancamento']) && $_POST['tipo_lancamento'] != '' ? 'block' : 'none' ?>;"
+                           data-select="tipo_lancamento" onclick="removeSelected('tipo_lancamento')">x</span>
                      </div>
                   </div>
+                  <div class="col-sm-2">
+                            <label for="forma_pagamento" class="mb-2">Tipo Pagamento</label>
+                            <div class="position-relative">
+                                <select class="form-control mb-3" name="forma_pagamento" id="forma_pagamento"
+                                    onchange="checkSelection('forma_pagamento')">
+                                    <option value="" disabled <?= !isset($_POST['forma_pagamento']) ? 'selected' : '' ?>>Escolha um Pagamento</option>
+                                    <option value="financiamento" <?= ($_POST['forma_pagamento'] ?? '') == 'financiamento' ? 'selected' : '' ?>>Financiamento</option>
+                                    <option value="dinheiro" <?= ($_POST['forma_pagamento'] ?? '') == 'dinheiro' ? 'selected' : '' ?>>Dinheiro</option>
+                                    <option value="boleto" <?= ($_POST['forma_pagamento'] ?? '') == 'boleto' ? 'selected' : '' ?>>Boleto</option>
+                                    <option value="pix" <?= ($_POST['forma_pagamento'] ?? '') == 'pix' ? 'selected' : '' ?>>PIX</option>
+                                    <option value="transferencia" <?= ($_POST['forma_pagamento'] ?? '') == 'transferencia' ? 'selected' : '' ?>>Transferência</option>
+                                    <option value="cartao_credito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_credito' ? 'selected' : '' ?>>Cartão de crédito</option>
+                                    <option value="cartao_debito" <?= ($_POST['forma_pagamento'] ?? '') == 'cartao_debito' ? 'selected' : '' ?>>Cartão de débito</option>
+                                </select>
+                                <span class="position-absolute"
+                                    style="right: 25px; top: 6px; cursor: pointer; color: red; display: <?= isset($_POST['forma_pagamento']) && $_POST['forma_pagamento'] != '' ? 'block' : 'none' ?>;"
+                                    data-select="forma_pagamento" onclick="removeSelected('forma_pagamento')">x</span>
+                            </div>
+                        </div>
                   <div class="col-md-1">
                      <button class="btn btn-buscar" type="submit">
                         <i class="bi bi-search"></i>
@@ -165,17 +173,18 @@
             </div>
          </form>
 
+
          
          <div class="card_relatório">
             <table class="table table-hover">
                <thead>
                   <tr>
-                     <th>N°</th>
-                     <th>Beneficiário</th>
+                     <th>Nº</th>
+                     <th>Tipo</th>
                      <th>Emissão</th>
                      <th>Vencimento</th>
+                     <th>Forma pagamento</th>
                      <th>Liquidação</th>
-                     <th>Tipo de Lançamento</th>
                      <th>Valor</th>
                      <th></th>
                   </tr>
@@ -185,30 +194,23 @@
                     if (isset($result) && count($result) > 0) {
                      foreach ($result as $row) {
                          echo "<tr>
-                             <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['nome_fantasia'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['id_lancamento'] ?? '-') . "</td>
                              <td>" . htmlspecialchars($row['tipo_lancamento'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['data_vencimento'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_emissao'] ?? ''))) . "</td>
+                             <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['data_vencimento'] ?? ''))) . "</td>
                              <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
-                             <td>" . htmlspecialchars($row['observacoes'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
+                             <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
                              <td>
-                                 <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
-                                     <i class='bi bi-pencil-square'></i>
-                                 </button>
                                  <button class='btn' onclick='toggleSubMenu(this)'>
                                      <i class='bi bi-chevron-down'></i>
                                  </button>
                                  <div class='submenu' style='display: none;'>
                                      <div class='submenu-options'>
-                                         <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
+                                         <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id_lancamento']) . ")'>
                                              <i class='bi bi-printer'></i> Imprimir
                                          </button>
-                                         <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
-                                             <i class='bi bi-envelope'></i> E-mail
-                                         </button>
-                                         <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
+                                         <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id_lancamento']) . ")'>
                                              <i class='bi bi-trash'></i> Excluir
                                          </button>
                                      </div>
@@ -228,6 +230,8 @@
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       <script src="../public/assets/js/submenu.js"></script>
+      <script src="../public/assets/js/remover_filtro.js"></script>
+      <script src="../public/assets/js/formatar_filtro.js"></script>
       <script>
          const tipoLinks = document.querySelectorAll('.dropdown-item');
 
