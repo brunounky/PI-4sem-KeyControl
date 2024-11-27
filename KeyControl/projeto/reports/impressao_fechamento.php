@@ -40,6 +40,9 @@ if (!empty($data_inicial) && !empty($data_final)) {
     $params[':data_final'] = $data_final;
 }
 
+$conditions[] = "liquidado = :liquidado";
+$params['liquidado'] = "Não liquidado";
+
 if (count($conditions) > 0) {
     $sql .= " WHERE " . implode(" AND ", $conditions);
 }

@@ -20,10 +20,7 @@ function buildQuery($registro_imovel, $data_inicial, $data_final) {
     if (!empty($data_final)) {
         $conditions[] = "data_emissao <= :data_final";
         $params['data_final'] = $data_final;
-    }
-
-    $conditions[] = "liquidado = :liquidado";
-    $params['liquidado'] = "Não liquidado";
+    } 
 
     if (count($conditions) > 0) {
         $sql .= " WHERE " . implode(" AND ", $conditions);

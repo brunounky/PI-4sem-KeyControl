@@ -60,7 +60,7 @@ include_once '../app/controllers/filtro_fechamento.php';
 
 <div class="col-md-12 mt-4 text-center">
     <button class="btn btn_salvar" onclick="redirectToRelatorio('<?php echo htmlspecialchars($registro_imovel); ?>', '<?php echo htmlspecialchars($data_inicial); ?>', '<?php echo htmlspecialchars($data_final); ?>')">
-        Imprimir recibo
+        Imprimir Débitos
     </button>
     <button class="btn btn_salvar" onclick="redirectToRelatorio2('<?php echo htmlspecialchars($registro_imovel); ?>', '<?php echo htmlspecialchars($data_inicial); ?>', '<?php echo htmlspecialchars($data_final); ?>')">
         Liquida Tudo
@@ -97,6 +97,11 @@ include_once '../app/controllers/filtro_fechamento.php';
                                 <td>" . $formatted_valor . "</td>
                                 <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
                                 <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
+                                <td>
+                                <button class='btn' onclick=\"window.location.href='../app/controllers/liquida_individual.php?id=" . htmlspecialchars($row['id_lancamento']) . "'\">
+                                          <i class='bi bi-cash-stack'></i>
+                                          </button>
+                                         </td>
                             </tr>";
                         }
                         ?>
