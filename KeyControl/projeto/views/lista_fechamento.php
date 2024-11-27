@@ -58,6 +58,13 @@
     </div>
 </section>
 
+<button>
+<i class="">Imprimir Recibo</i>
+</button>
+<button>
+<i class="">Liquidar tudo</i>
+</button>
+
 <section id="fechamento">
     <div class="container">
         <div class="card_relatório">
