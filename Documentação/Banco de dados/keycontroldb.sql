@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/11/2024 às 23:50
+-- Tempo de geração: 27/11/2024 às 02:12
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -272,7 +272,7 @@ CREATE TABLE `lancamento_financeiro` (
   `observacoes` varchar(255) DEFAULT NULL,
   `data_vigencia` date DEFAULT NULL,
   `meses_caucao` int(11) DEFAULT NULL,
-  `liquidado` tinyint(1) DEFAULT NULL
+  `liquidado` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -280,26 +280,26 @@ CREATE TABLE `lancamento_financeiro` (
 --
 
 INSERT INTO `lancamento_financeiro` (`id_lancamento`, `id_imobiliaria`, `tipo_lancamento`, `registro_imovel`, `data_emissao`, `data_vencimento`, `valor_total`, `forma_pagamento`, `observacoes`, `data_vigencia`, `meses_caucao`, `liquidado`) VALUES
-(8, '73943371000180', 'venda imovel', '22', '2024-11-25', '2024-12-04', 12, 'Cartão de crédito', NULL, NULL, NULL, NULL),
-(10, '73943371000180', 'venda imovel', '22', '2024-11-20', '2024-12-05', 12, 'Cartão de débito', NULL, NULL, NULL, NULL),
-(12, '73943371000180', 'venda imovel', '22', '2024-11-25', '2024-11-27', 12, 'Cartão de crédito', NULL, NULL, NULL, NULL),
-(13, '73943371000180', 'Aluguel', '22', '2024-11-06', '2024-10-30', 33, 'Dinheiro', '3', NULL, NULL, NULL),
-(14, '73943371000180', 'venda imovel', '22', '2024-11-25', '2024-11-29', 12, 'PIX', NULL, NULL, NULL, NULL),
-(15, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-22', NULL, 'Boleto', NULL, '2024-11-06', NULL, NULL),
-(16, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-08', 12, 'Boleto', NULL, '2024-12-06', NULL, NULL),
-(17, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-22', 500001, 'Cartão de débito', NULL, '2024-12-04', NULL, NULL),
-(18, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-12-06', 12, 'PIX', NULL, '2024-11-27', NULL, NULL),
-(19, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-20', 12, 'PIX', NULL, '2024-11-27', NULL, NULL),
-(20, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-20', 12, 'PIX', NULL, '2024-11-27', NULL, NULL),
-(21, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-20', 12, 'PIX', NULL, '2024-11-27', NULL, NULL),
-(34, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-11-28', 11, 'Cartão de crédito', NULL, '2024-11-29', NULL, NULL),
-(35, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-12-06', 2222222, 'Boleto', NULL, NULL, 11, NULL),
-(36, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-12-06', 11, 'Cartão de crédito', NULL, '2024-11-29', NULL, NULL),
-(37, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-11-07', 11, 'PIX', NULL, NULL, 1, NULL),
-(38, '73943371000180', 'Reparos', '22', '2024-11-29', '2024-11-26', 22, 'Cartão de crédito', '22', NULL, NULL, NULL),
-(39, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-11-29', 11, 'Cartão de crédito', NULL, '2024-12-06', NULL, NULL),
-(40, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-12-06', 110, 'PIX', NULL, NULL, 10, NULL),
-(41, '73943371000180', 'Reparos', '22', '2024-11-27', '2024-11-21', -33, 'Cartão de crédito', 'teste de negativo', NULL, NULL, NULL);
+(8, '73943371000180', 'venda imovel', '22', '2024-11-25', '2024-12-04', 12, 'Cartão de crédito', NULL, NULL, NULL, 'Não liquidado'),
+(10, '73943371000180', 'venda imovel', '22', '2024-11-20', '2024-12-05', 12, 'Cartão de débito', NULL, NULL, NULL, 'Não liquidado'),
+(12, '73943371000180', 'venda imovel', '22', '2024-11-25', '2024-11-27', 12, 'Cartão de crédito', NULL, NULL, NULL, 'Não liquidado'),
+(13, '73943371000180', 'Aluguel', '22', '2024-11-06', '2024-10-30', 33, 'Dinheiro', '3', NULL, NULL, 'Não liquidado'),
+(14, '73943371000180', 'venda imovel', '22', '2024-11-25', '2024-11-29', 12, 'PIX', NULL, NULL, NULL, 'Não liquidado'),
+(15, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-22', 12, 'Boleto', NULL, '2024-11-06', NULL, 'Não liquidado'),
+(16, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-08', 12, 'Boleto', NULL, '2024-12-06', NULL, 'Não liquidado'),
+(17, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-22', 500001, 'Cartão de débito', NULL, '2024-12-04', NULL, 'Não liquidado'),
+(18, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-12-06', 12, 'PIX', NULL, '2024-11-27', NULL, 'Não liquidado'),
+(19, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-20', 12, 'PIX', NULL, '2024-11-27', NULL, 'Não liquidado'),
+(20, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-20', 12, 'PIX', NULL, '2024-11-27', NULL, 'Não liquidado'),
+(21, '73943371000180', 'aluguel fiador', '22', '2024-11-26', '2024-11-20', 12, 'PIX', NULL, '2024-11-27', NULL, 'Não liquidado'),
+(34, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-11-28', 11, 'Cartão de crédito', NULL, '2024-11-29', NULL, 'Não liquidado'),
+(35, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-12-06', 2222222, 'Boleto', NULL, NULL, 11, 'Não liquidado'),
+(36, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-12-06', 11, 'Cartão de crédito', NULL, '2024-11-29', NULL, 'Não liquidado'),
+(37, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-11-07', 11, 'PIX', NULL, NULL, 1, 'Não liquidado'),
+(38, '73943371000180', 'Reparos', '22', '2024-11-29', '2024-11-26', 22, 'Cartão de crédito', '22', NULL, NULL, 'Não liquidado'),
+(39, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-11-29', 11, 'Cartão de crédito', NULL, '2024-12-06', NULL, 'Não liquidado'),
+(40, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-12-06', 110, 'PIX', NULL, NULL, 10, 'Não liquidado'),
+(41, '73943371000180', 'Reparos', '22', '2024-11-27', '2024-11-21', -33, 'Cartão de crédito', 'teste de negativo', NULL, NULL, 'Não liquidado');
 
 -- --------------------------------------------------------
 
