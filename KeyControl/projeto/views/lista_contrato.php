@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="vigencia" class="form-label">Data Vigência</label>
-                        <input type="date" id="vigencia" class="form-control" name="vigencia" value="<?= htmlspecialchars($_POST['vigencia'] ?? '') ?>">
+                        <input type="date" id="vigencia" class="form-control" name="vigencia" value="<?= htmlspecialchars($_POST['vigencia'] ?? '') ?>" >
                     </div>
                     <div class="col-md-2">
                         <label for="tipo_imovel" class="mb-2">Tipo do Imóvel</label>
@@ -109,7 +109,7 @@
                                     <td>" . htmlspecialchars($row['locatario_nome']) . "</td>
                                     <td>" . htmlspecialchars($row['cpf_cnpj_proprietario'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['imovel_cidade'] ?? '-') . "</td>
-                                    <td>" . htmlspecialchars($row['contrato_vigencia'] ?? '-') . "</td>
+                                    <td>" . htmlspecialchars(date("d/m/Y", strtotime($row['contrato_vigencia'] ?? ''))) . "</td>
                                     <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
                                     <td>" . htmlspecialchars($row['contrato_forma_pagamento'] ?? '-') . "</td>
                                     <td>
@@ -126,9 +126,6 @@
                                                 </button>
                                                 <button class='imprimir' title='imprimirContrato' onclick='redirectToRelatorio2(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                 <i class='bi bi-printer'></i> Imprimir Contrato
-                                                </button>
-                                                <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                    <i class='bi bi-trash'></i> Excluir
                                                 </button>
                                             </div>
                                         </div>
