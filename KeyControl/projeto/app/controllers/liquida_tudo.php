@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: verifica_login.php");
+    header("Location: ../app/controllers/verifica_login.php");
     exit();
 }
 
@@ -13,7 +13,7 @@ $data_inicial = $_GET['data_inicial'] ?? '';
 $data_final = $_GET['data_final'] ?? '';
 
 if (empty($registro_imovel) || empty($data_inicial) || empty($data_final)) {
-    header("Location: ../views/lista_fechamento.php");
+    header("Location: ../../views/lista_fechamento.php");
     exit();
 }
 
@@ -30,10 +30,9 @@ try {
 
     $stmt->execute();
 
-    header("Location: ../views/lista_fechamento.php");
+    header("Location: ../../views/lista_fechamento.php");
     exit();
 } catch (PDOException $e) {
-
-    header("Location: ../views/lista_fechamento.php");
+    header("Location: ../../views/lista_fechamento.php");
     exit();
 }
