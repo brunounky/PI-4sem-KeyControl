@@ -325,6 +325,8 @@ h2.mb-0 {
   margin: 20px 25px;
   border: none;
   border-radius: 10px;
+  width: 90%;
+  height: 70%;
 }
 
 .card-azul {
@@ -335,6 +337,12 @@ h2.mb-0 {
   margin: 20px 25px;
   border: none;
   border-radius: 10px;
+  width: 90%;
+  height: 70%;
+}
+
+.card-azul h3 {
+  margin-bottom: auto;
 }
 
 .card-azul-escuro {
@@ -345,6 +353,8 @@ h2.mb-0 {
   margin: 20px 25px;
   border: none;
   border-radius: 10px;
+  width: 90%;
+  height: 70%;
 }
 
 .card-verde {
@@ -355,6 +365,12 @@ h2.mb-0 {
   margin: 20px 25px;
   border: none;
   border-radius: 10px;
+  width: 90%;
+  height: 70%;
+}
+
+.card-verde h3 {
+  margin-bottom: auto;
 }
 
 #dashboard h5 {

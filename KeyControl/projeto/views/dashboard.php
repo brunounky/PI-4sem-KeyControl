@@ -92,25 +92,25 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="card card-branco">
-                                    <h1><?php echo $total_imoveis; ?></h1>
+                                    <h3><?php echo $total_imoveis; ?></h3>
                                     <p>Quantidade de Imóveis</p>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="card card-azul-escuro">
-                                    <h1><?php echo $total_clientes; ?></h1>
+                                    <h3><?php echo $total_clientes; ?></h3>
                                     <p>Quantidade de Clientes</p>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="card card-azul">
-                                    <h1><?php echo number_format($total_receber, 2, ',', '.'); ?></h1>
+                                    <h3><?php echo number_format($total_receber, 2, ',', '.'); ?></h3>
                                     <p>Total Contas a Receber</p>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="card card-verde">
-                                    <h1><?php echo number_format($total_pagar, 2, ',', '.'); ?></h1>
+                                    <h3><?php echo number_format($total_pagar, 2, ',', '.'); ?></h3>
                                     <p>Total Contas a Pagar</p>
                                 </div>
                             </div>
@@ -146,8 +146,6 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                                     <th>Tipo</th>
                                     <th>Emissão</th>
                                     <th>Vencimento</th>
-                                    <th>Forma pagto</th>
-                                    <th>Liquidação</th>
                                     <th>Valor</th>
                                     <th></th>
                                 </tr>
@@ -162,8 +160,6 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                                        <td>" . htmlspecialchars($row['tipo_lancamento'] ?? '-') . "</td>
                                        <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
                                        <td>" . htmlspecialchars($row['data_vencimento'] ?? '-') . "</td>
-                                       <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
-                                       <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
                                        <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
                                        <td>
                                        </td>
