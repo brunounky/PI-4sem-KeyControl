@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+   header("Location: ../app/controllers/verifica_login.php");
+   exit();
+}
+
+
+include '../app/controllers/consulta_dashboard.php';
+include '../app/controllers/financeiro_geral.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -23,20 +37,6 @@
 </head>
 
 <?php
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../app/controllers/verifica_login.php");
-    exit();
-}
-
-include 'navbar.php';
-
-include '../app/controllers/consulta_dashboard.php';
-include '../app/controllers/filtro_lancamento_receber.php';
-
-/** teste grafico **/
-
 // Consultas ao banco
 $query_imoveis = "SELECT COUNT(*) AS total_imoveis FROM cadastro_imovel";
 $stmt_imoveis = $pdo->query($query_imoveis);
@@ -77,10 +77,10 @@ $clientes = $stmt_clientes_tipo->fetchAll(PDO::FETCH_ASSOC);
 
 $labels = json_encode(array_column($clientes, 'tipo_cliente'));
 $data = json_encode(array_column($clientes, 'quantidade'));
-
 ?>
 
 <body>
+<?php include 'navbar.php'; ?>
 
     <section id="dashboard">
         <div class="container">
@@ -135,18 +135,19 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="card card-superior">
                         <h5>Lançamentos à Vencer</h5>
                         <table class="table table-hover mt-3">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>N°</th>
-                                    <th>Beneficiário</th>
+                                    <th>Nº</th>
+                                    <th>Tipo</th>
                                     <th>Emissão</th>
                                     <th>Vencimento</th>
-                                    <th>Tipo</th>
+                                    <th>Forma pagto</th>
+                                    <th>Liquidação</th>
                                     <th>Valor</th>
                                     <th></th>
                                 </tr>
@@ -157,33 +158,14 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                                     foreach ($result as $row) {
 
                                         echo "<tr>
-                                       <td>" . htmlspecialchars($row['registro_imovel'] ?? '-') . "</td>
-                                       <td>" . htmlspecialchars($row['nome'] ?? '-') . "</td>
-                                       <td>" . htmlspecialchars($row['cep'] ?? '-') . "</td>
-                                       <td>" . htmlspecialchars($row['rua'] ?? '-') . "</td>
-                                       <td>" . htmlspecialchars($row['numero'] ?? '-') . "</td>
-                                       <td>" . htmlspecialchars($row['cidade'] ?? '-') . "</td>
-                                       <td>" . htmlspecialchars($row['tipo_imovel'] ?? '-') . "</td>
+                                       <td>" . htmlspecialchars($row['id_lancamento'] ?? '-') . "</td>
+                                       <td>" . htmlspecialchars($row['tipo_lancamento'] ?? '-') . "</td>
+                                       <td>" . htmlspecialchars($row['data_emissao'] ?? '-') . "</td>
+                                       <td>" . htmlspecialchars($row['data_vencimento'] ?? '-') . "</td>
+                                       <td>" . htmlspecialchars($row['forma_pagamento'] ?? '-') . "</td>
+                                       <td>" . htmlspecialchars($row['liquidado'] ?? '-') . "</td>
+                                       <td>" . htmlspecialchars($row['valor_total'] ?? '-') . "</td>
                                        <td>
-                                           <button class='btn' onclick='editRecord(" . htmlspecialchars($row['id']) . ")'>
-                                              <i class='bi bi-pencil-square'></i>
-                                           </button>
-                                           <button class='btn' onclick='toggleSubMenu(this)'>
-                                              <i class='bi bi-chevron-down'></i>
-                                           </button>
-                                           <div class='submenu' style='display: none;'>
-                                              <div class='submenu-options'>
-                                                 <button class='imprimir' onclick='printInfo(" . htmlspecialchars($row['id']) . ")'>
-                                                   <i class='bi bi-printer'></i> Imprimir
-                                                 </button>
-                                                 <button class='email' onclick='sendEmail(\"" . addslashes(htmlspecialchars($row["email"] ?? '')) . "\")'>
-                                                   <i class='bi bi-envelope'></i> E-mail
-                                                 </button>
-                                                 <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id']) . ")'>
-                                                   <i class='bi bi-trash'></i> Excluir
-                                                 </button>
-                                              </div>
-                                           </div>
                                        </td>
                                     </tr>";
                                     }
@@ -203,18 +185,40 @@ $data = json_encode(array_column($clientes, 'quantidade'));
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script>
-        // Dados vindos do PHP
-        const labels = <?php echo $labels; ?>;
-        const data = <?php echo $data; ?>;
+        crossorigin="anonymous">
+    </script>
+   <script>
+    // Dados vindos do PHP
+    const rawLabels = <?php echo isset($labels) ? $labels : '[]'; ?>; // Labels originais
+    const rawData = <?php echo isset($data) ? $data : '[]'; ?>; // Dados originais
 
-        const propertyLabels = <?php echo $property_types; ?>;
-        const propertyData = <?php echo $property_counts; ?>;
+    // Função para agrupar dados duplicados (locador e locatário, etc.)
+    const aggregateData = (labels, data) => {
+        const aggregated = {};
+        labels.forEach((label, index) => {
+            if (aggregated[label]) {
+                aggregated[label] += data[index]; // Soma os valores duplicados
+            } else {
+                aggregated[label] = data[index];
+            }
+        });
+        return {
+            labels: Object.keys(aggregated),
+            data: Object.values(aggregated)
+        };
+    };
 
-        // Configuração do gráfico de Clientes
+    // Processar dados de clientes
+    const { labels, data } = aggregateData(rawLabels, rawData);
+
+    // Processar dados de propriedades
+    const propertyLabels = <?php echo isset($property_types) ? $property_types : '[]'; ?>;
+    const propertyData = <?php echo isset($property_counts) ? $property_counts : '[]'; ?>;
+
+    // Configuração do gráfico de Clientes
+    if (labels.length > 0 && data.length > 0) {
         const ctxClientes = document.getElementById('grafico_clientes').getContext('2d');
-        const grafico_clientes = new Chart(ctxClientes, {
+        new Chart(ctxClientes, {
             type: 'pie',
             data: {
                 labels: labels,
@@ -222,10 +226,10 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                     label: 'Quantidade de Clientes',
                     data: data,
                     backgroundColor: [
-                        '#28ADF7',
-                        '#C4DF16',
-                        '#93A60F',
-                        '#0541FF'
+                        '#28ADF7', // Azul Claro
+                        '#C4DF16', // Verde Limão
+                        '#93A60F', // Verde Musgo
+                        '#0541FF'  // Azul Escuro
                     ],
                     borderColor: '#fff',
                     borderWidth: 4
@@ -237,17 +241,13 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                     legend: {
                         position: 'right',
                         labels: {
-                            generateLabels: function (chart) {
-                                const data = chart.data;
-                                return data.labels.map((label, i) => {
-                                    const value = data.datasets[0].data[i];
+                            generateLabels: (chart) => {
+                                return chart.data.labels.map((label, i) => {
+                                    const value = chart.data.datasets[0].data[i];
                                     return {
-                                        text: `${label} - ${value}`, // Nome com número
-                                        fillStyle: data.datasets[0].backgroundColor[i],
-                                        hidden: false,
-                                        index: i,
-                                        strokeStyle: 'transparent', // Remove o contorno
-                                        lineWidth: 0
+                                        text: `${label} - ${value}`,
+                                        fillStyle: chart.data.datasets[0].backgroundColor[i],
+                                        index: i
                                     };
                                 });
                             }
@@ -255,7 +255,7 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                     },
                     tooltip: {
                         callbacks: {
-                            label: function (tooltipItem) {
+                            label: (tooltipItem) => {
                                 const label = labels[tooltipItem.dataIndex];
                                 const value = data[tooltipItem.dataIndex];
                                 return `${label}: ${value}`;
@@ -265,14 +265,12 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                 }
             }
         });
+    }
 
-        // Dados vindos do PHP para o gráfico de Imóveis
-        const propertyLabels = <?php echo $property_types; ?>;
-        const propertyData = <?php echo $property_counts; ?>;
-
-        // Configuração do gráfico de Imóveis
+    // Configuração do gráfico de Imóveis
+    if (propertyLabels.length > 0 && propertyData.length > 0) {
         const ctxImoveis = document.getElementById('grafico_imoveis').getContext('2d');
-        const grafico_imoveis = new Chart(ctxImoveis, {
+        new Chart(ctxImoveis, {
             type: 'pie',
             data: {
                 labels: propertyLabels,
@@ -294,17 +292,13 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                     legend: {
                         position: 'right',
                         labels: {
-                            generateLabels: function (chart) {
-                                const data = chart.data;
-                                return data.labels.map((label, i) => {
-                                    const value = data.datasets[0].data[i];
+                            generateLabels: (chart) => {
+                                return chart.data.labels.map((label, i) => {
+                                    const value = chart.data.datasets[0].data[i];
                                     return {
-                                        text: `${label} - ${value}`, // Nome com número
-                                        fillStyle: data.datasets[0].backgroundColor[i],
-                                        hidden: false,
-                                        index: i,
-                                        strokeStyle: 'transparent', // Remove o contorno
-                                        lineWidth: 0
+                                        text: `${label} - ${value}`,
+                                        fillStyle: chart.data.datasets[0].backgroundColor[i],
+                                        index: i
                                     };
                                 });
                             }
@@ -312,7 +306,7 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                     },
                     tooltip: {
                         callbacks: {
-                            label: function (tooltipItem) {
+                            label: (tooltipItem) => {
                                 const label = propertyLabels[tooltipItem.dataIndex];
                                 const value = propertyData[tooltipItem.dataIndex];
                                 return `${label}: ${value}`;
@@ -322,8 +316,10 @@ $data = json_encode(array_column($clientes, 'quantidade'));
                 }
             }
         });
-    </script>
+    }
+</script>
+
+
 
 </body>
-
 </html>
