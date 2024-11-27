@@ -227,10 +227,6 @@ include_once '../app/controllers/filtro_lancamento_pagar.php';
                                                          <button class='imprimir' onclick='redirectToComprovante(" . htmlspecialchars($row['id_lancamento']) . ")'>
                                                         <i class='bi bi-printer'></i> Comprovante
                                                     </button>
-
-                                                    <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['id_lancamento']) . ")'>
-                                                        <i class='bi bi-trash'></i> Excluir
-                                                    </button>
                                                 </div>
                                             </div>
                              </td>

@@ -127,9 +127,6 @@
                                                 <button class='imprimir' title='imprimirContrato' onclick='redirectToRelatorio2(" . htmlspecialchars($row['contrato_id']) . ")'>
                                                 <i class='bi bi-printer'></i> Imprimir Contrato
                                                 </button>
-                                                <button class='excluir' onclick='deleteRecord(" . htmlspecialchars($row['contrato_id']) . ")'>
-                                                    <i class='bi bi-trash'></i> Excluir
-                                                </button>
                                             </div>
                                         </div>
                                     </td>
