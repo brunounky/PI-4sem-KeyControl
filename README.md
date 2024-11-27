@@ -1,6 +1,10 @@
-# KeyControl | Pojeto Intgrador do 4 semestre de 2024 - Fatec Araras
+# KeyControl
+<img src="https://github.com/beamclive/PI-4sem-KeyControl/blob/main/Documentação/Design/Logotipo.png" width="150"/>
 
-O "KeyControl" se trata de aplicação desenvolvida para gerenciar as operações diárias de uma imobiliária. O sistema permite o cadastro de locadores, locatários e imóveis, além de facilitar a geração de contratos, recibos e o controle de pagamentos. Este projeto visa automatizar as tarefas mais comuns no setor imobiliário, otimizando o tempo e aumentando a precisão nas atividades.
+Projeto Integrador do 4º semestre da FATEC Araras
+
+# Objetivo 
+O "KeyControl" se trata de aplicação desenvolvida para gerenciar as operações diárias de uma imobiliária. O sistema focará em funcionalidades específicas para o setor imobiliário, como a geração automática de contratos e recibos, cadastro unificado de locador, locatário e imóvel, além de um dashboard que permite o acompanhamento em tempo real das principais métricas do negócio.
 
 ## Tecnologias utilizadas 
 Esse projeto foi desenvolvido com as seguintes ferramentas:
@@ -16,16 +20,11 @@ Esse projeto foi desenvolvido com as seguintes ferramentas:
     <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/></a> 
 </p>
  
+## Documentos
+[Visualizar Documentação em PDF](https://github.com/beamclive/PI-4sem-KeyControl/blob/main/Documentação/Especificação%20de%20Requisitos%20de%20Software/02.%20Especificação%20de%20Requisitos%20de%20Software_v_Final.pdf)
 
-## Configuração do Ambiente e Execução (Windows)
-
-1 - Clone o repositório do projeto:
-
-```bash
-git clone https://github.com/beamclive/PI-4sem-KeyControl.git
-```
-
-
-
-
+## Integrantes do Projeto
+- [Beatriz Machado de Oliveira](https://github.com/beamclive)
+- [Bruno Campagnol de Oliveira](https://github.com/brunounky)
+- [Maria Vitoria Suzarth](https://github.com/mvitoriasuz)
 
