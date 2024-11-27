@@ -62,8 +62,8 @@ include_once '../app/controllers/filtro_fechamento.php';
     <button class="btn btn_salvar" onclick="redirectToRelatorio('<?php echo htmlspecialchars($registro_imovel); ?>', '<?php echo htmlspecialchars($data_inicial); ?>', '<?php echo htmlspecialchars($data_final); ?>')">
         Imprimir recibo
     </button>
-    <button class="btn btn_salvar" onclick="window.location.href='../app/controllers/liquida_tudo.php'">
-        Liquidar tudo
+    <button class="btn btn_salvar" onclick="redirectToRelatorio2('<?php echo htmlspecialchars($registro_imovel); ?>', '<?php echo htmlspecialchars($data_inicial); ?>', '<?php echo htmlspecialchars($data_final); ?>')">
+        Liquida Tudo
     </button>
 </div>
 
@@ -115,6 +115,13 @@ include_once '../app/controllers/filtro_fechamento.php';
         window.open(url, '_blank');
     }
 </script>
+<script>
+    function redirectToRelatorio2(registro_imovel, data_inicial, data_final) {
+        var url = '../app/controllers/liquida_tudo.php?registro_imovel=' + registro_imovel + '&data_inicial=' + data_inicial + '&data_final=' + data_final;
+        window.location.href = url; 
+    }
+</script>
+
 
 </body>
 </html>
