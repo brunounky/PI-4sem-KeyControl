@@ -58,12 +58,14 @@ include_once '../app/controllers/filtro_fechamento.php';
     </div>
 </section>
 
-<button onclick="redirectToRelatorio('<?php echo htmlspecialchars($registro_imovel); ?>', '<?php echo htmlspecialchars($data_inicial); ?>', '<?php echo htmlspecialchars($data_final); ?>')">
-    <i class="">Imprimir Recibo</i>
-</button>
-<button onclick="window.location.href='../app/controllers/liquida_tudo.php'">
-    <i class="">Liquidar tudo</i>
-</button>
+<div class="col-md-12 mt-4 text-center">
+    <button class="btn btn_salvar" onclick="redirectToRelatorio('<?php echo htmlspecialchars($registro_imovel); ?>', '<?php echo htmlspecialchars($data_inicial); ?>', '<?php echo htmlspecialchars($data_final); ?>')">
+        Imprimir recibo
+    </button>
+    <button class="btn btn_salvar" onclick="window.location.href='../app/controllers/liquida_tudo.php'">
+        Liquidar tudo
+    </button>
+</div>
 
 <section id="fechamento">
     <div class="container">
