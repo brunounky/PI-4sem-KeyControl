@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/11/2024 às 02:12
+-- Tempo de geração: 27/11/2024 às 03:12
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -272,7 +272,7 @@ CREATE TABLE `lancamento_financeiro` (
   `observacoes` varchar(255) DEFAULT NULL,
   `data_vigencia` date DEFAULT NULL,
   `meses_caucao` int(11) DEFAULT NULL,
-  `liquidado` varchar(15) DEFAULT NULL
+  `liquidado` varchar(15) DEFAULT 'Não liquidado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
