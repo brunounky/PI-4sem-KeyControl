@@ -3,7 +3,7 @@ include '../app/controllers/db_conexao.php';
 $result = null; 
 
 function buildQuery($id_lancamento, $tipo_lancamento, $registro_imovel, $data_emissao, $data_vencimento, $valor_total, $forma_pagamento, $data_vigencia, $liquidado) {
-        $sql = "SELECT * FROM lancamento_financeiro";
+    $sql = "SELECT * FROM lancamento_financeiro WHERE valor_total LIKE '-%'";
         $params = [];
 
         if (!empty($id_lancamento)) {
