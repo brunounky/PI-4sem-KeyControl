@@ -28,28 +28,42 @@
   }
 
   include 'navbar.php';
+  include '../app/controllers/filtros_pessoas.php';
+  include '../app/controllers/filtros_imovel.php';
+  include '../app/controllers/filtros_lancamento_receber.php';
 
   /** teste grafico **/
 
-  $clientes = [
-    "Locador" => 100,
-    "Locatário" => 354,
-    "Fiador" => 231,
-    "Comprador" => 120
-    ];
+  // Consultas ao banco
+$query_imoveis = "SELECT COUNT(*) AS total_imoveis FROM cadastro_imovel";
+$stmt_imoveis = $pdo->query($query_imoveis);
+$total_imoveis = $stmt_imoveis->fetch(PDO::FETCH_ASSOC)['total_imoveis'];
 
-    $imoveis = [
-        "Apartamento" => 150,
-        "Casa" => 386,
-        "Comercial" => 247
-    ];
+$query_clientes = "SELECT COUNT(*) AS total_clientes FROM cadastro_cliente";
+$stmt_clientes = $pdo->query($query_clientes);
+$total_clientes = $stmt_clientes->fetch(PDO::FETCH_ASSOC)['total_clientes'];
 
-// Transformar os dados em formato utilizável pelo JavaScript
-$labels = json_encode(array_keys($clientes)); // ["Locador", "Locatário", "Fiador", "Comprador"]
-$data = json_encode(array_values($clientes)); // [100, 354, 231, 120]
+$query_contas_a_receber = "SELECT SUM(valor_total) AS total_receber FROM lancamento_financeiro WHERE valor_total NOT LIKE '-%'";
+$stmt_receber = $pdo->query($query_contas_a_receber);
+$total_receber = $stmt_receber->fetch(PDO::FETCH_ASSOC)['total_receber'];
 
-$property_types = json_encode(array_keys($imoveis)); // ["Apartamento", "Casa", "Comercial"]
-$property_counts = json_encode(array_values($imoveis)); // [150, 386, 247]
+$query_contas_a_pagar = "SELECT SUM(valor_total) AS total_pagar FROM contas WHERE valor_total LIKE '-%'";
+$stmt_pagar = $pdo->query($query_contas_a_pagar);
+$total_pagar = $stmt_pagar->fetch(PDO::FETCH_ASSOC)['total_pagar'];
+
+// Gráfico de Tipos de Imóveis
+$query_imoveis_tipo = "SELECT tipo_imovel, COUNT(*) AS quantidade FROM imoveis GROUP BY tipo_imovel";
+$stmt_imoveis_tipo = $pdo->query($query_imoveis_tipo);
+$imoveis = $stmt_imoveis_tipo->fetchAll(PDO::FETCH_ASSOC);
+$property_types = json_encode(array_column($imoveis, 'tipo_imovel'));
+$property_counts = json_encode(array_column($imoveis, 'quantidade'));
+
+// Gráfico de Tipos de Clientes
+$query_clientes_tipo = "SELECT tipo_cliente, COUNT(*) AS quantidade FROM clientes GROUP BY tipo_cliente";
+$stmt_clientes_tipo = $pdo->query($query_clientes_tipo);
+$clientes = $stmt_clientes_tipo->fetchAll(PDO::FETCH_ASSOC);
+$labels = json_encode(array_column($clientes, 'tipo_cliente'));
+$data = json_encode(array_column($clientes, 'quantidade'));
 
 ?>
 
@@ -65,25 +79,25 @@ $property_counts = json_encode(array_values($imoveis)); // [150, 386, 247]
                     <div class="row">
                         <div class="col-md-3">
                             <div class="card card-branco">
-                                <h1>560</h1>
+                                <h1><?php echo $total_imoveis; ?></h1>
                                 <p>Quantidade de Imóveis</p>
                             </div>    
                         </div>
                         <div class="col-md-3">
                             <div class="card card-azul-escuro">
-                                <h1>890</h1>
+                                <h1><?php echo $total_clientes; ?></h1>
                                 <p>Quantidade de Clientes</p>
                             </div>    
                         </div>
                         <div class="col-md-3">
                             <div class="card card-azul">
-                                <h1>150,36</h1>
+                                <h1><?php echo number_format($total_receber, 2, ',', '.'); ?></h1>
                                 <p>Total Contas a Receber</p>
                             </div>    
                         </div>
                         <div class="col-md-3">
                             <div class="card card-verde">
-                                <h1>1380,45</h1>
+                                <h1><?php echo number_format($total_pagar, 2, ',', '.'); ?></h1>
                                 <p>Total Contas a Pagar</p>
                             </div>    
                         </div>
@@ -179,6 +193,9 @@ $property_counts = json_encode(array_values($imoveis)); // [150, 386, 247]
     // Dados vindos do PHP
     const labels = <?php echo $labels; ?>;
     const data = <?php echo $data; ?>;
+
+    const propertyLabels = <?php echo $property_types; ?>;
+    const propertyData = <?php echo $property_counts; ?>;
 
     // Configuração do gráfico de Clientes
     const ctxClientes = document.getElementById('grafico_clientes').getContext('2d');
