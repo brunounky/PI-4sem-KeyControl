@@ -12,8 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     try {
         $valor_total = $_POST['valor_total'];
 
-        $valor_total = $valor_total > 0 ? -$valor_total : $valor_total;
-
         $tipo_lancamento = $_POST['tipo_lancamento'];
         $data_emissao = $_POST['data_emissao'];
         $forma_pagamento = $_POST['forma_pagamento'];
