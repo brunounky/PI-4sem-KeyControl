@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/11/2024 às 03:12
+-- Tempo de geração: 28/11/2024 às 01:45
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Versão do PHP: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,7 +59,13 @@ CREATE TABLE `cadastro_cliente` (
 
 INSERT INTO `cadastro_cliente` (`id`, `nome`, `rg_ie`, `data_nascimento_fundacao`, `telefone`, `email`, `estado_civil`, `nacionalidade`, `profissao`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `locador`, `locatario`, `fiador`, `comprador`, `complemento`, `cpf_cnpj`, `id_imobiliaria`) VALUES
 (16, 'vitoria lucianetti dos santos', '44234432', '2024-12-07', '19996886205', '627sp@al.educacao.sp.gov.bd', 'SP', '4', '4', '13506-560', 'Rua 16 A', '16', 'Vila Nova', 'Rio Claro', 'SP', 'Brasil', 1, 0, 0, 0, '4', '54234346578', '73943371000180'),
-(17, 'Guilherme Ribeiro Bonatti', '640022947', '2005-03-26', '19996236443', 'guilhermeribeirobonatti@gmail.com', 'Solteiro', 'Brasileiro', 'Operador de caixa', '13505493', 'Avenida M 49', '2430', 'Jardim Residencial São José', 'Rio Claro', 'SP', 'Brasil', 1, 1, 0, 0, 'Portao cinza', '39911823865', '73943371000180');
+(17, 'Guilherme Ribeiro Bonatti', '640022947', '2005-03-26', '19996236443', 'guilhermeribeirobonatti@gmail.com', 'Solteiro', 'Brasileiro', 'Operador de caixa', '13505493', 'Avenida M 49', '2430', 'Jardim Residencial São José', 'Rio Claro', 'SP', 'Brasil', 1, 1, 0, 0, 'Portao cinza', '39911823865', '73943371000180'),
+(20, 'João Silva', '123456789', '1980-03-15', '1234567890', 'joao@email.com', 'Solteiro', 'Brasileiro', 'Engenheiro', '12345-678', 'Rua A', '10', 'Centro', 'Araras', 'SP', 'Brasil', 1, 0, 0, 1, 'Apartamento no centro', '123.456.789-00', '1'),
+(21, 'Maria Oliveira', '987654321', '1992-06-10', '0987654321', 'maria@email.com', 'Casada', 'Brasileira', 'Professor', '23456-789', 'Rua B', '15', 'Jardim', 'Araras', 'SP', 'Brasil', 1, 1, 0, 0, 'Casa no jardim', '234.567.890/0011', '2'),
+(22, 'Carlos Pereira', '456123789', '1975-11-22', '1122334455', 'carlos@email.com', 'Divorciado', 'Brasileiro', 'Advogado', '34567-890', 'Rua C', '20', 'Vila Nova', 'Araras', 'SP', 'Brasil', 0, 1, 1, 0, 'Sobrado na vila', '345.678.901-00', '3'),
+(23, 'Ana Costa', '321654987', '1985-01-05', '2233445566', 'ana@email.com', 'Casada', 'Brasileira', 'Médica', '45678-901', 'Rua D', '30', 'São João', 'Araras', 'SP', 'Brasil', 1, 0, 1, 1, 'Apartamento próximo ao hospital', '456.789.012/0011', '1'),
+(24, 'Lucas Rocha', '789321654', '2000-12-30', '3344556677', 'lucas@email.com', 'Solteiro', 'Brasileiro', 'Estudante', '56789-012', 'Rua E', '40', 'Vila Santa Maria', 'Araras', 'SP', 'Brasil', 0, 0, 0, 1, 'Apartamento novo', '567.890.123-00', '2'),
+(25, 'Fernando', '591985780', '2024-11-27', '19996595529', 'teste@teste.com', 'solteira', 'brasileira', 'aaa', '13605060', 'Rua Doutor Fábio Fachini', '123', 'Vila Candinha', 'Araras', 'SP', 'Brasil', 0, 1, 1, 1, 'teste', '47169254808', '73943371000180');
 
 -- --------------------------------------------------------
 
@@ -97,7 +103,12 @@ CREATE TABLE `cadastro_imovel` (
 --
 
 INSERT INTO `cadastro_imovel` (`id`, `id_imobiliaria`, `cpf_cnpj_proprietario`, `tipo_imovel`, `quantidade_quartos`, `quantidade_banheiros`, `quantidade_vagas`, `area_total`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `registro_imovel`, `valor_aluguel`, `taxa_aluguel`, `valor_venda`, `taxa_venda`, `complemento`, `registro_agua`) VALUES
-(24, '73943371000180', '54234346578', 'apartamento', 2, 2, 2, 22.00, '13506180', 'Rua 10 MP', '1', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', '22', 11, 11, 12, 111, '1', '22');
+(24, '73943371000180', '54234346578', 'apartamento', 2, 2, 2, 22.00, '13506180', 'Rua 10 MP', '1', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'Brasil', '22', 11, 11, 12, 111, '1', '22'),
+(26, '1', '123.456.789-00', 'Apartamento', 2, 1, 1, 50.00, '12345-678', 'Rua A', '10', 'Centro', 'Araras', 'SP', 'Brasil', 'RG12345', 1200, 5, 250000, 3, 'Apartamento no centro com vista', 'A123456789'),
+(27, '2', '234.567.890/0011', 'Casa', 3, 2, 2, 120.00, '23456-789', 'Rua B', '15', 'Jardim', 'Araras', 'SP', 'Brasil', 'RG23456', 2500, 7, 450000, 2, 'Casa ampla com quintal', 'B234567890'),
+(28, '3', '345.678.901-00', 'Sobrado', 4, 3, 2, 150.00, '34567-890', 'Rua C', '20', 'Vila Nova', 'Araras', 'SP', 'Brasil', 'RG34567', 3500, 6, 550000, 4, 'Sobrado com garagem e varanda', 'C345678901'),
+(29, '1', '456.789.012/0011', 'Apartamento', 1, 1, 1, 45.00, '45678-901', 'Rua D', '30', 'São João', 'Araras', 'SP', 'Brasil', 'RG45678', 1000, 4, 200000, 5, 'Apartamento com excelente localização', 'D456789012'),
+(30, '2', '567.890.123-00', 'Apartamento', 2, 1, 1, 60.00, '56789-012', 'Rua E', '40', 'Vila Santa Maria', 'Araras', 'SP', 'Brasil', 'RG56789', 1300, 5, 270000, 3, 'Apartamento novo, pronto para morar', 'E567890123');
 
 -- --------------------------------------------------------
 
@@ -228,7 +239,18 @@ CREATE TABLE `contrato_venda` (
 
 INSERT INTO `contrato_venda` (`id`, `comprador_nome`, `comprador_data_nascimento`, `comprador_nacionalidade`, `comprador_cep`, `comprador_bairro`, `comprador_estado`, `comprador_cpf_cnpj`, `comprador_telefone`, `comprador_estado_civil`, `comprador_rua`, `comprador_complemento`, `comprador_pais`, `comprador_rg_ie`, `comprador_email`, `comprador_profissao`, `comprador_numero`, `comprador_cidade`, `imovel_proprietario_cpf_cnpj`, `imovel_tipo`, `imovel_numero`, `imovel_cidade`, `imovel_taxa_venda`, `imovel_cep`, `imovel_bairro`, `imovel_estado`, `imovel_valor`, `imovel_registro`, `imovel_rua`, `imovel_complemento`, `imovel_pais`, `data_emissao`, `data_vencimento`, `forma_pagamento`, `id_imobiliaria`, `id_lancamento`) VALUES
 (12, 'vitoria lucianetti dos santos', '2024-12-07', '4', '13506-560', 'Vila Nova', 'SP', '54234346578', '19996886205', 'SP', 'Rua 16 A', '4', 'Brasil', '44234432', '627sp@al.educacao.sp.gov.bd', '4', 16, 'Rio Claro', '54234346578', '', 1, 'Rio Claro', 111.00, '13506180', 'Parque Mãe Preta', 'SP', 12.00, '22', 'Rua 10 MP', '1', '', '2024-11-25', '2024-11-27', 'Cartão de crédito', '73943371000180', 12),
-(13, 'Guilherme Ribeiro Bonatti', '2005-03-26', 'Brasileiro', '13505493', 'Jardim Residencial São José', 'SP', '39911823865', '19996236443', 'Solteiro', 'Avenida M 49', 'Portao cinza', 'Brasil', '640022947', 'guilhermeribeirobonatti@gmail.com', 'Operador de caixa', 2430, 'Rio Claro', '54234346578', '', 1, 'Rio Claro', 111.00, '13506180', 'Parque Mãe Preta', 'SP', 12.00, '22', 'Rua 10 MP', '1', '', '2024-11-25', '2024-11-29', 'PIX', '73943371000180', 14);
+(13, 'Guilherme Ribeiro Bonatti', '2005-03-26', 'Brasileiro', '13505493', 'Jardim Residencial São José', 'SP', '39911823865', '19996236443', 'Solteiro', 'Avenida M 49', 'Portao cinza', 'Brasil', '640022947', 'guilhermeribeirobonatti@gmail.com', 'Operador de caixa', 2430, 'Rio Claro', '54234346578', '', 1, 'Rio Claro', 111.00, '13506180', 'Parque Mãe Preta', 'SP', 12.00, '22', 'Rua 10 MP', '1', '', '2024-11-25', '2024-11-29', 'PIX', '73943371000180', 14),
+(14, 'Lucas Rocha', '2000-12-30', 'Brasileiro', '56789-012', 'Vila Santa Maria', 'SP', '567.890.123-00', '3344556677', 'Solteiro', 'Rua E', 'Apartamento novo, pronto para morar', 'Brasil', '789321654', 'lucas@email.com', 'Estudante', 40, 'Araras', '123.456.789-00', 'Apartamento', 40, 'Araras', 3.00, '56789-012', 'Vila Santa Maria', 'SP', 270000.00, 'RG56789', 'Rua E', 'Apartamento novo', 'Brasil', '2024-11-27', '2025-11-27', 'Financiamento', '2', 1),
+(15, 'Ana Costa', '1985-01-05', 'Brasileira', '45678-901', 'São João', 'SP', '456.789.012/00', '2233445566', 'Casada', 'Rua D', 'Apartamento com excelente localização', 'Brasil', '321654987', 'ana@email.com', 'Médica', 30, 'Araras', '234.567.890/00', 'Casa', 15, 'Araras', 5.00, '45678-901', 'São João', 'SP', 450000.00, 'RG45678', 'Rua D', 'Casa ampla com quintal', 'Brasil', '2024-11-27', '2025-11-27', 'À vista', '1', 2),
+(16, 'Carlos Pereira', '1975-11-22', 'Brasileiro', '34567-890', 'Vila Nova', 'SP', '345.678.901-00', '1122334455', 'Divorciado', 'Rua C', 'Sobrado com garagem e varanda', 'Brasil', '456123789', 'carlos@email.com', 'Advogado', 20, 'Araras', '234.567.890/00', 'Sobrado', 20, 'Araras', 4.00, '34567-890', 'Vila Nova', 'SP', 550000.00, 'RG34567', 'Rua C', 'Sobrado com garagem e varanda', 'Brasil', '2024-11-27', '2025-11-27', 'Parcelado', '3', 3),
+(17, 'Maria Oliveira', '1992-06-10', 'Brasileira', '23456-789', 'Jardim', 'SP', '234.567.890/00', '0987654321', 'Casada', 'Rua B', 'Casa ampla com quintal', 'Brasil', '987654321', 'maria@email.com', 'Professor', 15, 'Araras', '123.456.789-00', 'Apartamento', 10, 'Araras', 3.00, '23456-789', 'Jardim', 'SP', 250000.00, 'RG23456', 'Rua B', 'Casa no jardim', 'Brasil', '2024-11-27', '2025-11-27', 'Financiamento', '2', 4),
+(18, 'João Silva', '1980-03-15', 'Brasileiro', '12345-678', 'Centro', 'SP', '123.456.789-00', '1234567890', 'Solteiro', 'Rua A', 'Apartamento no centro com vista', 'Brasil', '123456789', 'joao@email.com', 'Engenheiro', 10, 'Araras', '345.678.901-00', 'Apartamento', 10, 'Araras', 5.00, '12345-678', 'Centro', 'SP', 120000.00, 'RG12345', 'Rua A', 'Apartamento no centro', 'Brasil', '2024-11-27', '2025-11-27', 'À vista', '1', 5),
+(24, 'Lucas Rocha', '2000-12-30', 'Brasileiro', '56789-012', 'Vila Santa Maria', 'SP', '567.890.123-00', '3344556677', 'Solteiro', 'Rua E', 'Apartamento novo, pronto para morar', 'Brasil', '789321654', 'lucas@email.com', 'Estudante', 40, 'Araras', '123.456.789-00', 'Apartamento', 40, 'Araras', 3.00, '56789-012', 'Vila Santa Maria', 'SP', 270000.00, 'RG56789', 'Rua E', 'Apartamento novo', 'Brasil', '2024-11-27', '2025-11-27', 'Financiamento', '2', 1),
+(25, 'Ana Costa', '1985-01-05', 'Brasileira', '45678-901', 'São João', 'SP', '456.789.012/00', '2233445566', 'Casada', 'Rua D', 'Apartamento com excelente localização', 'Brasil', '321654987', 'ana@email.com', 'Médica', 30, 'Araras', '234.567.890/00', 'Casa', 15, 'Araras', 5.00, '45678-901', 'São João', 'SP', 450000.00, 'RG45678', 'Rua D', 'Casa ampla com quintal', 'Brasil', '2024-11-27', '2025-11-27', 'À vista', '1', 2),
+(26, 'Carlos Pereira', '1975-11-22', 'Brasileiro', '34567-890', 'Vila Nova', 'SP', '345.678.901-00', '1122334455', 'Divorciado', 'Rua C', 'Sobrado com garagem e varanda', 'Brasil', '456123789', 'carlos@email.com', 'Advogado', 20, 'Araras', '234.567.890/00', 'Sobrado', 20, 'Araras', 4.00, '34567-890', 'Vila Nova', 'SP', 550000.00, 'RG34567', 'Rua C', 'Sobrado com garagem e varanda', 'Brasil', '2024-11-27', '2025-11-27', 'Parcelado', '3', 3),
+(27, 'Maria Oliveira', '1992-06-10', 'Brasileira', '23456-789', 'Jardim', 'SP', '234.567.890/00', '0987654321', 'Casada', 'Rua B', 'Casa ampla com quintal', 'Brasil', '987654321', 'maria@email.com', 'Professor', 15, 'Araras', '123.456.789-00', 'Apartamento', 10, 'Araras', 3.00, '23456-789', 'Jardim', 'SP', 250000.00, 'RG23456', 'Rua B', 'Casa no jardim', 'Brasil', '2024-11-27', '2025-11-27', 'Financiamento', '2', 4),
+(28, 'João Silva', '1980-03-15', 'Brasileiro', '12345-678', 'Centro', 'SP', '123.456.789-00', '1234567890', 'Solteiro', 'Rua A', 'Apartamento no centro com vista', 'Brasil', '123456789', 'joao@email.com', 'Engenheiro', 10, 'Araras', '345.678.901-00', 'Apartamento', 10, 'Araras', 5.00, '12345-678', 'Centro', 'SP', 120000.00, 'RG12345', 'Rua A', 'Apartamento no centro', 'Brasil', '2024-11-27', '2025-11-27', 'À vista', '1', 5),
+(29, 'Fernando', '2024-11-27', 'brasileira', '13605060', 'Vila Candinha', 'SP', '47169254808', '19996595529', 'solteira', 'Rua Doutor Fábio Fachini', 'teste', 'Brasil', '591985780', 'teste@teste.com', 'aaa', 123, 'Araras', '54234346578', 'apartamento', 1, 'Rio Claro', 10.00, '13506180', 'Parque Mãe Preta', 'SP', 12.00, '22', 'Rua 10 MP', '1', 'Brasil', '2024-11-27', '2024-11-29', 'Boleto', '73943371000180', 49);
 
 -- --------------------------------------------------------
 
@@ -296,10 +318,19 @@ INSERT INTO `lancamento_financeiro` (`id_lancamento`, `id_imobiliaria`, `tipo_la
 (35, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-12-06', 2222222, 'Boleto', NULL, NULL, 11, 'Não liquidado'),
 (36, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-12-06', 11, 'Cartão de crédito', NULL, '2024-11-29', NULL, 'Não liquidado'),
 (37, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-11-07', 11, 'PIX', NULL, NULL, 1, 'Não liquidado'),
-(38, '73943371000180', 'Reparos', '22', '2024-11-29', '2024-11-26', 22, 'Cartão de crédito', '22', NULL, NULL, 'Não liquidado'),
+(38, '73943371000180', 'Reparos', '22', '2024-11-29', '2024-11-26', 22, 'Cartão de crédito', '22', NULL, NULL, 'Liquidado'),
 (39, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-11-29', 11, 'Cartão de crédito', NULL, '2024-12-06', NULL, 'Não liquidado'),
 (40, '73943371000180', 'aluguel caucao', '22', '2024-11-26', '2024-12-06', 110, 'PIX', NULL, NULL, 10, 'Não liquidado'),
-(41, '73943371000180', 'Reparos', '22', '2024-11-27', '2024-11-21', -33, 'Cartão de crédito', 'teste de negativo', NULL, NULL, 'Não liquidado');
+(41, '73943371000180', 'Reparos', '22', '2024-11-27', '2024-11-21', -33, 'Cartão de crédito', 'teste de negativo', NULL, NULL, 'Liquidado'),
+(42, '73943371000180', 'IPTU', '22', '2024-11-06', '2024-11-07', -1, 'Cartão de crédito', 'oi', NULL, NULL, 'Não liquidado'),
+(43, '73943371000180', 'IPTU', '22', '2024-11-07', '2024-11-14', -1, 'Cartão de débito', 'descontinho', NULL, NULL, 'Não liquidado'),
+(44, '73943371000180', 'Reparos', '22', '2024-11-07', '2024-11-14', 324, 'Transferência', 'agua vencida', NULL, NULL, 'Não liquidado'),
+(45, '73943371000180', 'Reparos', '22', '2024-11-27', '2024-11-29', 66, 'Boleto', 'lampada', NULL, NULL, 'Liquidado'),
+(46, '73943371000180', 'IPTU', 'RG23456', '2024-11-27', '2024-11-30', -100, 'Boleto', '', NULL, NULL, 'Não liquidado'),
+(47, '73943371000180', 'Água', 'RG23456', '2024-11-27', '2024-12-12', -148, 'Boleto', '', NULL, NULL, 'Não liquidado'),
+(48, '73943371000180', 'Reparos', 'RG23456', '2024-11-27', '2024-12-30', -2500, 'Transferência', '', NULL, NULL, 'Não liquidado'),
+(49, '73943371000180', 'venda imovel', '22', '2024-11-27', '2024-11-29', 12, 'Boleto', NULL, NULL, NULL, 'Liquidado'),
+(50, '73943371000180', 'Aluguel', '22', '2024-11-27', '2024-11-27', -100, 'Boleto', '', NULL, NULL, 'Liquidado');
 
 -- --------------------------------------------------------
 
@@ -361,7 +392,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `data_nascimento`, `estado_civil`, `cpf`, `rg`, `email`, `cargo`, `nacionalidade`, `telefone`, `telefone_reserva`, `cep`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `senha`, `cnpj`, `reset_token`, `token_expiry`) VALUES
-(11, 'Bruno Campagnol de Oliveira', NULL, 'solteiro', '47169254808', '576950853', 'bruno_unky@hotmail.com', 'teste', 'BRASILEIRO', '19971595745', '111423423', '13506189', 'qqqq', '2', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'brasilll', '$2y$10$gg82R6b60pEH4dM654AAZ.m45ETdR2BZYoc4gGaVAGD2w/bJbFHQa', '73943371000180', '3e604d82dfa9aceb76708d3dcdbf9a3e', '2024-11-06 05:48:17'),
+(11, 'Bruno Campagnol de Oliveira', NULL, 'solteiro', '47169254808', '576950853', 'bruno_unky@hotmail.com', 'teste', 'BRASILEIRO', '19971595745', '111423423', '13506189', 'qqqq', '2', 'Parque Mãe Preta', 'Rio Claro', 'SP', 'brasilll', '$2y$10$bViT6od6SGQPWrAgjgQy3.ZnBQtCOWyoasEWwezLbuzlkX77TRhWK', '73943371000180', '3e604d82dfa9aceb76708d3dcdbf9a3e', '2024-11-06 05:48:17'),
 (12, 'Jorge Lucianetti', NULL, NULL, NULL, NULL, 'jorginho@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$WIPljcKbX0r6rjfcylbQtehtqVkJqZKwakoACEXpptO1l/.HzdSCK', '86779530000103', NULL, NULL),
 (13, 'Maria Suzarth', NULL, NULL, NULL, NULL, 'maria@teste.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$zlM5YvZBm5HWRDqOghalF.Ovjeaz3PlTgeZKrwQRUnOnH5UW1Yfcu', '30009388000152', NULL, NULL),
 (14, '123456', NULL, '1', '1', '1', '1@1.com', '1', '1', '1', '', '13506180', 'Rua 10 MP', '1', 'Parque Mãe Preta', 'Rio Claro', 'SP', '1', '$2y$10$vJVd9ZKyoRGnsLbOffmM3esQRSOJGXeBqAc7H.Lr8cMwxMU06a7Ai', '73943371000180', NULL, NULL);
@@ -427,13 +458,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `cadastro_cliente`
 --
 ALTER TABLE `cadastro_cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `cadastro_imovel`
 --
 ALTER TABLE `cadastro_imovel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de tabela `contrato_aluguel`
@@ -445,13 +476,13 @@ ALTER TABLE `contrato_aluguel`
 -- AUTO_INCREMENT de tabela `contrato_venda`
 --
 ALTER TABLE `contrato_venda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de tabela `lancamento_financeiro`
 --
 ALTER TABLE `lancamento_financeiro`
-  MODIFY `id_lancamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_lancamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de tabela `superior`
